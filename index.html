@@ -682,17 +682,18 @@
   display: none;
   /* Fixed over the photo — escapes all stacking contexts */
   position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 44px;
-  height: 44px;
-  background: rgba(10, 6, 20, 0.72);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid rgba(168, 85, 247, 0.45);
-  border-radius: 10px;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  width: 46px;
+  height: 46px;
+  background: rgba(10, 6, 20, 0.62);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid rgba(212, 184, 114, 0.55);
+  border-radius: 50%;
   cursor: pointer;
   padding: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   /* Must be above everything — shader canvas is z-index 0, page z-index 1 */
   z-index: 9999;
   align-items: center;
@@ -700,23 +701,24 @@
   flex-direction: column;
   gap: 5px;
   transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.55), 0 0 0 1px rgba(168,85,247,0.12);
   /* Prevent any ancestor transform from creating a containing block */
   will-change: auto;
 }
-.nav-hamburger:hover {
-  border-color: rgba(168, 85, 247, 0.75);
-  background: rgba(10, 6, 20, 0.88);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 16px rgba(168,85,247,0.2);
+.nav-hamburger:hover,
+.nav-hamburger:active {
+  border-color: #d4b872;
+  background: rgba(10, 6, 20, 0.78);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 16px rgba(212, 184, 114, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .nav-ham-line {
   display: block;
-  width: 20px;
+  width: 18px;
   height: 1.5px;
-  background: #ffffff;
+  background: #d4b872;
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
 }
+.nav-hamburger:hover .nav-ham-line { background: #f0d595; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -1329,15 +1331,22 @@ nav {
     object-position: center top;
   }
 
-  /* Progressive gradient from bottom of photo — name overlaps */
+  /* Mask the bottom edge of the photo so it dissolves into the WebGL
+     shader bg instead of cutting off in a hard line. The shader
+     (radial-gradient violet/black) shows through the transparent zone. */
+  .marquee-section {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%);
+  }
+  /* Soft tint overlay on bottom third for legibility of overlapping text below */
   .marquee-section::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 55%;
-    background: linear-gradient(to top, rgba(15,10,26,1) 0%, rgba(15,10,26,0.7) 35%, transparent 100%);
+    height: 40%;
+    background: linear-gradient(to top, rgba(15,10,26,0.55) 0%, rgba(15,10,26,0.18) 50%, transparent 100%);
     z-index: 5;
     pointer-events: none;
   }
@@ -1519,12 +1528,21 @@ nav {
    tagline and CTA pill follow in clean vertical flow.
    ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  /* Free .page from 100vh fixed lock */
+  /* Free .page from 100vh fixed lock; flush to top edge */
   .page {
     height: auto;
     min-height: 100svh;
     align-items: stretch;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
+  /* Photo carousel pinned to top of page — no gap above */
+  .marquee-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  /* Body shouldn't add space above .page */
+  body { padding-top: 0; margin-top: 0; }
 
   /* Lower section: natural block flow */
   .lower {
