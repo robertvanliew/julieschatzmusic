@@ -1210,22 +1210,91 @@ nav {
   .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
 }
 
-/* ───── Mobile nav safety override (high-specificity) ───── */
+/* ───── Hamburger button (mobile only) ───── */
+.nav-burger {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  background: rgba(15, 10, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.nav-burger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.nav-burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ───── Mobile nav (hamburger drawer) ───── */
 @media (max-width: 768px) {
-  nav.site-nav, nav { position: relative !important; padding: 14px 16px !important; justify-content: center !important; }
+  nav.site-nav, nav { position: relative !important; padding: 0 !important; height: 56px; }
+  nav .nav-burger { display: flex !important; }
   nav .nav-logo { display: none !important; }
   nav .nav-links {
-    position: relative !important; left: auto !important; transform: none !important;
-    gap: 8px 14px !important; flex-wrap: wrap !important; justify-content: center !important;
-    width: 100% !important; padding: 0 !important; margin: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    transform: translateX(100%) !important;
+    width: min(86vw, 360px) !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 88px 32px 32px !important;
+    background: linear-gradient(160deg, rgba(20, 10, 38, 0.96) 0%, rgba(8, 4, 18, 0.96) 100%);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-left: 1px solid rgba(244, 239, 230, 0.12);
+    box-shadow: -24px 0 80px rgba(0, 0, 0, 0.55);
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    z-index: 105;
+    transition: transform 0.34s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    list-style: none !important;
   }
-  nav .nav-links li { list-style: none !important; }
-  nav .nav-links a { font-size: 10px !important; letter-spacing: 0.16em !important; padding: 4px 0 !important; }
+  nav .nav-links.is-open { transform: translateX(0) !important; }
+  nav .nav-links li { list-style: none !important; border-bottom: 1px solid rgba(244, 239, 230, 0.08); }
+  nav .nav-links li:last-child { border-bottom: none; }
+  nav .nav-links a {
+    display: block;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase;
+    color: #fff !important;
+    padding: 18px 4px !important;
+    text-shadow: none !important;
+  }
+  body.nav-menu-open { overflow: hidden; }
+  body.nav-menu-open::after {
+    content: ''; position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.55); z-index: 104;
+    animation: navScrimIn 0.34s ease forwards;
+  }
 }
-@media (max-width: 420px) {
-  nav .nav-links { gap: 6px 10px !important; }
-  nav .nav-links a { font-size: 9.5px !important; letter-spacing: 0.12em !important; }
-}
+@keyframes navScrimIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -1318,7 +1387,8 @@ nav {
     <a href="../index.html" class="nav-logo" aria-label="Julie Schatz home">
       <img src="../assets/julie-schatz-logo.png" width="4000" height="4000" alt="Julie Schatz">
     </a>
-    <ul class="nav-links">
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navMenu">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../bookings.html" class="is-current">Bookings</a></li>
       <li><a href="../index.html#listen">Listen</a></li>
@@ -1787,6 +1857,37 @@ if (fy) fy.textContent = new Date().getFullYear();
   }
   function init() { document.querySelectorAll('form.hardened-form').forEach(hardenForm); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<script>
+(function () {
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('navMenu');
+  if (!burger || !menu) return;
+  function setOpen(open) {
+    burger.classList.toggle('is-open', open);
+    menu.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-menu-open', open);
+  }
+  burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(!menu.classList.contains('is-open'));
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('click', function (e) {
+    if (!menu.classList.contains('is-open')) return;
+    if (menu.contains(e.target) || burger.contains(e.target)) return;
+    setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) setOpen(false);
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 768 && menu.classList.contains('is-open')) setOpen(false);
+  });
 })();
 </script>
 </body>
