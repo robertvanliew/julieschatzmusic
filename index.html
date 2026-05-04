@@ -684,41 +684,38 @@
   position: fixed;
   top: max(14px, env(safe-area-inset-top));
   right: max(14px, env(safe-area-inset-right));
-  width: 46px;
-  height: 46px;
-  background: rgba(10, 6, 20, 0.62);
-  backdrop-filter: blur(18px) saturate(1.6);
-  -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  border: 1px solid rgba(212, 184, 114, 0.55);
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  border-radius: 8px;
   cursor: pointer;
   padding: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   /* Must be above everything — shader canvas is z-index 0, page z-index 1 */
   z-index: 9999;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
-  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease;
   /* Prevent any ancestor transform from creating a containing block */
   will-change: auto;
 }
 .nav-hamburger:hover,
 .nav-hamburger:active {
-  border-color: #d4b872;
-  background: rgba(10, 6, 20, 0.78);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 16px rgba(212, 184, 114, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(244, 239, 230, 0.45);
+  background: rgba(15, 10, 26, 0.7);
 }
 .nav-ham-line {
   display: block;
-  width: 18px;
+  width: 20px;
   height: 1.5px;
-  background: #d4b872;
+  background: #ffffff;
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.nav-hamburger:hover .nav-ham-line { background: #f0d595; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -744,11 +741,13 @@
   position: absolute;
   top: 0; right: 0; bottom: 0;
   width: min(82vw, 360px);
-  background: linear-gradient(160deg, rgba(20, 10, 38, 0.98) 0%, rgba(8, 4, 18, 0.98) 100%);
-  border-left: 1px solid rgba(168, 85, 247, 0.22);
+  /* Premium violet drawer — readable, on-brand */
+  background: linear-gradient(160deg, #5b1e9a 0%, #2a0f4d 60%, #15082a 100%);
+  border-left: 1px solid rgba(212, 184, 114, 0.25);
   padding: 80px 28px 40px;
   box-shadow: -24px 0 80px rgba(0, 0, 0, 0.55);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   animation: drawerSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @keyframes drawerSlideIn {
@@ -801,7 +800,15 @@
   color: #d4b3ff;
   padding-left: 8px;
 }
-body.nav-drawer-open { overflow: hidden; }
+/* iOS-safe scroll lock — body becomes position:fixed with preserved scroll
+   offset (set inline by JS). overflow:hidden alone is not enough on iOS. */
+body.nav-drawer-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
 
 /* Activate hamburger / hide desktop links at ≤900px */
 @media (max-width: 900px) {
@@ -4790,24 +4797,34 @@ if (aboutHeading) {
   const drawer = document.getElementById('mobileDrawer');
   if (!burger || !drawer) return;
 
+  // Stored scroll position so we can restore it when the drawer closes
+  let savedScrollY = 0;
+
   function setOpen(open) {
     if (open) {
+      // Save current scroll, then lock body in place
+      savedScrollY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.top = '-' + savedScrollY + 'px';
+      document.body.classList.add('nav-drawer-open');
       drawer.hidden = false;
       requestAnimationFrame(() => {
         burger.classList.add('is-open');
       });
       burger.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('nav-drawer-open');
     } else {
       burger.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-drawer-open');
       drawer.hidden = true;
+      // Unlock body and restore scroll
+      document.body.classList.remove('nav-drawer-open');
+      document.body.style.top = '';
+      window.scrollTo(0, savedScrollY);
     }
   }
 
   burger.addEventListener('click', function (e) {
     e.stopPropagation();
+    e.preventDefault();
     setOpen(drawer.hidden);
   });
 
@@ -4835,10 +4852,32 @@ const closeBtn = document.getElementById('closeInquiry');
 const highlightsBtn = document.getElementById('highlightsInquiryBtn');
 const eventsBtn = document.getElementById('eventsInquiryBtn');
 
+// Scroll lock for the inquiry drawer (mobile-fullscreen). Same iOS-safe
+// pattern as the nav drawer — preserve scroll position so the page doesn't
+// jump when the drawer closes.
+let inquirySavedScrollY = 0;
+function lockBodyForInquiry() {
+  inquirySavedScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.top = '-' + inquirySavedScrollY + 'px';
+  document.body.classList.add('nav-drawer-open'); // reuse existing scroll-lock class
+}
+function unlockBodyForInquiry() {
+  document.body.classList.remove('nav-drawer-open');
+  document.body.style.top = '';
+  window.scrollTo(0, inquirySavedScrollY);
+}
+
 // Function to toggle the dropdown
 function toggleDropdown(e) {
   e.preventDefault();
+  e.stopPropagation();
+  const willBeOpen = !dropdown.classList.contains('active');
   dropdown.classList.toggle('active');
+  // Only lock scroll on mobile-width (where the dropdown is fullscreen)
+  if (window.innerWidth <= 900) {
+    if (willBeOpen) lockBodyForInquiry();
+    else unlockBodyForInquiry();
+  }
 }
 
 // Attach clicks to the Inquiry buttons
@@ -4849,9 +4888,16 @@ if (eventsBtn) eventsBtn.addEventListener('click', toggleDropdown);
 
 // Optional: Close dropdown if user clicks outside of it
 document.addEventListener('click', (e) => {
-  if (!dropdown.contains(e.target) && e.target !== lowerBtn && e.target !== highlightsBtn && e.target !== eventsBtn) {
-    dropdown.classList.remove('active');
-  }
+  if (!dropdown.classList.contains('active')) return;
+  if (dropdown.contains(e.target)) return;
+  if (e.target === lowerBtn || e.target === highlightsBtn || e.target === eventsBtn) return;
+  // Don't close from inside the nav drawer or hamburger
+  const drawerEl = document.getElementById('mobileDrawer');
+  const burgerEl = document.getElementById('navHamburger');
+  if (drawerEl && drawerEl.contains(e.target)) return;
+  if (burgerEl && burgerEl.contains(e.target)) return;
+  dropdown.classList.remove('active');
+  if (window.innerWidth <= 900) unlockBodyForInquiry();
 });
 
 // Auto-open the inquiry form when arriving with #inquire hash (from location pages, etc.)
