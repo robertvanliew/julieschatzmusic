@@ -674,21 +674,126 @@
   }
 }
 
-/* ───── Mobile nav safety override (high-specificity) ───── */
-@media (max-width: 768px) {
-  nav.site-nav, nav { position: relative !important; padding: 14px 16px !important; justify-content: center !important; }
-  nav .nav-logo { display: none !important; }
-  nav .nav-links {
-    position: relative !important; left: auto !important; transform: none !important;
-    gap: 8px 14px !important; flex-wrap: wrap !important; justify-content: center !important;
-    width: 100% !important; padding: 0 !important; margin: 0 !important;
-  }
-  nav .nav-links li { list-style: none !important; }
-  nav .nav-links a { font-size: 10px !important; letter-spacing: 0.16em !important; padding: 4px 0 !important; }
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile hamburger nav (≤900px)
+   Desktop nav-links untouched. Hamburger only shows on mobile.
+   ═══════════════════════════════════════════════════════════════════ */
+.nav-hamburger {
+  display: none;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
 }
-@media (max-width: 420px) {
-  nav .nav-links { gap: 6px 10px !important; }
-  nav .nav-links a { font-size: 9.5px !important; letter-spacing: 0.12em !important; }
+.nav-ham-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-hamburger.is-open .nav-ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
+.nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Drawer (only rendered on mobile via hidden attribute toggle) */
+.nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+.nav-drawer[hidden] { display: none; }
+.nav-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 4, 18, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  animation: navBackdropIn 0.28s ease forwards;
+}
+@keyframes navBackdropIn { to { opacity: 1; } }
+.nav-drawer-panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(82vw, 360px);
+  background: linear-gradient(160deg, rgba(20, 10, 38, 0.98) 0%, rgba(8, 4, 18, 0.98) 100%);
+  border-left: 1px solid rgba(168, 85, 247, 0.22);
+  padding: 80px 28px 40px;
+  box-shadow: -24px 0 80px rgba(0, 0, 0, 0.55);
+  overflow-y: auto;
+  animation: drawerSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes drawerSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.nav-drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(244, 239, 230, 0.22);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.nav-drawer-close:hover {
+  border-color: rgba(244, 239, 230, 0.55);
+  background: rgba(244, 239, 230, 0.04);
+}
+.nav-drawer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.nav-drawer-links li { list-style: none; }
+.nav-drawer-links a {
+  display: block;
+  padding: 16px 4px;
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.08);
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.nav-drawer-links li:last-child a { border-bottom: none; }
+.nav-drawer-links a:hover,
+.nav-drawer-links a:focus-visible {
+  color: #d4b3ff;
+  padding-left: 8px;
+}
+body.nav-drawer-open { overflow: hidden; }
+
+/* Activate hamburger / hide desktop links at ≤900px */
+@media (max-width: 900px) {
+  nav .nav-links { display: none !important; }
+  .nav-hamburger { display: flex; }
 }
 </style>
 <style>
@@ -1143,6 +1248,67 @@ nav {
   position: relative;
   overflow: hidden;
   margin-right: 8px;
+}
+
+/* Dots — hidden on desktop, shown on mobile */
+.marquee-dots {
+  display: none;
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: auto;
+}
+.marquee-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.marquee-dot.is-active {
+  background: #d4b872;
+  transform: scale(1.4);
+}
+.marquee-dot:hover { background: rgba(255, 255, 255, 0.65); }
+
+/* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance */
+@media (max-width: 900px) {
+  .marquee-section {
+    height: auto;
+    aspect-ratio: 9 / 11;
+    max-height: 70vh;
+  }
+  .marquee-track {
+    /* Cancel desktop infinite-scroll, replace with translateX-by-slide */
+    animation: none !important;
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    /* JS sets transform: translateX(-N * 100%) */
+  }
+  .marquee-track:hover { animation-play-state: running; }
+  .mphoto {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-right: 0 !important;
+    height: 100%;
+  }
+  .mphoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .marquee-dots { display: flex; }
+  /* Hide the second (duplicate) set on mobile — single-image mode shows the
+     first 6 unique slides only */
+  .marquee-track > .mphoto:nth-child(n+7) { display: none; }
 }
 
 .mphoto img {
@@ -3299,7 +3465,31 @@ nav {
       <li><a href="repertoire.html">Repertoire</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span class="nav-ham-line"></span>
+      <span class="nav-ham-line"></span>
+      <span class="nav-ham-line"></span>
+    </button>
   </nav>
+
+  <!-- Mobile drawer (hidden on desktop) -->
+  <div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+    <div class="nav-drawer-backdrop" data-drawer-close></div>
+    <div class="nav-drawer-panel">
+      <button class="nav-drawer-close" data-drawer-close aria-label="Close menu">×</button>
+      <ul class="nav-drawer-links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="beats.html">Store</a></li>
+        <li><a href="repertoire.html">Repertoire</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pricing.html">Rate Sheet</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
 
   <div class="inquiry-dropdown" id="inquiryDropdown">
     <div class="dropdown-header">
@@ -3485,6 +3675,15 @@ nav {
         <source type="image/webp" srcset="assets/photos/julie-schatz-bday-party-event.webp">
         <img src="assets/photos/julie-schatz-bday-party-event.png" alt="" aria-hidden="true" width="1029" height="1528" loading="lazy" decoding="async">
       </picture></div>
+    </div>
+    <!-- Mobile-only carousel dot indicators (hidden on desktop) -->
+    <div class="marquee-dots" id="marqueeDots" aria-hidden="true">
+      <button type="button" class="marquee-dot is-active" data-slide="0" aria-label="Photo 1"></button>
+      <button type="button" class="marquee-dot" data-slide="1" aria-label="Photo 2"></button>
+      <button type="button" class="marquee-dot" data-slide="2" aria-label="Photo 3"></button>
+      <button type="button" class="marquee-dot" data-slide="3" aria-label="Photo 4"></button>
+      <button type="button" class="marquee-dot" data-slide="4" aria-label="Photo 5"></button>
+      <button type="button" class="marquee-dot" data-slide="5" aria-label="Photo 6"></button>
     </div>
   </div>
 
@@ -4331,6 +4530,112 @@ if (aboutHeading) {
     aboutHeading.appendChild(row);
   });
 }
+
+// ── Mobile photo carousel (≤900px). Desktop infinite-scroll untouched. ──
+(function () {
+  var SLIDES = 6;
+  var INTERVAL = 4500;
+  var track = document.getElementById('marqueeTrack');
+  var dotsWrap = document.getElementById('marqueeDots');
+  if (!track || !dotsWrap) return;
+
+  var dots = dotsWrap.querySelectorAll('.marquee-dot');
+  var idx = 0;
+  var timer = null;
+  var paused = false;
+
+  function isMobile() { return window.innerWidth <= 900; }
+
+  function render() {
+    if (!isMobile()) {
+      track.style.transform = '';
+      return;
+    }
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    dots.forEach(function (d, i) {
+      d.classList.toggle('is-active', i === idx);
+    });
+  }
+
+  function next() { idx = (idx + 1) % SLIDES; render(); }
+  function goTo(i) { idx = ((i % SLIDES) + SLIDES) % SLIDES; render(); }
+
+  function start() {
+    stop();
+    if (!isMobile() || paused) return;
+    timer = setInterval(next, INTERVAL);
+  }
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () {
+      goTo(i);
+      // restart timer so user has full interval before next auto-advance
+      start();
+    });
+  });
+
+  // Pause on touch / mouseenter, resume on touchend / mouseleave
+  ['touchstart', 'mouseenter'].forEach(function (ev) {
+    track.addEventListener(ev, function () { paused = true; stop(); }, { passive: true });
+  });
+  ['touchend', 'mouseleave'].forEach(function (ev) {
+    track.addEventListener(ev, function () { paused = false; start(); }, { passive: true });
+  });
+
+  // Restart on resize across breakpoint
+  window.addEventListener('resize', function () { render(); start(); });
+
+  // Boot
+  render();
+  start();
+})();
+
+// ── Mobile hamburger nav drawer (≤900px) ──
+(function () {
+  const burger = document.getElementById('navHamburger');
+  const drawer = document.getElementById('mobileDrawer');
+  if (!burger || !drawer) return;
+
+  function setOpen(open) {
+    if (open) {
+      drawer.hidden = false;
+      requestAnimationFrame(() => {
+        burger.classList.add('is-open');
+      });
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-drawer-open');
+    } else {
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-drawer-open');
+      drawer.hidden = true;
+    }
+  }
+
+  burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(drawer.hidden);
+  });
+
+  drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+    el.addEventListener('click', function () { setOpen(false); });
+  });
+
+  drawer.querySelectorAll('.nav-drawer-links a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !drawer.hidden) setOpen(false);
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
+  });
+})();
 
 // ── Inquiry Dropdown Logic ──
 const dropdown = document.getElementById('inquiryDropdown');

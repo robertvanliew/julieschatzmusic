@@ -255,21 +255,40 @@ main.region-main p a, main.region-main p a:visited { color:#fff; text-decoration
   .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
 }
 
-/* ───── Mobile nav safety override (high-specificity) ───── */
-@media (max-width: 768px) {
-  nav.site-nav, nav { position: relative !important; padding: 14px 16px !important; justify-content: center !important; }
-  nav .nav-logo { display: none !important; }
-  nav .nav-links {
-    position: relative !important; left: auto !important; transform: none !important;
-    gap: 8px 14px !important; flex-wrap: wrap !important; justify-content: center !important;
-    width: 100% !important; padding: 0 !important; margin: 0 !important;
-  }
-  nav .nav-links li { list-style: none !important; }
-  nav .nav-links a { font-size: 10px !important; letter-spacing: 0.16em !important; padding: 4px 0 !important; }
+/* Mobile hamburger nav (<=900px). Desktop untouched. */
+.nav-hamburger {
+  display: none;
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 44px; height: 44px;
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  border-radius: 8px; cursor: pointer; padding: 0;
+  z-index: 110;
+  align-items: center; justify-content: center; flex-direction: column; gap: 5px;
 }
-@media (max-width: 420px) {
-  nav .nav-links { gap: 6px 10px !important; }
-  nav .nav-links a { font-size: 9.5px !important; letter-spacing: 0.12em !important; }
+.nav-ham-line { display: block; width: 20px; height: 1.5px; background: #fff; border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.nav-hamburger.is-open .nav-ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
+.nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-drawer { position: fixed; inset: 0; z-index: 200; }
+.nav-drawer[hidden] { display: none; }
+.nav-drawer-backdrop { position: absolute; inset: 0; background: rgba(8,4,18,0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; animation: navBackdropIn 0.28s ease forwards; }
+@keyframes navBackdropIn { to { opacity: 1; } }
+.nav-drawer-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(82vw, 360px); background: linear-gradient(160deg, rgba(20,10,38,0.98) 0%, rgba(8,4,18,0.98) 100%); border-left: 1px solid rgba(168,85,247,0.22); padding: 80px 28px 40px; box-shadow: -24px 0 80px rgba(0,0,0,0.55); overflow-y: auto; animation: drawerSlideIn 0.32s cubic-bezier(0.22,1,0.36,1); }
+@keyframes drawerSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.nav-drawer-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: transparent; border: 1px solid rgba(244,239,230,0.22); border-radius: 50%; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; transition: border-color 0.3s ease, background 0.3s ease; }
+.nav-drawer-close:hover { border-color: rgba(244,239,230,0.55); background: rgba(244,239,230,0.04); }
+.nav-drawer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.nav-drawer-links li { list-style: none; }
+.nav-drawer-links a { display: block; padding: 16px 4px; font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(244,239,230,0.08); transition: color 0.3s ease, padding-left 0.3s ease; }
+.nav-drawer-links li:last-child a { border-bottom: none; }
+.nav-drawer-links a:hover, .nav-drawer-links a:focus-visible { color: #d4b3ff; padding-left: 8px; }
+body.nav-drawer-open { overflow: hidden; }
+@media (max-width: 900px) {
+  nav .nav-links, nav.site-nav .nav-links { display: none !important; }
+  .nav-hamburger { display: flex; }
 }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
@@ -335,7 +354,31 @@ main.region-main p a, main.region-main p a:visited { color:#fff; text-decoration
       <li><a href="repertoire.html">Repertoire</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span class="nav-ham-line"></span>
+      <span class="nav-ham-line"></span>
+      <span class="nav-ham-line"></span>
+    </button>
   </nav>
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+    <div class="nav-drawer-backdrop" data-drawer-close></div>
+    <div class="nav-drawer-panel">
+      <button class="nav-drawer-close" data-drawer-close aria-label="Close menu">&times;</button>
+      <ul class="nav-drawer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="index.html#listen">Listen</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="beats.html">Store</a></li>
+        <li><a href="repertoire.html">Repertoire</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pricing.html">Rate Sheet</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+
 
   <main class="region-main">
     <span class="kicker">Connecticut Weddings &amp; Events</span>
@@ -445,5 +488,38 @@ main.region-main p a, main.region-main p a:visited { color:#fff; text-decoration
   </footer>
 </div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+(function () {
+  var burger = document.getElementById('navHamburger');
+  var drawer = document.getElementById('mobileDrawer');
+  if (!burger || !drawer) return;
+  function setOpen(open) {
+    if (open) {
+      drawer.hidden = false;
+      requestAnimationFrame(function () { burger.classList.add('is-open'); });
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-drawer-open');
+    } else {
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-drawer-open');
+      drawer.hidden = true;
+    }
+  }
+  burger.addEventListener('click', function (e) { e.stopPropagation(); setOpen(drawer.hidden); });
+  drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+    el.addEventListener('click', function () { setOpen(false); });
+  });
+  drawer.querySelectorAll('.nav-drawer-links a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !drawer.hidden) setOpen(false);
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
+  });
+})();
+</script>
 </body>
 </html>
