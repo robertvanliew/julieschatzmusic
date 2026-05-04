@@ -680,31 +680,31 @@
    ═══════════════════════════════════════════════════════════════════ */
 .nav-hamburger {
   display: none;
-  position: absolute;
-  top: 50%;
+  /* Floats over the photo in the top-right corner */
+  position: fixed;
+  top: 16px;
   right: 16px;
-  transform: translateY(-50%);
   width: 44px;
   height: 44px;
-  background: rgba(15, 10, 26, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 184, 114, 0.3);
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 184, 114, 0.35);
   border-radius: 10px;
   cursor: pointer;
   padding: 0;
-  z-index: 110;
+  z-index: 300;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
   transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(212,184,114,0.08);
 }
 .nav-hamburger:hover {
-  border-color: rgba(212, 184, 114, 0.6);
-  background: rgba(15, 10, 26, 0.8);
-  box-shadow: 0 4px 24px rgba(212,184,114,0.15);
+  border-color: rgba(212, 184, 114, 0.65);
+  background: rgba(15, 10, 26, 0.78);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 0 12px rgba(212,184,114,0.12);
 }
 .nav-ham-line {
   display: block;
@@ -801,40 +801,20 @@ body.nav-drawer-open { overflow: hidden; }
 /* Activate hamburger / hide desktop links at ≤900px */
 @media (max-width: 900px) {
   nav .nav-links { display: none !important; }
-  nav .nav-logo { display: none !important; }
+  nav .nav-logo  { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* On mobile the nav should be a slim glassy strip */
+  /* Strip nav of all visual chrome — hamburger floats freely over photo */
   nav.site-nav, nav {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    padding: 0 !important;
-    height: 60px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    background: linear-gradient(to bottom, rgba(8,4,18,0.72) 0%, transparent 100%) !important;
+    background: transparent !important;
     backdrop-filter: none !important;
+    pointer-events: none !important; /* nav itself blocks nothing; only hamburger is interactive */
+    padding: 0 !important;
+    height: 0 !important;
+    overflow: visible !important;
   }
-
-  /* Brand wordmark shown in nav on mobile */
-  nav::before {
-    content: 'JULIE SCHATZ';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-    pointer-events: none;
-    white-space: nowrap;
-  }
+  /* Restore pointer events for the hamburger and drawer */
+  .nav-hamburger { pointer-events: auto !important; }
 }
 </style>
 <style>
@@ -1263,63 +1243,42 @@ nav {
   margin-right: 8px;
 }
 
-/* Dots — hidden on desktop, shown on mobile */
+/* Dots — always hidden (functionality kept via arrows only) */
 .marquee-dots {
-  display: none;
-  position: absolute;
-  bottom: 14px;
-  left: 0;
-  right: 0;
-  justify-content: center;
-  gap: 10px;
-  z-index: 10;
-  pointer-events: auto;
+  display: none !important;
 }
-.marquee-dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, width 0.3s ease;
-}
-.marquee-dot.is-active {
-  background: #d4b872;
-  width: 24px;
-  border-radius: 4px;
-}
-.marquee-dot:hover { background: rgba(255, 255, 255, 0.7); }
 
-/* Arrows — hidden on desktop, shown on mobile */
+/* Arrows — hidden on desktop, shown on mobile in brand gold */
 .marquee-arrow {
   display: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border-radius: 50%;
-  background: rgba(15, 10, 26, 0.45);
-  border: 1px solid rgba(212, 184, 114, 0.5);
+  background: rgba(15, 10, 26, 0.48);
+  border: 1.5px solid rgba(212, 184, 114, 0.55);
   color: #d4b872;
   cursor: pointer;
   z-index: 11;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
+.marquee-arrow svg { stroke: currentColor; }
 .marquee-arrow:hover, .marquee-arrow:active {
-  background: rgba(212, 184, 114, 0.18);
+  background: rgba(212, 184, 114, 0.2);
   border-color: #d4b872;
-  color: #fff;
+  color: #d4b872;
+  transform: translateY(-50%) scale(1.06);
 }
-.marquee-arrow-prev { left: 12px; }
-.marquee-arrow-next { right: 12px; }
+.marquee-arrow-prev { left: 14px; }
+.marquee-arrow-next { right: 14px; }
 
 /* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance.
    Section height comes from the layout block above (50vh, max 480px) — don't
@@ -1373,7 +1332,7 @@ nav {
     pointer-events: none;
   }
 
-  .marquee-dots { display: flex; z-index: 12; }
+  /* dots hidden globally — arrows only */
   .marquee-arrow { display: inline-flex; z-index: 12; }
 
   /* Hide the second (duplicate) set — single-image mode uses first 6 only */
@@ -1526,8 +1485,21 @@ nav {
 
 @media (max-width: 1024px) {
   .hero-h1 {
-    white-space: normal;
-    text-wrap: balance;
+    white-space: nowrap;
+    font-size: clamp(13px, 1.6vw, 22px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* On mobile override: shrink the tagline to fit one line */
+@media (max-width: 900px) {
+  .hero-h1 {
+    white-space: nowrap !important;
+    font-size: clamp(11.5px, 3.4vw, 17px) !important;
+    letter-spacing: -0.01em !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 }
 
