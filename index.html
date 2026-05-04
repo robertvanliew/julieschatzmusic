@@ -1273,7 +1273,22 @@ nav {
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
-  /* Bottom fade into the violet bg for desktop — mobile overrides this */
+  /* Soft bottom fade into the violet bg so the photo strip doesn't
+     hard-cut against the wordmark below. Last 22% feathers out. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0,0,0,0.7) 90%,
+    transparent 100%
+  );
+          mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0,0,0,0.7) 90%,
+    transparent 100%
+  );
 }
 
 /* The track: two sets of photos side by side for seamless loop */
@@ -1503,10 +1518,15 @@ nav {
   align-items: stretch;
 }
 
-/* ── NAME BLOCK ── */
+/* ── NAME BLOCK ──
+   Sits just below the marquee with a gentle overlap. The wordmark crests
+   into the dissolved bottom edge of the photos (where the alpha mask is
+   already feathering) so we get the magazine-overlap feel without the
+   crowded look of slamming text into mid-photo. The Inquiry button sits
+   clear of any photo strip. */
 .name-block {
   position: absolute;
-  top: -4vw; /* Overlap with marquee for magazine style */
+  top: -1.5vw;
   left: 0; right: 0;
   z-index: 40;
   padding: 0 48px;
@@ -1514,6 +1534,7 @@ nav {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 48px;
 }
 
 .name-left { display: flex; flex-direction: column; }
