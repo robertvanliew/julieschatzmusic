@@ -1159,6 +1159,44 @@ nav {
   transition: color 0.3s ease;
 }
 .footer-copy a:hover { color: var(--ivory); }
+
+.footer-credit {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(244, 239, 230, 0.42);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 0;
+}
+.footer-credit a {
+  color: rgba(244, 239, 230, 0.7);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.footer-credit a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-credit a:hover,
+.footer-credit a:focus-visible {
+  color: #fff;
+  outline: none;
+}
+.footer-credit a:hover::after,
+.footer-credit a:focus-visible::after {
+  transform: scaleX(1);
+}
+
 @media (max-width: 768px) {
   .site-footer { padding: 72px 24px 40px; }
   .footer-container { gap: 36px; }
@@ -1340,22 +1378,66 @@ nav {
     object-fit: cover;
     object-position: center top;
   }
+  /* Per-photo darkening (desktop) is too heavy when stacked with the
+     section-level color-match tint on mobile — turn it off so we get
+     one smooth continuous fade, not a doubled-up dark strip. */
+  .mphoto::after { background: none !important; }
 
-  /* Soft mask on the bottom edge of the photo so it dissolves into the
-     WebGL shader bg. Subtle — only the last 10% fades. */
+  /* ── Photo → shader continuous-surface dissolve ──
+     The photo's lower half is gradually tinted toward the shader bg color
+     (#0F0A1A) AND alpha-masked over a long distance. Two-stage blend so
+     the photo's chroma desaturates into the bg before the alpha fade
+     finishes — no horizon line, looks like one continuous surface. */
   .marquee-section {
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
-            mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
+    /* Long, eased alpha fade — starts at 55%, fully transparent at bottom */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 55%,
+      rgba(0,0,0,0.85) 72%,
+      rgba(0,0,0,0.45) 88%,
+      transparent 100%
+    );
+            mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 55%,
+      rgba(0,0,0,0.85) 72%,
+      rgba(0,0,0,0.45) 88%,
+      transparent 100%
+    );
+    /* Section is transparent above the shader — no opaque box */
+    background: transparent;
   }
-  /* Soft tint overlay on bottom third for legibility of overlapping text below */
+  /* Color-match tint on the photo's lower half: pull chroma toward the
+     shader's #0F0A1A so the photo's dominant tones converge with the bg
+     before the alpha mask finishes. Ramp is longer + softer than before. */
   .marquee-section::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40%;
-    background: linear-gradient(to top, rgba(15,10,26,0.55) 0%, rgba(15,10,26,0.18) 50%, transparent 100%);
+    height: 65%;
+    background:
+      /* Radial soft-edge feathering at the bottom-center so the seam
+         isn't a flat horizon line */
+      radial-gradient(
+        140% 90% at 50% 100%,
+        rgba(15, 10, 26, 0.0) 0%,
+        rgba(15, 10, 26, 0.0) 40%,
+        rgba(15, 10, 26, 0.35) 75%,
+        rgba(15, 10, 26, 0.65) 100%
+      ),
+      /* Vertical violet-tinted wash matching the shader bg */
+      linear-gradient(
+        to top,
+        rgba(15, 10, 26, 0.78) 0%,
+        rgba(15, 10, 26, 0.55) 30%,
+        rgba(20, 12, 36, 0.28) 60%,
+        rgba(30, 18, 50, 0.10) 80%,
+        transparent 100%
+      );
     z-index: 5;
     pointer-events: none;
   }
@@ -1560,8 +1642,10 @@ nav {
     flex: none;
     min-height: 0;
     width: 100%;
-    /* Pull lower up over the bottom of the photo — overlap effect */
-    margin-top: -80px;
+    /* Pull lower up deep into the photo's fade region so the wordmark
+       and Inquiry button feel grown-out-of the dissolving photo edge,
+       not stacked under it as a separate band. */
+    margin-top: -120px;
     position: relative;
     z-index: 10;
   }
@@ -1667,7 +1751,7 @@ nav {
   .name { font-size: clamp(50px, 15.5vw, 78px) !important; }
   .hero-h1 { font-size: 15.5px !important; }
   .name-block { padding: 36px 20px 40px !important; }
-  .lower { margin-top: -64px; }
+  .lower { margin-top: -100px; }
 }
 
 /* Right side of lower */
@@ -4664,6 +4748,7 @@ nav {
       </a>
     </div>
     <p class="footer-copy">&copy; <span id="footerYear"></span> Julie Schatz Music · All rights reserved</p>
+      <p class="footer-credit">Designed by <a href="https://robertvanliew.com" target="_blank" rel="noopener">Robert Van Liew</a></p>
   </div>
 </footer>
 

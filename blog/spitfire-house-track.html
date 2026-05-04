@@ -442,6 +442,94 @@ main.post-main h1 {
 .post-tags-bottom .tag-label { color: var(--ivory); }
 .post-tags-bottom .tag-list span + span::before { content: '·'; margin-right: 14px; color: var(--ivory-faint); }
 
+/* ───────────── Share row ───────────── */
+.post-share {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+}
+.post-share .share-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+.post-share .share-buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.post-share button,
+.post-share a.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: rgba(244, 239, 230, 0.02);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  color: var(--ivory-dim);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.post-share button:hover,
+.post-share a.share-btn:hover,
+.post-share button:focus-visible,
+.post-share a.share-btn:focus-visible {
+  color: var(--ivory);
+  border-color: rgba(244, 239, 230, 0.55);
+  background: rgba(244, 239, 230, 0.05);
+  transform: translateY(-1px);
+  outline: none;
+}
+.post-share svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.post-share .copy-link {
+  position: relative;
+}
+.post-share .copy-link[data-copied="true"]::after {
+  content: 'Copied';
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: rgba(15, 10, 26, 0.92);
+  border: 1px solid var(--hairline-strong);
+  padding: 5px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: shareCopiedFade 1.4s ease forwards;
+}
+@keyframes shareCopiedFade {
+  0%   { opacity: 0; transform: translate(-50%, 4px); }
+  15%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -2px); }
+}
+
 /* Closing CTA card */
 .post-cta {
   margin-top: 64px;
@@ -567,6 +655,44 @@ main.post-main h1 {
   letter-spacing: 0.18em; text-transform: uppercase;
   margin: 0;
 }
+
+.footer-credit {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(244, 239, 230, 0.42);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 0;
+}
+.footer-credit a {
+  color: rgba(244, 239, 230, 0.7);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.footer-credit a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-credit a:hover,
+.footer-credit a:focus-visible {
+  color: #fff;
+  outline: none;
+}
+.footer-credit a:hover::after,
+.footer-credit a:focus-visible::after {
+  transform: scaleX(1);
+}
+
 @media (max-width: 768px) {
   .site-footer { padding: 72px 24px 40px; }
   .footer-container { gap: 36px; }
@@ -838,6 +964,30 @@ body.nav-drawer-open { overflow: hidden; }
         </span>
       </div>
 
+      <div class="post-share" aria-label="Share this article">
+        <span class="share-label">Share</span>
+        <div class="share-buttons">
+          <a class="share-btn" data-share="twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fjulieschatzmusic.com%2Fblog%2Fspitfire-house-track.html&text=I%20Made%20a%20Deep%20House%20Track%20Using%20Only%20Spitfire%20Audio%20Plug-ins" target="_blank" rel="noopener noreferrer" aria-label="Share on X (Twitter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" /></svg>
+          </a>
+          <a class="share-btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjulieschatzmusic.com%2Fblog%2Fspitfire-house-track.html" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 7h2.5V4H14a3.5 3.5 0 0 0-3.5 3.5V10H8v3h2.5v8h3v-8H16l.5-3h-3V7.5A.5.5 0 0 1 14 7z" /></svg>
+          </a>
+          <a class="share-btn" data-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjulieschatzmusic.com%2Fblog%2Fspitfire-house-track.html" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><line x1="7" y1="10" x2="7" y2="17" /><circle cx="7" cy="7" r="0.6" fill="currentColor" stroke="none" /><path d="M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" /></svg>
+          </a>
+          <a class="share-btn" data-share="pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fjulieschatzmusic.com%2Fblog%2Fspitfire-house-track.html&description=I%20Made%20a%20Deep%20House%20Track%20Using%20Only%20Spitfire%20Audio%20Plug-ins" target="_blank" rel="noopener noreferrer" aria-label="Share on Pinterest">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M11 7c-2 0-4 1.5-4 4 0 1.4.7 2.4 1.5 2.7M11 7c2 0 3.5 1.4 3.5 3.5S13 14 11.5 14c-.8 0-1.5-.5-1.5-.5L9 19" /></svg>
+          </a>
+          <a class="share-btn" data-share="email" href="mailto:?subject=I%20Made%20a%20Deep%20House%20Track%20Using%20Only%20Spitfire%20Audio%20Plug-ins&body=Thought%20you%27d%20enjoy%20this%3A%20https%3A%2F%2Fjulieschatzmusic.com%2Fblog%2Fspitfire-house-track.html" aria-label="Share by email">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
+          </a>
+          <button type="button" class="copy-link" data-share="copy" aria-label="Copy link to article">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1.5 1.5" /><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1.5-1.5" /></svg>
+          </button>
+        </div>
+      </div>
+
       <div class="post-cta">
         <h2>Want to use these techniques in your own track?</h2>
         <p>Browse the sample-pack catalog for live violin, piano, vocal hooks, and MIDI loops — or book Julie for a hybrid DJ/violin set at your event.</p>
@@ -901,6 +1051,7 @@ body.nav-drawer-open { overflow: hidden; }
 
       <hr class="footer-divider" />
       <p class="footer-copy">&copy; <span id="year"></span> Julie Schatz Music · All rights reserved</p>
+      <p class="footer-credit">Designed by <a href="https://robertvanliew.com" target="_blank" rel="noopener">Robert Van Liew</a></p>
     </div>
   </footer>
 </div>
@@ -908,6 +1059,60 @@ body.nav-drawer-open { overflow: hidden; }
 <script>
 const yEl = document.getElementById('year');
 if (yEl) yEl.textContent = new Date().getFullYear();
+</script>
+<script>
+// Share buttons: popup-open social links, clipboard copy with "Copied" pulse.
+(function () {
+  var share = document.querySelector('.post-share');
+  if (!share) return;
+
+  // Open social shares in a centered popup instead of a new tab.
+  share.querySelectorAll('a.share-btn').forEach(function (a) {
+    var net = a.getAttribute('data-share');
+    if (!net || net === 'email' || net === 'copy') return; // email opens mail client; copy is a button
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var w = 580, h = 520;
+      var left = (window.outerWidth - w) / 2 + (window.screenX || 0);
+      var top = (window.outerHeight - h) / 2 + (window.screenY || 0);
+      window.open(a.href, 'share-' + net, 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',noopener,noreferrer');
+    });
+  });
+
+  // Copy link to clipboard.
+  var copyBtn = share.querySelector('.copy-link');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var url = window.location.href.split('#')[0];
+      var done = function () {
+        copyBtn.setAttribute('data-copied', 'true');
+        setTimeout(function () { copyBtn.removeAttribute('data-copied'); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(function () {
+          // Fallback for older browsers / non-secure contexts
+          var ta = document.createElement('textarea');
+          ta.value = url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); done(); } catch (e) { /* ignore */ }
+          document.body.removeChild(ta);
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { /* ignore */ }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+})();
 </script>
 <script>
 (function () {
