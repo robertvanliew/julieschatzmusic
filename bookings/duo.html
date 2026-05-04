@@ -20,7 +20,9 @@
 <meta name="twitter:title" content="DJ DX × Julie · DJ + Live Musician Duo">
 <meta name="twitter:description" content="NYC duo. DJ + live violin and keyboard. From $2,200.">
 <meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-bookings-duo.jpg">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="icon" type="image/png" href="../assets/julie-schatz-logo.png">
+<link rel="apple-touch-icon" href="../assets/julie-schatz-logo.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -171,8 +173,8 @@ nav {
 @media (max-width: 768px) {
   nav { padding: 20px 24px; }
   .nav-logo { display: none; }
-  .nav-links { position: relative; left: auto; transform: none; gap: 20px; }
-  .nav-links a { font-size: 11px; letter-spacing: 0.25em; }
+  .nav-links { position: relative; left: auto; transform: none; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .nav-links a { font-size: 10px; letter-spacing: 0.18em; }
 }
 
 /* Breadcrumbs */
@@ -1201,6 +1203,11 @@ nav {
   html, body {
     background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
   }
+}
+
+@media (max-width: 420px) {
+  .nav-links { gap: 10px 12px !important; }
+  .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
 }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.

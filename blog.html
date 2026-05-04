@@ -21,7 +21,9 @@
 <meta name="twitter:title" content="Blog — Julie Schatz">
 <meta name="twitter:description" content="Studio and stage notes from a violinist-producer.">
 <meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-blog.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
+<link rel="apple-touch-icon" href="assets/julie-schatz-logo.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -114,10 +116,10 @@ nav.site-nav {
 .nav-links a:hover { color: #ffffff; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
 .nav-links a.is-current { color: #ffffff; }
 @media (max-width: 768px) {
-  nav.site-nav { padding: 20px 24px; }
+  nav.site-nav { padding: 18px 18px; }
   .nav-logo { display: none; }
-  .nav-links { position: relative; left: auto; transform: none; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .nav-links a { font-size: 11px; letter-spacing: 0.22em; }
+  .nav-links { position: relative; left: auto; transform: none; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .nav-links a { font-size: 10px; letter-spacing: 0.18em; }
 }
 
 /* BLOG INDEX */
@@ -400,6 +402,11 @@ main.blog-main .lede {
   html, body {
     background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
   }
+}
+
+@media (max-width: 420px) {
+  .nav-links { gap: 10px 12px !important; }
+  .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
 }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
