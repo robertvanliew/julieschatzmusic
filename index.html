@@ -680,31 +680,34 @@
    ═══════════════════════════════════════════════════════════════════ */
 .nav-hamburger {
   display: none;
-  /* Floats over the photo in the top-right corner */
+  /* Fixed over the photo — escapes all stacking contexts */
   position: fixed;
   top: 16px;
   right: 16px;
   width: 44px;
   height: 44px;
-  background: rgba(15, 10, 26, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(212, 184, 114, 0.35);
+  background: rgba(10, 6, 20, 0.72);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(168, 85, 247, 0.45);
   border-radius: 10px;
   cursor: pointer;
   padding: 0;
-  z-index: 300;
+  /* Must be above everything — shader canvas is z-index 0, page z-index 1 */
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
-  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(212,184,114,0.08);
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.55), 0 0 0 1px rgba(168,85,247,0.12);
+  /* Prevent any ancestor transform from creating a containing block */
+  will-change: auto;
 }
 .nav-hamburger:hover {
-  border-color: rgba(212, 184, 114, 0.65);
-  background: rgba(15, 10, 26, 0.78);
-  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 0 12px rgba(212,184,114,0.12);
+  border-color: rgba(168, 85, 247, 0.75);
+  background: rgba(10, 6, 20, 0.88);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 16px rgba(168,85,247,0.2);
 }
 .nav-ham-line {
   display: block;
@@ -919,11 +922,18 @@ body.nav-drawer-open { overflow: hidden; }
   letter-spacing: 0.3em;
 }
 
-html, body {
+html {
   width: 100%; min-height: 100vh;
   max-width: 100vw;
+  /* clip stops horizontal scroll without creating a fixed containing block */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+body {
+  width: 100%; min-height: 100vh;
   background: var(--bg);
-  overflow-x: hidden;
+  /* Do NOT use overflow:hidden here — it traps position:fixed children */
+  overflow-x: visible;
   cursor: default;
   font-family: 'Cormorant Garamond', serif;
 }
@@ -1248,7 +1258,7 @@ nav {
   display: none !important;
 }
 
-/* Arrows — hidden on desktop, shown on mobile in brand gold */
+/* Arrows — hidden on desktop, shown on mobile in brand purple */
 .marquee-arrow {
   display: none;
   position: absolute;
@@ -1258,24 +1268,24 @@ nav {
   height: 44px;
   padding: 0;
   border-radius: 50%;
-  background: rgba(15, 10, 26, 0.48);
-  border: 1.5px solid rgba(212, 184, 114, 0.55);
-  color: #d4b872;
+  background: rgba(10, 6, 20, 0.52);
+  border: 1.5px solid rgba(168, 85, 247, 0.55);
+  color: #a855f7;
   cursor: pointer;
   z-index: 11;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.32);
 }
 .marquee-arrow svg { stroke: currentColor; }
 .marquee-arrow:hover, .marquee-arrow:active {
-  background: rgba(212, 184, 114, 0.2);
-  border-color: #d4b872;
-  color: #d4b872;
-  transform: translateY(-50%) scale(1.06);
+  background: rgba(168, 85, 247, 0.22);
+  border-color: #a855f7;
+  color: #c084fc;
+  transform: translateY(-50%) scale(1.07);
 }
 .marquee-arrow-prev { left: 14px; }
 .marquee-arrow-next { right: 14px; }
@@ -3580,14 +3590,9 @@ nav {
       <li><a href="repertoire.html">Repertoire</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
-      <span class="nav-ham-line"></span>
-      <span class="nav-ham-line"></span>
-      <span class="nav-ham-line"></span>
-    </button>
   </nav>
 
-  <!-- Mobile drawer (hidden on desktop) -->
+  <!-- Mobile drawer -->
   <div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
     <div class="nav-drawer-backdrop" data-drawer-close></div>
     <div class="nav-drawer-panel">
@@ -3605,6 +3610,13 @@ nav {
       </ul>
     </div>
   </div>
+
+  <!-- Hamburger: position:fixed z-index:9999 escapes .page stacking context -->
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+    <span class="nav-ham-line"></span>
+    <span class="nav-ham-line"></span>
+    <span class="nav-ham-line"></span>
+  </button>
 
   <div class="inquiry-dropdown" id="inquiryDropdown">
     <div class="dropdown-header">
@@ -3814,7 +3826,7 @@ nav {
     <div class="name-block">
       <div class="name-left">
         <div class="name" id="nameEl" aria-hidden="true"></div>
-        <h1 class="hero-h1">Weddings · Private Events · Corporate Galas — NY, NJ &amp; CT</h1>
+        <h1 class="hero-h1">Weddings &middot; Private Events &middot; Corporate Galas</h1>
       </div>
       <div class="name-right">
         <button class="cta-btn" id="lowerInquiryBtn">Inquiry</button>
