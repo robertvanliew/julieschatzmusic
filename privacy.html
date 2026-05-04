@@ -274,7 +274,7 @@ main.privacy strong {
 }
 
 @media (max-width: 768px) {
-  nav.privacy-nav { padding: 20px 24px; }
+  nav.privacy-nav { position: relative; padding: 14px 16px; justify-content: center; }
   main.privacy { padding: 60px 24px 80px; }
 }
 
@@ -320,6 +320,23 @@ main.privacy strong {
 @media (max-width: 420px) {
   .nav-links { gap: 10px 12px !important; }
   .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
+}
+
+/* ───── Mobile nav safety override (high-specificity) ───── */
+@media (max-width: 768px) {
+  nav.site-nav, nav { position: relative !important; padding: 14px 16px !important; justify-content: center !important; }
+  nav .nav-logo { display: none !important; }
+  nav .nav-links {
+    position: relative !important; left: auto !important; transform: none !important;
+    gap: 8px 14px !important; flex-wrap: wrap !important; justify-content: center !important;
+    width: 100% !important; padding: 0 !important; margin: 0 !important;
+  }
+  nav .nav-links li { list-style: none !important; }
+  nav .nav-links a { font-size: 10px !important; letter-spacing: 0.16em !important; padding: 4px 0 !important; }
+}
+@media (max-width: 420px) {
+  nav .nav-links { gap: 6px 10px !important; }
+  nav .nav-links a { font-size: 9.5px !important; letter-spacing: 0.12em !important; }
 }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.

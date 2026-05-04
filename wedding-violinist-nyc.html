@@ -73,7 +73,7 @@ nav.site-nav { position:absolute; top:0; left:0; right:0; z-index:100; display:f
 .nav-links { display:flex; gap:40px; list-style:none; position:absolute; left:50%; transform:translateX(-50%); }
 .nav-links a { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:13px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(255,255,255,0.95); text-decoration:none; transition:all 0.3s ease; }
 .nav-links a:hover { color:#ffffff; text-shadow:0 0 12px rgba(255,255,255,0.5); }
-@media (max-width:768px){ nav.site-nav{padding:20px 24px} .nav-logo{display:none} .nav-links{position:relative;left:auto;transform:none;gap:16px;flex-wrap:wrap;justify-content:center} .nav-links a{font-size:11px;letter-spacing:0.22em} }
+@media (max-width:768px){nav.site-nav{position:relative;padding:14px 16px;justify-content:center}nav{position:relative;padding:14px 16px;justify-content:center}.nav-logo{display:none}.nav-links{position:relative;left:auto;transform:none;gap:8px 14px;flex-wrap:wrap;justify-content:center;width:100%;padding:0}.nav-links li{list-style:none}.nav-links a{font-size:10px;letter-spacing:0.16em;padding:4px 0}}
 
 main.region-main { max-width:880px; margin:0 auto; padding:200px 48px 120px; flex:1; width:100%; }
 .kicker { display:inline-flex; align-items:center; gap:14px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.32em; text-transform:uppercase; color:var(--ivory-dim); margin-bottom:20px; }
@@ -253,6 +253,23 @@ main.region-main p a, main.region-main p a:visited { color:#fff; text-decoration
 @media (max-width: 420px) {
   .nav-links { gap: 10px 12px !important; }
   .nav-links a { font-size: 9.5px !important; letter-spacing: 0.14em !important; }
+}
+
+/* ───── Mobile nav safety override (high-specificity) ───── */
+@media (max-width: 768px) {
+  nav.site-nav, nav { position: relative !important; padding: 14px 16px !important; justify-content: center !important; }
+  nav .nav-logo { display: none !important; }
+  nav .nav-links {
+    position: relative !important; left: auto !important; transform: none !important;
+    gap: 8px 14px !important; flex-wrap: wrap !important; justify-content: center !important;
+    width: 100% !important; padding: 0 !important; margin: 0 !important;
+  }
+  nav .nav-links li { list-style: none !important; }
+  nav .nav-links a { font-size: 10px !important; letter-spacing: 0.16em !important; padding: 4px 0 !important; }
+}
+@media (max-width: 420px) {
+  nav .nav-links { gap: 6px 10px !important; }
+  nav .nav-links a { font-size: 9.5px !important; letter-spacing: 0.12em !important; }
 }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
