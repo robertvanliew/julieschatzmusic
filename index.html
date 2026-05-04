@@ -811,19 +811,26 @@ body.nav-drawer-open {
 
 /* Activate hamburger / hide desktop links at ≤900px */
 @media (max-width: 900px) {
-  nav .nav-links { display: none !important; }
-  nav .nav-logo  { display: none !important; }
+  /* Hide desktop top-nav. Cover BOTH the .site-nav class and any bare
+     <nav> on the page, but exclude the footer sitemap nav. */
+  nav:not(.footer-sitemap) .nav-links { display: none !important; }
+  nav:not(.footer-sitemap) .nav-logo  { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* Strip nav of all visual chrome — hamburger floats freely over photo */
-  nav.site-nav, nav {
+  /* Strip the SITE nav of all visual chrome so hamburger floats freely over
+     the photo. CRITICAL: this MUST exclude the footer sitemap nav — a bare
+     `nav` selector also matches the footer and collapses it to height:0,
+     stacking all footer columns on top of each other. */
+  nav.site-nav,
+  .site-nav,
+  nav:not(.footer-sitemap) {
     background: transparent !important;
     backdrop-filter: none !important;
     pointer-events: none !important; /* nav itself blocks nothing; only hamburger is interactive */
     padding: 0 !important;
     height: 0 !important;
     overflow: visible !important;
-    /* CRITICAL: lift nav above .page > * { z-index: 1 } so the hamburger
+    /* Lift nav above .page > * { z-index: 1 } so the hamburger
        inside it can paint over the photo. Without this, the hamburger's
        z-index:9999 is local to the nav's stacking context which sits at z=1. */
     z-index: 9999 !important;
@@ -3721,7 +3728,7 @@ nav {
 <div class="page">
 
   <!-- NAV -->
-  <nav>
+  <nav class="site-nav">
     <ul class="nav-links">
       <li><a href="#top" class="is-current">Home</a></li>
       <li><a href="bookings.html">Bookings</a></li>
