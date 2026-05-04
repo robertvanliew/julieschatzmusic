@@ -1,0 +1,60 @@
+# ──────────────────────────────────────────────────────────────────
+# Dev artifacts — not deployed
+# ──────────────────────────────────────────────────────────────────
+
+# Brainstorming + skill scratch directories
+.superpowers/
+.claude/
+.agents/
+.qoder/
+skills-lock.json
+
+# Antigravity template scaffold (not used in deploy)
+Antigravity Template/
+
+# Per-task scratch dir (logs, dev scripts, generator code)
+_temp/
+
+# Standalone dev scripts
+patch_shader2.py
+*.py
+
+# Old archive
+index v1 (original).html
+
+# Audit + analysis reports (private, not deployed)
+GEO-ANALYSIS.md
+SEO-FUNDAMENTALS.md
+DEPLOY-READY.md
+
+# Node + package manager
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Build outputs (none currently, but future-proof)
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

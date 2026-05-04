@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Julie Schatz</title>
+<meta name="description" content="Privacy policy for julieschatzmusic.com. What data we collect when you submit an inquiry, why, how long we keep it, and how to request deletion.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://julieschatzmusic.com/privacy.html">
+<link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:           #0F0A1A;
+  --ivory:        #F4EFE6;
+  --ivory-dim:    rgba(244, 239, 230, 0.78);
+  --ivory-soft:   rgba(244, 239, 230, 0.55);
+  --ivory-faint:  rgba(244, 239, 230, 0.32);
+  --hairline:     rgba(244, 239, 230, 0.14);
+  --hairline-strong: rgba(244, 239, 230, 0.22);
+  --violet-soft:  rgba(168, 85, 247, 0.55);
+}
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ivory);
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+/* WebGL shader gradient — matches the rest of the site */
+#shader-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+nav.privacy-nav,
+main.privacy,
+.site-footer { position: relative; z-index: 1; }
+nav.privacy-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 48px;
+  border-bottom: 1px solid var(--hairline);
+}
+nav.privacy-nav .home-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+nav.privacy-nav .home-link:hover { color: var(--ivory); }
+nav.privacy-nav .home-link::before { content: '← '; }
+
+main.privacy {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 48px 120px;
+  flex: 1;
+}
+main.privacy header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--hairline);
+}
+main.privacy header .kicker {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin-bottom: 20px;
+}
+main.privacy header h1 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ivory);
+  margin-bottom: 16px;
+}
+main.privacy header .updated {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+}
+
+main.privacy h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.15;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+  margin: 48px 0 16px;
+}
+main.privacy h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin: 32px 0 12px;
+}
+
+main.privacy p,
+main.privacy li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ivory-dim);
+  margin-bottom: 16px;
+  text-wrap: pretty;
+}
+main.privacy ul {
+  list-style: none;
+  padding-left: 0;
+}
+main.privacy ul li {
+  position: relative;
+  padding-left: 24px;
+}
+main.privacy ul li::before {
+  content: '·';
+  position: absolute;
+  left: 8px;
+  color: var(--violet-soft);
+  font-weight: 700;
+}
+main.privacy a {
+  color: var(--ivory);
+  text-decoration: underline;
+  text-decoration-color: var(--violet-soft);
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+main.privacy a:hover { color: #ffffff; }
+
+main.privacy strong {
+  color: var(--ivory);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ───────────── FOOTER — quiet editorial sign-off ───────────── */
+.site-footer {
+  width: 100%;
+  padding: 96px 48px 48px;
+  border-top: 1px solid var(--hairline);
+  background: transparent;
+}
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  text-align: center;
+}
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
+  transition: opacity 0.4s ease;
+}
+.footer-logo:hover img { opacity: 1; }
+.footer-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin-top: -16px;
+}
+.footer-sitemap {
+  position: static;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 36px 56px;
+  width: 100%;
+  max-width: 920px;
+  text-align: center;
+  justify-items: center;
+}
+.footer-sitemap .footer-col { min-width: 0; align-self: start; }
+.footer-sitemap .footer-col h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 18px;
+  opacity: 0.78;
+}
+.footer-sitemap .footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.footer-sitemap .footer-col a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.35s ease;
+  display: inline-block;
+}
+.footer-sitemap .footer-col a:hover { color: var(--ivory); }
+.footer-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--hairline-strong);
+  border: 0;
+  margin: 0;
+}
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ivory-faint);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .site-footer { padding: 72px 24px 40px; }
+  .footer-container { gap: 36px; }
+  .footer-logo img { height: 48px; }
+  .footer-sitemap { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 32px; }
+}
+@media (max-width: 480px) {
+  .footer-sitemap { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 768px) {
+  nav.privacy-nav { padding: 20px 24px; }
+  main.privacy { padding: 60px 24px 80px; }
+}
+
+/* NAP contact strip — shared footer block (phone + form-linked email) */
+.footer-contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.footer-contact-strip a {
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-contact-strip a:hover { color: var(--ivory); }
+.footer-contact-strip .fc-label {
+  color: var(--ivory-faint);
+  margin-right: 10px;
+  letter-spacing: 0.32em;
+  font-size: 9px;
+}
+@media (max-width: 600px) {
+  .footer-contact-strip { gap: 12px 0; flex-direction: column; }
+}
+
+
+/* Static gradient fallback for users with reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  #shader-bg { display: none !important; }
+  html, body {
+    background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
+  }
+}
+</style>
+<!-- Plausible Analytics — privacy-friendly, no cookie banner required.
+     To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
+     then this script will start collecting visits. Free for the first 30 days; ~$9/mo after.
+     If switching to GA4 instead, replace this entire block with the GA4 snippet. -->
+<script defer data-domain="julieschatzmusic.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+</head>
+<body>
+
+<canvas id="shader-bg" aria-hidden="true"></canvas>
+<script>
+(function(){
+  const canvas = document.getElementById('shader-bg');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const vsSrc = `attribute vec2 a_pos; void main(){ gl_Position = vec4(a_pos,0.0,1.0); }`;
+  const fsSrc = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_res;
+    vec3 C1 = vec3(0.337, 0.024, 1.000);
+    vec3 C2 = vec3(0.482, 0.173, 0.749);
+    vec3 C3 = vec3(0.000, 0.000, 0.000);
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_res;
+      float angle = radians(235.0);
+      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+      vec2 st = rot * (uv - 0.5) + 0.5;
+      st += vec2(-0.5, 0.1);
+      float t = u_time * 0.1;
+      float freq = 5.5; float strength = 2.4; float density = 1.1;
+      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
+      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
+      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
+      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
+      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
+      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
+      warped = clamp(warped, 0.0, 1.0);
+      float xGrad = smoothstep(0.0, 1.0, uv.x);
+      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
+      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
+      col = mix(col, C1, (1.0 - xGrad) * 0.4);
+      col = mix(col, C2, xGrad * 0.4);
+      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
+      col = mix(col, C3, dark * 0.8);
+      col *= 1.1;
+      col += vec3(warped * 0.04);
+      col = clamp(col, 0.0, 1.0);
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+  function compile(type, src){
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(sh));
+    return sh;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes  = gl.getUniformLocation(prog, 'u_res');
+  const start = performance.now();
+  function draw(){
+    gl.uniform1f(uTime, (performance.now() - start) / 1000);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<nav class="privacy-nav">
+  <a href="index.html" class="home-link">Back to Home</a>
+  <span style="font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--ivory-soft);">Privacy</span>
+</nav>
+
+<main class="privacy">
+  <header>
+    <span class="kicker">Privacy Policy</span>
+    <h1>How your information is handled.</h1>
+    <p class="updated">Last updated: May 1, 2026</p>
+  </header>
+
+  <p>This privacy policy explains what information is collected when you visit <a href="https://julieschatzmusic.com">julieschatzmusic.com</a> or submit an inquiry through one of the booking forms, why it is collected, how long it is kept, and how to request deletion.</p>
+
+  <p>This site is operated by Julie Schatz Music, a sole proprietorship based in Brooklyn, New York. For questions about anything in this policy, contact: <a href="mailto:bookings@julieschatzmusic.com">bookings@julieschatzmusic.com</a>.</p>
+
+  <h2>What is collected</h2>
+
+  <h3>1 · Information you provide directly</h3>
+  <p>When you submit a booking inquiry through any of the forms on this site, you actively share the following:</p>
+  <ul>
+    <li>Your name and email address</li>
+    <li>Phone number, event date, venue, and city</li>
+    <li>Guest count and selected service or package</li>
+    <li>How you heard about Julie (optional)</li>
+    <li>The free-text message describing your event</li>
+    <li>Your explicit consent to be contacted about your inquiry</li>
+  </ul>
+
+  <h3>2 · Technical information collected automatically</h3>
+  <p>When you submit a form, the following technical metadata is captured by our form processor (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>) for security and fraud-prevention purposes:</p>
+  <ul>
+    <li>Your IP address</li>
+    <li>Your browser type and version (user agent)</li>
+    <li>The page you submitted from and timestamp of submission</li>
+  </ul>
+  <p>This information is used solely to detect and block spam, abuse, and fraudulent inquiries. It is not used for advertising, marketing, or third-party data sharing.</p>
+
+  <h2>What is not collected</h2>
+  <p>This site does not run Google Analytics, Meta Pixel, or any third-party advertising or behavioral-tracking scripts. There are no cookies set for marketing or analytics. Embedded players from Spotify, Apple Music, SoundCloud, and Vimeo may set their own cookies when you interact with them — please refer to those services' privacy policies for details.</p>
+
+  <h2>How information is used</h2>
+  <ul>
+    <li><strong>To respond to your inquiry</strong> — Julie reads each inquiry personally and replies by email or phone, typically within 24 hours.</li>
+    <li><strong>To prepare a tailored proposal</strong> — venue, date, guest count, and service selection inform your quote.</li>
+    <li><strong>To detect and block fraudulent inquiries</strong> — IP and timing metadata are reviewed when an inquiry shows signs of being a scam attempt.</li>
+  </ul>
+
+  <h2>How long it is kept</h2>
+  <p>Inquiry submissions are retained in Formspree's archive for the duration of Julie's account with them, and in Julie's email inbox indefinitely as part of her business records. You can request deletion at any time (see below).</p>
+
+  <h2>Who has access</h2>
+  <p>Inquiry data is accessible to Julie Schatz directly and to <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> as the form-processing service. Formspree's data handling is governed by their <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">privacy policy</a>. Your information is not sold, traded, or shared with any other party.</p>
+
+  <h2>Your rights</h2>
+  <p>You can request the following at any time by emailing <a href="mailto:bookings@julieschatzmusic.com">bookings@julieschatzmusic.com</a>:</p>
+  <ul>
+    <li><strong>Access</strong> — a copy of the inquiry data you've submitted</li>
+    <li><strong>Correction</strong> — any factual errors fixed</li>
+    <li><strong>Deletion</strong> — your inquiry and associated metadata removed from records</li>
+    <li><strong>Withdrawal of consent</strong> — opt out of further communication regarding your inquiry</li>
+  </ul>
+  <p>Requests are typically processed within 30 days.</p>
+
+  <h2>Children's privacy</h2>
+  <p>This site is not directed at children under 13, and inquiries are not knowingly accepted from children under 13.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>This policy may be updated occasionally to reflect changes in services or legal requirements. The "Last updated" date at the top of this page reflects the most recent revision. Material changes will not be applied retroactively to inquiries already submitted under a prior version of this policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or about the data collected from your inquiry: <a href="mailto:bookings@julieschatzmusic.com">bookings@julieschatzmusic.com</a></p>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <a href="index.html" class="footer-logo" aria-label="Julie Schatz home">
+      <img src="assets/julie-schatz-logo.png" alt="Julie Schatz" width="4000" height="4000" loading="lazy" decoding="async">
+    </a>
+    <span class="footer-tagline">Stay in the Music</span>
+    <nav class="footer-sitemap" aria-label="Site map">
+      <div class="footer-col">
+        <h3>Bookings</h3>
+        <ul>
+          <li><a href="bookings.html">All Booking Options</a></li>
+          <li><a href="bookings/solo.html">Solo Violin &amp; Piano</a></li>
+          <li><a href="bookings/duo.html">DJ DX × Julie</a></li>
+          <li><a href="pricing.html">Rate Sheet</a></li>
+          <li><a href="repertoire.html">Repertoire & Ceremony Builder</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Service Areas</h3>
+        <ul>
+          <li><a href="wedding-violinist-nyc.html">NYC Weddings</a></li>
+          <li><a href="wedding-violinist-new-jersey.html">New Jersey Weddings</a></li>
+          <li><a href="wedding-violinist-connecticut.html">Connecticut Weddings</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Music</h3>
+        <ul>
+          <li><a href="index.html#listen">Latest Tracks</a></li>
+          <li><a href="beats.html">Store</a></li>
+      <li><a href="repertoire.html">Repertoire</a></li>
+      <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>About</h3>
+        <ul>
+          <li><a href="index.html#about">About Julie</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </nav>
+      <div class="footer-contact-strip" aria-label="Contact information">
+        <span><span class="fc-label">Tel</span><a href="tel:+16313659554">631 · 365 · 9554</a></span>
+        <span><span class="fc-label">Inquiries</span><a href="index.html#inquire">bookings@julieschatzmusic.com</a></span>
+      </div>
+
+    <hr class="footer-divider" />
+    <p class="footer-copy">&copy; <span id="year"></span> Julie Schatz Music · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

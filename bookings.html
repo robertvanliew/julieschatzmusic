@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookings | Julie Schatz · Live Music for Weddings & Private Events</title>
+<meta name="description" content="Book Julie Schatz solo violin & piano, or DJ DX × Julie — the DJ and live musician duo — for weddings, private events, and galas. NYC, NJ, CT and destination.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://julieschatzmusic.com/bookings.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bookings | Julie Schatz · Live Music for Weddings & Private Events">
+<meta property="og:description" content="Solo violin & piano, or DJ DX × Julie — the DJ + live musician duo. NYC-based, available across NY, NJ, CT and destination events.">
+<meta property="og:url" content="https://julieschatzmusic.com/bookings.html">
+<meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-bookings.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:site_name" content="Julie Schatz Music">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bookings | Julie Schatz">
+<meta name="twitter:description" content="Solo violin & piano, or DJ DX × Julie duo. Book now.">
+<meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-bookings.jpg">
+<link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://julieschatzmusic.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Bookings", "item": "https://julieschatzmusic.com/bookings.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://julieschatzmusic.com/bookings.html#webpage",
+  "url": "https://julieschatzmusic.com/bookings.html",
+  "name": "Bookings — Live Music for Weddings & Private Events",
+  "description": "Solo violin and piano, the Soul Shades violin-and-piano duo, or DJ DX × Julie — book live music for weddings, private events, and corporate galas across NY, NJ, CT.",
+  "dateModified": "2026-05-04",
+  "isPartOf": { "@id": "https://julieschatzmusic.com/#business" },
+  "about": { "@id": "https://julieschatzmusic.com/#business" },
+  "inLanguage": "en-US"
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:           #0F0A1A;
+  --violet:       #7B2CBF;
+  --violet2:      #a855f7;
+  --ivory:        #F4EFE6;
+  --ivory-dim:    rgba(244, 239, 230, 0.72);
+  --ivory-soft:   rgba(244, 239, 230, 0.55);
+  --ivory-faint:  rgba(244, 239, 230, 0.32);
+  --hairline:     rgba(244, 239, 230, 0.14);
+  --hairline-strong: rgba(244, 239, 230, 0.22);
+  --violet-soft:  rgba(168, 85, 247, 0.55);
+
+  /* DJ DX × Julie brand (warm sand / rust) — used on the Duo card */
+  --ss-sand:      #D9C7A8;
+  --ss-cream:     #F2EAD9;
+  --ss-rust:      #8E5C3A;
+  --ss-mocha:     #4A2E1F;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg);
+  cursor: default;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ivory);
+  overflow-x: hidden;
+}
+
+/* Same WebGL shader bg as home */
+#shader-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ───────────── NAV (matches home) ───────────── */
+nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 32px 48px;
+}
+.nav-logo {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+.nav-logo img {
+  height: 110px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.nav-logo img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 16px rgba(168,85,247,0.6));
+  transform: scale(1.04);
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+.nav-links a.is-current {
+  color: #ffffff;
+}
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .nav-logo { display: none; }
+  .nav-links { position: relative; left: auto; transform: none; gap: 20px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.25em; }
+}
+
+/* ───────────── HERO ───────────── */
+.bookings-hero {
+  padding: 200px 48px 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editorial-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+  margin-bottom: 28px;
+}
+.editorial-kicker::before,
+.editorial-kicker::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--violet-soft), transparent);
+}
+.bookings-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  max-width: 14ch;
+  text-wrap: pretty;
+  margin-bottom: 28px;
+}
+.bookings-hero p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  max-width: 56ch;
+  text-wrap: pretty;
+}
+@media (max-width: 768px) {
+  .bookings-hero { padding: 140px 24px 60px; }
+}
+
+/* ───────────── CHOOSER ───────────── */
+.bookings-chooser {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 48px 160px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 1024px) {
+  .bookings-chooser {
+    grid-template-columns: 1fr;
+    padding: 40px 32px 120px;
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .bookings-chooser { padding: 40px 24px 80px; }
+}
+
+/* ───────────── CUSTOM ENSEMBLE NOTE — informational only ───────────── */
+.custom-ensemble-note {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto 120px;
+  padding: 56px 64px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  text-align: center;
+}
+.custom-ensemble-note .editorial-kicker { margin-bottom: 22px; }
+.custom-ensemble-note h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--ivory);
+  margin-bottom: 18px;
+  text-wrap: pretty;
+}
+.custom-ensemble-note p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ivory-dim);
+  max-width: 56ch;
+  margin: 0 auto 16px;
+  text-wrap: pretty;
+}
+.custom-ensemble-note .ensemble-list {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin: 24px 0 8px;
+}
+.custom-ensemble-note .ensemble-list span { display: inline-block; margin: 0 6px; }
+.custom-ensemble-note .ensemble-list span + span::before {
+  content: '·';
+  margin-right: 12px;
+  color: var(--ivory-faint);
+}
+@media (max-width: 768px) {
+  .custom-ensemble-note { padding: 40px 28px; margin-bottom: 80px; }
+}
+
+/* ───────────── SOUL SHADES NOTE — distinct from DJ DX × Julie ───────────── */
+.soul-shades-note {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto 80px;
+  padding: 48px 56px;
+  border: 1px solid rgba(212, 184, 114, 0.32);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(212, 184, 114, 0.04), rgba(15, 10, 26, 0.4));
+  text-align: center;
+}
+.soul-shades-note .editorial-kicker {
+  margin-bottom: 18px;
+  color: #d4b872;
+}
+.soul-shades-note .editorial-kicker::before,
+.soul-shades-note .editorial-kicker::after {
+  background: linear-gradient(to right, transparent, rgba(212, 184, 114, 0.55), transparent);
+}
+.soul-shades-note h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--ivory);
+  margin-bottom: 16px;
+  text-wrap: pretty;
+}
+.soul-shades-note p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 56ch;
+  margin: 0 auto 24px;
+  text-wrap: pretty;
+}
+.soul-shades-note p strong { color: #fff; font-weight: 600; }
+.soul-shades-note p em { color: var(--ivory-soft); font-style: italic; }
+.soul-shades-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d4b872;
+  background: transparent;
+  border: 1px solid rgba(212, 184, 114, 0.45);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.soul-shades-cta:hover {
+  color: #fff;
+  background: rgba(212, 184, 114, 0.1);
+  border-color: #d4b872;
+  gap: 18px;
+}
+@media (max-width: 768px) {
+  .soul-shades-note { padding: 36px 24px; margin-bottom: 60px; }
+}
+
+/* ───────────── INLINE INQUIRY FORM — embedded, no redirect ───────────── */
+.form-section {
+  padding: 120px 48px;
+  position: relative;
+  border-top: 1px solid var(--hairline);
+}
+.form-container {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+.form-heading {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-heading .editorial-kicker {
+  margin-bottom: 20px;
+}
+.form-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ivory);
+  margin-bottom: 20px;
+}
+.form-heading p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(17px, 1.3vw, 20px);
+  line-height: 1.55;
+  color: var(--ivory-dim);
+  max-width: 56ch;
+  text-wrap: pretty;
+}
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+.field-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 12px;
+}
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline-strong);
+  padding: 14px 4px;
+  color: #ffffff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.inquiry-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+.inquiry-form input::placeholder,
+.inquiry-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  border-bottom-color: var(--violet-soft);
+}
+.inquiry-form select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(244,239,230,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 32px;
+}
+.inquiry-form select option {
+  background: #0F0A1A;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+}
+.inquiry-form select optgroup {
+  background: #1a0f2e;
+  color: #d4b872;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+.field-hint {
+  display: block;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+.field-hint.is-met { color: rgba(168, 85, 247, 0.8); }
+
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+  cursor: pointer;
+}
+/* Higher-specificity selector overrides .inquiry-form input { border:none } above */
+.inquiry-form .consent-row input[type="checkbox"],
+.consent-row input[type="checkbox"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  padding: 0 !important;
+  margin: 2px 0 0 !important;
+  flex-shrink: 0;
+  flex-grow: 0;
+  align-self: flex-start;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 3px !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.inquiry-form .consent-row input[type="checkbox"]:hover,
+.consent-row input[type="checkbox"]:hover {
+  border-color: rgba(168, 85, 247, 0.85) !important;
+}
+.inquiry-form .consent-row input[type="checkbox"]:checked,
+.consent-row input[type="checkbox"]:checked {
+  background: rgba(168, 85, 247, 0.9) !important;
+  border-color: rgba(168, 85, 247, 0.9) !important;
+}
+.inquiry-form .consent-row input[type="checkbox"]:checked::after,
+.consent-row input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.consent-row a {
+  color: rgba(255,255,255,0.92);
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 239, 230, 0.45);
+  text-underline-offset: 3px;
+}
+.consent-row a:hover { text-decoration-color: #fff; }
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: rgba(244, 239, 230, 0.02);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 18px 38px;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+.submit-btn::after {
+  content: '→';
+  font-size: 14px;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.submit-btn:hover {
+  color: #fff;
+  border-color: rgba(244, 239, 230, 0.5);
+  background: rgba(244, 239, 230, 0.04);
+  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.15), 0 12px 40px -12px rgba(168, 85, 247, 0.45);
+  transform: translateY(-1px);
+}
+.submit-btn:hover::after { transform: translateX(6px); }
+.form-note {
+  margin-top: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--ivory-soft);
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.7;
+}
+.form-error {
+  margin-top: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #ff8a8a;
+  text-align: center;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 138, 138, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 138, 138, 0.05);
+}
+.form-success {
+  display: none;
+  padding: 40px 0;
+  text-align: center;
+}
+.form-success.is-active { display: block; }
+.form-success h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--ivory);
+  margin-bottom: 16px;
+}
+.form-success p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--ivory-dim);
+}
+@media (max-width: 768px) { .form-section { padding: 80px 24px; } }
+
+.choice-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 56px 48px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ivory);
+  background: rgba(244, 239, 230, 0.015);
+  transition: border-color 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              background 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  min-height: 540px;
+}
+.choice-card:hover {
+  border-color: var(--hairline-strong);
+  background: rgba(244, 239, 230, 0.03);
+  transform: translateY(-4px);
+}
+.choice-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.choice-card:hover::before { opacity: 1; }
+
+/* SOLO card — keeps the violet glow language */
+.choice-card.solo::before {
+  background: radial-gradient(ellipse at top, rgba(168, 85, 247, 0.10), transparent 60%);
+}
+/* DUO card — DJ DX × Julie warm sand language */
+.choice-card.duo {
+  background: linear-gradient(180deg, rgba(217, 199, 168, 0.06) 0%, rgba(74, 46, 31, 0.04) 100%);
+  border-color: rgba(217, 199, 168, 0.25);
+}
+.choice-card.duo:hover {
+  border-color: rgba(217, 199, 168, 0.5);
+  background: linear-gradient(180deg, rgba(217, 199, 168, 0.10) 0%, rgba(74, 46, 31, 0.06) 100%);
+}
+.choice-card.duo::before {
+  background: radial-gradient(ellipse at top, rgba(217, 199, 168, 0.18), transparent 60%);
+}
+
+.choice-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin-bottom: 28px;
+}
+.choice-card.duo .choice-eyebrow {
+  color: rgba(217, 199, 168, 0.85);
+}
+
+.choice-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 1.0;
+  letter-spacing: -0.015em;
+  color: var(--ivory);
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.choice-card.duo .choice-title {
+  color: var(--ss-cream);
+}
+
+.choice-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  margin-bottom: 40px;
+  max-width: 38ch;
+  text-wrap: pretty;
+  flex: 1;
+}
+
+.choice-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--hairline-strong);
+  margin: 0 0 28px;
+  transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease;
+}
+.choice-card:hover .choice-rule {
+  width: 80px;
+  background: var(--violet-soft);
+}
+.choice-card.duo:hover .choice-rule {
+  background: rgba(217, 199, 168, 0.7);
+}
+
+.choice-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.choice-bullets li {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.choice-bullets li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 1px;
+  background: var(--ivory-faint);
+}
+
+.choice-pricing {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--ivory-dim);
+  margin-bottom: 32px;
+}
+.choice-pricing strong {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ivory);
+}
+
+.choice-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  align-self: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: gap 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+}
+.choice-card:hover .choice-cta {
+  gap: 22px;
+  border-color: rgba(244, 239, 230, 0.5);
+}
+.choice-cta::after {
+  content: '→';
+  font-size: 14px;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .choice-card {
+    padding: 40px 28px;
+    min-height: auto;
+  }
+  .choice-bullets { margin-bottom: 32px; }
+}
+
+/* ───────────── FOOTER — quiet editorial sign-off ───────────── */
+.site-footer {
+  width: 100%;
+  padding: 96px 48px 48px;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  border-top: 1px solid var(--hairline);
+  margin-top: auto;
+}
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  text-align: center;
+}
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
+  transition: opacity 0.4s ease;
+}
+.footer-logo:hover img { opacity: 1; }
+.footer-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin-top: -16px;
+}
+.footer-sitemap {
+  position: static;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 36px 56px;
+  width: 100%;
+  max-width: 920px;
+  text-align: center;
+  justify-items: center;
+}
+.footer-sitemap .footer-col { min-width: 0; align-self: start; }
+.footer-sitemap .footer-col h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 18px;
+  opacity: 0.78;
+}
+.footer-sitemap .footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.footer-sitemap .footer-col a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.35s ease;
+  display: inline-block;
+}
+.footer-sitemap .footer-col a:hover { color: var(--ivory); }
+.footer-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--hairline-strong);
+  border: 0;
+  margin: 0;
+}
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ivory-faint);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.footer-copy a {
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-copy a:hover { color: var(--ivory); }
+@media (max-width: 768px) {
+  .site-footer { padding: 72px 24px 40px; }
+  .footer-container { gap: 36px; }
+  .footer-logo img { height: 48px; }
+  .footer-sitemap { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 32px; }
+}
+@media (max-width: 480px) {
+  .footer-sitemap { grid-template-columns: 1fr; gap: 28px; }
+}
+
+
+/* NAP contact strip — shared footer block (phone + form-linked email) */
+.footer-contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.footer-contact-strip a {
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-contact-strip a:hover { color: var(--ivory); }
+.footer-contact-strip .fc-label {
+  color: var(--ivory-faint);
+  margin-right: 10px;
+  letter-spacing: 0.32em;
+  font-size: 9px;
+}
+@media (max-width: 600px) {
+  .footer-contact-strip { gap: 12px 0; flex-direction: column; }
+}
+
+
+/* Static gradient fallback for users with reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  #shader-bg { display: none !important; }
+  html, body {
+    background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
+  }
+}
+</style>
+<!-- Plausible Analytics — privacy-friendly, no cookie banner required.
+     To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
+     then this script will start collecting visits. Free for the first 30 days; ~$9/mo after.
+     If switching to GA4 instead, replace this entire block with the GA4 snippet. -->
+<script defer data-domain="julieschatzmusic.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+</head>
+<body>
+<canvas id="shader-bg"></canvas>
+<script>
+// Identical shader to the home page — keeps the bg consistent across the site
+(function(){
+  const canvas = document.getElementById('shader-bg');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const vsSrc = `
+    attribute vec2 a_pos;
+    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+  `;
+  const fsSrc = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_res;
+    vec3 C1 = vec3(0.337, 0.024, 1.000);
+    vec3 C2 = vec3(0.482, 0.173, 0.749);
+    vec3 C3 = vec3(0.000, 0.000, 0.000);
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_res;
+      float angle = radians(235.0);
+      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+      vec2 st = rot * (uv - 0.5) + 0.5;
+      st += vec2(-0.5, 0.1);
+      float t = u_time * 0.1;
+      float freq = 5.5;
+      float strength = 2.4;
+      float density = 1.1;
+      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
+      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
+      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
+      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
+      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
+      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
+      warped = clamp(warped, 0.0, 1.0);
+      float xGrad = smoothstep(0.0, 1.0, uv.x);
+      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
+      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
+      col = mix(col, C1, (1.0 - xGrad) * 0.4);
+      col = mix(col, C2, xGrad * 0.4);
+      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
+      col = mix(col, C3, dark * 0.8);
+      col *= 1.1;
+      col += vec3(warped * 0.04);
+      col = clamp(col, 0.0, 1.0);
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+  function compile(type, src) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(sh));
+    return sh;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes  = gl.getUniformLocation(prog, 'u_res');
+  let start = performance.now();
+  function draw() {
+    gl.uniform1f(uTime, (performance.now() - start) / 1000);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<div class="page">
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Julie Schatz home">
+      <img src="assets/julie-schatz-logo.png" width="4000" height="4000" alt="Julie Schatz">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="bookings.html" class="is-current">Bookings</a></li>
+      <li><a href="index.html#listen">Listen</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="beats.html">Store</a></li>
+      <li><a href="repertoire.html">Repertoire</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="bookings-hero">
+    <span class="editorial-kicker">Bookings &amp; Inquiries</span>
+    <h1>Two ways to score your day.</h1>
+    <p>Solo violin and piano for ceremonies, cocktail hours, and intimate evenings — or DJ DX × Julie, the DJ and live musician duo, for the full reception. Choose the experience that fits your event.</p>
+  </header>
+
+  <!-- CHOOSER -->
+  <main class="bookings-chooser">
+
+    <!-- SOLO CARD -->
+    <a href="bookings/solo.html" class="choice-card solo">
+      <span class="choice-eyebrow">01 · Solo Musician</span>
+      <h2 class="choice-title">Violin &amp; Piano</h2>
+      <p class="choice-tagline">An elegant solo performance with a low-profile, high-fidelity sound system. Zone-based pricing — travel included for NYC.</p>
+      <div class="choice-rule"></div>
+      <ul class="choice-bullets">
+        <li>Wedding Ceremonies</li>
+        <li>Cocktail Hours</li>
+        <li>Private Events &amp; Galas</li>
+        <li>Up to 3 Repertoire Song Requests Included</li>
+      </ul>
+      <div class="choice-pricing">From <strong>$595</strong> · NYC Ceremony</div>
+      <span class="choice-cta">View Solo Packages</span>
+    </a>
+
+    <!-- DUO CARD -->
+    <a href="bookings/duo.html" class="choice-card duo">
+      <span class="choice-eyebrow">02 · DJ DX × Julie</span>
+      <h2 class="choice-title">DJ + Live Musician</h2>
+      <p class="choice-tagline">A music-forward duo experience — DJ set woven through live violin and keyboard. Refined for private events, celebrations, and select weddings.</p>
+      <div class="choice-rule"></div>
+      <ul class="choice-bullets">
+        <li>Wedding Receptions</li>
+        <li>Corporate &amp; Brand Events</li>
+        <li>Destination Events</li>
+        <li>Up to 6 Hours of Live Production</li>
+      </ul>
+      <div class="choice-pricing">From <strong>$2,200</strong> · Essential Duo</div>
+      <span class="choice-cta">View Duo Packages</span>
+    </a>
+
+  </main>
+
+  <!-- SOUL SHADES CALLOUT — clarifies that the violin+piano duo is a distinct product -->
+  <section class="soul-shades-note" aria-label="Soul Shades violin and piano duo">
+    <span class="editorial-kicker">Also Available</span>
+    <h2>Soul Shades — the violin &amp; piano duo.</h2>
+    <p>A separate offering from <em>DJ DX × Julie</em> above. Soul Shades is Julie on violin paired with a jazz pianist — a refined live duo for ceremony, cocktail hour, and dinner. Ceremony from <strong>$2,400</strong> in NYC, ceremony + cocktail from <strong>$3,200</strong>.</p>
+    <a href="pricing.html" class="soul-shades-cta">View Soul Shades Pricing →</a>
+  </section>
+
+  <!-- CUSTOM ENSEMBLE NOTE — informational; the form below handles the inquiry action -->
+  <section class="custom-ensemble-note" aria-label="Custom ensemble packages">
+    <span class="editorial-kicker">Looking for something else?</span>
+    <h2>Custom ensemble packages, on request.</h2>
+    <p>String trios and quartets, violin + cello pairings, jazz piano with upright bass, or hybrid groupings — Julie regularly assembles custom ensembles for ceremonies, cocktail hours, corporate galas, and brand events that need a specific sound. Each ensemble is curated from her trusted roster of NYC-based players.</p>
+    <p class="ensemble-list">
+      <span>String Trio</span><span>String Quartet</span><span>Violin + Cello</span><span>Piano + Bass</span><span>Custom Hybrids</span>
+    </p>
+    <p>Pricing is built per booking based on instrumentation and event length. Use the form below — select <em>Custom Ensemble</em> in the package dropdown.</p>
+  </section>
+
+  <!-- INLINE INQUIRY FORM — single, embedded, no redirect -->
+  <section class="form-section" id="inquire">
+    <div class="form-container">
+      <div class="form-heading">
+        <span class="editorial-kicker">Send a quick inquiry</span>
+        <h2>Not sure which fits?</h2>
+        <p>Solo violin and piano, the DJ DX × Julie duo, the Soul Shades violin-and-piano duo, or a custom ensemble — string trio, quartet, violin + cello, piano + bass, or hybrid groupings on request. Share a few details and Julie will respond within 24 hours with the right package, availability, and a tailored quote.</p>
+      </div>
+
+      <form class="inquiry-form hardened-form" id="bookingsInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
+        <input type="hidden" name="_subject" value="New Booking Inquiry — bookings page">
+        <input type="hidden" name="_loaded_at" value="">
+        <input type="hidden" name="form_source" value="bookings-page">
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="bk-name">Your Name</label>
+            <input id="bk-name" type="text" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="bk-email">Email</label>
+            <input id="bk-email" type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="bk-date">Event Date</label>
+            <input id="bk-date" type="date" name="event_date" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="bk-phone">Phone</label>
+            <input id="bk-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="bk-venue">Venue Name + City</label>
+          <input id="bk-venue" type="text" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="bk-guests">Guest Count</label>
+            <select id="bk-guests" name="guest_count" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="under-50">Under 50</option>
+              <option value="50-100">50–100</option>
+              <option value="100-150">100–150</option>
+              <option value="150-250">150–250</option>
+              <option value="250-plus">250+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="bk-referral">How Did You Hear About Julie?</label>
+            <input id="bk-referral" type="text" name="referral" placeholder="Instagram, planner, friend…">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="bk-package">Package / Service</label>
+          <select id="bk-package" name="service" required>
+            <option value="" disabled selected>Choose a package…</option>
+            <optgroup label="Solo Wedding · NYC (Travel Included)">
+              <option value="solo-ceremony-nyc">Wedding Ceremony · $595</option>
+              <option value="solo-ceremony-cocktail-nyc">Ceremony &amp; Cocktail · $950</option>
+              <option value="solo-full-day-nyc">Full Day Soloist · $1,800</option>
+            </optgroup>
+            <optgroup label="Solo Wedding · LI / Westch / N.NJ / Greenwich">
+              <option value="solo-ceremony-zone">Wedding Ceremony · $745</option>
+              <option value="solo-ceremony-cocktail-zone">Ceremony &amp; Cocktail · $1,100</option>
+              <option value="solo-full-day-zone">Full Day Soloist · $1,950</option>
+            </optgroup>
+            <optgroup label="Soul Shades — Violin + Piano Duo">
+              <option value="soulshades-ceremony-nyc">Ceremony · NYC · $2,400</option>
+              <option value="soulshades-ceremony-zone">Ceremony · Inner-Ring Zone · $2,550</option>
+              <option value="soulshades-cocktail-nyc">Ceremony + Cocktail · NYC · $3,200</option>
+              <option value="soulshades-cocktail-zone">Ceremony + Cocktail · Inner-Ring Zone · $3,350</option>
+            </optgroup>
+            <optgroup label="DJ DX × Julie — DJ + Live Musician Duo">
+              <option value="duo-essential">Essential Duo · $2,200</option>
+              <option value="duo-signature">Signature DJ + Live · $2,800</option>
+              <option value="duo-extended">Extended Experience · $3,500</option>
+              <option value="duo-luxury">Luxury &amp; Destination · $4,500</option>
+            </optgroup>
+            <optgroup label="Private Events">
+              <option value="private-1hr">Private Event 1hr · $395 NYC / $545 Zone</option>
+              <option value="proposal">Proposal · $295 NYC / $445 Zone</option>
+              <option value="corporate">Corporate / Gala · $495 NYC / $645 Zone</option>
+            </optgroup>
+            <optgroup label="Custom Ensemble (priced per booking)">
+              <option value="ensemble-string-trio">String Trio</option>
+              <option value="ensemble-string-quartet">String Quartet</option>
+              <option value="ensemble-violin-cello">Violin + Cello</option>
+              <option value="ensemble-piano-bass">Piano + Bass</option>
+              <option value="ensemble-custom">Custom Hybrid Ensemble</option>
+            </optgroup>
+            <option value="undecided">Not sure yet — let's talk</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="bk-message">Tell me about your event</label>
+          <textarea id="bk-message" name="message" placeholder="Venue atmosphere, musical vibe, special song requests, anything you'd want me to know…" rows="4" required minlength="30"></textarea>
+          <span class="field-hint" data-counter>0 / 30 minimum</span>
+        </div>
+
+        <label class="consent-row">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted about this inquiry. <a href="privacy.html" target="_blank" rel="noopener">Privacy policy</a>.</span>
+        </label>
+
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+        <p class="form-note">Typically responds within 24 hours · Video call required before booking · All inquiries confidential</p>
+        <p class="form-error" data-form-error hidden></p>
+      </form>
+
+      <div class="form-success" id="bookingsFormSuccess">
+        <h3>Thank you.</h3>
+        <p>Your inquiry is in. Julie will be in touch within 24 hours with availability and a tailored proposal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <a href="index.html" class="footer-logo" aria-label="Julie Schatz home">
+        <img src="assets/julie-schatz-logo.png" width="4000" height="4000" alt="Julie Schatz">
+      </a>
+      <span class="footer-tagline">Stay in the Music</span>
+    <nav class="footer-sitemap" aria-label="Site map">
+      <div class="footer-col">
+        <h3>Bookings</h3>
+        <ul>
+          <li><a href="bookings.html">All Booking Options</a></li>
+          <li><a href="bookings/solo.html">Solo Violin &amp; Piano</a></li>
+          <li><a href="bookings/duo.html">DJ DX × Julie</a></li>
+          <li><a href="pricing.html">Rate Sheet</a></li>
+          <li><a href="repertoire.html">Repertoire & Ceremony Builder</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Service Areas</h3>
+        <ul>
+          <li><a href="wedding-violinist-nyc.html">NYC Weddings</a></li>
+          <li><a href="wedding-violinist-new-jersey.html">New Jersey Weddings</a></li>
+          <li><a href="wedding-violinist-connecticut.html">Connecticut Weddings</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Music</h3>
+        <ul>
+          <li><a href="index.html#listen">Latest Tracks</a></li>
+          <li><a href="beats.html">Store</a></li>
+      <li><a href="repertoire.html">Repertoire</a></li>
+          <li><a href="index.html#highlights">Performance Highlights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>About</h3>
+        <ul>
+          <li><a href="index.html#about">About Julie</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#events">Upcoming Events</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </nav>
+      <div class="footer-contact-strip" aria-label="Contact information">
+        <span><span class="fc-label">Tel</span><a href="tel:+16313659554">631 · 365 · 9554</a></span>
+        <span><span class="fc-label">Inquiries</span><a href="#inquire">bookings@julieschatzmusic.com</a></span>
+      </div>
+
+    
+      <div class="footer-divider"></div>
+      <p class="footer-copy">&copy; <span id="footerYear"></span> Julie Schatz Music. All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const fy = document.getElementById('footerYear');
+if (fy) fy.textContent = new Date().getFullYear();
+</script>
+
+<!-- ────────────────────────────────────────────────────────────────────
+     Hardened-form anti-spam + validation (shared logic; identical to home + solo + duo)
+     - Honeypot (_gotcha): silent reject if filled
+     - Time-trap: silent reject if submission < 4 sec after page load
+     - Disposable-email block
+     - 1-day-advance check on event_date
+     - Min-message-length live counter
+     - Submit button disabled-during-submit
+     - Inline error messaging
+     - fetch-based submit + inline success state
+     ──────────────────────────────────────────────────────────────────── -->
+<script>
+(function() {
+  const DISPOSABLE_DOMAINS = new Set([
+    'mailinator.com','tempmail.com','temp-mail.io','temp-mail.org','guerrillamail.com','guerrillamail.net','guerrillamail.org','sharklasers.com',
+    'yopmail.com','10minutemail.com','10minutemail.net','throwawaymail.com','dispostable.com','trashmail.com','trashmail.net','maildrop.cc',
+    'getairmail.com','mailnesia.com','mintemail.com','mytemp.email','spambox.us','spamgourmet.com','tempinbox.com','fakeinbox.com',
+    'mvrht.com','spam4.me','meltmail.com','mohmal.com','tempr.email','emailondeck.com','tempemail.com','spamavert.com',
+    'mailcatch.com','spamfree24.org','byom.de','jetable.org','nada.email','dropmail.me','tempmail.plus','mail-temp.com',
+    'mail.tm','eyepaste.com','pokemail.net','mailsac.com','luxusmail.org','vomoto.com','tmpmail.org','tmpeml.com',
+    'inboxbear.com','tempmailo.com',
+  ]);
+  const ALLOWED_PRIVACY_DOMAINS = new Set(['protonmail.com','proton.me','tutanota.com','duck.com','simplelogin.io']);
+  function isDisposableEmail(email) {
+    if (!email || typeof email !== 'string') return false;
+    const at = email.lastIndexOf('@'); if (at < 0) return false;
+    const domain = email.slice(at + 1).toLowerCase().trim();
+    if (ALLOWED_PRIVACY_DOMAINS.has(domain)) return false;
+    return DISPOSABLE_DOMAINS.has(domain);
+  }
+  function daysFromNow(yyyymmdd) {
+    if (!yyyymmdd) return null;
+    const d = new Date(yyyymmdd + 'T00:00:00');
+    if (isNaN(d.getTime())) return null;
+    const now = new Date(); now.setHours(0,0,0,0);
+    return Math.round((d - now) / 86400000);
+  }
+  function showError(form, msg) {
+    const el = form.querySelector('[data-form-error]');
+    if (el) { el.textContent = msg; el.hidden = false; } else { alert(msg); }
+  }
+  function clearError(form) {
+    const el = form.querySelector('[data-form-error]');
+    if (el) { el.hidden = true; el.textContent = ''; }
+  }
+  function setSubmitting(form, on) {
+    const btn = form.querySelector('button[type="submit"]'); if (!btn) return;
+    if (on) { btn.dataset.originalLabel = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity='0.7'; btn.style.cursor='wait'; }
+    else { if (btn.dataset.originalLabel) btn.textContent = btn.dataset.originalLabel; btn.disabled = false; btn.style.opacity=''; btn.style.cursor=''; }
+  }
+  function showSuccess(form) {
+    const existingSuccess = form.parentElement && form.parentElement.querySelector('.form-success');
+    if (existingSuccess) { form.style.display = 'none'; existingSuccess.classList.add('is-active'); return; }
+    const wrap = document.createElement('div');
+    wrap.className = 'form-success-inline';
+    wrap.innerHTML = '<h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:28px;color:#fff;margin-bottom:12px;">Thank you.</h3>'
+      + '<p style="font-family:Cormorant Garamond,serif;font-size:17px;color:rgba(255,255,255,0.8);">Your inquiry is in. Julie will be in touch within 24 hours.</p>';
+    wrap.style.padding = '40px 0'; wrap.style.textAlign = 'center';
+    form.replaceWith(wrap);
+  }
+  function hardenForm(form) {
+    const loadedAtField = form.querySelector('input[name="_loaded_at"]');
+    const loadedAt = Date.now();
+    if (loadedAtField) loadedAtField.value = String(loadedAt);
+    form.dataset.loadedAt = String(loadedAt);
+    const messageInput = form.querySelector('textarea[name="message"], textarea[name="vision"]');
+    const counter = form.querySelector('[data-counter]');
+    const minMessage = messageInput ? parseInt(messageInput.getAttribute('minlength') || '0', 10) : 0;
+    if (messageInput && counter && minMessage > 0) {
+      const update = () => {
+        const len = messageInput.value.trim().length;
+        counter.textContent = `${len} / ${minMessage} minimum`;
+        counter.classList.toggle('is-met', len >= minMessage);
+      };
+      messageInput.addEventListener('input', update); update();
+    }
+    form.addEventListener('submit', async function(e) {
+      const honeypot = form.querySelector('input[name="_gotcha"]');
+      if (honeypot && honeypot.value) { e.preventDefault(); return; }
+      if (Date.now() - loadedAt < 4000) { e.preventDefault(); return; }
+      clearError(form);
+      const formData = new FormData(form);
+      const requiredFields = form.querySelectorAll('[required]');
+      for (const f of requiredFields) {
+        if (f.type === 'checkbox') {
+          if (!f.checked) { e.preventDefault(); showError(form, 'Please confirm consent to be contacted before submitting.'); f.focus(); return; }
+        } else if (!f.value || !f.value.trim()) {
+          e.preventDefault();
+          const label = f.closest('.field-group')?.querySelector('.field-label')?.textContent || 'A required field';
+          showError(form, `Please fill in: ${label}.`); f.focus(); return;
+        }
+      }
+      const emailField = form.querySelector('input[type="email"]');
+      if (emailField) {
+        const email = emailField.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailRegex.test(email)) { e.preventDefault(); showError(form, 'That email address looks invalid. Please double-check.'); emailField.focus(); return; }
+        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address — Julie responds by email only.'); emailField.focus(); return; }
+      }
+      const phoneField = form.querySelector('input[type="tel"]');
+      if (phoneField && phoneField.value) {
+        const digits = phoneField.value.replace(/\D/g, '');
+        if (digits.length < 10) { e.preventDefault(); showError(form, 'Please include a phone number with country code (10+ digits).'); phoneField.focus(); return; }
+      }
+      const dateField = form.querySelector('input[type="date"][name="event_date"]');
+      if (dateField && dateField.value) {
+        const days = daysFromNow(dateField.value);
+        if (days === null) { e.preventDefault(); showError(form, 'Please select a valid event date.'); dateField.focus(); return; }
+        if (days < 1) { e.preventDefault(); showError(form, 'Bookings require at least 1 day advance notice. For same-day inquiries, please email directly.'); dateField.focus(); return; }
+      }
+      if (messageInput && minMessage > 0) {
+        const len = (messageInput.value || '').trim().length;
+        if (len < minMessage) { e.preventDefault(); showError(form, `Please share a few more details about your event (${minMessage}+ characters).`); messageInput.focus(); return; }
+      }
+      e.preventDefault();
+      setSubmitting(form, true);
+      try {
+        const resp = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        if (resp.ok) { setSubmitting(form, false); showSuccess(form); }
+        else {
+          let detail = '';
+          try { const j = await resp.json(); if (j && j.errors && j.errors.length) detail = ' (' + j.errors.map(e => e.message).join('; ') + ')'; } catch (_) {}
+          setSubmitting(form, false); showError(form, 'Something went wrong on submission' + detail + '. Please try again in a moment.');
+        }
+      } catch (err) { setSubmitting(form, false); showError(form, 'Could not reach the server. Please check your connection and try again.'); }
+    });
+  }
+  function init() { document.querySelectorAll('form.hardened-form').forEach(hardenForm); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+</body>
+</html>

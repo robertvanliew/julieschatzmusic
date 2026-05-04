@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Ceremony — Repertoire &amp; Song Selector | Julie Schatz</title>
+<meta name="description" content="Browse 200+ songs and build your wedding ceremony music selections. Solo violin and jazz piano performed live across NYC, NJ, and CT by Julie Schatz.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://julieschatzmusic.com/repertoire.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Build Your Ceremony — Julie Schatz Repertoire">
+<meta property="og:description" content="Browse 200+ songs and build your wedding ceremony music selections — live violin and jazz piano across NYC, NJ, and CT.">
+<meta property="og:url" content="https://julieschatzmusic.com/repertoire.html">
+<meta property="og:image" content="https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png">
+<meta property="og:site_name" content="Julie Schatz Music">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://julieschatzmusic.com/repertoire.html#webpage",
+  "url": "https://julieschatzmusic.com/repertoire.html",
+  "name": "Build Your Ceremony — Julie Schatz Repertoire",
+  "description": "Interactive ceremony song selector covering 200+ songs across pop, R&B, jazz, classical, country, and worship — built for couples planning weddings in NYC, NJ, and CT.",
+  "isPartOf": { "@id": "https://julieschatzmusic.com/#business" },
+  "about": { "@id": "https://julieschatzmusic.com/#business" },
+  "inLanguage": "en",
+  "dateModified": "2026-05-03"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://julieschatzmusic.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Repertoire & Ceremony Builder", "item": "https://julieschatzmusic.com/repertoire.html"}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:           #0F0A1A;
+  --violet:       #7B2CBF;
+  --violet-2:     #a855f7;
+  --violet-soft:  rgba(168, 85, 247, 0.55);
+  --violet-glow:  rgba(168, 85, 247, 0.18);
+  --gold:         #d4b872;
+  --gold-soft:    rgba(212, 184, 114, 0.7);
+  --ivory:        #F4EFE6;
+  --ivory-dim:    rgba(244, 239, 230, 0.88);
+  --ivory-soft:   rgba(244, 239, 230, 0.7);
+  --ivory-faint:  rgba(244, 239, 230, 0.45);
+  --hairline:        rgba(244, 239, 230, 0.14);
+  --hairline-strong: rgba(244, 239, 230, 0.22);
+  --hairline-violet: rgba(168, 85, 247, 0.30);
+  --serif-display: 'Playfair Display', Georgia, serif;
+  --serif-body:    'Cormorant Garamond', 'Times New Roman', serif;
+  --sans:          'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+html, body {
+  width: 100%; min-height: 100vh;
+  background: var(--bg);
+  font-family: var(--serif-body);
+  color: var(--ivory);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+a { color: inherit; }
+
+/* WebGL shader canvas — same as rest of site */
+#shader-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Site nav (matches rest of site) ─── */
+nav.site-nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 32px 48px;
+}
+.nav-logo {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.nav-logo img {
+  height: 110px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.nav-logo img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 16px rgba(168,85,247,0.6));
+  transform: scale(1.04);
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover { color: #fff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.5); }
+.nav-links a.is-current { color: #fff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.5); }
+@media (max-width: 768px) {
+  nav.site-nav { padding: 20px 24px; }
+  .nav-logo { display: none; }
+  .nav-links { position: relative; left: auto; transform: none; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.22em; }
+}
+
+/* ─── Layout shell ─── */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 200px 40px 120px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+}
+@media (min-width: 1024px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 56px;
+    padding: 220px 56px 160px;
+    align-items: start;
+  }
+}
+@media (max-width: 768px) {
+  .shell {
+    padding: 140px 24px 100px;
+  }
+}
+
+/* ─── Hero ─── */
+.hero { margin-bottom: 56px; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+.kicker::before, .kicker::after {
+  content: ''; width: 32px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--violet-soft), transparent);
+}
+.hero h1 {
+  font-family: var(--serif-display);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: 22px;
+  text-wrap: pretty;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero .lede {
+  font-family: var(--serif-body);
+  font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+/* ─── How-it-works strip ─── */
+.howto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  margin-bottom: 64px;
+  padding: 36px 32px;
+  border: 1px solid rgba(244, 239, 230, 0.28);
+  border-radius: 4px;
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.howto-step {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.howto-num {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.howto-step h3 {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.005em;
+}
+.howto-step p {
+  font-family: var(--serif-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  text-wrap: pretty;
+}
+
+/* ─── Pricing-note callout ─── */
+.pricing-note {
+  margin-bottom: 56px;
+  padding: 32px 32px;
+  border: 1px solid var(--hairline-violet);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(15, 10, 26, 0.65), rgba(168, 85, 247, 0.08));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.pricing-note h2 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 14px;
+}
+.pricing-note p {
+  font-family: var(--serif-body);
+  font-weight: 400;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+.pricing-note p strong { color: #fff; font-weight: 600; }
+
+/* ─── Builder ─── */
+.builder { margin-bottom: 80px; }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.section-head h2 {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  color: #fff;
+}
+.section-head .section-tag {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.moments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+@media (min-width: 720px) {
+  .moments-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+
+/* Slot states */
+.slot {
+  position: relative;
+  padding: 24px 26px;
+  border: 1px solid rgba(244, 239, 230, 0.28);
+  border-radius: 4px;
+  background: rgba(15, 10, 26, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.slot.is-empty { cursor: pointer; }
+.slot.is-empty:hover {
+  border-color: rgba(244, 239, 230, 0.45);
+  background: rgba(15, 10, 26, 0.7);
+}
+.slot.is-optional.is-empty {
+  border-style: dashed;
+}
+.slot.is-filled {
+  border-color: var(--hairline-violet);
+  background: linear-gradient(180deg, rgba(15, 10, 26, 0.6), rgba(168, 85, 247, 0.12));
+  cursor: default;
+}
+.slot-head {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 6px;
+}
+.slot-roman {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+}
+.slot-name {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--ivory);
+  letter-spacing: -0.005em;
+}
+.slot-flag {
+  margin-left: auto;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.85);
+}
+.slot-hint {
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 16px;
+}
+.slot-add {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  background: rgba(15, 10, 26, 0.35);
+  padding: 11px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.slot-add:hover {
+  color: #fff;
+  border-color: var(--violet-soft);
+  background: rgba(168, 85, 247, 0.05);
+}
+
+.slot-song {
+  margin-top: 4px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.slot-song-title {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 24px);
+  color: #fff;
+  line-height: 1.2;
+}
+.slot-song-artist {
+  font-family: var(--serif-body);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--ivory-dim);
+  font-style: italic;
+}
+.slot-sig-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 10px;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 184, 114, 0.12);
+  border: 1px solid rgba(212, 184, 114, 0.3);
+  border-radius: 999px;
+  align-self: flex-start;
+}
+.slot-perf {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.slot-perf-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+}
+.perf-radio {
+  display: flex; align-items: flex-start; gap: 10px;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.perf-radio input { margin-top: 4px; accent-color: var(--violet-2); cursor: pointer; }
+.perf-radio-text {
+  font-family: var(--serif-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ivory-dim);
+  line-height: 1.4;
+}
+.perf-radio input:checked ~ .perf-radio-text { color: var(--ivory); }
+.perf-fee {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-left: 6px;
+}
+.perf-fee.is-included { color: var(--ivory-faint); }
+
+.slot-remove {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ivory-soft);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease;
+}
+.slot-remove:hover { color: #fff; border-color: #fff; }
+
+/* ─── Custom song section ─── */
+.custom-section {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline);
+}
+.custom-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px; }
+.custom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px dashed var(--hairline-strong);
+  border-radius: 4px;
+  background: rgba(244, 239, 230, 0.012);
+}
+@media (max-width: 720px) {
+  .custom-row { grid-template-columns: 1fr 1fr; }
+  .custom-row .custom-instr { grid-column: 1 / -1; }
+  .custom-row .custom-remove { grid-column: 1 / -1; justify-self: end; }
+}
+.custom-row input[type="text"] {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 8px 4px;
+  font-family: var(--serif-body);
+  font-size: 16px;
+  color: var(--ivory);
+  font-style: italic;
+  font-weight: 300;
+}
+.custom-row input[type="text"]:focus {
+  outline: 0;
+  border-bottom-color: var(--violet-2);
+}
+.custom-row input[type="text"]::placeholder {
+  color: var(--ivory-faint);
+  font-style: italic;
+}
+.custom-instr {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.custom-instr input { accent-color: var(--violet-2); }
+.custom-remove {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ivory-soft);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease;
+}
+.custom-remove:hover { color: #fff; border-color: #fff; }
+
+.custom-add-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  border: 1px solid var(--hairline-strong);
+  background: transparent;
+  padding: 12px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.custom-add-btn:hover {
+  color: #fff;
+  border-color: var(--violet-soft);
+  background: rgba(168, 85, 247, 0.05);
+}
+
+/* ─── FAQ ─── */
+.faq { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--hairline); }
+.faq-list { border-top: 1px solid var(--hairline); margin-top: 24px; }
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+  padding: 26px 0;
+}
+.faq-q {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+.faq-a {
+  font-family: var(--serif-body);
+  font-weight: 400;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 64ch;
+  text-wrap: pretty;
+}
+.faq-a strong { color: #fff; font-weight: 600; }
+
+/* ─── Footer ─── */
+footer.repertoire-footer {
+  border-top: 1px solid var(--hairline);
+  padding: 56px 40px 48px;
+  text-align: center;
+}
+footer.repertoire-footer p {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+  margin: 4px 0;
+}
+footer.repertoire-footer a {
+  color: var(--ivory-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+footer.repertoire-footer a:hover { color: #fff; }
+
+/* ─── Summary panel ─── */
+.summary {
+  position: sticky;
+  top: 32px;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  padding: 28px 26px;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  border-radius: 4px;
+  background: rgba(15, 10, 26, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.summary-head {
+  display: flex; flex-direction: column; gap: 4px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+.summary-head .summary-kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.summary-head h3 {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: -0.005em;
+}
+.summary-empty {
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.summary-list {
+  display: flex; flex-direction: column; gap: 14px;
+  margin-bottom: 22px;
+}
+.summary-row {
+  display: flex; flex-direction: column; gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--hairline);
+}
+.summary-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.summary-row-moment {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.summary-row-song {
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  color: #fff;
+  line-height: 1.3;
+}
+.summary-row-artist {
+  font-family: var(--serif-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  font-style: italic;
+}
+.summary-row-fee {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2px;
+}
+.summary-row-fee.is-included { color: rgba(255, 255, 255, 0.65); }
+.summary-totals {
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+  margin-bottom: 18px;
+}
+.summary-total-row {
+  display: flex; justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  padding: 6px 0;
+}
+.summary-total-row.is-emphasis { color: var(--ivory); }
+.summary-total-row .total-value { color: var(--gold); }
+.summary-cta {
+  width: 100%;
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 22px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.18), rgba(168, 85, 247, 0.08));
+  border: 1px solid var(--hairline-violet);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.summary-cta:hover {
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.28), rgba(168, 85, 247, 0.14));
+  border-color: var(--violet-2);
+  gap: 18px;
+}
+.summary-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.summary-cta:disabled:hover { gap: 12px; }
+
+/* Mobile sticky summary */
+@media (max-width: 1023px) {
+  .summary {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    top: auto;
+    max-height: 50vh;
+    border-radius: 12px 12px 0 0;
+    border-top: 1px solid var(--hairline-violet);
+    border-left: 0; border-right: 0; border-bottom: 0;
+    background: rgba(15, 10, 26, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 40;
+    transition: transform 0.3s ease;
+  }
+  .summary.is-collapsed {
+    transform: translateY(calc(100% - 88px));
+  }
+  .summary-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 4px;
+    background: transparent;
+    border: 0;
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  .summary-toggle-arrow {
+    transition: transform 0.3s ease;
+  }
+  .summary.is-collapsed .summary-toggle-arrow {
+    transform: rotate(180deg);
+  }
+}
+@media (min-width: 1024px) {
+  .summary-toggle { display: none; }
+}
+
+/* ─── Modal ─── */
+.modal {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  background: rgba(15, 10, 26, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+.modal.is-open { display: flex; }
+.modal-card {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 5vh;
+  background: linear-gradient(180deg, #16102a, #0F0A1A);
+  border: 1px solid var(--hairline-violet);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--hairline);
+}
+.modal-title {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--ivory);
+  letter-spacing: -0.005em;
+}
+.modal-close {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ivory-soft);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease;
+}
+.modal-close:hover { color: #fff; border-color: #fff; }
+.modal-search {
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--hairline);
+}
+.modal-search input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 10px 4px;
+  font-family: var(--serif-body);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ivory);
+}
+.modal-search input:focus { outline: 0; border-bottom-color: var(--violet-2); }
+.modal-search input::placeholder { color: var(--ivory-faint); font-style: italic; }
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0;
+}
+.song-section { padding: 18px 28px 8px; }
+.song-section-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 8px;
+}
+.song-section-label .song-section-note {
+  color: var(--ivory-faint);
+  margin-left: 8px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+.song-list { display: flex; flex-direction: column; }
+.song-item {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--hairline);
+  cursor: pointer;
+  transition: background 0.2s ease, padding 0.2s ease;
+}
+.song-item:last-child { border-bottom: 0; }
+.song-item:hover {
+  background: rgba(168, 85, 247, 0.06);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.song-item-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.song-item-title {
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ivory);
+  line-height: 1.2;
+}
+.song-item-artist {
+  font-family: var(--serif-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--ivory-soft);
+  font-style: italic;
+}
+.song-item-sig {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.song-empty {
+  padding: 32px 28px;
+  text-align: center;
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--ivory-soft);
+}
+
+/* ─── Inquiry form modal ─── */
+.inquiry-form { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 16px; }
+.field-group { display: flex; flex-direction: column; gap: 6px; }
+.field-group.is-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 540px) { .field-group.is-row { grid-template-columns: 1fr; } }
+.field-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+}
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 10px 4px;
+  font-family: var(--serif-body);
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  outline: 0;
+  border-bottom-color: var(--violet-2);
+}
+.inquiry-form input::placeholder,
+.inquiry-form textarea::placeholder { color: var(--ivory-faint); font-style: italic; }
+.inquiry-form select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(244,239,230,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 32px;
+}
+.inquiry-form select option {
+  background: #0F0A1A;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+}
+.inquiry-form select optgroup {
+  background: #1a0f2e;
+  color: #d4b872;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+.inquiry-form textarea {
+  min-height: 90px;
+  resize: vertical;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.inquiry-form .field-hint {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+}
+.inquiry-form .field-hint.is-met { color: #d4b872; }
+.inquiry-form .consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 6px;
+  font-family: var(--serif-body);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.45;
+}
+.inquiry-form .consent-row input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+.inquiry-form .consent-row input[type="checkbox"]:checked {
+  background: var(--violet-2);
+  border-color: var(--violet-2);
+}
+.inquiry-form .consent-row input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.inquiry-form .consent-row a {
+  color: #d4b872;
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 184, 114, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.3s ease;
+}
+.inquiry-form .consent-row a:hover { text-decoration-color: #d4b872; color: #fff; }
+.inquiry-form .form-error {
+  margin-top: 4px;
+  padding: 10px 14px;
+  background: rgba(255, 80, 80, 0.08);
+  border-left: 2px solid rgba(255, 110, 110, 0.7);
+  border-radius: 2px;
+  font-family: var(--serif-body);
+  font-size: 14px;
+  color: rgba(255, 200, 200, 0.95);
+}
+.inquiry-form .form-error[hidden] { display: none; }
+.inquiry-form .form-note {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+  text-align: center;
+}
+.inquiry-form button[type="submit"] {
+  margin-top: 8px;
+  padding: 16px 22px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.22), rgba(168, 85, 247, 0.1));
+  border: 1px solid var(--hairline-violet);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.inquiry-form button[type="submit"]:hover {
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.32), rgba(168, 85, 247, 0.16));
+  border-color: var(--violet-2);
+}
+.inquiry-form button[type="submit"]:disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.thank-you {
+  display: none;
+  padding: 48px 32px;
+  text-align: center;
+}
+.thank-you.is-visible { display: block; }
+.thank-you h3 {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--ivory);
+  margin-bottom: 14px;
+}
+.thank-you p {
+  font-family: var(--serif-body);
+  font-weight: 300;
+  font-size: 17px;
+  color: var(--ivory-dim);
+  line-height: 1.6;
+  max-width: 48ch;
+  margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+  body.has-mobile-summary { padding-bottom: 100px; }
+}
+
+/* Static gradient fallback for prefers-reduced-motion (matches rest of site) */
+@media (prefers-reduced-motion: reduce) {
+  #shader-bg { display: none !important; }
+  html, body {
+    background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="shader-bg"></canvas>
+<script>
+(function(){
+  const canvas = document.getElementById('shader-bg');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
+  resize();
+  window.addEventListener('resize', resize);
+  const vsSrc = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
+  const fsSrc = `precision highp float; uniform float u_time; uniform vec2 u_res;
+    vec3 C1 = vec3(0.337, 0.024, 1.000); vec3 C2 = vec3(0.482, 0.173, 0.749); vec3 C3 = vec3(0.000, 0.000, 0.000);
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_res;
+      float angle = radians(235.0); mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+      vec2 st = rot * (uv - 0.5) + 0.5; st += vec2(-0.5, 0.1);
+      float t = u_time * 0.1; float freq = 5.5; float strength = 2.4; float density = 1.1;
+      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
+      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
+      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
+      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
+      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
+      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12; warped = clamp(warped, 0.0, 1.0);
+      float xGrad = smoothstep(0.0, 1.0, uv.x);
+      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped)); col = mix(col, C2, smoothstep(0.4, 0.85, warped));
+      col = mix(col, C1, (1.0 - xGrad) * 0.4); col = mix(col, C2, xGrad * 0.4);
+      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
+      col = mix(col, C3, dark * 0.8); col *= 1.1; col += vec3(warped * 0.04); col = clamp(col, 0.0, 1.0);
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+  function compile(type, src) { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc)); gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+  gl.linkProgram(prog); gl.useProgram(prog);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time'); const uRes = gl.getUniformLocation(prog, 'u_res');
+  let start = performance.now();
+  function draw() { gl.uniform1f(uTime, (performance.now() - start) / 1000); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(draw); }
+  draw();
+})();
+</script>
+
+<div class="page">
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo" aria-label="Julie Schatz home">
+      <img src="assets/julie-schatz-logo.png" alt="Julie Schatz" width="4000" height="4000" loading="eager" decoding="async">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      <li><a href="index.html#listen">Listen</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="beats.html">Store</a></li>
+      <li><a href="repertoire.html" class="is-current">Repertoire</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <div class="shell">
+    <main>
+      <section class="hero">
+        <span class="kicker">Ceremony Repertoire</span>
+        <h1>Build <em>your</em> ceremony.</h1>
+        <p class="lede">Over 200 songs across classical, jazz, R&amp;B, country, and contemporary pop. Pick a song for each ceremony moment — Julie reviews your selections and replies within 24 hours with a tailored quote.</p>
+      </section>
+
+      <section class="howto" aria-label="How it works">
+        <div class="howto-step">
+          <span class="howto-num">i</span>
+          <h3>Pick Your Moments</h3>
+          <p>Add a song to each ceremony moment that matters most to you.</p>
+        </div>
+        <div class="howto-step">
+          <span class="howto-num">ii</span>
+          <h3>Choose How It's Performed</h3>
+          <p>Live violin over the original recording, or a featured arrangement on violin.</p>
+        </div>
+        <div class="howto-step">
+          <span class="howto-num">iii</span>
+          <h3>Send to Julie</h3>
+          <p>Submit your selections — Julie returns a tailored quote within 24 hours.</p>
+        </div>
+      </section>
+
+      <aside class="pricing-note">
+        <h2>How Pricing Works</h2>
+        <p>Every ceremony booking includes <strong>up to 3 song requests from the repertoire</strong>. Additional fees apply for featured arrangements (where Julie plays the song's vocal melody on violin in place of the original recording, <strong>+$125 per song</strong>) and custom songs outside the repertoire (<strong>+$200 per song</strong>; <strong>+$300</strong> if you'd also like it as a featured arrangement). The picker below shows fees as you build — final pricing is confirmed when Julie quotes your event.</p>
+      </aside>
+
+      <section class="builder" aria-label="Ceremony builder">
+        <div class="section-head">
+          <h2>Your Ceremony</h2>
+          <span class="section-tag">8 Moments</span>
+        </div>
+        <div class="moments-grid" id="momentsGrid"></div>
+
+        <div class="custom-section">
+          <div class="section-head">
+            <h2>Custom Songs</h2>
+            <span class="section-tag">Outside the Repertoire</span>
+          </div>
+          <p class="slot-hint" style="margin-bottom: 16px;">Add a song that's not in the catalog. Julie can learn and prepare new material with at least 6 weeks of lead time. Custom songs are <strong>+$200 each</strong>; <strong>+$300</strong> if you'd also like a featured arrangement.</p>
+          <div class="custom-list" id="customList"></div>
+          <button type="button" class="custom-add-btn" id="customAddBtn">+ Add a Custom Song</button>
+        </div>
+      </section>
+
+      <section class="faq" aria-label="Frequently asked questions">
+        <div class="section-head">
+          <h2>Common Questions</h2>
+          <span class="section-tag">FAQ</span>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <h3 class="faq-q">What's the difference between "live violin over the track" and "featured arrangement"?</h3>
+            <p class="faq-a">When Julie performs live violin over the track, the original recording plays through the venue sound system and Julie adds live violin on top — adding texture, presence, and a live element to a familiar song. This is the default style and included in the base price. A featured arrangement means Julie plays the song's lead vocal melody on violin, by memory, in place of the original vocal — Julie's violin becomes the lead voice. This requires significantly more preparation, which is why an additional fee applies.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Can Julie learn a song that's not in the repertoire?</h3>
+            <p class="faq-a">Yes — with at least 6 weeks of lead time. The earlier the better, especially for complex or unusual requests. Add the song using the "custom song" section above and Julie will prepare it specifically for your event.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">How many ceremony moments do most couples include?</h3>
+            <p class="faq-a">Most couples pick 3 to 5 moments — typically the prelude, processional, bride's entrance, recessional, and (if applicable) a unity moment. Cocktail hour and reception music are separate offerings; for those, please mention them in the "anything else" field when you submit.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Will my picks be saved if I close the page?</h3>
+            <p class="faq-a">Yes — your selections are saved to this browser, so you can come back later or share the page with your partner. Selections clear when you submit your inquiry to Julie.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">What if I'm still deciding between two songs?</h3>
+            <p class="faq-a">Pick whichever feels closer and add a note in the "anything else" field — Julie will discuss alternatives with you on the planning call. Nothing is locked until your contract is signed.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Do you play piano songs at cocktail hour?</h3>
+            <p class="faq-a">Yes — Julie performs solo jazz piano for cocktail hour bookings, drawing from a separate piano repertoire (this picker covers ceremony violin specifically). When you submit your ceremony selections, mention you're interested in cocktail hour music too — Julie will share her piano repertoire when she follows up.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="summary" id="summary" aria-label="Your selections">
+      <button type="button" class="summary-toggle" id="summaryToggle" aria-expanded="true">
+        <span id="summaryToggleLabel">Your Selections (0)</span>
+        <span class="summary-toggle-arrow">▾</span>
+      </button>
+      <div class="summary-head">
+        <span class="summary-kicker">Your Selections</span>
+        <h3 id="summaryHeadCount">No selections yet</h3>
+      </div>
+      <div id="summaryBody">
+        <p class="summary-empty">Pick a song for any moment to start building your ceremony. Your selections save automatically.</p>
+      </div>
+      <button type="button" class="summary-cta" id="summaryCta" disabled>
+        Send selections to Julie →
+      </button>
+    </aside>
+  </div>
+
+  <footer class="repertoire-footer">
+    <p>Repertoire &amp; Ceremony Builder · <a href="index.html">Julie Schatz Music</a></p>
+    <p>Tel: <a href="tel:+16313659554">631&nbsp;·&nbsp;365&nbsp;·&nbsp;9554</a> &nbsp; · &nbsp; <a href="index.html#inquire">bookings@julieschatzmusic.com</a></p>
+  </footer>
+
+  </div><!-- /.page -->
+
+  <!-- Picker modal -->
+  <div class="modal" id="pickerModal" role="dialog" aria-modal="true" aria-labelledby="pickerTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <span class="modal-title" id="pickerTitle">Pick a song</span>
+        <button class="modal-close" id="pickerClose" aria-label="Close">×</button>
+      </div>
+      <div class="modal-search">
+        <input type="text" id="pickerSearch" placeholder="Search by title or artist…" autocomplete="off">
+      </div>
+      <div class="modal-body" id="pickerBody"></div>
+    </div>
+  </div>
+
+  <!-- Inquiry form modal -->
+  <div class="modal" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <span class="modal-title" id="inquiryTitle">Send Selections to Julie</span>
+        <button class="modal-close" id="inquiryClose" aria-label="Close">×</button>
+      </div>
+      <form class="inquiry-form" id="inquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+        <!-- Honeypot: silently rejected if filled by a bot -->
+        <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Ceremony Builder Inquiry — julieschatzmusic.com">
+        <input type="hidden" name="_loaded_at" id="ceremonyLoadedAt" value="">
+        <input type="hidden" name="form_source" value="repertoire-builder">
+        <input type="hidden" name="ceremony_selections" id="ceremonySelectionsField" value="">
+        <input type="hidden" name="has_ceremony_picks" id="ceremonyHasPicks" value="true">
+
+        <div class="field-group is-row">
+          <div class="field-group">
+            <label class="field-label" for="inq-name">Your Name</label>
+            <input type="text" id="inq-name" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="inq-email">Email</label>
+            <input type="email" id="inq-email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="field-group is-row">
+          <div class="field-group">
+            <label class="field-label" for="inq-date">Event Date</label>
+            <input type="date" id="inq-date" name="event_date" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="inq-phone">Phone</label>
+            <input type="tel" id="inq-phone" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+          </div>
+        </div>
+        <div class="field-group is-row">
+          <div class="field-group">
+            <label class="field-label" for="inq-venue">Venue Name + City</label>
+            <input type="text" id="inq-venue" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="inq-state">Venue State / Zone</label>
+            <select id="inq-state" name="venue_state" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="nyc">NYC (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Hoboken, Jersey City)</option>
+              <option value="li-westch-nnj-greenwich">Long Island / Westchester / Northern NJ / Greenwich</option>
+              <option value="hudson-valley-beyond">Hudson Valley &amp; Beyond (custom-quoted)</option>
+              <option value="other">Other / Destination</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group is-row">
+          <div class="field-group">
+            <label class="field-label" for="inq-guests">Guest Count</label>
+            <select id="inq-guests" name="guest_count" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="under-50">Under 50</option>
+              <option value="50-100">50–100</option>
+              <option value="100-150">100–150</option>
+              <option value="150-250">150–250</option>
+              <option value="250-plus">250+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="inq-referral">How Did You Hear About Julie?</label>
+            <input type="text" id="inq-referral" name="referral" placeholder="Instagram, planner, friend…">
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="inq-event-type">Event Type</label>
+          <select id="inq-event-type" name="event_type" required>
+            <option value="" disabled selected>Select…</option>
+            <optgroup label="Wedding — Solo Violin / Piano">
+              <option value="wedding-ceremony">Wedding Ceremony</option>
+              <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
+              <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
+            </optgroup>
+            <optgroup label="Wedding — Soul Shades Duo (Violin + Piano)">
+              <option value="duo-ceremony">Soul Shades — Ceremony</option>
+              <option value="duo-ceremony-cocktail">Soul Shades — Ceremony + Cocktail</option>
+            </optgroup>
+            <optgroup label="Private Events">
+              <option value="private-1hr">Private Event (1 hour)</option>
+              <option value="proposal">Proposal</option>
+              <option value="corporate">Corporate Gala / Brand Event</option>
+            </optgroup>
+            <optgroup label="DJ + Live">
+              <option value="dj-dx-julie">DJ DX × Julie (DJ + Live Violin)</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="other">Other / Not Sure Yet</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="inq-notes">Tell Me About Your Event</label>
+          <textarea id="inq-notes" name="message" placeholder="Venue atmosphere, musical vibe, cocktail-hour or reception music, special requests, anything you want Julie to know…" rows="4" required minlength="30"></textarea>
+          <span class="field-hint" id="ceremonyMsgCounter">0 / 30 minimum</span>
+        </div>
+        <label class="consent-row">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted about this inquiry. <a href="privacy.html" target="_blank" rel="noopener">Privacy policy</a>.</span>
+        </label>
+        <button type="submit">Send Inquiry to Julie</button>
+        <p class="form-error" id="ceremonyFormError" hidden></p>
+        <p class="form-note">Typically responds within 24 hours · Video call required before booking · All inquiries confidential</p>
+      </form>
+      <div class="thank-you" id="thankYou">
+        <h3>Thank you — your selections are in.</h3>
+        <p>Julie will review and respond within 24 hours with a personalized quote and any questions about your event. Looking forward.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ─── Constants ──────────────────────────────────────────────────────
+  const STORAGE_KEY = 'julieschatz.ceremony.v1';
+  const FEES = {
+    INSTRUMENTAL: 125,
+    CUSTOM: 200,
+    CUSTOM_INSTRUMENTAL: 300
+  };
+  const INCLUDED_REPERTOIRE_LIMIT = 3;
+
+  const MOMENTS = [
+    { id: 'prelude',         label: 'i',    name: 'Prelude',           hint: 'guests being seated',   defaultSection: 'prelude',       optional: false },
+    { id: 'processional',    label: 'ii',   name: 'Processional',      hint: 'wedding party walks',   defaultSection: 'processional',  optional: false },
+    { id: 'bride-entrance',  label: 'iii',  name: "Bride's Entrance",  hint: 'the moment',            defaultSection: 'bride',         optional: false },
+    { id: 'unity',           label: 'iv',   name: 'Unity Moment',      hint: 'optional ritual',       defaultSection: 'unity',         optional: true  },
+    { id: 'recessional',     label: 'v',    name: 'Recessional',       hint: 'walking back up',       defaultSection: 'recessional',   optional: false },
+    { id: 'cocktail',        label: 'vi',   name: 'Cocktail Hour',     hint: 'first piece played',    defaultSection: 'cocktail',      optional: true  },
+    { id: 'first-dance',     label: 'vii',  name: 'First Dance',       hint: 'reception opener',      defaultSection: 'first-dance',   optional: true  },
+    { id: 'parent-dance',    label: 'viii', name: 'Parent Dances',     hint: 'father/mother dance',   defaultSection: 'parent-dance',  optional: true  }
+  ];
+
+  const SECTION_LABELS = {
+    'prelude': 'Prelude',
+    'processional': 'Processional',
+    'bride': "Bride's Entrance",
+    'unity': 'Unity Moment',
+    'recessional': 'Recessional',
+    'cocktail': 'Cocktail Hour',
+    'first-dance': 'First Dance',
+    'parent-dance': 'Parent Dances'
+  };
+  const SECTION_ORDER = ['prelude', 'processional', 'bride', 'unity', 'recessional', 'cocktail', 'first-dance', 'parent-dance'];
+
+  // ─── Repertoire (154 songs) ─────────────────────────────────────────
+  const REPERTOIRE = [
+    // PRELUDE (24)
+    { id: 'clair-de-lune', title: 'Clair de Lune', artist: 'Debussy', section: 'prelude' },
+    { id: 'air-g-string', title: 'Air on the G String', artist: 'Bach', section: 'prelude' },
+    { id: 'salut-amour', title: "Salut d'Amour", artist: 'Elgar', section: 'prelude' },
+    { id: 'meditation-thais', title: 'Méditation from Thaïs', artist: 'Massenet', section: 'prelude' },
+    { id: 'the-swan', title: 'The Swan', artist: 'Saint-Saëns', section: 'prelude' },
+    { id: 'gymnopedie-1', title: 'Gymnopédie No. 1', artist: 'Satie', section: 'prelude' },
+    { id: 'spiegel', title: 'Spiegel im Spiegel', artist: 'Arvo Pärt', section: 'prelude' },
+    { id: 'nuvole-bianche', title: 'Nuvole Bianche', artist: 'Ludovico Einaudi', section: 'prelude' },
+    { id: 'comptine-amelie', title: "Comptine d'un autre été", artist: 'Yann Tiersen', section: 'prelude' },
+    { id: 'married-life', title: 'Married Life', artist: 'from Up (Giacchino)', section: 'prelude' },
+    { id: 'la-vie-en-rose', title: 'La Vie en Rose', artist: 'Edith Piaf', section: 'prelude' },
+    { id: 'moon-river', title: 'Moon River', artist: 'Henry Mancini', section: 'prelude' },
+    { id: 'fly-me-moon', title: 'Fly Me to the Moon', artist: 'Frank Sinatra', section: 'prelude' },
+    { id: 'better-together', title: 'Better Together', artist: 'Jack Johnson', section: 'prelude' },
+    { id: 'here-comes-sun', title: 'Here Comes the Sun', artist: 'The Beatles', section: 'prelude' },
+    { id: 'iris', title: 'Iris', artist: 'Goo Goo Dolls', section: 'prelude' },
+    { id: 'dreams-fleetwood', title: 'Dreams', artist: 'Fleetwood Mac', section: 'prelude' },
+    { id: 'skinny-love', title: 'Skinny Love', artist: 'Bon Iver', section: 'prelude' },
+    { id: 'holocene', title: 'Holocene', artist: 'Bon Iver', section: 'prelude' },
+    { id: 'ho-hey', title: 'Ho Hey', artist: 'The Lumineers', section: 'prelude' },
+    { id: 'ophelia', title: 'Ophelia', artist: 'The Lumineers', section: 'prelude' },
+    { id: 'like-real-people', title: 'Like Real People Do', artist: 'Hozier', section: 'prelude' },
+    { id: 'cherry-wine', title: 'Cherry Wine', artist: 'Hozier', section: 'prelude' },
+    { id: 'i-will-wait', title: 'I Will Wait', artist: 'Mumford & Sons', section: 'prelude' },
+
+    // PROCESSIONAL (13)
+    { id: 'canon-d', title: 'Canon in D', artist: 'Pachelbel', section: 'processional' },
+    { id: 'trumpet-voluntary', title: 'Trumpet Voluntary', artist: 'Clarke', section: 'processional' },
+    { id: 'air-water-music', title: 'Air from Water Music', artist: 'Handel', section: 'processional' },
+    { id: 'spring-vivaldi', title: 'Spring (Four Seasons)', artist: 'Vivaldi', section: 'processional' },
+    { id: 'rejouissance', title: 'La Réjouissance', artist: 'Handel', section: 'processional' },
+    { id: 'sheep-may', title: 'Sheep May Safely Graze', artist: 'Bach', section: 'processional' },
+    { id: 'thousand-years', title: 'A Thousand Years', artist: 'Christina Perri', section: 'processional' },
+    { id: 'all-of-me', title: 'All of Me', artist: 'John Legend', section: 'processional' },
+    { id: 'marry-me', title: 'Marry Me', artist: 'Train', section: 'processional' },
+    { id: 'marry-you', title: 'Marry You', artist: 'Bruno Mars', section: 'processional' },
+    { id: 'wonderful-world', title: 'Wonderful World', artist: 'Sam Cooke', section: 'processional' },
+    { id: 'stand-by-me', title: 'Stand By Me', artist: 'Ben E. King', section: 'processional' },
+    { id: 'sunrise-sunset', title: 'Sunrise, Sunset', artist: 'Fiddler on the Roof', section: 'processional' },
+
+    // BRIDE'S ENTRANCE (16)
+    { id: 'bridal-chorus', title: 'Bridal Chorus (Here Comes the Bride)', artist: 'Wagner', section: 'bride' },
+    { id: 'wedding-march', title: 'Wedding March', artist: 'Mendelssohn', section: 'bride' },
+    { id: 'queen-of-sheba', title: 'Arrival of the Queen of Sheba', artist: 'Handel', section: 'bride' },
+    { id: 'thousand-years-bride', title: 'A Thousand Years', artist: 'Christina Perri', section: 'bride' },
+    { id: 'cant-help-falling', title: "Can't Help Falling in Love", artist: 'Elvis Presley', section: 'bride' },
+    { id: 'perfect', title: 'Perfect', artist: 'Ed Sheeran', section: 'bride' },
+    { id: 'thinking-out-loud', title: 'Thinking Out Loud', artist: 'Ed Sheeran', section: 'bride' },
+    { id: 'all-of-me-bride', title: 'All of Me', artist: 'John Legend', section: 'bride' },
+    { id: 'make-feel-love', title: 'Make You Feel My Love', artist: 'Adele', section: 'bride' },
+    { id: 'at-last', title: 'At Last', artist: 'Etta James', section: 'bride' },
+    { id: 'la-vie-rose-bride', title: 'La Vie en Rose', artist: 'Edith Piaf', section: 'bride' },
+    { id: 'i-get-to-love-you', title: 'I Get to Love You', artist: 'Ruelle', section: 'bride' },
+    { id: 'speechless', title: 'Speechless', artist: 'Dan + Shay', section: 'bride' },
+    { id: 'lover-swift', title: 'Lover', artist: 'Taylor Swift', section: 'bride' },
+    { id: 'time-to-say', title: 'Time to Say Goodbye', artist: 'Bocelli & Brightman', section: 'bride' },
+    { id: 'ave-maria-schubert', title: 'Ave Maria', artist: 'Schubert', section: 'bride' },
+
+    // UNITY (10)
+    { id: 'ave-maria-bach', title: 'Ave Maria', artist: 'Bach-Gounod', section: 'unity' },
+    { id: 'panis-angelicus', title: 'Panis Angelicus', artist: 'Franck', section: 'unity' },
+    { id: 'the-prayer', title: 'The Prayer', artist: 'Bocelli & Dion', section: 'unity' },
+    { id: 'hallelujah', title: 'Hallelujah', artist: 'Leonard Cohen', section: 'unity' },
+    { id: 'somewhere-only', title: 'Somewhere Only We Know', artist: 'Keane', section: 'unity' },
+    { id: 'how-great-thou-art', title: 'How Great Thou Art', artist: 'Traditional hymn', section: 'unity' },
+    { id: 'be-thou-my-vision', title: 'Be Thou My Vision', artist: 'Traditional hymn', section: 'unity' },
+    { id: 'on-eagles-wings', title: "On Eagle's Wings", artist: 'Michael Joncas', section: 'unity' },
+    { id: 'goodness-of-god', title: 'Goodness of God', artist: 'CeCe Winans / Bethel', section: 'unity' },
+    { id: 'oceans', title: 'Oceans (Where Feet May Fail)', artist: 'Hillsong United', section: 'unity' },
+
+    // RECESSIONAL (13)
+    { id: 'wedding-march-rec', title: 'Wedding March', artist: 'Mendelssohn', section: 'recessional' },
+    { id: 'trumpet-tune', title: 'Trumpet Tune in D', artist: 'Purcell', section: 'recessional' },
+    { id: 'ode-to-joy', title: 'Ode to Joy', artist: 'Beethoven', section: 'recessional' },
+    { id: 'hornpipe', title: 'Hornpipe (Water Music)', artist: 'Handel', section: 'recessional' },
+    { id: 'signed-sealed', title: 'Signed, Sealed, Delivered', artist: 'Stevie Wonder', section: 'recessional' },
+    { id: 'crazy-in-love', title: 'Crazy in Love', artist: 'Beyoncé', section: 'recessional' },
+    { id: 'marry-you-rec', title: 'Marry You', artist: 'Bruno Mars', section: 'recessional' },
+    { id: 'lovely-day', title: 'Lovely Day', artist: 'Bill Withers', section: 'recessional' },
+    { id: 'walking-sunshine', title: 'Walking on Sunshine', artist: 'Katrina & the Waves', section: 'recessional' },
+    { id: 'best-day-life', title: 'Best Day of My Life', artist: 'American Authors', section: 'recessional' },
+    { id: 'happy', title: 'Happy', artist: 'Pharrell Williams', section: 'recessional' },
+    { id: 'cant-stop-feeling', title: "Can't Stop the Feeling", artist: 'Justin Timberlake', section: 'recessional' },
+    { id: 'sky-full-stars', title: 'A Sky Full of Stars', artist: 'Coldplay', section: 'recessional' },
+
+    // COCKTAIL HOUR (34)
+    { id: 'just-two-of-us', title: 'Just the Two of Us', artist: 'Bill Withers', section: 'cocktail' },
+    { id: 'what-you-wont-do', title: "What You Won't Do for Love", artist: 'Bobby Caldwell', section: 'cocktail' },
+    { id: 'lets-stay-together', title: "Let's Stay Together", artist: 'Al Green', section: 'cocktail' },
+    { id: 'smooth-operator', title: 'Smooth Operator', artist: 'Sade', section: 'cocktail' },
+    { id: 'best-part', title: 'Best Part', artist: 'H.E.R. & Daniel Caesar', section: 'cocktail' },
+    { id: 'isnt-she-lovely', title: "Isn't She Lovely", artist: 'Stevie Wonder', section: 'cocktail' },
+    { id: 'no-one', title: 'No One', artist: 'Alicia Keys', section: 'cocktail' },
+    { id: 'if-i-aint-got-you', title: "If I Ain't Got You", artist: 'Alicia Keys', section: 'cocktail' },
+    { id: 'gravity', title: 'Gravity', artist: 'John Mayer', section: 'cocktail' },
+    { id: 'golden-hour', title: 'Golden Hour', artist: 'JVKE', section: 'cocktail' },
+    { id: 'feel-like-making', title: 'Feel Like Making Love', artist: 'Roberta Flack', section: 'cocktail', sig: true },
+    { id: 'sweet-thang', title: 'Sweet Thang', artist: 'Chaka Khan', section: 'cocktail' },
+    { id: 'never-too-much', title: 'Never Too Much', artist: 'Luther Vandross', section: 'cocktail' },
+    { id: 'i-wanna-be-lover', title: 'I Wanna Be Your Lover', artist: 'Prince', section: 'cocktail' },
+    { id: 'love-on-top', title: 'Love On Top', artist: 'Beyoncé', section: 'cocktail' },
+    { id: 'crazy-gnarls', title: 'Crazy', artist: 'Gnarls Barkley', section: 'cocktail' },
+    { id: 'ny-state-of-mind', title: 'New York State of Mind', artist: 'Billy Joel', section: 'cocktail' },
+    { id: 'every-breath', title: 'Every Breath You Take', artist: 'The Police', section: 'cocktail', sig: true },
+    { id: 'tennessee-whiskey', title: 'Tennessee Whiskey', artist: 'Chris Stapleton', section: 'cocktail' },
+    { id: 'fly-me-cocktail', title: 'Fly Me to the Moon', artist: 'Frank Sinatra', section: 'cocktail' },
+    { id: 'my-funny-valentine', title: 'My Funny Valentine', artist: 'Rodgers & Hart', section: 'cocktail' },
+    { id: 'autumn-leaves', title: 'Autumn Leaves', artist: 'Standard', section: 'cocktail' },
+    { id: 'summertime', title: 'Summertime', artist: 'Gershwin', section: 'cocktail' },
+    { id: 'misty', title: 'Misty', artist: 'Erroll Garner', section: 'cocktail' },
+    { id: 'girl-from-ipanema', title: 'The Girl from Ipanema', artist: 'Jobim', section: 'cocktail' },
+    { id: 'corcovado', title: 'Corcovado (Quiet Nights)', artist: 'Jobim', section: 'cocktail' },
+    { id: 'besame-mucho', title: 'Bésame Mucho', artist: 'Consuelo Velázquez', section: 'cocktail' },
+    { id: 'blinding-lights', title: 'Blinding Lights', artist: 'The Weeknd', section: 'cocktail' },
+    { id: 'hold-on-going-home', title: "Hold On, We're Going Home", artist: 'Drake', section: 'cocktail' },
+    { id: 'diamonds', title: 'Diamonds', artist: 'Rihanna', section: 'cocktail' },
+    { id: 'how-will-i-know', title: 'How Will I Know', artist: 'Sam Smith version', section: 'cocktail', sig: true },
+    { id: 'so-into-you', title: 'So Into You', artist: 'Tamia', section: 'cocktail', sig: true },
+    { id: 'clocks', title: 'Clocks', artist: 'Coldplay', section: 'cocktail' },
+    { id: 'time-after-time', title: 'Time After Time', artist: 'Cyndi Lauper', section: 'cocktail' },
+
+    // FIRST DANCE (27)
+    { id: 'at-last-fd', title: 'At Last', artist: 'Etta James', section: 'first-dance' },
+    { id: 'all-of-me-fd', title: 'All of Me', artist: 'John Legend', section: 'first-dance' },
+    { id: 'perfect-fd', title: 'Perfect', artist: 'Ed Sheeran', section: 'first-dance' },
+    { id: 'thinking-out-fd', title: 'Thinking Out Loud', artist: 'Ed Sheeran', section: 'first-dance' },
+    { id: 'thousand-years-fd', title: 'A Thousand Years', artist: 'Christina Perri', section: 'first-dance' },
+    { id: 'cant-help-fall-fd', title: "Can't Help Falling in Love", artist: 'Elvis Presley', section: 'first-dance' },
+    { id: 'make-feel-love-fd', title: 'Make You Feel My Love', artist: 'Adele', section: 'first-dance' },
+    { id: 'better-together-fd', title: 'Better Together', artist: 'Jack Johnson', section: 'first-dance' },
+    { id: 'unchained-melody', title: 'Unchained Melody', artist: 'Righteous Brothers', section: 'first-dance' },
+    { id: 'wonderful-tonight', title: 'Wonderful Tonight', artist: 'Eric Clapton', section: 'first-dance' },
+    { id: 'stand-by-me-fd', title: 'Stand By Me', artist: 'Ben E. King', section: 'first-dance' },
+    { id: 'lover-swift-fd', title: 'Lover', artist: 'Taylor Swift', section: 'first-dance' },
+    { id: 'best-thing-ray', title: 'You Are the Best Thing', artist: 'Ray LaMontagne', section: 'first-dance' },
+    { id: 'speechless-fd', title: 'Speechless', artist: 'Dan + Shay', section: 'first-dance' },
+    { id: 'tenerife-sea', title: 'Tenerife Sea', artist: 'Ed Sheeran', section: 'first-dance' },
+    { id: 'xo-beyonce', title: 'XO', artist: 'Beyoncé', section: 'first-dance' },
+    { id: 'adorn', title: 'Adorn', artist: 'Miguel', section: 'first-dance' },
+    { id: 'best-part-fd', title: 'Best Part', artist: 'Daniel Caesar & H.E.R.', section: 'first-dance' },
+    { id: 'die-for-you', title: 'Die for You', artist: 'The Weeknd', section: 'first-dance' },
+    { id: 'often', title: 'Often', artist: 'The Weeknd', section: 'first-dance' },
+    { id: 'stay-sam-smith', title: 'Stay', artist: 'Sam Smith', section: 'first-dance', sig: true },
+    { id: 'how-deep-pj-morton', title: 'How Deep Is Your Love', artist: 'PJ Morton version', section: 'first-dance' },
+    { id: 'cant-take-eyes', title: "Can't Take My Eyes Off You", artist: 'Lauryn Hill version', section: 'first-dance' },
+    { id: 'ordinary-people', title: 'Ordinary People', artist: 'John Legend', section: 'first-dance' },
+    { id: 'cant-help-it', title: "Can't Help It", artist: 'Michael Jackson', section: 'first-dance' },
+    { id: 'i-dont-wanna-miss', title: "I Don't Want to Miss a Thing", artist: 'Aerosmith', section: 'first-dance' },
+    { id: 'fast-car', title: 'Fast Car', artist: 'Tracy Chapman', section: 'first-dance' },
+
+    // PARENT DANCES (9)
+    { id: 'my-girl', title: 'My Girl', artist: 'The Temptations', section: 'parent-dance' },
+    { id: 'wonderful-world-pd', title: 'What a Wonderful World', artist: 'Louis Armstrong', section: 'parent-dance' },
+    { id: 'i-loved-her-first', title: 'I Loved Her First', artist: 'Heartland', section: 'parent-dance' },
+    { id: 'my-wish', title: 'My Wish', artist: 'Rascal Flatts', section: 'parent-dance' },
+    { id: 'song-for-mama', title: 'A Song for Mama', artist: 'Boyz II Men', section: 'parent-dance' },
+    { id: 'simple-man', title: 'Simple Man', artist: 'Lynyrd Skynyrd', section: 'parent-dance' },
+    { id: 'in-my-life', title: 'In My Life', artist: 'The Beatles', section: 'parent-dance' },
+    { id: 'forever-young', title: 'Forever Young', artist: 'Bob Dylan / Rod Stewart', section: 'parent-dance' },
+    { id: 'isnt-she-lovely-pd', title: "Isn't She Lovely", artist: 'Stevie Wonder', section: 'parent-dance' }
+  ];
+
+  const SONG_BY_ID = REPERTOIRE.reduce(function (acc, s) { acc[s.id] = s; return acc; }, {});
+
+  // ─── State ──────────────────────────────────────────────────────────
+  let state = { selections: {}, customSongs: [] };
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        state.selections = parsed.selections && typeof parsed.selections === 'object' ? parsed.selections : {};
+        state.customSongs = Array.isArray(parsed.customSongs) ? parsed.customSongs : [];
+      }
+    } catch (e) {
+      // Ignore corrupt state
+    }
+  }
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function clearState() {
+    state = { selections: {}, customSongs: [] };
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  }
+
+  // ─── Render: moments grid ───────────────────────────────────────────
+  const momentsGrid = document.getElementById('momentsGrid');
+  function renderMoments() {
+    momentsGrid.innerHTML = '';
+    MOMENTS.forEach(function (m) {
+      const sel = state.selections[m.id];
+      const slot = document.createElement('div');
+      slot.className = 'slot' + (sel ? ' is-filled' : ' is-empty') + (m.optional ? ' is-optional' : '');
+      slot.setAttribute('data-moment', m.id);
+
+      if (!sel) {
+        slot.innerHTML =
+          '<div class="slot-head">' +
+            '<span class="slot-roman">' + m.label + '</span>' +
+            '<span class="slot-name">' + m.name + '</span>' +
+            (m.optional ? '<span class="slot-flag">Optional</span>' : '') +
+          '</div>' +
+          '<div class="slot-hint">' + m.hint + '</div>' +
+          '<button type="button" class="slot-add">+ Pick a Song</button>';
+        slot.addEventListener('click', function () { openPicker(m.id); });
+      } else {
+        const song = SONG_BY_ID[sel.songId];
+        if (!song) {
+          // Stale id — clean up and re-render
+          delete state.selections[m.id];
+          saveState();
+          renderMoments();
+          renderSummary();
+          return;
+        }
+        const isInstr = sel.performance === 'instrumental';
+        const liveLabel = '<span class="perf-fee is-included">Included</span>';
+        const instrLabel = '<span class="perf-fee">+$' + FEES.INSTRUMENTAL + '</span>';
+        slot.innerHTML =
+          '<div class="slot-head">' +
+            '<span class="slot-roman">' + m.label + '</span>' +
+            '<span class="slot-name">' + m.name + '</span>' +
+          '</div>' +
+          '<button type="button" class="slot-remove" aria-label="Remove song">×</button>' +
+          '<div class="slot-song">' +
+            '<span class="slot-song-title">' + escapeHtml(song.title) + '</span>' +
+            '<span class="slot-song-artist">' + escapeHtml(song.artist) + '</span>' +
+            (song.sig ? '<span class="slot-sig-tag">Signature Arrangement</span>' : '') +
+          '</div>' +
+          '<div class="slot-perf">' +
+            '<span class="slot-perf-label">How it\'s performed</span>' +
+            '<label class="perf-radio">' +
+              '<input type="radio" name="perf-' + m.id + '" value="live"' + (isInstr ? '' : ' checked') + '>' +
+              '<span class="perf-radio-text">Live violin over the recording' + liveLabel + '</span>' +
+            '</label>' +
+            '<label class="perf-radio">' +
+              '<input type="radio" name="perf-' + m.id + '" value="instrumental"' + (isInstr ? ' checked' : '') + '>' +
+              '<span class="perf-radio-text">Featured arrangement on violin (vocal melody by memory)' + instrLabel + '</span>' +
+            '</label>' +
+          '</div>';
+
+        slot.querySelector('.slot-remove').addEventListener('click', function (e) {
+          e.stopPropagation();
+          delete state.selections[m.id];
+          saveState();
+          renderMoments();
+          renderSummary();
+        });
+        slot.querySelectorAll('input[type="radio"]').forEach(function (input) {
+          input.addEventListener('change', function () {
+            state.selections[m.id].performance = input.value;
+            saveState();
+            renderSummary();
+          });
+        });
+      }
+      momentsGrid.appendChild(slot);
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // ─── Render: custom song list ───────────────────────────────────────
+  const customList = document.getElementById('customList');
+  const customAddBtn = document.getElementById('customAddBtn');
+  function renderCustomList() {
+    customList.innerHTML = '';
+    state.customSongs.forEach(function (cs, idx) {
+      const row = document.createElement('div');
+      row.className = 'custom-row';
+      row.innerHTML =
+        '<input type="text" class="custom-title" value="' + escapeAttr(cs.title) + '" placeholder="Song title">' +
+        '<input type="text" class="custom-artist" value="' + escapeAttr(cs.artist) + '" placeholder="Artist">' +
+        '<label class="custom-instr">' +
+          '<input type="checkbox" class="custom-instr-cb"' + (cs.instrumental ? ' checked' : '') + '>' +
+          'Featured arrangement (+$' + (FEES.CUSTOM_INSTRUMENTAL - FEES.CUSTOM) + ')' +
+        '</label>' +
+        '<button type="button" class="custom-remove" aria-label="Remove custom song">×</button>';
+      row.querySelector('.custom-title').addEventListener('input', function (e) {
+        state.customSongs[idx].title = e.target.value;
+        saveState();
+        renderSummary();
+      });
+      row.querySelector('.custom-artist').addEventListener('input', function (e) {
+        state.customSongs[idx].artist = e.target.value;
+        saveState();
+        renderSummary();
+      });
+      row.querySelector('.custom-instr-cb').addEventListener('change', function (e) {
+        state.customSongs[idx].instrumental = e.target.checked;
+        saveState();
+        renderSummary();
+      });
+      row.querySelector('.custom-remove').addEventListener('click', function () {
+        state.customSongs.splice(idx, 1);
+        saveState();
+        renderCustomList();
+        renderSummary();
+      });
+      customList.appendChild(row);
+    });
+  }
+  function escapeAttr(s) { return escapeHtml(s || ''); }
+  customAddBtn.addEventListener('click', function () {
+    state.customSongs.push({ title: '', artist: '', instrumental: false });
+    saveState();
+    renderCustomList();
+    renderSummary();
+  });
+
+  // ─── Picker modal ───────────────────────────────────────────────────
+  const pickerModal = document.getElementById('pickerModal');
+  const pickerTitle = document.getElementById('pickerTitle');
+  const pickerSearch = document.getElementById('pickerSearch');
+  const pickerBody = document.getElementById('pickerBody');
+  const pickerClose = document.getElementById('pickerClose');
+  let pickerMomentId = null;
+
+  function openPicker(momentId) {
+    pickerMomentId = momentId;
+    const moment = MOMENTS.find(function (m) { return m.id === momentId; });
+    pickerTitle.textContent = moment.name;
+    pickerSearch.value = '';
+    renderPickerList('');
+    pickerModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { pickerSearch.focus(); }, 50);
+  }
+  function closePicker() {
+    pickerModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    pickerMomentId = null;
+  }
+  pickerClose.addEventListener('click', closePicker);
+  pickerModal.addEventListener('click', function (e) {
+    if (e.target === pickerModal) closePicker();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (pickerModal.classList.contains('is-open')) closePicker();
+      if (inquiryModal.classList.contains('is-open')) closeInquiry();
+    }
+  });
+  pickerSearch.addEventListener('input', function () {
+    renderPickerList(pickerSearch.value);
+  });
+
+  function renderPickerList(query) {
+    const moment = MOMENTS.find(function (m) { return m.id === pickerMomentId; });
+    const q = String(query || '').trim().toLowerCase();
+    const filtered = q
+      ? REPERTOIRE.filter(function (s) {
+          return s.title.toLowerCase().indexOf(q) !== -1 || s.artist.toLowerCase().indexOf(q) !== -1;
+        })
+      : REPERTOIRE.slice();
+
+    if (filtered.length === 0) {
+      pickerBody.innerHTML = '<div class="song-empty">No matches. Try a different search, or add it as a custom song below the picker.</div>';
+      return;
+    }
+
+    // Group by section
+    const bySection = {};
+    filtered.forEach(function (s) {
+      if (!bySection[s.section]) bySection[s.section] = [];
+      bySection[s.section].push(s);
+    });
+
+    // Order: defaultSection first, then SECTION_ORDER
+    const orderedSections = [moment.defaultSection].concat(
+      SECTION_ORDER.filter(function (sec) { return sec !== moment.defaultSection; })
+    );
+
+    let html = '';
+    orderedSections.forEach(function (sec) {
+      const songs = bySection[sec];
+      if (!songs || !songs.length) return;
+      const isDefault = sec === moment.defaultSection;
+      html += '<div class="song-section">';
+      html += '<div class="song-section-label">' + SECTION_LABELS[sec];
+      if (isDefault) html += '<span class="song-section-note">· most-picked for this moment</span>';
+      html += '</div>';
+      html += '<div class="song-list">';
+      songs.forEach(function (s) {
+        html += '<div class="song-item" data-song-id="' + s.id + '">' +
+          '<div class="song-item-left">' +
+            '<span class="song-item-title">' + escapeHtml(s.title) + '</span>' +
+            '<span class="song-item-artist">' + escapeHtml(s.artist) + '</span>' +
+          '</div>' +
+          (s.sig ? '<span class="song-item-sig">Signature</span>' : '') +
+        '</div>';
+      });
+      html += '</div></div>';
+    });
+    pickerBody.innerHTML = html;
+    pickerBody.querySelectorAll('.song-item').forEach(function (el) {
+      el.addEventListener('click', function () {
+        pickSong(el.getAttribute('data-song-id'));
+      });
+    });
+  }
+
+  function pickSong(songId) {
+    const song = SONG_BY_ID[songId];
+    if (!song || !pickerMomentId) return;
+    state.selections[pickerMomentId] = {
+      songId: songId,
+      performance: song.sig ? 'instrumental' : 'live'
+    };
+    saveState();
+    closePicker();
+    renderMoments();
+    renderSummary();
+  }
+
+  // ─── Summary panel ──────────────────────────────────────────────────
+  const summary = document.getElementById('summary');
+  const summaryHeadCount = document.getElementById('summaryHeadCount');
+  const summaryBody = document.getElementById('summaryBody');
+  const summaryCta = document.getElementById('summaryCta');
+  const summaryToggle = document.getElementById('summaryToggle');
+  const summaryToggleLabel = document.getElementById('summaryToggleLabel');
+
+  function computeSummary() {
+    const repertoireRows = [];
+    const customRows = [];
+    let repertoireCount = 0;
+    let instrumentalFees = 0;
+    let customFees = 0;
+
+    MOMENTS.forEach(function (m) {
+      const sel = state.selections[m.id];
+      if (!sel) return;
+      const song = SONG_BY_ID[sel.songId];
+      if (!song) return;
+      repertoireCount++;
+      const isInstr = sel.performance === 'instrumental';
+      if (isInstr) instrumentalFees += FEES.INSTRUMENTAL;
+      repertoireRows.push({
+        moment: m.name,
+        title: song.title,
+        artist: song.artist,
+        fee: isInstr ? '+$' + FEES.INSTRUMENTAL + ' featured arrangement' : 'Included in base'
+      });
+    });
+    state.customSongs.forEach(function (cs) {
+      if (!cs.title || !cs.title.trim()) return;
+      const cost = cs.instrumental ? FEES.CUSTOM_INSTRUMENTAL : FEES.CUSTOM;
+      customFees += cost;
+      customRows.push({
+        moment: 'Custom Song',
+        title: cs.title,
+        artist: cs.artist || '',
+        fee: '+$' + cost + (cs.instrumental ? ' custom + featured' : ' custom')
+      });
+    });
+
+    return {
+      repertoireRows: repertoireRows,
+      customRows: customRows,
+      repertoireCount: repertoireCount,
+      instrumentalFees: instrumentalFees,
+      customFees: customFees,
+      totalFees: instrumentalFees + customFees,
+      totalSelections: repertoireRows.length + customRows.length
+    };
+  }
+
+  function renderSummary() {
+    const s = computeSummary();
+    const total = s.totalSelections;
+
+    if (total === 0) {
+      summaryHeadCount.textContent = 'No selections yet';
+      summaryBody.innerHTML = '<p class="summary-empty">Pick a song for any moment to start building your ceremony. Your selections save automatically.</p>';
+      summaryCta.disabled = true;
+      summaryToggleLabel.textContent = 'Your Selections (0)';
+      return;
+    }
+
+    summaryHeadCount.textContent = total + ' Song' + (total === 1 ? '' : 's') + ' Selected';
+    summaryToggleLabel.textContent = 'Your Selections (' + total + ') · ' + (s.totalFees ? '+$' + s.totalFees : 'Included');
+    summaryCta.disabled = false;
+
+    let html = '<div class="summary-list">';
+    s.repertoireRows.concat(s.customRows).forEach(function (row) {
+      html += '<div class="summary-row">' +
+        '<span class="summary-row-moment">' + escapeHtml(row.moment) + '</span>' +
+        '<span class="summary-row-song">' + escapeHtml(row.title) + '</span>' +
+        (row.artist ? '<span class="summary-row-artist">' + escapeHtml(row.artist) + '</span>' : '') +
+        '<span class="summary-row-fee' + (row.fee.indexOf('Included') === 0 ? ' is-included' : '') + '">' + escapeHtml(row.fee) + '</span>' +
+      '</div>';
+    });
+    html += '</div>';
+    html += '<div class="summary-totals">';
+    html += '<div class="summary-total-row"><span>Repertoire songs</span><span>' + Math.min(s.repertoireCount, INCLUDED_REPERTOIRE_LIMIT) + ' / ' + INCLUDED_REPERTOIRE_LIMIT + ' included</span></div>';
+    if (s.instrumentalFees) html += '<div class="summary-total-row"><span>Featured arrangement fees</span><span class="total-value">+$' + s.instrumentalFees + '</span></div>';
+    if (s.customFees) html += '<div class="summary-total-row"><span>Custom song fees</span><span class="total-value">+$' + s.customFees + '</span></div>';
+    if (s.totalFees) html += '<div class="summary-total-row is-emphasis"><span>Add-on subtotal</span><span class="total-value">+$' + s.totalFees + '</span></div>';
+    html += '</div>';
+    summaryBody.innerHTML = html;
+  }
+
+  // Mobile collapse
+  if (summaryToggle) {
+    summaryToggle.addEventListener('click', function () {
+      summary.classList.toggle('is-collapsed');
+      summaryToggle.setAttribute('aria-expanded', !summary.classList.contains('is-collapsed'));
+    });
+  }
+  if (window.matchMedia && window.matchMedia('(max-width: 1023px)').matches) {
+    document.body.classList.add('has-mobile-summary');
+    summary.classList.add('is-collapsed');
+  }
+
+  // ─── Inquiry modal ──────────────────────────────────────────────────
+  const inquiryModal = document.getElementById('inquiryModal');
+  const inquiryClose = document.getElementById('inquiryClose');
+  const inquiryForm = document.getElementById('inquiryForm');
+  const ceremonySelectionsField = document.getElementById('ceremonySelectionsField');
+  const thankYou = document.getElementById('thankYou');
+
+  function openInquiry() {
+    ceremonySelectionsField.value = buildSelectionsText();
+    inquiryModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInquiry() {
+    inquiryModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  inquiryClose.addEventListener('click', closeInquiry);
+  inquiryModal.addEventListener('click', function (e) {
+    if (e.target === inquiryModal) closeInquiry();
+  });
+  summaryCta.addEventListener('click', function () {
+    if (summaryCta.disabled) return;
+    openInquiry();
+  });
+
+  function buildSelectionsText() {
+    const lines = [];
+    lines.push('— CEREMONY SELECTIONS —');
+    MOMENTS.forEach(function (m) {
+      const sel = state.selections[m.id];
+      if (!sel) return;
+      const song = SONG_BY_ID[sel.songId];
+      if (!song) return;
+      const perf = sel.performance === 'instrumental' ? 'Featured arrangement (+$125)' : 'Live violin over recording (included)';
+      lines.push(m.name + ': ' + song.title + ' — ' + song.artist + ' [' + perf + ']');
+    });
+    if (state.customSongs.length) {
+      const validCustom = state.customSongs.filter(function (cs) { return cs.title && cs.title.trim(); });
+      if (validCustom.length) {
+        lines.push('');
+        lines.push('— CUSTOM SONGS —');
+        validCustom.forEach(function (cs) {
+          const cost = cs.instrumental ? '+$300 (custom + featured arrangement)' : '+$200 (custom)';
+          lines.push((cs.title || '').trim() + (cs.artist ? ' — ' + cs.artist.trim() : '') + ' [' + cost + ']');
+        });
+      }
+    }
+    return lines.join('\n');
+  }
+
+  // ─── Hardened validation (mirrors index.html form rules) ────────────
+  const DISPOSABLE_DOMAINS = new Set([
+    'mailinator.com','tempmail.com','temp-mail.io','temp-mail.org','guerrillamail.com','guerrillamail.net','guerrillamail.org','sharklasers.com',
+    'yopmail.com','10minutemail.com','10minutemail.net','throwawaymail.com','dispostable.com','trashmail.com','trashmail.net','maildrop.cc',
+    'getairmail.com','mailnesia.com','mintemail.com','mytemp.email','spambox.us','spamgourmet.com','tempinbox.com','fakeinbox.com',
+    'mvrht.com','spam4.me','meltmail.com','mohmal.com','tempr.email','emailondeck.com','tempemail.com','spamavert.com',
+    'mailcatch.com','spamfree24.org','byom.de','jetable.org','nada.email','dropmail.me','tempmail.plus','mail-temp.com',
+    'mail.tm','eyepaste.com','pokemail.net','mailsac.com','luxusmail.org','vomoto.com','tmpmail.org','tmpeml.com',
+    'inboxbear.com','tempmailo.com'
+  ]);
+  function isDisposableEmail(email) {
+    if (!email || typeof email !== 'string') return false;
+    const at = email.lastIndexOf('@');
+    if (at < 0) return false;
+    const domain = email.slice(at + 1).toLowerCase().trim();
+    return DISPOSABLE_DOMAINS.has(domain);
+  }
+  function daysFromNow(yyyymmdd) {
+    if (!yyyymmdd) return null;
+    const d = new Date(yyyymmdd + 'T00:00:00');
+    if (isNaN(d.getTime())) return null;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    return Math.round((d - now) / 86400000);
+  }
+
+  // Stamp loaded-at for time-trap (silent reject if submission < 4s after page load)
+  const loadedAtField = document.getElementById('ceremonyLoadedAt');
+  const loadedAt = Date.now();
+  if (loadedAtField) loadedAtField.value = String(loadedAt);
+
+  // Live message-length counter
+  const msgInput = document.getElementById('inq-notes');
+  const msgCounter = document.getElementById('ceremonyMsgCounter');
+  const MIN_MESSAGE = 30;
+  if (msgInput && msgCounter) {
+    const updateCounter = function () {
+      const len = (msgInput.value || '').trim().length;
+      msgCounter.textContent = len + ' / ' + MIN_MESSAGE + ' minimum';
+      msgCounter.classList.toggle('is-met', len >= MIN_MESSAGE);
+    };
+    msgInput.addEventListener('input', updateCounter);
+    updateCounter();
+  }
+
+  const formError = document.getElementById('ceremonyFormError');
+  function showError(msg) {
+    if (formError) {
+      formError.textContent = msg;
+      formError.hidden = false;
+    } else {
+      alert(msg);
+    }
+  }
+  function clearError() {
+    if (formError) {
+      formError.textContent = '';
+      formError.hidden = true;
+    }
+  }
+
+  inquiryForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
+
+    const formData = new FormData(inquiryForm);
+
+    // 1. Honeypot — silent reject if filled
+    const honey = (formData.get('_gotcha') || '').toString().trim();
+    if (honey.length > 0) {
+      // Pretend success so bots don't retry
+      inquiryForm.style.display = 'none';
+      thankYou.classList.add('is-visible');
+      return;
+    }
+
+    // 2. Time-trap — reject if submission < 4 seconds after page load
+    const elapsed = Date.now() - loadedAt;
+    if (elapsed < 4000) {
+      // Likely a bot. Silent reject.
+      inquiryForm.style.display = 'none';
+      thankYou.classList.add('is-visible');
+      return;
+    }
+
+    // 3. Disposable email
+    const email = (formData.get('email') || '').toString().trim();
+    if (isDisposableEmail(email)) {
+      showError('Please use a real email address — disposable inboxes are blocked.');
+      const emailField = document.getElementById('inq-email');
+      if (emailField) emailField.focus();
+      return;
+    }
+
+    // 4. Future-date check (must be at least 1 day out)
+    const dateField = document.getElementById('inq-date');
+    if (dateField && dateField.value) {
+      const days = daysFromNow(dateField.value);
+      if (days === null) {
+        showError('Please select a valid event date.');
+        dateField.focus();
+        return;
+      }
+      if (days < 1) {
+        showError('Bookings require at least 1 day advance notice. For same-day inquiries, please email bookings@julieschatzmusic.com directly.');
+        dateField.focus();
+        return;
+      }
+    }
+
+    // 5. Message min-length
+    const msg = (formData.get('message') || '').toString().trim();
+    if (msg.length < MIN_MESSAGE) {
+      showError('Please share a few more details about your event (' + MIN_MESSAGE + '+ characters).');
+      if (msgInput) msgInput.focus();
+      return;
+    }
+
+    // Validation passed — refresh ceremony_selections snapshot
+    ceremonySelectionsField.value = buildSelectionsText();
+    formData.set('ceremony_selections', ceremonySelectionsField.value);
+
+    const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Sending…';
+
+    fetch(inquiryForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function (res) {
+      if (res.ok) {
+        inquiryForm.style.display = 'none';
+        thankYou.classList.add('is-visible');
+        clearState();
+        renderMoments();
+        renderCustomList();
+        renderSummary();
+      } else {
+        // Try to surface Formspree validation errors
+        return res.json().then(function (j) {
+          let detail = '';
+          if (j && j.errors && j.errors.length) {
+            detail = ' (' + j.errors.map(function (e) { return e.message; }).join('; ') + ')';
+          }
+          throw new Error('Submission failed' + detail);
+        }).catch(function () { throw new Error('Submission failed'); });
+      }
+    }).catch(function (err) {
+      showError((err && err.message ? err.message : 'Something went wrong') + '. Please try again, or email bookings@julieschatzmusic.com directly with your selections.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    });
+  });
+
+  // ─── Inject schema (ItemList + FAQPage) ─────────────────────────────
+  function injectSchemas() {
+    const itemList = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Julie Schatz Wedding Repertoire',
+      numberOfItems: REPERTOIRE.length,
+      itemListElement: REPERTOIRE.map(function (s, i) {
+        return {
+          '@type': 'ListItem',
+          position: i + 1,
+          item: {
+            '@type': 'MusicComposition',
+            name: s.title,
+            composer: { '@type': 'Person', name: s.artist }
+          }
+        };
+      })
+    };
+    const itemListScript = document.createElement('script');
+    itemListScript.type = 'application/ld+json';
+    itemListScript.textContent = JSON.stringify(itemList);
+    document.head.appendChild(itemListScript);
+
+    // FAQPage from rendered FAQ
+    const faqMain = [];
+    document.querySelectorAll('#faqList .faq-item').forEach(function (el) {
+      const q = el.querySelector('.faq-q');
+      const a = el.querySelector('.faq-a');
+      if (q && a) {
+        faqMain.push({
+          '@type': 'Question',
+          name: q.textContent.trim(),
+          acceptedAnswer: { '@type': 'Answer', text: a.textContent.trim() }
+        });
+      }
+    });
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      dateModified: '2026-05-03',
+      mainEntity: faqMain
+    };
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(faqScript);
+  }
+
+  // ─── Init ───────────────────────────────────────────────────────────
+  loadState();
+  renderMoments();
+  renderCustomList();
+  renderSummary();
+  injectSchemas();
+})();
+</script>
+</body>
+</html>
