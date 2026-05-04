@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Julie Schatz · Blog</title>
-    <link>https://julieschatzmusic.com/blog.html</link>
+    <link>https://julieschatzmusic.com/blog/</link>
     <atom:link href="https://julieschatzmusic.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>Music production, plugin walkthroughs, sound design, and behind-the-scenes notes from violinist-producer Julie Schatz.</description>
     <language>en-us</language>
@@ -15,15 +15,15 @@
     <image>
       <url>https://julieschatzmusic.com/assets/julie-schatz-logo.png</url>
       <title>Julie Schatz · Blog</title>
-      <link>https://julieschatzmusic.com/blog.html</link>
+      <link>https://julieschatzmusic.com/blog/</link>
       <width>144</width>
       <height>144</height>
     </image>
 
     <item>
       <title>Making a House Track With Only Orchestral Sounds (ft. Spitfire Audio)</title>
-      <link>https://julieschatzmusic.com/blog/spitfire-house-track.html</link>
-      <guid isPermaLink="true">https://julieschatzmusic.com/blog/spitfire-house-track.html</guid>
+      <link>https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/</link>
+      <guid isPermaLink="true">https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/</guid>
       <pubDate>Sat, 02 May 2026 12:00:00 -0400</pubDate>
       <author>bookings@julieschatzmusic.com (Julie Schatz)</author>
       <category>Music Production</category>
@@ -35,7 +35,7 @@
       <description><![CDATA[Building a deep house groove from BBC Symphony strings, Eric Whitacre Choir, and a Spitfire double bass — no drum machines, no synth presets. A walk-through of the plugins, the sidechain trick, and the granular reverb that ties it all together.]]></description>
       <content:encoded><![CDATA[
         <p>House music lives on a four-on-the-floor kick, a synth bass, and a chord stab — that's the formula for a reason. But the formula gets predictable, and the most interesting tracks usually come from breaking one rule on purpose. So: what happens if you build a deep house groove using <em>only</em> orchestral plugins? No drum machines. No synth presets. Just strings, a choir, and a single double bass — pulled from <strong>Spitfire Audio</strong>'s library and stitched together with a few mixing tricks. Here's the walkthrough.</p>
-        <p>Read the full post: <a href="https://julieschatzmusic.com/blog/spitfire-house-track.html">julieschatzmusic.com/blog/spitfire-house-track.html</a></p>
+        <p>Read the full post: <a href="https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/">julieschatzmusic.com/blog/spitfire-house-track.html</a></p>
       ]]></content:encoded>
     </item>
 
