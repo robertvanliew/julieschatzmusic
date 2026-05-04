@@ -1250,249 +1250,47 @@ nav {
   margin-right: 8px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Mobile carousel — dots, arrows, and overlay typography (≤900px)
-   Hidden on desktop. Premium feel: gold accents, frosted glass arrows,
-   centered overlay block with full-bleed photo behind.
-   ═══════════════════════════════════════════════════════════════════ */
+/* Dots — hidden on desktop, shown on mobile */
 .marquee-dots {
   display: none;
   position: absolute;
-  bottom: 18px;
+  bottom: 14px;
   left: 0;
   right: 0;
   justify-content: center;
-  gap: 10px;
-  z-index: 12;
+  gap: 8px;
+  z-index: 10;
   pointer-events: auto;
 }
 .marquee-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   padding: 0;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, width 0.3s ease;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 .marquee-dot.is-active {
   background: #d4b872;
-  width: 24px;
-  border-radius: 4px;
+  transform: scale(1.4);
 }
 .marquee-dot:hover { background: rgba(255, 255, 255, 0.65); }
 
-.marquee-arrow {
-  display: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(15, 10, 26, 0.5);
-  border: 1px solid rgba(212, 184, 114, 0.55);
-  color: #d4b872;
-  cursor: pointer;
-  z-index: 12;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.marquee-arrow:hover,
-.marquee-arrow:active {
-  background: rgba(212, 184, 114, 0.18);
-  border-color: #d4b872;
-  color: #fff;
-}
-.marquee-arrow-prev { left: 14px; }
-.marquee-arrow-next { right: 14px; }
-.marquee-arrow:hover.marquee-arrow-prev { transform: translateY(-50%) translateX(-2px); }
-.marquee-arrow:hover.marquee-arrow-next { transform: translateY(-50%) translateX(2px); }
-
-/* Mobile-only overlay block — hidden on desktop */
-.mobile-hero-overlay {
-  display: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 64px;
-  z-index: 11;
-  padding: 0 28px;
-  text-align: center;
-  pointer-events: none;
-}
-.mobile-hero-overlay > * { pointer-events: auto; }
-.mobile-hero-eyebrow {
-  display: inline-block;
-  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: #d4b872;
-  margin-bottom: 14px;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-}
-.mobile-hero-wordmark {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(44px, 12vw, 72px);
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  margin: 0 0 14px;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.7);
-}
-.mobile-hero-tagline {
-  display: block;
-  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.36em;
-  text-transform: uppercase;
-  color: #d4b872;
-  margin-bottom: 18px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-.mobile-hero-lede {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 15.5px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.92);
-  max-width: 32ch;
-  margin: 0 auto 24px;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
-  text-wrap: pretty;
-}
-.mobile-hero-ctas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-.mobile-hero-cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 320px;
-  padding: 16px 28px;
-  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: #0F0A1A;
-  background: #d4b872;
-  border: 1px solid #d4b872;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 8px 32px rgba(212, 184, 114, 0.28);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
-}
-.mobile-hero-cta-primary:hover,
-.mobile-hero-cta-primary:active {
-  background: #e6cc8e;
-  transform: translateY(-1px);
-  box-shadow: 0 12px 40px rgba(212, 184, 114, 0.42);
-}
-.mobile-hero-cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 320px;
-  padding: 14px 28px;
-  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: rgba(15, 10, 26, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  text-decoration: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.mobile-hero-cta-secondary:hover,
-.mobile-hero-cta-secondary:active {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
-}
-
-/* Mobile carousel layout — replace infinite-scroll with single-slide pagination */
+/* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance */
 @media (max-width: 900px) {
-  /* Top nav: solid violet-dark band, hamburger fully visible */
-  nav {
-    position: relative !important;
-    background: linear-gradient(180deg, #0F0A1A 0%, #170B2E 100%) !important;
-    border-bottom: 1px solid rgba(212, 184, 114, 0.22);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
-    height: 60px !important;
-    padding: 0 18px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    z-index: 100;
-  }
-  /* Logo wordmark on the left of the top bar */
-  nav::before {
-    content: 'Julie Schatz';
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 18px;
-    letter-spacing: 0.02em;
-    color: #fff;
-    text-shadow: 0 2px 12px rgba(212, 184, 114, 0.35);
-  }
-  /* Hamburger sits in the right slot of the flex bar */
-  .nav-hamburger {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    background: transparent !important;
-    border: 1px solid rgba(212, 184, 114, 0.55) !important;
-    z-index: 110;
-  }
-  .nav-ham-line { background: #d4b872 !important; }
-
-  /* Marquee section becomes the hero photo — full-bleed with overlay */
   .marquee-section {
-    height: calc(100vh - 60px);
-    min-height: 560px;
-    max-height: 760px;
-    aspect-ratio: auto;
-    position: relative;
-    isolation: isolate;
-  }
-  /* Dark gradient overlay on the photo for text legibility */
-  .marquee-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(15, 10, 26, 0.15) 0%, rgba(15, 10, 26, 0.5) 60%, rgba(15, 10, 26, 0.85) 100%);
-    z-index: 5;
-    pointer-events: none;
+    height: auto;
+    aspect-ratio: 9 / 11;
+    max-height: 70vh;
   }
   .marquee-track {
+    /* Cancel desktop infinite-scroll, replace with translateX-by-slide */
     animation: none !important;
     will-change: transform;
-    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    /* JS sets transform: translateX(-N * 100%) */
   }
   .marquee-track:hover { animation-play-state: running; }
   .mphoto {
@@ -1507,21 +1305,10 @@ nav {
     object-fit: cover;
     object-position: center;
   }
-  .marquee-track > .mphoto:nth-child(n+7) { display: none; }
   .marquee-dots { display: flex; }
-  .marquee-arrow { display: inline-flex; }
-  .mobile-hero-overlay { display: block; }
-
-  /* Hide the desktop .lower / .name-block / .name on mobile — overlay replaces it */
-  .lower { display: none !important; }
-}
-@media (max-width: 420px) {
-  .mobile-hero-overlay { padding: 0 20px; bottom: 56px; }
-  .mobile-hero-wordmark { font-size: clamp(40px, 13vw, 60px); }
-  .mobile-hero-lede { font-size: 14.5px; max-width: 28ch; }
-  .marquee-arrow { width: 40px; height: 40px; }
-  .marquee-arrow-prev { left: 10px; }
-  .marquee-arrow-next { right: 10px; }
+  /* Hide the second (duplicate) set on mobile — single-image mode shows the
+     first 6 unique slides only */
+  .marquee-track > .mphoto:nth-child(n+7) { display: none; }
 }
 
 .mphoto img {
@@ -3889,26 +3676,6 @@ nav {
         <img src="assets/photos/julie-schatz-bday-party-event.png" alt="" aria-hidden="true" width="1029" height="1528" loading="lazy" decoding="async">
       </picture></div>
     </div>
-    <!-- Mobile-only carousel arrows (hidden on desktop) -->
-    <button type="button" class="marquee-arrow marquee-arrow-prev" id="marqueeArrowPrev" aria-label="Previous photo">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button type="button" class="marquee-arrow marquee-arrow-next" id="marqueeArrowNext" aria-label="Next photo">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-
-    <!-- Mobile-only overlay block (centered text + CTAs over photo) -->
-    <div class="mobile-hero-overlay">
-      <span class="mobile-hero-eyebrow">Violinist · Pianist · DJ · Producer</span>
-      <h1 class="mobile-hero-wordmark">Julie Schatz</h1>
-      <span class="mobile-hero-tagline">Live Music for Your Moment</span>
-      <p class="mobile-hero-lede">Solo violin and jazz piano for weddings, private events, and corporate galas across NY, NJ, and CT — drawing from a repertoire of 200+ songs.</p>
-      <div class="mobile-hero-ctas">
-        <button type="button" class="mobile-hero-cta-primary" id="mobileHeroInquiryBtn">Inquiry →</button>
-        <a href="#listen" class="mobile-hero-cta-secondary">Hear the Music</a>
-      </div>
-    </div>
-
     <!-- Mobile-only carousel dot indicators (hidden on desktop) -->
     <div class="marquee-dots" id="marqueeDots" aria-hidden="true">
       <button type="button" class="marquee-dot is-active" data-slide="0" aria-label="Photo 1"></button>
@@ -4773,15 +4540,9 @@ if (aboutHeading) {
   if (!track || !dotsWrap) return;
 
   var dots = dotsWrap.querySelectorAll('.marquee-dot');
-  var arrowPrev = document.getElementById('marqueeArrowPrev');
-  var arrowNext = document.getElementById('marqueeArrowNext');
-  var heroInquiryBtn = document.getElementById('mobileHeroInquiryBtn');
   var idx = 0;
   var timer = null;
-  // Touch-device detection — only attach mouseenter/leave for non-touch devices,
-  // since mobile browsers fire mouseenter on first touch and would
-  // permanently pause the carousel.
-  var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  var paused = false;
 
   function isMobile() { return window.innerWidth <= 900; }
 
@@ -4797,66 +4558,31 @@ if (aboutHeading) {
   }
 
   function next() { idx = (idx + 1) % SLIDES; render(); }
-  function prev() { idx = (idx - 1 + SLIDES) % SLIDES; render(); }
   function goTo(i) { idx = ((i % SLIDES) + SLIDES) % SLIDES; render(); }
 
   function start() {
     stop();
-    if (!isMobile()) return;
+    if (!isMobile() || paused) return;
     timer = setInterval(next, INTERVAL);
   }
   function stop() {
     if (timer) { clearInterval(timer); timer = null; }
   }
 
-  // Restart auto-advance after a user interaction
-  function restartTimer() { start(); }
-
   dots.forEach(function (d, i) {
     d.addEventListener('click', function () {
       goTo(i);
-      restartTimer();
+      // restart timer so user has full interval before next auto-advance
+      start();
     });
   });
 
-  if (arrowPrev) arrowPrev.addEventListener('click', function () { prev(); restartTimer(); });
-  if (arrowNext) arrowNext.addEventListener('click', function () { next(); restartTimer(); });
-
-  // Wire the new mobile hero "Inquiry" button to the existing inquiry drawer
-  if (heroInquiryBtn) {
-    heroInquiryBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      var dropdown = document.getElementById('inquiryDropdown');
-      if (dropdown) dropdown.classList.add('active');
-    });
-  }
-
-  // Touch swipe support
-  var touchStartX = null;
-  var touchEndX = null;
-  track.addEventListener('touchstart', function (e) {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-  track.addEventListener('touchend', function (e) {
-    touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX === null) return;
-    var dx = touchEndX - touchStartX;
-    if (Math.abs(dx) > 40) {
-      if (dx < 0) next(); else prev();
-      restartTimer();
-    }
-    touchStartX = null;
-  }, { passive: true });
-
-  // Desktop hover pause (only on non-touch devices)
-  if (!isTouch) {
-    track.addEventListener('mouseenter', stop);
-    track.addEventListener('mouseleave', start);
-  }
-
-  // Pause when tab not visible (battery / data saver friendly)
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stop(); else start();
+  // Pause on touch / mouseenter, resume on touchend / mouseleave
+  ['touchstart', 'mouseenter'].forEach(function (ev) {
+    track.addEventListener(ev, function () { paused = true; stop(); }, { passive: true });
+  });
+  ['touchend', 'mouseleave'].forEach(function (ev) {
+    track.addEventListener(ev, function () { paused = false; start(); }, { passive: true });
   });
 
   // Restart on resize across breakpoint
