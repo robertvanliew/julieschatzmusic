@@ -348,10 +348,15 @@ main.post-main h1 {
     grid-template-columns: 1fr;
     gap: 36px;
   }
+  /* Mobile: kill the desktop sticky position but KEEP a positioning
+     context. If we set position:static, the absolutely-positioned <img>
+     inside escapes up to the nearest positioned ancestor (.page) and
+     stretches to the entire page height — covering the article. */
   .video-embed {
     max-width: 360px;
     margin: 0 auto;
-    position: static;
+    position: relative;
+    top: auto;
   }
 }
 
