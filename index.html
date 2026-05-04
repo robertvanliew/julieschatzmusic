@@ -800,14 +800,13 @@
   color: #d4b3ff;
   padding-left: 8px;
 }
-/* iOS-safe scroll lock — body becomes position:fixed with preserved scroll
-   offset (set inline by JS). overflow:hidden alone is not enough on iOS. */
+/* Soft scroll lock — overflow:hidden only. Works on Chrome/Firefox/Edge
+   reliably; on iOS Safari there's a known minor scroll-bleed quirk but
+   the drawer/dropdown sits z-index above the page so it doesn't matter
+   visually. The previous position:fixed approach was locking body
+   permanently when the drawer failed to open, breaking the whole site. */
 body.nav-drawer-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  right: 0;
 }
 
 /* Activate hamburger / hide desktop links at ≤900px */
@@ -4797,34 +4796,28 @@ if (aboutHeading) {
   const drawer = document.getElementById('mobileDrawer');
   if (!burger || !drawer) return;
 
-  // Stored scroll position so we can restore it when the drawer closes
-  let savedScrollY = 0;
-
   function setOpen(open) {
     if (open) {
-      // Save current scroll, then lock body in place
-      savedScrollY = window.scrollY || window.pageYOffset || 0;
-      document.body.style.top = '-' + savedScrollY + 'px';
-      document.body.classList.add('nav-drawer-open');
       drawer.hidden = false;
-      requestAnimationFrame(() => {
-        burger.classList.add('is-open');
-      });
+      // Force a reflow so the slide-in animation actually runs on first open
+      void drawer.offsetWidth;
+      burger.classList.add('is-open');
       burger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-drawer-open');
     } else {
       burger.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
-      drawer.hidden = true;
-      // Unlock body and restore scroll
       document.body.classList.remove('nav-drawer-open');
-      document.body.style.top = '';
-      window.scrollTo(0, savedScrollY);
+      drawer.hidden = true;
     }
   }
 
+  // Safety: if the page somehow boots with the lock-class still set
+  // (e.g. user reloaded mid-open), strip it.
+  document.body.classList.remove('nav-drawer-open');
+
   burger.addEventListener('click', function (e) {
     e.stopPropagation();
-    e.preventDefault();
     setOpen(drawer.hidden);
   });
 
@@ -4852,32 +4845,13 @@ const closeBtn = document.getElementById('closeInquiry');
 const highlightsBtn = document.getElementById('highlightsInquiryBtn');
 const eventsBtn = document.getElementById('eventsInquiryBtn');
 
-// Scroll lock for the inquiry drawer (mobile-fullscreen). Same iOS-safe
-// pattern as the nav drawer — preserve scroll position so the page doesn't
-// jump when the drawer closes.
-let inquirySavedScrollY = 0;
-function lockBodyForInquiry() {
-  inquirySavedScrollY = window.scrollY || window.pageYOffset || 0;
-  document.body.style.top = '-' + inquirySavedScrollY + 'px';
-  document.body.classList.add('nav-drawer-open'); // reuse existing scroll-lock class
-}
-function unlockBodyForInquiry() {
-  document.body.classList.remove('nav-drawer-open');
-  document.body.style.top = '';
-  window.scrollTo(0, inquirySavedScrollY);
-}
-
 // Function to toggle the dropdown
 function toggleDropdown(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  const willBeOpen = !dropdown.classList.contains('active');
-  dropdown.classList.toggle('active');
-  // Only lock scroll on mobile-width (where the dropdown is fullscreen)
-  if (window.innerWidth <= 900) {
-    if (willBeOpen) lockBodyForInquiry();
-    else unlockBodyForInquiry();
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
+  dropdown.classList.toggle('active');
 }
 
 // Attach clicks to the Inquiry buttons
@@ -4886,18 +4860,17 @@ closeBtn.addEventListener('click', toggleDropdown);
 if (highlightsBtn) highlightsBtn.addEventListener('click', toggleDropdown);
 if (eventsBtn) eventsBtn.addEventListener('click', toggleDropdown);
 
-// Optional: Close dropdown if user clicks outside of it
+// Close dropdown when tapping outside, BUT not when tapping the nav
+// hamburger or its drawer (those have their own logic).
 document.addEventListener('click', (e) => {
   if (!dropdown.classList.contains('active')) return;
   if (dropdown.contains(e.target)) return;
   if (e.target === lowerBtn || e.target === highlightsBtn || e.target === eventsBtn) return;
-  // Don't close from inside the nav drawer or hamburger
   const drawerEl = document.getElementById('mobileDrawer');
   const burgerEl = document.getElementById('navHamburger');
   if (drawerEl && drawerEl.contains(e.target)) return;
   if (burgerEl && burgerEl.contains(e.target)) return;
   dropdown.classList.remove('active');
-  if (window.innerWidth <= 900) unlockBodyForInquiry();
 });
 
 // Auto-open the inquiry form when arriving with #inquire hash (from location pages, etc.)
