@@ -1258,38 +1258,66 @@ nav {
   left: 0;
   right: 0;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   z-index: 10;
   pointer-events: auto;
 }
 .marquee-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   padding: 0;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, width 0.3s ease;
 }
 .marquee-dot.is-active {
   background: #d4b872;
-  transform: scale(1.4);
+  width: 24px;
+  border-radius: 4px;
 }
-.marquee-dot:hover { background: rgba(255, 255, 255, 0.65); }
+.marquee-dot:hover { background: rgba(255, 255, 255, 0.7); }
 
-/* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance */
+/* Arrows — hidden on desktop, shown on mobile */
+.marquee-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(15, 10, 26, 0.45);
+  border: 1px solid rgba(212, 184, 114, 0.5);
+  color: #d4b872;
+  cursor: pointer;
+  z-index: 11;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.marquee-arrow:hover, .marquee-arrow:active {
+  background: rgba(212, 184, 114, 0.18);
+  border-color: #d4b872;
+  color: #fff;
+}
+.marquee-arrow-prev { left: 12px; }
+.marquee-arrow-next { right: 12px; }
+
+/* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance.
+   Section height comes from the layout block above (50vh, max 480px) — don't
+   override it here. */
 @media (max-width: 900px) {
-  .marquee-section {
-    height: auto;
-    aspect-ratio: 9 / 11;
-    max-height: 70vh;
-  }
   .marquee-track {
     /* Cancel desktop infinite-scroll, replace with translateX-by-slide */
     animation: none !important;
     will-change: transform;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    height: 100%;
     /* JS sets transform: translateX(-N * 100%) */
   }
   .marquee-track:hover { animation-play-state: running; }
@@ -1306,6 +1334,7 @@ nav {
     object-position: center;
   }
   .marquee-dots { display: flex; }
+  .marquee-arrow { display: inline-flex; }
   /* Hide the second (duplicate) set on mobile — single-image mode shows the
      first 6 unique slides only */
   .marquee-track > .mphoto:nth-child(n+7) { display: none; }
@@ -1462,33 +1491,81 @@ nav {
   }
 }
 
-/* ───── Mobile: hero name-block + CTA layout ───── */
-@media (max-width: 768px) {
-  .page { height: auto; min-height: 0; align-items: stretch; }
-  .marquee-section { height: 40vh; min-height: 240px; flex-shrink: 0; }
-  .lower { display: block; height: auto; flex: none; min-height: 0; width: 100%; }
-  .name-right { height: auto; flex: none; }
-  .name-block {
-    position: relative;
-    top: auto;
-    padding: 0 20px 48px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 20px;
-    margin-top: -32px;
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile (≤900px): mirror desktop layout but stacked vertically.
+   Photos at top → JULIE SCHATZ wordmark → tagline H1 → Inquiry pill.
+   Desktop layout untouched.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Free .page from 100vh lock so children determine height */
+  .page {
+    height: auto;
+    min-height: 100vh;
+    align-items: stretch;
   }
+
+  /* Photo carousel area — generous but bounded */
+  .marquee-section {
+    height: 50vh;
+    min-height: 320px;
+    max-height: 480px;
+    flex-shrink: 0;
+  }
+
+  /* Lower (name + CTA) stacks below photo, full width */
+  .lower {
+    display: block;
+    height: auto;
+    flex: none;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* Name-block: stack vertically, real flow, no absolute overlap */
+  .name-block {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    padding: 32px 24px 40px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    margin: 0 !important;
+  }
+
   .name-left {
     align-items: flex-start;
     width: 100%;
+    gap: 14px;
   }
+
+  /* JULIE SCHATZ wordmark — clean white, no blend-mode on mobile
+     (desktop blends with the photo strip; mobile sits over violet bg). */
   .name {
-    font-size: clamp(52px, 15vw, 90px) !important;
+    font-size: clamp(56px, 16vw, 96px) !important;
+    mix-blend-mode: normal !important;
+    color: #ffffff !important;
+    line-height: 0.88 !important;
   }
+
+  /* Tagline H1 below wordmark */
+  .hero-h1 {
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    margin-top: 4px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  /* Inquiry pill: full-width below tagline */
   .name-right {
     width: 100%;
     align-items: stretch;
     padding-bottom: 0;
+    flex: none;
+    height: auto;
   }
   .cta-btn {
     width: 100%;
@@ -1497,16 +1574,13 @@ nav {
     font-size: 11px;
     letter-spacing: 0.24em;
   }
-  .hero-h1 {
-    font-size: 16px;
-    line-height: 1.4;
-    white-space: normal;
-  }
 }
+
 @media (max-width: 420px) {
-  .name { font-size: clamp(44px, 13vw, 68px) !important; }
+  .name { font-size: clamp(48px, 14vw, 76px) !important; }
+  .hero-h1 { font-size: 14px !important; }
   .cta-btn { padding: 14px 20px; font-size: 10.5px; letter-spacing: 0.2em; }
-  .hero-h1 { font-size: 15px; }
+  .name-block { padding: 24px 20px 32px !important; }
 }
 
 /* Right side of lower */
@@ -3676,6 +3750,13 @@ nav {
         <img src="assets/photos/julie-schatz-bday-party-event.png" alt="" aria-hidden="true" width="1029" height="1528" loading="lazy" decoding="async">
       </picture></div>
     </div>
+    <!-- Mobile-only carousel arrows (hidden on desktop) -->
+    <button type="button" class="marquee-arrow marquee-arrow-prev" id="marqueeArrowPrev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button type="button" class="marquee-arrow marquee-arrow-next" id="marqueeArrowNext" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
     <!-- Mobile-only carousel dot indicators (hidden on desktop) -->
     <div class="marquee-dots" id="marqueeDots" aria-hidden="true">
       <button type="button" class="marquee-dot is-active" data-slide="0" aria-label="Photo 1"></button>
@@ -4540,9 +4621,14 @@ if (aboutHeading) {
   if (!track || !dotsWrap) return;
 
   var dots = dotsWrap.querySelectorAll('.marquee-dot');
+  var arrowPrev = document.getElementById('marqueeArrowPrev');
+  var arrowNext = document.getElementById('marqueeArrowNext');
   var idx = 0;
   var timer = null;
-  var paused = false;
+  // Detect touch capability — on touch devices, mouseenter fires on first
+  // touch and would permanently pause the carousel. So mouseenter/leave
+  // hover-pause is desktop-only.
+  var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   function isMobile() { return window.innerWidth <= 900; }
 
@@ -4558,11 +4644,12 @@ if (aboutHeading) {
   }
 
   function next() { idx = (idx + 1) % SLIDES; render(); }
+  function prev() { idx = (idx - 1 + SLIDES) % SLIDES; render(); }
   function goTo(i) { idx = ((i % SLIDES) + SLIDES) % SLIDES; render(); }
 
   function start() {
     stop();
-    if (!isMobile() || paused) return;
+    if (!isMobile()) return;
     timer = setInterval(next, INTERVAL);
   }
   function stop() {
@@ -4572,17 +4659,37 @@ if (aboutHeading) {
   dots.forEach(function (d, i) {
     d.addEventListener('click', function () {
       goTo(i);
-      // restart timer so user has full interval before next auto-advance
-      start();
+      start(); // reset timer so user has full interval before next auto-advance
     });
   });
 
-  // Pause on touch / mouseenter, resume on touchend / mouseleave
-  ['touchstart', 'mouseenter'].forEach(function (ev) {
-    track.addEventListener(ev, function () { paused = true; stop(); }, { passive: true });
-  });
-  ['touchend', 'mouseleave'].forEach(function (ev) {
-    track.addEventListener(ev, function () { paused = false; start(); }, { passive: true });
+  if (arrowPrev) arrowPrev.addEventListener('click', function () { prev(); start(); });
+  if (arrowNext) arrowNext.addEventListener('click', function () { next(); start(); });
+
+  // Touch swipe support
+  var touchStartX = null;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    if (touchStartX === null) return;
+    var dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) next(); else prev();
+      start();
+    }
+    touchStartX = null;
+  }, { passive: true });
+
+  // Desktop-only hover pause (skipped on touch devices to fix auto-advance bug)
+  if (!isTouch) {
+    track.addEventListener('mouseenter', stop);
+    track.addEventListener('mouseleave', start);
+  }
+
+  // Pause when tab not visible
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
   });
 
   // Restart on resize across breakpoint
