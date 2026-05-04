@@ -950,9 +950,15 @@ html {
 }
 body {
   width: 100%; min-height: 100vh;
+  max-width: 100vw;
   background: var(--bg);
-  /* Do NOT use overflow:hidden here — it traps position:fixed children */
-  overflow-x: visible;
+  /* `overflow-x: clip` blocks horizontal scroll without trapping
+     position:fixed children (unlike `hidden` which would). Mirrors
+     the html rule above as a second line of defense — some mobile
+     browsers (older iOS Safari) don't fully respect overflow-x:clip
+     on <html>, so applying it here too ensures no element can push
+     the page wider than the viewport. */
+  overflow-x: clip;
   cursor: default;
   font-family: 'Cormorant Garamond', serif;
 }
@@ -3219,10 +3225,17 @@ nav {
   transform: translateY(-2px);
 }
 .brand-logo img {
+  /* Force the SVG to fit fully inside its cell. width:auto previously
+     allowed wide SVGs (Splice 6.35:1, Spitfire 11.3:1) to overflow the
+     mobile grid cell, pushing layout wider than the viewport. With
+     width:100% + object-fit:contain the SVG shrinks to fit by its
+     longer dimension, never spilling out. */
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  width: auto;
-  height: auto;
+  object-fit: contain;
+  object-position: center;
   filter: brightness(0) invert(1);
   display: block;
 }
