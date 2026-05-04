@@ -3636,25 +3636,6 @@ nav {
     </button>
   </nav>
 
-  <!-- Mobile drawer -->
-  <div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
-    <div class="nav-drawer-backdrop" data-drawer-close></div>
-    <div class="nav-drawer-panel">
-      <button class="nav-drawer-close" data-drawer-close aria-label="Close menu">×</button>
-      <ul class="nav-drawer-links">
-        <li><a href="#top">Home</a></li>
-        <li><a href="bookings.html">Bookings</a></li>
-        <li><a href="#listen">Listen</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="beats.html">Store</a></li>
-        <li><a href="repertoire.html">Repertoire</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="pricing.html">Rate Sheet</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </div>
-  </div>
-
   <div class="inquiry-dropdown" id="inquiryDropdown">
     <div class="dropdown-header">
       <div>
@@ -5662,6 +5643,26 @@ if (testimonialsTrack) {
   }
 })();
 </script>
+
+<!-- Mobile drawer — placed outside .page so the `.page > * { position: relative }`
+     rule doesn't override its position:fixed and trap it in document flow. -->
+<div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <div class="nav-drawer-backdrop" data-drawer-close></div>
+  <div class="nav-drawer-panel">
+    <button class="nav-drawer-close" data-drawer-close aria-label="Close menu">×</button>
+    <ul class="nav-drawer-links">
+      <li><a href="#top">Home</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      <li><a href="#listen">Listen</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="beats.html">Store</a></li>
+      <li><a href="repertoire.html">Repertoire</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="pricing.html">Rate Sheet</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>
 
