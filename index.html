@@ -681,15 +681,16 @@
 .nav-hamburger {
   display: none;
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
   width: 44px;
   height: 44px;
-  background: rgba(15, 10, 26, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(244, 239, 230, 0.18);
-  border-radius: 8px;
+  background: rgba(15, 10, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 184, 114, 0.3);
+  border-radius: 10px;
   cursor: pointer;
   padding: 0;
   z-index: 110;
@@ -697,6 +698,13 @@
   justify-content: center;
   flex-direction: column;
   gap: 5px;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.nav-hamburger:hover {
+  border-color: rgba(212, 184, 114, 0.6);
+  background: rgba(15, 10, 26, 0.8);
+  box-shadow: 0 4px 24px rgba(212,184,114,0.15);
 }
 .nav-ham-line {
   display: block;
@@ -793,7 +801,40 @@ body.nav-drawer-open { overflow: hidden; }
 /* Activate hamburger / hide desktop links at ≤900px */
 @media (max-width: 900px) {
   nav .nav-links { display: none !important; }
-  .nav-hamburger { display: flex; }
+  nav .nav-logo { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+
+  /* On mobile the nav should be a slim glassy strip */
+  nav.site-nav, nav {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    background: linear-gradient(to bottom, rgba(8,4,18,0.72) 0%, transparent 100%) !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Brand wordmark shown in nav on mobile */
+  nav::before {
+    content: 'JULIE SCHATZ';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    pointer-events: none;
+    white-space: nowrap;
+  }
 }
 </style>
 <style>
@@ -1155,36 +1196,7 @@ nav {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
-/* ───── Mobile nav (must be after desktop .nav-links rule above) ───── */
-@media (max-width: 768px) {
-  nav {
-    position: relative;
-    padding: 14px 16px;
-    justify-content: center;
-  }
-  .nav-logo { display: none; }
-  .nav-links {
-    position: relative;
-    left: auto;
-    transform: none;
-    gap: 8px 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  .nav-links li { list-style: none; }
-  .nav-links a {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    padding: 4px 0;
-  }
-}
-@media (max-width: 420px) {
-  .nav-links { gap: 6px 10px; }
-  .nav-links a { font-size: 9.5px; letter-spacing: 0.12em; }
-}
+/* Mobile nav handled by hamburger system in the nav-hamburger CSS block above */
 
 .nav-cta {
   font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
@@ -1221,6 +1233,7 @@ nav {
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
+  /* Bottom fade into the violet bg for desktop — mobile overrides this */
 }
 
 /* The track: two sets of photos side by side for seamless loop */
@@ -1312,31 +1325,58 @@ nav {
    Section height comes from the layout block above (50vh, max 480px) — don't
    override it here. */
 @media (max-width: 900px) {
+  /* Carousel container — taller on mobile, with the name overlapping from bottom */
+  .marquee-section {
+    height: 56vh;
+    min-height: 340px;
+    max-height: 520px;
+    position: relative;
+    overflow: hidden;
+  }
+
   .marquee-track {
-    /* Cancel desktop infinite-scroll, replace with translateX-by-slide */
+    /* Cancel desktop infinite-scroll, use JS-driven translateX */
     animation: none !important;
     will-change: transform;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     height: 100%;
-    /* JS sets transform: translateX(-N * 100%) */
+    width: 100% !important;
+    /* Ensure track is exactly viewport-width so slides are 100% each */
+    flex-wrap: nowrap;
   }
   .marquee-track:hover { animation-play-state: running; }
+
   .mphoto {
-    width: 100% !important;
-    flex: 0 0 100% !important;
+    width: 100vw !important;
+    flex: 0 0 100vw !important;
     margin-right: 0 !important;
     height: 100%;
+    position: relative;
   }
   .mphoto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
   }
-  .marquee-dots { display: flex; }
-  .marquee-arrow { display: inline-flex; }
-  /* Hide the second (duplicate) set on mobile — single-image mode shows the
-     first 6 unique slides only */
+
+  /* Progressive gradient from bottom of photo — name overlaps */
+  .marquee-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(to top, rgba(15,10,26,1) 0%, rgba(15,10,26,0.7) 35%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .marquee-dots { display: flex; z-index: 12; }
+  .marquee-arrow { display: inline-flex; z-index: 12; }
+
+  /* Hide the second (duplicate) set — single-image mode uses first 6 only */
   .marquee-track > .mphoto:nth-child(n+7) { display: none; }
 }
 
@@ -1492,95 +1532,124 @@ nav {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   Mobile (≤900px): mirror desktop layout but stacked vertically.
-   Photos at top → JULIE SCHATZ wordmark → tagline H1 → Inquiry pill.
-   Desktop layout untouched.
+   Mobile (≤900px): Premium stacked hero
+   Photo carousel fills top portion, wordmark overlaps from below,
+   tagline and CTA pill follow in clean vertical flow.
    ═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  /* Free .page from 100vh lock so children determine height */
+  /* Free .page from 100vh fixed lock */
   .page {
     height: auto;
-    min-height: 100vh;
+    min-height: 100svh;
     align-items: stretch;
   }
 
-  /* Photo carousel area — generous but bounded */
-  .marquee-section {
-    height: 50vh;
-    min-height: 320px;
-    max-height: 480px;
-    flex-shrink: 0;
-  }
-
-  /* Lower (name + CTA) stacks below photo, full width */
+  /* Lower section: natural block flow */
   .lower {
     display: block;
     height: auto;
     flex: none;
     min-height: 0;
     width: 100%;
+    /* Pull lower up over the bottom of the photo — overlap effect */
+    margin-top: -80px;
+    position: relative;
+    z-index: 10;
   }
 
-  /* Name-block: stack vertically, real flow, no absolute overlap */
+  /* Name-block: stacked, full-width, no absolute positioning */
   .name-block {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
-    padding: 32px 24px 40px !important;
+    padding: 40px 24px 44px !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
-    gap: 16px !important;
+    gap: 0 !important;
     margin: 0 !important;
+    /* Subtle frosted glass tint that blends with the shader bg */
+    background: linear-gradient(to bottom, transparent 0%, rgba(15,10,26,0.55) 100%) !important;
   }
 
   .name-left {
     align-items: flex-start;
     width: 100%;
-    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  /* JULIE SCHATZ wordmark — clean white, no blend-mode on mobile
-     (desktop blends with the photo strip; mobile sits over violet bg). */
+  /* JULIE SCHATZ wordmark — crisp white, no blend-mode on mobile */
   .name {
-    font-size: clamp(56px, 16vw, 96px) !important;
+    font-size: clamp(58px, 17vw, 100px) !important;
     mix-blend-mode: normal !important;
     color: #ffffff !important;
-    line-height: 0.88 !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.01em !important;
   }
 
-  /* Tagline H1 below wordmark */
+  /* Gold accent rule below wordmark */
+  .name-left::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1.5px;
+    background: linear-gradient(to right, #d4b872, rgba(212,184,114,0));
+    margin: 18px 0 16px;
+    border-radius: 2px;
+  }
+
+  /* Tagline H1 */
   .hero-h1 {
-    font-size: 15px !important;
-    line-height: 1.4 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
+    font-size: 17px !important;
+    line-height: 1.45 !important;
     white-space: normal !important;
-    margin-top: 4px !important;
-    color: rgba(255, 255, 255, 0.92) !important;
+    margin-top: 0 !important;
+    margin-bottom: 28px !important;
+    color: rgba(244, 239, 230, 0.85) !important;
+    letter-spacing: 0.01em !important;
+    opacity: 1 !important;
+    animation: none !important;
+    max-width: 320px !important;
   }
 
-  /* Inquiry pill: full-width below tagline */
+  /* Inquiry pill: full-width, premium gradient */
   .name-right {
     width: 100%;
     align-items: stretch;
     padding-bottom: 0;
     flex: none;
     height: auto;
+    display: flex;
+    flex-direction: column;
   }
   .cta-btn {
     width: 100%;
     justify-content: center;
-    padding: 16px 24px;
-    font-size: 11px;
-    letter-spacing: 0.24em;
+    padding: 17px 24px !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.28em !important;
+    background: linear-gradient(135deg, rgba(88,12,180,0.35) 0%, rgba(168,85,247,0.25) 100%) !important;
+    border-color: rgba(168,85,247,0.5) !important;
+    box-shadow: 0 0 0 1px rgba(168,85,247,0.08), 0 8px 32px -8px rgba(88,12,180,0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
   }
+
+  /* Disable letter-hover glow on mobile (too heavy) */
+  .ltr:hover { color: inherit; text-shadow: none; }
 }
 
 @media (max-width: 420px) {
-  .name { font-size: clamp(48px, 14vw, 76px) !important; }
-  .hero-h1 { font-size: 14px !important; }
-  .cta-btn { padding: 14px 20px; font-size: 10.5px; letter-spacing: 0.2em; }
-  .name-block { padding: 24px 20px 32px !important; }
+  .name { font-size: clamp(50px, 15.5vw, 78px) !important; }
+  .hero-h1 { font-size: 15.5px !important; }
+  .name-block { padding: 36px 20px 40px !important; }
+  .lower { margin-top: -64px; }
 }
 
 /* Right side of lower */
