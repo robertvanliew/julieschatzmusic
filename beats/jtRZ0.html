@@ -27,6 +27,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
+  "sku": "jtRZ0",
   "name": "Keys & Organ Samples",
   "image": "https://julieschatzmusic.com/assets/beats/covers/jtRZ0.png",
   "description": "Live keys and organ samples — soulful tones recorded by Julie Schatz. Punchy stabs, sustained pads, and full chord beds across keys and organ for R&B, hip-hop, soul, and gospel production.",
@@ -36,7 +37,23 @@
     "url": "https://payhip.com/b/jtRZ0",
     "priceCurrency": "USD",
     "price": "14.99",
-    "availability": "https://schema.org/InStock"
+    "priceValidUntil": "2027-05-04",
+    "availability": "https://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {"@type": "MonetaryAmount", "value": "0.00", "currency": "USD"},
+      "shippingDestination": {"@type": "DefinedRegion", "geoTargetedCountry": "US"},
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+      }
+    }
   }
 }
 </script>

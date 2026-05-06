@@ -27,6 +27,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
+  "sku": "Cy82d",
   "name": "Free Sampler",
   "image": "https://julieschatzmusic.com/assets/beats/covers/Cy82d.png",
   "description": "17 unique samples of live piano, violin, vocal hooks and vocalizations, lush loops of piano, synth, bass and more — all free. A few samples selected from each of the nine packs above. Try the library before buying.",
@@ -36,7 +37,23 @@
     "url": "https://payhip.com/b/Cy82d",
     "priceCurrency": "USD",
     "price": "0",
-    "availability": "https://schema.org/InStock"
+    "priceValidUntil": "2027-05-04",
+    "availability": "https://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {"@type": "MonetaryAmount", "value": "0.00", "currency": "USD"},
+      "shippingDestination": {"@type": "DefinedRegion", "geoTargetedCountry": "US"},
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+      }
+    }
   }
 }
 </script>

@@ -27,6 +27,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
+  "sku": "AJ7Hj",
   "name": "Live Yamaha Piano Samples",
   "image": "https://julieschatzmusic.com/assets/beats/covers/AJ7Hj.png",
   "description": "30 Yamaha upright piano samples recorded live with chords and melodies ranging from jazzy to pop to soulful — easily sampled into a wide range of productions. Played by trained jazz pianist Julie Schatz.",
@@ -36,7 +37,23 @@
     "url": "https://payhip.com/b/AJ7Hj",
     "priceCurrency": "USD",
     "price": "29.99",
-    "availability": "https://schema.org/InStock"
+    "priceValidUntil": "2027-05-04",
+    "availability": "https://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {"@type": "MonetaryAmount", "value": "0.00", "currency": "USD"},
+      "shippingDestination": {"@type": "DefinedRegion", "geoTargetedCountry": "US"},
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+      }
+    }
   }
 }
 </script>
