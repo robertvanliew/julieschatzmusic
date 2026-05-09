@@ -2454,14 +2454,24 @@ nav {
   height: calc(280px * 16 / 9 - 56px);
   overflow: hidden;
   position: relative;
-  background: transparent;
+  background: #0F0A1A;
   border: none;
   box-shadow: none;
   border-radius: 0;
+  padding: 0;
+  cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.25,1,0.5,1);
 }
 .video-card:hover {
   transform: translateY(-4px);
+}
+.video-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .video-card iframe {
   position: absolute;
@@ -2471,6 +2481,35 @@ nav {
   height: calc(100% + 56px);
   border: 0;
   background: transparent;
+}
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(15, 10, 26, 0.55);
+  border: 1.5px solid rgba(244, 239, 230, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4efe6;
+  pointer-events: none;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.video-play svg {
+  width: 26px;
+  height: 26px;
+  margin-left: 3px; /* optical centering of triangle */
+}
+.video-card:hover .video-play {
+  background: rgba(168, 85, 247, 0.35);
+  border-color: rgba(244, 239, 230, 1);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 .carousel-arrow {
   flex-shrink: 0;
@@ -4059,21 +4098,26 @@ nav {
       <button class="carousel-arrow carousel-arrow-desktop" id="carouselPrev" aria-label="Previous">&#8249;</button>
       <div class="carousel-viewport">
         <div class="carousel-track" id="carouselTrack">
-          <div class="video-card">
-            <iframe data-src="https://player.vimeo.com/video/1075415415?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="video-card">
-            <iframe data-src="https://player.vimeo.com/video/1057963862?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="video-card">
-            <iframe data-src="https://player.vimeo.com/video/1057967144?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="video-card">
-            <iframe data-src="https://player.vimeo.com/video/1057964770?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="video-card">
-            <iframe data-src="https://player.vimeo.com/video/1057966752?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <button type="button" class="video-card" data-vimeo="1075415415" aria-label="Play video">
+            <img src="/assets/highlights/1075415415.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057963862" aria-label="Play video">
+            <img src="/assets/highlights/1057963862.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057967144" aria-label="Play video">
+            <img src="/assets/highlights/1057967144.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057964770" aria-label="Play video">
+            <img src="/assets/highlights/1057964770.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057966752" aria-label="Play video">
+            <img src="/assets/highlights/1057966752.jpg" alt="" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
         </div>
       </div>
       <button class="carousel-arrow carousel-arrow-desktop" id="carouselNext" aria-label="Next">&#8250;</button>
@@ -5077,27 +5121,26 @@ function openInquiryFromHash() {
 window.addEventListener('load', openInquiryFromHash);
 window.addEventListener('hashchange', openInquiryFromHash);
 
-// ── Lazy-hydrate Vimeo iframes when Performance Highlights enters viewport ──
+// ── Performance Highlights — click poster to load Vimeo iframe with autoplay ──
 (() => {
-  const lazyFrames = Array.from(document.querySelectorAll('iframe[data-src]'));
-  if (!lazyFrames.length) return;
-  const hydrate = (iframe) => {
-    const src = iframe.getAttribute('data-src');
-    if (src && !iframe.src) iframe.src = src;
-  };
-  if (!('IntersectionObserver' in window)) {
-    lazyFrames.forEach(hydrate);
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        hydrate(e.target);
-        io.unobserve(e.target);
-      }
-    });
-  }, { rootMargin: '600px 0px' });  // hydrate ~600px before scrolling into view so they're ready
-  lazyFrames.forEach(f => io.observe(f));
+  const cards = Array.from(document.querySelectorAll('.video-card[data-vimeo]'));
+  if (!cards.length) return;
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.vimeo;
+      if (!id) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&autoplay=1`;
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.setAttribute('frameborder', '0');
+      // Replace poster + play button with the live iframe
+      card.innerHTML = '';
+      card.appendChild(iframe);
+      card.classList.add('is-playing');
+      card.style.cursor = 'default';
+    }, { once: true });
+  });
 })();
 
 // ── Performance Highlights — translateX-based carousel ──
