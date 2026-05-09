@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-nyc.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz, NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NYC Wedding Violinist & Jazz Pianist | Julie Schatz">
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "MusicGroup"],
   "@id": "https://julieschatzmusic.com/wedding-violinist-nyc/#business-nyc",
-  "name": "Julie Schatz Music — New York City",
+  "name": "Julie Schatz Music · New York City",
   "url": "https://julieschatzmusic.com/wedding-violinist-nyc/",
   "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
   "logo": "https://julieschatzmusic.com/assets/julie-schatz-logo.png",
@@ -353,44 +353,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas=document.getElementById('shader-bg'); const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl'); if(!gl)return;
-  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
-  resize(); window.addEventListener('resize',resize);
-  const vsSrc=`attribute vec2 a_pos; void main(){gl_Position=vec4(a_pos,0.0,1.0);}`;
-  const fsSrc=`precision highp float; uniform float u_time; uniform vec2 u_res;
-    vec3 C1=vec3(0.337,0.024,1.000); vec3 C2=vec3(0.482,0.173,0.749); vec3 C3=vec3(0.0,0.0,0.0);
-    void main(){
-      vec2 uv=gl_FragCoord.xy/u_res; float angle=radians(235.0);
-      mat2 rot=mat2(cos(angle),-sin(angle),sin(angle),cos(angle));
-      vec2 st=rot*(uv-0.5)+0.5; st+=vec2(-0.5,0.1);
-      float t=u_time*0.1; float freq=5.5; float strength=2.4; float density=1.1;
-      float w1=sin(st.x*freq*density+t)*0.5+0.5;
-      float w2=sin(st.y*freq*density*0.7-t*0.8+1.2)*0.5+0.5;
-      float w3=sin((st.x+st.y)*freq*0.6+t*0.5+2.1)*0.5+0.5;
-      float w4=sin((st.x-st.y)*freq*0.4-t*0.3+3.7)*0.5+0.5;
-      float field=w1*0.35+w2*0.25+w3*0.25+w4*0.15;
-      float warped=field+sin(field*6.28318*strength*0.15+t*0.4)*0.12; warped=clamp(warped,0.0,1.0);
-      float xGrad=smoothstep(0.0,1.0,uv.x);
-      vec3 col=mix(C3,C1,smoothstep(0.15,0.55,warped)); col=mix(col,C2,smoothstep(0.4,0.85,warped));
-      col=mix(col,C1,(1.0-xGrad)*0.4); col=mix(col,C2,xGrad*0.4);
-      float dark=(1.0-smoothstep(0.2,0.5,warped))*(1.0-smoothstep(0.2,0.8,xGrad));
-      col=mix(col,C3,dark*0.8); col*=1.1; col+=vec3(warped*0.04); col=clamp(col,0.0,1.0);
-      gl_FragColor=vec4(col,1.0);
-    }`;
-  function compile(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
-  const prog=gl.createProgram(); gl.attachShader(prog,compile(gl.VERTEX_SHADER,vsSrc)); gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fsSrc));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
-  const aPos=gl.getAttribLocation(prog,'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos,2,gl.FLOAT,false,0,0);
-  const uTime=gl.getUniformLocation(prog,'u_time'); const uRes=gl.getUniformLocation(prog,'u_res');
-  let start=performance.now();
-  function draw(){gl.uniform1f(uTime,(performance.now()-start)/1000); gl.uniform2f(uRes,canvas.width,canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); requestAnimationFrame(draw);}
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
   <nav class="site-nav">
@@ -435,42 +398,42 @@ body.nav-drawer-open { overflow: hidden; }
   <main class="region-main">
     <span class="kicker">New York City Weddings &amp; Events</span>
     <h1>Wedding Violinist & Pianist in New York City</h1>
-    <p>NYC-based and built for the city. Julie Schatz performs solo violin ceremonies, jazz piano cocktail hours, and full DJ + live hybrid sets at weddings, private events, and corporate galas across all five boroughs of New York City. Manhattan rooftops, Brooklyn waterfront venues, Queens museum receptions, Bronx country clubs, Staten Island estates — the load-in playbook is already written.</p>
+    <p>NYC-based and built for the city. Julie Schatz performs solo violin ceremonies, jazz piano cocktail hours, and full DJ + live hybrid sets at weddings, private events, and corporate galas across all five boroughs of New York City. Manhattan rooftops, Brooklyn waterfront venues, Queens museum receptions, Bronx country clubs, Staten Island estates: the load-in playbook is already written.</p>
     <div class="region-rule"></div>
 
     <h2>What NYC couples are asking for right now</h2>
     <p>What NYC couples are asking for right now: contemporary R&B and indie songs reimagined as solo violin ceremony arrangements, low-key acoustic piano during cocktail hour with a clean transition into a fuller DJ set for the reception, and bespoke first-dance arrangements built around the couple's specific song. About 60% of NYC bookings include at least one custom song request.</p>
 
     <h2>Logistics for NYC weddings</h2>
-    <p>NYC weddings come with their own logistics: tight load-in windows at venues with shared service entrances, elevator-only access at high-rise rooftop spaces, and venue rules around amplified sound after specific hours. Julie's setup is designed for the city — a portable amp and electric violin that fits in a single Uber XL run, a weatherproof keyboard rig for outdoor ceremonies, and arrival timing built around the venue's coordinator schedule. Setup runs 30–45 minutes from arrival to soundcheck.</p>
+    <p>NYC weddings come with their own logistics: tight load-in windows at venues with shared service entrances, elevator-only access at high-rise rooftop spaces, and venue rules around amplified sound after specific hours. Julie's setup is designed for the city: a portable amp and electric violin that fits in a single Uber XL run, a weatherproof keyboard rig for outdoor ceremonies, and arrival timing built around the venue's coordinator schedule. Setup runs 30–45 minutes from arrival to soundcheck.</p>
 
     <h2>Common questions about New York City bookings</h2>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How much does a wedding violinist cost in NYC?</h3>
-    <p>NYC wedding bookings include travel — no separate fee for Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, or Jersey City. Solo violin ceremony coverage in NYC starts at $595, the most-booked ceremony + cocktail hour package is $950, and the full-day soloist (ceremony + cocktail + dinner) is $1,800. The Soul Shades violin-and-piano duo starts at $2,400 (NYC ceremony) or $3,200 (NYC ceremony + cocktail). The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. Long Island, Westchester, Northern NJ, and Greenwich are at standard zone pricing; the Hudson Valley and beyond are custom-quoted. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
+    <p>NYC wedding bookings include travel, with no separate fee for Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, or Jersey City. Solo violin ceremony coverage in NYC starts at $595, the most-booked ceremony + cocktail hour package is $950, and the full-day soloist (ceremony + cocktail + dinner) is $1,800. The Soul Shades violin-and-piano duo starts at $2,400 (NYC ceremony) or $3,200 (NYC ceremony + cocktail). The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. Long Island, Westchester, Northern NJ, and Greenwich are at standard zone pricing; the Hudson Valley and beyond are custom-quoted. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you cover all five boroughs without a travel fee?</h3>
-    <p>Yes — Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, and Jersey City are all included in the NYC zone with travel built in. Long Island, Westchester, Northern New Jersey (Bergen County, Montclair), and Greenwich CT are at the next zone tier with standard zone pricing. Events farther out — eastern Long Island, the Hudson Valley, the Connecticut shoreline past New Haven — are custom-quoted based on venue distance; please confirm the venue address at the time of inquiry.</p>
+    <p>Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, and Jersey City are all included in the NYC zone with travel built in. Long Island, Westchester, Northern New Jersey (Bergen County, Montclair), and Greenwich CT are at the next zone tier with standard zone pricing. Events farther out (eastern Long Island, the Hudson Valley, the Connecticut shoreline past New Haven) are custom-quoted based on venue distance; please confirm the venue address at the time of inquiry.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How far in advance should we book a NYC wedding violinist?</h3>
-    <p>For Saturday weddings in peak season (May–October) at popular Manhattan and Brooklyn venues, 6–12 months out is typical. Off-season dates, weeknight events, and intimate ceremonies often book on much shorter timelines — sometimes 3–4 weeks. The earlier the inquiry, the more flexibility on custom song arrangements and ceremony rehearsals.</p>
+    <p>For Saturday weddings in peak season (May–October) at popular Manhattan and Brooklyn venues, 6–12 months out is typical. Off-season dates, weeknight events, and intimate ceremonies often book on much shorter timelines, sometimes 3–4 weeks. The earlier the inquiry, the more flexibility on custom song arrangements and ceremony rehearsals.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Can you handle outdoor ceremonies in Central Park or on Brooklyn rooftops?</h3>
-    <p>Yes — outdoor NYC weddings are a regular part of the calendar. Acoustic violin performs beautifully outdoors with no amplification needed. The keyboard rig and amp need cover from rain (most outdoor NYC venues have a tent or canopy), and load-in to park venues is coordinated with the venue's permit window. Wireless lavalier mics for officiants and vows are included on request.</p>
+    <p>Outdoor NYC weddings are a regular part of the calendar. Acoustic violin performs beautifully outdoors with no amplification needed. The keyboard rig and amp need cover from rain (most outdoor NYC venues have a tent or canopy), and load-in to park venues is coordinated with the venue's permit window. Wireless lavalier mics for officiants and vows are included on request.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you bring your own sound system / PA?</h3>
-    <p>Yes. Every NYC booking includes a low-profile, high-fidelity PA — wired XLR for indoor rooms, battery-powered amplification for rooftops and outdoor lawns, and wireless mics for ceremonies that need them. The setup fits in a single Uber XL load-in run, which matters for Manhattan venues with shared service entrances and elevator-only access. Setup is 30–45 minutes from arrival to soundcheck.</p>
+    <p>Yes. Every NYC booking includes a low-profile, high-fidelity PA: wired XLR for indoor rooms, battery-powered amplification for rooftops and outdoor lawns, and wireless mics for ceremonies that need them. The setup fits in a single Uber XL load-in run, which matters for Manhattan venues with shared service entrances and elevator-only access. Setup is 30–45 minutes from arrival to soundcheck.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Can one musician cover both ceremony and cocktail hour at the same NYC venue?</h3>
-    <p>Yes — that's the most-booked NYC configuration. Solo violin for the ceremony (prelude, processional, vows, recessional), then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician keeps the energy continuous and is significantly more cost-effective than booking separate ensembles.</p>
+    <p>That's the most-booked NYC configuration. Solo violin for the ceremony (prelude, processional, vows, recessional), then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician means a single load-in, a single point of contact, and one fee instead of two booked ensembles.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">What NYC venues has Julie performed at?</h3>
-    <p><!-- TODO: Julie to fill in real venue list — examples could include venue names across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island. Avoid fabricating venues she hasn't actually played. -->A current venue list is being assembled. To check whether Julie has performed at your specific venue, send a quick inquiry — typical response within 24 hours.</p>
+    <p><!-- TODO: Julie to fill in real venue list — examples could include venue names across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island. Avoid fabricating venues she hasn't actually played. -->A current venue list is being assembled. To check whether Julie has performed at your specific venue, send a quick inquiry; typical response within 24 hours.</p>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage", "dateModified": "2026-05-03",
       "mainEntity": [
-        {"@type": "Question", "name": "How much does a wedding violinist cost in NYC?", "acceptedAnswer": {"@type": "Answer", "text": "NYC wedding bookings include travel — no separate fee for Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, or Jersey City. Solo violin ceremony coverage in NYC starts at $595, the most-booked ceremony + cocktail hour package is $950, and the full-day soloist (ceremony + cocktail + dinner) is $1,800. The Soul Shades violin-and-piano duo starts at $2,400 (NYC ceremony) or $3,200 (NYC ceremony + cocktail). The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. Long Island, Westchester, Northern NJ, and Greenwich are at standard zone pricing; the Hudson Valley and beyond are custom-quoted."}},
-        {"@type": "Question", "name": "Do you cover all five boroughs without a travel fee?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, and Jersey City are all included in the NYC zone with travel built in. Long Island, Westchester, Northern New Jersey, and Greenwich CT are at the next zone tier with standard zone pricing. Events farther out are custom-quoted based on venue distance; please confirm the venue address at the time of inquiry."}},
-        {"@type": "Question", "name": "How far in advance should we book a NYC wedding violinist?", "acceptedAnswer": {"@type": "Answer", "text": "For Saturday weddings in peak season (May–October) at popular Manhattan and Brooklyn venues, 6–12 months out is typical. Off-season dates, weeknight events, and intimate ceremonies often book on much shorter timelines — sometimes 3–4 weeks."}},
-        {"@type": "Question", "name": "Can you handle outdoor ceremonies in Central Park or on Brooklyn rooftops?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — outdoor NYC weddings are a regular part of the calendar. Acoustic violin performs beautifully outdoors with no amplification needed. The keyboard rig and amp need cover from rain. Wireless lavalier mics for officiants and vows are included on request."}},
-        {"@type": "Question", "name": "Do you bring your own sound system / PA?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every NYC booking includes a low-profile, high-fidelity PA — wired XLR for indoor rooms, battery-powered amplification for rooftops and outdoor lawns, and wireless mics for ceremonies that need them. Setup is 30–45 minutes from arrival to soundcheck."}},
-        {"@type": "Question", "name": "Can one musician cover both ceremony and cocktail hour at the same NYC venue?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — that's the most-booked NYC configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician keeps the energy continuous and is significantly more cost-effective than booking separate ensembles."}}
+        {"@type": "Question", "name": "How much does a wedding violinist cost in NYC?", "acceptedAnswer": {"@type": "Answer", "text": "NYC wedding bookings include travel, with no separate fee for Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, or Jersey City. Solo violin ceremony coverage in NYC starts at $595, the most-booked ceremony + cocktail hour package is $950, and the full-day soloist (ceremony + cocktail + dinner) is $1,800. The Soul Shades violin-and-piano duo starts at $2,400 (NYC ceremony) or $3,200 (NYC ceremony + cocktail). The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. Long Island, Westchester, Northern NJ, and Greenwich are at standard zone pricing; the Hudson Valley and beyond are custom-quoted."}},
+        {"@type": "Question", "name": "Do you cover all five boroughs without a travel fee?", "acceptedAnswer": {"@type": "Answer", "text": "Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Hoboken, and Jersey City are all included in the NYC zone with travel built in. Long Island, Westchester, Northern New Jersey, and Greenwich CT are at the next zone tier with standard zone pricing. Events farther out are custom-quoted based on venue distance; please confirm the venue address at the time of inquiry."}},
+        {"@type": "Question", "name": "How far in advance should we book a NYC wedding violinist?", "acceptedAnswer": {"@type": "Answer", "text": "For Saturday weddings in peak season (May–October) at popular Manhattan and Brooklyn venues, 6–12 months out is typical. Off-season dates, weeknight events, and intimate ceremonies often book on much shorter timelines, sometimes 3–4 weeks."}},
+        {"@type": "Question", "name": "Can you handle outdoor ceremonies in Central Park or on Brooklyn rooftops?", "acceptedAnswer": {"@type": "Answer", "text": "Outdoor NYC weddings are a regular part of the calendar. Acoustic violin performs beautifully outdoors with no amplification needed. The keyboard rig and amp need cover from rain. Wireless lavalier mics for officiants and vows are included on request."}},
+        {"@type": "Question", "name": "Do you bring your own sound system / PA?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every NYC booking includes a low-profile, high-fidelity PA: wired XLR for indoor rooms, battery-powered amplification for rooftops and outdoor lawns, and wireless mics for ceremonies that need them. Setup is 30–45 minutes from arrival to soundcheck."}},
+        {"@type": "Question", "name": "Can one musician cover both ceremony and cocktail hour at the same NYC venue?", "acceptedAnswer": {"@type": "Answer", "text": "That's the most-booked NYC configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician means a single load-in, a single point of contact, and one fee instead of two booked ensembles."}}
       ]
     }
     </script>

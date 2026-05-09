@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALL 9 Packs | Julie Schatz Sample Packs</title>
-<meta name="description" content="All nine Julie Schatz sample packs in one bundle — vocal hooks, violin, piano, organ, keys, MIDI loops, and bass. Royalty-free, instant Payhip download.">
+<meta name="description" content="All nine Julie Schatz sample packs in one bundle: vocal hooks, violin, piano, organ, keys, MIDI loops, and bass. Royalty-free, instant Payhip download.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/sample-pack/all-9-packs-bundle/">
 <meta property="og:type" content="product">
 <meta property="og:title" content="ALL 9 Packs | Julie Schatz">
-<meta property="og:description" content="The complete library — bundle — Royalty-free sample pack by Julie Schatz.">
+<meta property="og:description" content="The complete library · bundle · Royalty-free sample pack by Julie Schatz.">
 <meta property="og:url" content="https://julieschatzmusic.com/sample-pack/all-9-packs-bundle/">
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-beats.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz · NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ALL 9 Packs | Julie Schatz">
-<meta name="twitter:description" content="The complete library — bundle">
+<meta name="twitter:description" content="The complete library · bundle">
 <meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-beats.jpg">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="icon" type="image/png" href="../assets/julie-schatz-logo.png">
@@ -30,7 +30,7 @@
   "sku": "PK6Cm",
   "name": "ALL 9 Packs",
   "image": "https://julieschatzmusic.com/assets/beats/covers/PK6Cm.png",
-  "description": "All nine premium sample packs in one download. Live vocal hooks, live violin and piano, soulful keys and organ loops, layered melodies, pads and synth leads, bass lines, and full MIDI sets — every pack on this page, royalty-free, in a single bundle.",
+  "description": "All nine premium sample packs in one download. Live vocal hooks, live violin and piano, soulful keys and organ loops, layered melodies, pads and synth leads, bass lines, and full MIDI sets: every pack on this page, royalty-free, in a single bundle.",
   "brand": {"@type": "MusicGroup", "name": "Julie Schatz"},
   "offers": {
     "@type": "Offer",
@@ -618,69 +618,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
-  resize();
-  window.addEventListener('resize', resize);
-  const vsSrc = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
-  const fsSrc = `
-    precision highp float;
-    uniform float u_time; uniform vec2 u_res;
-    vec3 C1 = vec3(0.337, 0.024, 1.000);
-    vec3 C2 = vec3(0.482, 0.173, 0.749);
-    vec3 C3 = vec3(0.000, 0.000, 0.000);
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      float angle = radians(235.0);
-      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5; st += vec2(-0.5, 0.1);
-      float t = u_time * 0.1;
-      float freq = 5.5; float strength = 2.4; float density = 1.1;
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
-      warped = clamp(warped, 0.0, 1.0);
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
-      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-      col = mix(col, C1, (1.0 - xGrad) * 0.4);
-      col = mix(col, C2, xGrad * 0.4);
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8);
-      col *= 1.1; col += vec3(warped * 0.04); col = clamp(col, 0.0, 1.0);
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-  function compile(type, src) { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
-  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes = gl.getUniformLocation(prog, 'u_res');
-  let start = performance.now();
-  function draw() { gl.uniform1f(uTime, (performance.now() - start) / 1000); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(draw); }
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
 
@@ -733,7 +671,7 @@ body.nav-drawer-open { overflow: hidden; }
     <div class="product-info">
       <span class="product-category">Bundle</span>
       <h1 class="product-title">ALL 9 Packs</h1>
-      <p class="product-tagline">The complete library — bundle</p>
+      <p class="product-tagline">The complete library · bundle</p>
       <div class="product-rule"></div>
       <div class="product-price"><span>$49.99</span><small>USD</small></div>
 
@@ -742,7 +680,7 @@ body.nav-drawer-open { overflow: hidden; }
         <a class="btn-secondary payhip-add-to-cart-button" data-theme="none" data-product="PK6Cm" href="javascript:void(0)" role="button">Add to Cart</a>
       </div>
 
-      <p class="product-description">All nine premium sample packs in one download. Live vocal hooks, live violin and piano, soulful keys and organ loops, layered melodies, pads and synth leads, bass lines, and full MIDI sets — every pack on this page, royalty-free, in a single bundle.</p>
+      <p class="product-description">All nine premium sample packs in one download. Live vocal hooks, live violin and piano, soulful keys and organ loops, layered melodies, pads and synth leads, bass lines, and full MIDI sets: every pack on this page, royalty-free, in a single bundle.</p>
       <div class="product-format">ZIP · Audio (WAV) and MIDI</div>
     </div>
   </main>

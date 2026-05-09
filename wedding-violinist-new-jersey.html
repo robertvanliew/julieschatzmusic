@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Jersey Wedding Violinist & Pianist | Julie Schatz</title>
-<meta name="description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey — from Jersey City rooftops to Princeton estates and the Jersey Shore.">
+<meta name="description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey, from Jersey City rooftops to Princeton estates and the Jersey Shore.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/wedding-violinist-new-jersey/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="New Jersey Wedding Violinist & Pianist | Julie Schatz">
-<meta property="og:description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey — from Jersey City rooftops to Princeton estates and the Jersey Shore.">
+<meta property="og:description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey, from Jersey City rooftops to Princeton estates and the Jersey Shore.">
 <meta property="og:url" content="https://julieschatzmusic.com/wedding-violinist-new-jersey/">
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-nj.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz, NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="New Jersey Wedding Violinist & Pianist | Julie Schatz">
-<meta name="twitter:description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey — from Jersey City rooftops to Princeton estates and the Jersey Shore.">
+<meta name="twitter:description" content="Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey, from Jersey City rooftops to Princeton estates and the Jersey Shore.">
 <meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-nj.jpg">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
@@ -28,11 +28,11 @@
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "MusicGroup"],
   "@id": "https://julieschatzmusic.com/wedding-violinist-new-jersey/#business-nj",
-  "name": "Julie Schatz Music — New Jersey",
+  "name": "Julie Schatz Music · New Jersey",
   "url": "https://julieschatzmusic.com/wedding-violinist-new-jersey/",
   "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
   "logo": "https://julieschatzmusic.com/assets/julie-schatz-logo.png",
-  "description": "Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey — from Jersey City rooftops to Princeton estates and the Jersey Shore.",
+  "description": "Wedding ceremony violin and cocktail hour jazz piano for venues across New Jersey, from Jersey City rooftops to Princeton estates and the Jersey Shore.",
   "priceRange": "$$$",
   "address": { "@type": "PostalAddress", "addressLocality": "Brooklyn", "addressRegion": "NY", "addressCountry": "US" },
   "areaServed": [{"@type": "AdministrativeArea", "name": "New Jersey"}],
@@ -353,44 +353,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas=document.getElementById('shader-bg'); const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl'); if(!gl)return;
-  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
-  resize(); window.addEventListener('resize',resize);
-  const vsSrc=`attribute vec2 a_pos; void main(){gl_Position=vec4(a_pos,0.0,1.0);}`;
-  const fsSrc=`precision highp float; uniform float u_time; uniform vec2 u_res;
-    vec3 C1=vec3(0.337,0.024,1.000); vec3 C2=vec3(0.482,0.173,0.749); vec3 C3=vec3(0.0,0.0,0.0);
-    void main(){
-      vec2 uv=gl_FragCoord.xy/u_res; float angle=radians(235.0);
-      mat2 rot=mat2(cos(angle),-sin(angle),sin(angle),cos(angle));
-      vec2 st=rot*(uv-0.5)+0.5; st+=vec2(-0.5,0.1);
-      float t=u_time*0.1; float freq=5.5; float strength=2.4; float density=1.1;
-      float w1=sin(st.x*freq*density+t)*0.5+0.5;
-      float w2=sin(st.y*freq*density*0.7-t*0.8+1.2)*0.5+0.5;
-      float w3=sin((st.x+st.y)*freq*0.6+t*0.5+2.1)*0.5+0.5;
-      float w4=sin((st.x-st.y)*freq*0.4-t*0.3+3.7)*0.5+0.5;
-      float field=w1*0.35+w2*0.25+w3*0.25+w4*0.15;
-      float warped=field+sin(field*6.28318*strength*0.15+t*0.4)*0.12; warped=clamp(warped,0.0,1.0);
-      float xGrad=smoothstep(0.0,1.0,uv.x);
-      vec3 col=mix(C3,C1,smoothstep(0.15,0.55,warped)); col=mix(col,C2,smoothstep(0.4,0.85,warped));
-      col=mix(col,C1,(1.0-xGrad)*0.4); col=mix(col,C2,xGrad*0.4);
-      float dark=(1.0-smoothstep(0.2,0.5,warped))*(1.0-smoothstep(0.2,0.8,xGrad));
-      col=mix(col,C3,dark*0.8); col*=1.1; col+=vec3(warped*0.04); col=clamp(col,0.0,1.0);
-      gl_FragColor=vec4(col,1.0);
-    }`;
-  function compile(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
-  const prog=gl.createProgram(); gl.attachShader(prog,compile(gl.VERTEX_SHADER,vsSrc)); gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fsSrc));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
-  const aPos=gl.getAttribLocation(prog,'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos,2,gl.FLOAT,false,0,0);
-  const uTime=gl.getUniformLocation(prog,'u_time'); const uRes=gl.getUniformLocation(prog,'u_res');
-  let start=performance.now();
-  function draw(){gl.uniform1f(uTime,(performance.now()-start)/1000); gl.uniform2f(uRes,canvas.width,canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); requestAnimationFrame(draw);}
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
   <nav class="site-nav">
@@ -435,42 +398,42 @@ body.nav-drawer-open { overflow: hidden; }
   <main class="region-main">
     <span class="kicker">New Jersey Weddings &amp; Events</span>
     <h1>Wedding Violinist & Pianist in New Jersey</h1>
-    <p>From Jersey City rooftops to Princeton estates, from Morristown country clubs to the Jersey Shore and down to Cape May — Julie Schatz performs solo violin and jazz piano at weddings and private events across all of New Jersey. NYC-based with NJ Transit and the PATH at the door, NJ bookings are essentially a home market: short travel, fast load-in, no out-of-state surcharges within the state.</p>
+    <p>From Jersey City rooftops to Princeton estates, from Morristown country clubs to the Jersey Shore and down to Cape May, Julie Schatz performs solo violin and jazz piano at weddings and private events across all of New Jersey. NYC-based with NJ Transit and the PATH at the door, NJ bookings are essentially a home market: short travel, fast load-in, no out-of-state surcharges within the state.</p>
     <div class="region-rule"></div>
 
     <h2>What NJ couples are asking for right now</h2>
-    <p>What New Jersey couples are asking for right now: full ceremony + cocktail packages where the violin moves from prelude through processional and recessional, then transitions into solo jazz piano during cocktails. Custom arrangements of pop and indie first-dance songs are popular — especially for couples with eclectic music taste who want the wedding to sound personal rather than templated.</p>
+    <p>What New Jersey couples are asking for right now: full ceremony + cocktail packages where the violin moves from prelude through processional and recessional, then transitions into solo jazz piano during cocktails. Custom arrangements of pop and indie first-dance songs are popular, especially for couples with eclectic music taste who want the wedding to sound personal rather than templated.</p>
 
     <h2>Logistics for NJ weddings</h2>
-    <p>NJ weddings span four very different logistical worlds: urban North Jersey (Jersey City, Hoboken, Newark — usually rooftops or boutique hotels), the suburban estate belt (Morristown, Madison, Princeton, Far Hills — typically older country clubs and historic estates), the Jersey Shore (Asbury Park, Spring Lake, Cape May — beachfront and boardwalk venues with weather contingencies), and the South Jersey wineries. Julie's setup adapts to each — most ceremonies need 45 minutes for load-in and soundcheck, plus the standard weather conversation for any outdoor element.</p>
+    <p>NJ weddings span four very different logistical worlds: urban North Jersey (Jersey City, Hoboken, Newark, usually rooftops or boutique hotels), the suburban estate belt (Morristown, Madison, Princeton, Far Hills, typically older country clubs and historic estates), the Jersey Shore (Asbury Park, Spring Lake, Cape May, beachfront and boardwalk venues with weather contingencies), and the South Jersey wineries. Julie's setup adapts to each. Most ceremonies need 45 minutes for load-in and soundcheck, plus the standard weather conversation for any outdoor element.</p>
 
     <h2>Common questions about New Jersey bookings</h2>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How much does a wedding violinist cost for a New Jersey wedding?</h3>
-    <p>Pricing is zone-based. Hoboken and Jersey City are part of the NYC zone with travel included — wedding ceremony from $595, ceremony + cocktail from $950, full-day soloist (ceremony + cocktail + dinner) from $1,800. The rest of Northern New Jersey (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) is at standard zone pricing: ceremony $745, ceremony + cocktail $1,100, full-day soloist $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (zone) for ceremony, or $3,200 / $3,350 for ceremony + cocktail. The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. South Jersey and the Jersey Shore beyond Asbury Park are custom-quoted. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
+    <p>Pricing is zone-based. Hoboken and Jersey City are part of the NYC zone with travel included: wedding ceremony from $595, ceremony + cocktail from $950, full-day soloist (ceremony + cocktail + dinner) from $1,800. The rest of Northern New Jersey (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) is at standard zone pricing: ceremony $745, ceremony + cocktail $1,100, full-day soloist $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (zone) for ceremony, or $3,200 / $3,350 for ceremony + cocktail. The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. South Jersey and the Jersey Shore beyond Asbury Park are custom-quoted. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you charge a travel fee for New Jersey weddings?</h3>
-    <p>Travel is included for Hoboken and Jersey City — they're part of the NYC zone. The rest of Northern New Jersey (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) and the Jersey Shore through Asbury Park are at standard zone pricing — no separate travel fee, just the zone-tier rate. For South Jersey, Cape May, or venues beyond the Pine Barrens, the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry so the quote reflects the correct zone.</p>
+    <p>Travel is included for Hoboken and Jersey City; they're part of the NYC zone. The rest of Northern New Jersey (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) and the Jersey Shore through Asbury Park are at standard zone pricing, with no separate travel fee, just the zone-tier rate. For South Jersey, Cape May, or venues beyond the Pine Barrens, the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry so the quote reflects the correct zone.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How far in advance should we book a NJ wedding violinist?</h3>
     <p>For Saturday weddings in peak season (May–October) at popular NJ estate venues and shore properties, 6–12 months out is typical. Off-season dates and weeknight bookings often work on shorter timelines.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you do Jersey Shore beach weddings?</h3>
-    <p>Yes — beach ceremonies are a regular part of summer bookings (Spring Lake, Asbury Park, Avon-by-the-Sea, Long Beach Island). Acoustic violin handles wind well; the keyboard rig and amp need a tent, gazebo, or porch for shade and weather protection. Load-in is coordinated with the wedding planner so equipment is set before guest arrival.</p>
+    <p>Beach ceremonies are a regular part of summer bookings (Spring Lake, Asbury Park, Avon-by-the-Sea, Long Beach Island). Acoustic violin handles wind well; the keyboard rig and amp need a tent, gazebo, or porch for shade and weather protection. Load-in is coordinated with the wedding planner so equipment is set before guest arrival.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Can you learn a custom song for our NJ ceremony or first dance?</h3>
-    <p>Almost always, yes. Julie regularly arranges custom versions of pop, R&amp;B, indie, and classical songs for solo violin and piano — processionals, recessionals, first dances, and unity-moment songs. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300. Send the song reference as early as possible.</p>
+    <p>Almost always, yes. Julie regularly arranges custom versions of pop, R&amp;B, indie, and classical songs for solo violin and piano: processionals, recessionals, first dances, and unity-moment songs. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300. Send the song reference as early as possible.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Can one musician cover both the ceremony and cocktail hour?</h3>
-    <p>Yes — that's the most-booked NJ configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour at the same venue. One musician keeps the energy continuous and is significantly more cost-effective than booking separate ensembles.</p>
+    <p>That's the most-booked NJ configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour at the same venue. One musician means a single load-in, a single point of contact, and one fee instead of two booked ensembles.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">What NJ venues has Julie performed at?</h3>
-    <p><!-- TODO: Julie to fill in real venue list — should span Jersey City, Hoboken, Princeton, Morristown, Asbury Park, Cape May, and the wineries. Don't fabricate. -->A current venue list is being assembled. To check whether Julie has performed at your specific NJ venue, send a quick inquiry — typical response within 24 hours.</p>
+    <p><!-- TODO: Julie to fill in real venue list — should span Jersey City, Hoboken, Princeton, Morristown, Asbury Park, Cape May, and the wineries. Don't fabricate. -->A current venue list is being assembled. To check whether Julie has performed at your specific NJ venue, send a quick inquiry; typical response within 24 hours.</p>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage", "dateModified": "2026-05-03",
       "mainEntity": [
-        {"@type": "Question", "name": "How much does a wedding violinist cost for a New Jersey wedding?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is zone-based. Hoboken and Jersey City are part of the NYC zone with travel included — wedding ceremony from $595, ceremony + cocktail from $950, full-day soloist from $1,800. The rest of Northern NJ (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) is at standard zone pricing: ceremony $745, ceremony + cocktail $1,100, full-day soloist $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (zone). The DJ DX × Julie duo starts at $2,200. South Jersey and the Jersey Shore beyond Asbury Park are custom-quoted."}},
-        {"@type": "Question", "name": "Do you charge a travel fee for New Jersey weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Travel is included for Hoboken and Jersey City — part of the NYC zone. The rest of Northern New Jersey and the Jersey Shore through Asbury Park are at standard zone pricing with no separate travel fee, just the zone-tier rate. For South Jersey, Cape May, or venues beyond the Pine Barrens, the booking is custom-quoted based on venue distance."}},
+        {"@type": "Question", "name": "How much does a wedding violinist cost for a New Jersey wedding?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is zone-based. Hoboken and Jersey City are part of the NYC zone with travel included: wedding ceremony from $595, ceremony + cocktail from $950, full-day soloist from $1,800. The rest of Northern NJ (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) is at standard zone pricing: ceremony $745, ceremony + cocktail $1,100, full-day soloist $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (zone). The DJ DX × Julie duo starts at $2,200. South Jersey and the Jersey Shore beyond Asbury Park are custom-quoted."}},
+        {"@type": "Question", "name": "Do you charge a travel fee for New Jersey weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Travel is included for Hoboken and Jersey City; they're part of the NYC zone. The rest of Northern New Jersey and the Jersey Shore through Asbury Park are at standard zone pricing with no separate travel fee, just the zone-tier rate. For South Jersey, Cape May, or venues beyond the Pine Barrens, the booking is custom-quoted based on venue distance."}},
         {"@type": "Question", "name": "How far in advance should we book a NJ wedding violinist?", "acceptedAnswer": {"@type": "Answer", "text": "For Saturday weddings in peak season (May–October) at popular NJ estate venues and shore properties, 6–12 months out is typical. Off-season dates and weeknight bookings often work on shorter timelines."}},
-        {"@type": "Question", "name": "Do you do Jersey Shore beach weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — beach ceremonies are a regular part of summer bookings (Spring Lake, Asbury Park, Avon-by-the-Sea, Long Beach Island). Acoustic violin handles wind well; the keyboard rig needs cover from sun and weather."}},
+        {"@type": "Question", "name": "Do you do Jersey Shore beach weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Beach ceremonies are a regular part of summer bookings (Spring Lake, Asbury Park, Avon-by-the-Sea, Long Beach Island). Acoustic violin handles wind well; the keyboard rig needs cover from sun and weather."}},
         {"@type": "Question", "name": "Can you learn a custom song for our NJ ceremony or first dance?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always, yes. Julie regularly arranges custom versions of pop, R&B, indie, and classical songs for solo violin and piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300."}},
-        {"@type": "Question", "name": "Can one musician cover both the ceremony and cocktail hour?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — that's the most-booked NJ configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician keeps the energy continuous and is significantly more cost-effective than booking separate ensembles."}}
+        {"@type": "Question", "name": "Can one musician cover both the ceremony and cocktail hour?", "acceptedAnswer": {"@type": "Answer", "text": "That's the most-booked NJ configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician means a single load-in, a single point of contact, and one fee instead of two booked ensembles."}}
       ]
     }
     </script>

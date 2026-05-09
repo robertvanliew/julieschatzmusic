@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connecticut Wedding Violinist & Pianist | Julie Schatz</title>
-<meta name="description" content="Live wedding music across Connecticut — Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
+<meta name="description" content="Live wedding music across Connecticut: Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/wedding-violinist-connecticut/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Connecticut Wedding Violinist & Pianist | Julie Schatz">
-<meta property="og:description" content="Live wedding music across Connecticut — Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
+<meta property="og:description" content="Live wedding music across Connecticut: Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
 <meta property="og:url" content="https://julieschatzmusic.com/wedding-violinist-connecticut/">
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-ct.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz, NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Connecticut Wedding Violinist & Pianist | Julie Schatz">
-<meta name="twitter:description" content="Live wedding music across Connecticut — Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
+<meta name="twitter:description" content="Live wedding music across Connecticut: Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin, jazz piano cocktail hour, and DJ sets.">
 <meta name="twitter:image" content="https://julieschatzmusic.com/assets/og/og-ct.jpg">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" href="assets/julie-schatz-logo.png">
@@ -28,11 +28,11 @@
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "MusicGroup"],
   "@id": "https://julieschatzmusic.com/wedding-violinist-connecticut/#business-ct",
-  "name": "Julie Schatz Music — Connecticut",
+  "name": "Julie Schatz Music · Connecticut",
   "url": "https://julieschatzmusic.com/wedding-violinist-connecticut/",
   "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
   "logo": "https://julieschatzmusic.com/assets/julie-schatz-logo.png",
-  "description": "Live wedding music across Connecticut — Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin ceremony, jazz piano cocktail hour, and full DJ sets.",
+  "description": "Live wedding music across Connecticut: Greenwich, Westport, Litchfield Hills, and the shoreline. Solo violin ceremony, jazz piano cocktail hour, and full DJ sets.",
   "priceRange": "$$$",
   "address": { "@type": "PostalAddress", "addressLocality": "Brooklyn", "addressRegion": "NY", "addressCountry": "US" },
   "areaServed": [{"@type": "AdministrativeArea", "name": "Connecticut"}],
@@ -353,44 +353,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas=document.getElementById('shader-bg'); const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl'); if(!gl)return;
-  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
-  resize(); window.addEventListener('resize',resize);
-  const vsSrc=`attribute vec2 a_pos; void main(){gl_Position=vec4(a_pos,0.0,1.0);}`;
-  const fsSrc=`precision highp float; uniform float u_time; uniform vec2 u_res;
-    vec3 C1=vec3(0.337,0.024,1.000); vec3 C2=vec3(0.482,0.173,0.749); vec3 C3=vec3(0.0,0.0,0.0);
-    void main(){
-      vec2 uv=gl_FragCoord.xy/u_res; float angle=radians(235.0);
-      mat2 rot=mat2(cos(angle),-sin(angle),sin(angle),cos(angle));
-      vec2 st=rot*(uv-0.5)+0.5; st+=vec2(-0.5,0.1);
-      float t=u_time*0.1; float freq=5.5; float strength=2.4; float density=1.1;
-      float w1=sin(st.x*freq*density+t)*0.5+0.5;
-      float w2=sin(st.y*freq*density*0.7-t*0.8+1.2)*0.5+0.5;
-      float w3=sin((st.x+st.y)*freq*0.6+t*0.5+2.1)*0.5+0.5;
-      float w4=sin((st.x-st.y)*freq*0.4-t*0.3+3.7)*0.5+0.5;
-      float field=w1*0.35+w2*0.25+w3*0.25+w4*0.15;
-      float warped=field+sin(field*6.28318*strength*0.15+t*0.4)*0.12; warped=clamp(warped,0.0,1.0);
-      float xGrad=smoothstep(0.0,1.0,uv.x);
-      vec3 col=mix(C3,C1,smoothstep(0.15,0.55,warped)); col=mix(col,C2,smoothstep(0.4,0.85,warped));
-      col=mix(col,C1,(1.0-xGrad)*0.4); col=mix(col,C2,xGrad*0.4);
-      float dark=(1.0-smoothstep(0.2,0.5,warped))*(1.0-smoothstep(0.2,0.8,xGrad));
-      col=mix(col,C3,dark*0.8); col*=1.1; col+=vec3(warped*0.04); col=clamp(col,0.0,1.0);
-      gl_FragColor=vec4(col,1.0);
-    }`;
-  function compile(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
-  const prog=gl.createProgram(); gl.attachShader(prog,compile(gl.VERTEX_SHADER,vsSrc)); gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fsSrc));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
-  const aPos=gl.getAttribLocation(prog,'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos,2,gl.FLOAT,false,0,0);
-  const uTime=gl.getUniformLocation(prog,'u_time'); const uRes=gl.getUniformLocation(prog,'u_res');
-  let start=performance.now();
-  function draw(){gl.uniform1f(uTime,(performance.now()-start)/1000); gl.uniform2f(uRes,canvas.width,canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); requestAnimationFrame(draw);}
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
   <nav class="site-nav">
@@ -435,30 +398,30 @@ body.nav-drawer-open { overflow: hidden; }
   <main class="region-main">
     <span class="kicker">Connecticut Weddings &amp; Events</span>
     <h1>Wedding Violinist & Pianist in Connecticut</h1>
-    <p>Connecticut weddings have a different rhythm than NYC bookings — more estate, more old club, more inn. Julie Schatz performs solo violin ceremonies and jazz piano cocktail hours at weddings and private events across the Connecticut shoreline (Greenwich, Westport, Old Saybrook, Mystic), the Litchfield Hills (Kent, Washington, Litchfield, Salisbury), and inland venues from Hartford to New Haven. Travel from Brooklyn is straightforward — Metro-North up the Hudson Line or a 90-minute drive to the shoreline.</p>
+    <p>Connecticut weddings have a different rhythm than NYC bookings: more estate, more old club, more inn. Julie Schatz performs solo violin ceremonies and jazz piano cocktail hours at weddings and private events across the Connecticut shoreline (Greenwich, Westport, Old Saybrook, Mystic), the Litchfield Hills (Kent, Washington, Litchfield, Salisbury), and inland venues from Hartford to New Haven. Travel from Brooklyn is straightforward: Metro-North up the Hudson Line or a 90-minute drive to the shoreline.</p>
     <div class="region-rule"></div>
 
     <h2>What CT couples are asking for right now</h2>
-    <p>What Connecticut couples are asking for right now: a refined classical and jazz repertoire for ceremonies in stately venues, with one or two contemporary surprises for the recessional or first dance. Custom arrangements outside the existing repertoire are an add-on (+$200 per song) and especially popular for CT bookings — couples often have a specific song from their relationship history they want reimagined for solo violin or piano.</p>
+    <p>What Connecticut couples are asking for right now: a refined classical and jazz repertoire for ceremonies in stately venues, with one or two contemporary surprises for the recessional or first dance. Custom arrangements outside the existing repertoire are an add-on (+$200 per song) and especially popular for CT bookings; couples often have a specific song from their relationship history they want reimagined for solo violin or piano.</p>
 
     <h2>Logistics for CT weddings</h2>
-    <p>Connecticut venues skew historic: 18th-century inns, mid-century country clubs, restored barns, and shoreline estates. Most have in-house pianos (typically uprights, occasionally a baby grand), so cocktail-hour piano sets often happen on the venue's instrument with a same-day tuning. For ceremonies, the acoustic violin reads beautifully in stone-and-wood spaces. Outdoor ceremonies on shoreline lawns and Litchfield estate gardens are common — weather contingency for the keyboard rig is part of every booking conversation.</p>
+    <p>Connecticut venues skew historic: 18th-century inns, mid-century country clubs, restored barns, and shoreline estates. Most have in-house pianos (typically uprights, occasionally a baby grand), so cocktail-hour piano sets often happen on the venue's instrument with a same-day tuning. For ceremonies, the acoustic violin reads beautifully in stone-and-wood spaces. Outdoor ceremonies on shoreline lawns and Litchfield estate gardens are common; weather contingency for the keyboard rig is part of every booking conversation.</p>
 
     <h2>Common questions about Connecticut bookings</h2>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How much does a wedding violinist cost for a Connecticut wedding?</h3>
-    <p>Pricing is zone-based. Greenwich and the lower Fairfield County corridor (Stamford, Westport, New Canaan, Darien) are at standard zone pricing — wedding ceremony $745, ceremony + cocktail $1,100, full-day soloist (ceremony + cocktail + dinner) $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (Greenwich/zone) for ceremony, or $3,200 / $3,350 for ceremony + cocktail. The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. The shoreline past New Haven, Mystic, the eastern shoreline, and the Litchfield Hills are custom-quoted based on venue distance. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
+    <p>Pricing is zone-based. Greenwich and the lower Fairfield County corridor (Stamford, Westport, New Canaan, Darien) are at standard zone pricing: wedding ceremony $745, ceremony + cocktail $1,100, full-day soloist (ceremony + cocktail + dinner) $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (Greenwich/zone) for ceremony, or $3,200 / $3,350 for ceremony + cocktail. The DJ DX × Julie duo (DJ + live violin) starts at $2,200 for the Essential 3-hour reception experience. The shoreline past New Haven, Mystic, the eastern shoreline, and the Litchfield Hills are custom-quoted based on venue distance. <a href="/wedding-violinist-pricing/">See full rate sheet →</a></p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you play at Greenwich and Westport weddings?</h3>
-    <p>Yes — the Greenwich/Westport shoreline is a regular part of the calendar, with bookings at private estates, country clubs, and shoreline boutique hotels. Travel from Brooklyn is roughly 60–75 minutes by car. Greenwich and lower Fairfield County (Stamford, Westport, New Canaan, Darien) are at standard zone pricing — no separate travel fee, just the zone-tier rate.</p>
+    <p>The Greenwich/Westport shoreline is a regular part of the calendar, with bookings at private estates, country clubs, and shoreline boutique hotels. Travel from Brooklyn is roughly 60–75 minutes by car. Greenwich and lower Fairfield County (Stamford, Westport, New Canaan, Darien) are at standard zone pricing, with no separate travel fee, just the zone-tier rate.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you charge a travel fee for Connecticut weddings?</h3>
-    <p>Greenwich, Stamford, Westport, New Canaan, Darien, and the rest of lower Fairfield County are at standard zone pricing — no separate travel fee, just the zone-tier rate built into the package price. For events farther into Connecticut (the Litchfield Hills, the eastern shoreline past New Haven, Mystic, Hartford), the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry so the quote reflects the correct zone.</p>
+    <p>Greenwich, Stamford, Westport, New Canaan, Darien, and the rest of lower Fairfield County are at standard zone pricing, with no separate travel fee, just the zone-tier rate built into the package price. For events farther into Connecticut (the Litchfield Hills, the eastern shoreline past New Haven, Mystic, Hartford), the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry so the quote reflects the correct zone.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">How far in advance should we book a CT wedding violinist?</h3>
     <p>For Saturday weddings in peak season (May–October) at popular Connecticut estate venues and shoreline properties, 6–12 months out is typical. Off-season bookings, weeknight events, and intimate ceremonies often work on shorter timelines.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Can you learn a custom song for our CT ceremony or first dance?</h3>
-    <p>Almost always, yes. Custom arrangements are especially popular with Connecticut couples — pop, R&amp;B, indie, and classical songs reimagined for solo violin or piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300. Send the song reference as early as possible so there's time to prepare a proper arrangement.</p>
+    <p>Almost always, yes. Custom arrangements are especially popular with Connecticut couples: pop, R&amp;B, indie, and classical songs reimagined for solo violin or piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300. Send the song reference as early as possible so there's time to prepare a proper arrangement.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">Do you bring your own sound system / PA?</h3>
-    <p>Yes. For ceremonies in CT's stone-and-wood spaces, acoustic violin often carries the room without amplification. For larger venues, outdoor lawns, and shoreline ceremonies, a low-profile, high-fidelity PA is included along with wireless lavalier mics for officiants and vows when needed. Most CT venues have an in-house piano (typically upright, occasionally a baby grand) — cocktail-hour piano sets often happen on the venue's instrument with a same-day tuning.</p>
+    <p>Yes. For ceremonies in CT's stone-and-wood spaces, acoustic violin often carries the room without amplification. For larger venues, outdoor lawns, and shoreline ceremonies, a low-profile, high-fidelity PA is included along with wireless lavalier mics for officiants and vows when needed. Most CT venues have an in-house piano (typically upright, occasionally a baby grand), so cocktail-hour piano sets often happen on the venue's instrument with a same-day tuning.</p>
     <h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:clamp(22px, 2.4vw, 30px);line-height:1.25;color:#fff;margin:32px 0 12px;letter-spacing:-0.005em;">What CT venues has Julie performed at?</h3>
-    <p><!-- TODO: Julie to fill in real venue list — should span Greenwich, Westport, the Litchfield Hills, the shoreline (Old Saybrook, Mystic), and the Hartford/New Haven inland venues. Don't fabricate. -->A current venue list is being assembled. To check whether Julie has performed at your specific Connecticut venue, send a quick inquiry — typical response within 24 hours.</p>
+    <p><!-- TODO: Julie to fill in real venue list — should span Greenwich, Westport, the Litchfield Hills, the shoreline (Old Saybrook, Mystic), and the Hartford/New Haven inland venues. Don't fabricate. -->A current venue list is being assembled. To check whether Julie has performed at your specific Connecticut venue, send a quick inquiry; typical response within 24 hours.</p>
 
     <script type="application/ld+json">
     {
@@ -466,10 +429,10 @@ body.nav-drawer-open { overflow: hidden; }
       "@type": "FAQPage", "dateModified": "2026-05-03",
       "mainEntity": [
         {"@type": "Question", "name": "How much does a wedding violinist cost for a Connecticut wedding?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is zone-based. Greenwich and lower Fairfield County (Stamford, Westport, New Canaan, Darien) are at standard zone pricing: ceremony $745, ceremony + cocktail $1,100, full-day soloist $1,950. The Soul Shades violin-and-piano duo starts at $2,400 (NYC) / $2,550 (Greenwich/zone) for ceremony or $3,200 / $3,350 for ceremony + cocktail. The DJ DX × Julie duo (DJ + live violin) starts at $2,200. The shoreline past New Haven, Mystic, the eastern shoreline, and the Litchfield Hills are custom-quoted based on venue distance."}},
-        {"@type": "Question", "name": "Do you play at Greenwich and Westport weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the Greenwich/Westport shoreline is a regular part of the calendar, with bookings at private estates, country clubs, and shoreline boutique hotels. Travel from Brooklyn is roughly 60–75 minutes by car. Greenwich and lower Fairfield County are at standard zone pricing — no separate travel fee, just the zone-tier rate."}},
-        {"@type": "Question", "name": "Do you charge a travel fee for Connecticut weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Greenwich, Stamford, Westport, New Canaan, Darien, and the rest of lower Fairfield County are at standard zone pricing — no separate travel fee, just the zone-tier rate built into the package price. For events farther into Connecticut, the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry."}},
+        {"@type": "Question", "name": "Do you play at Greenwich and Westport weddings?", "acceptedAnswer": {"@type": "Answer", "text": "The Greenwich/Westport shoreline is a regular part of the calendar, with bookings at private estates, country clubs, and shoreline boutique hotels. Travel from Brooklyn is roughly 60–75 minutes by car. Greenwich and lower Fairfield County are at standard zone pricing, with no separate travel fee, just the zone-tier rate."}},
+        {"@type": "Question", "name": "Do you charge a travel fee for Connecticut weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Greenwich, Stamford, Westport, New Canaan, Darien, and the rest of lower Fairfield County are at standard zone pricing, with no separate travel fee, just the zone-tier rate built into the package price. For events farther into Connecticut, the booking is custom-quoted based on venue distance. Please confirm the venue address at the time of inquiry."}},
         {"@type": "Question", "name": "How far in advance should we book a CT wedding violinist?", "acceptedAnswer": {"@type": "Answer", "text": "For Saturday weddings in peak season (May–October) at popular Connecticut estate venues and shoreline properties, 6–12 months out is typical. Off-season bookings often work on shorter timelines."}},
-        {"@type": "Question", "name": "Can you learn a custom song for our CT ceremony or first dance?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always, yes. Custom arrangements are especially popular with Connecticut couples — pop, R&B, indie, and classical songs reimagined for solo violin or piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300."}},
+        {"@type": "Question", "name": "Can you learn a custom song for our CT ceremony or first dance?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always, yes. Custom arrangements are especially popular with Connecticut couples: pop, R&B, indie, and classical songs reimagined for solo violin or piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300."}},
         {"@type": "Question", "name": "Do you bring your own sound system / PA?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. For ceremonies in CT's stone-and-wood spaces, acoustic violin often carries the room without amplification. For larger venues and outdoor ceremonies, a low-profile PA is included with wireless lavalier mics for officiants and vows. Most CT venues have an in-house piano for cocktail hour."}}
       ]
     }

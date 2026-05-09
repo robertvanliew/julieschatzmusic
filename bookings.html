@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bookings | Julie Schatz · Live Music for Weddings & Private Events</title>
-<meta name="description" content="Book Julie Schatz solo violin & piano, or DJ DX × Julie — the DJ and live musician duo — for weddings, private events, and galas. NYC, NJ, CT and destination.">
+<meta name="description" content="Book Julie Schatz solo violin & piano, or DJ DX × Julie, the DJ and live musician duo, for weddings, private events, and galas. NYC, NJ, CT and destination.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/bookings/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bookings | Julie Schatz · Live Music for Weddings & Private Events">
-<meta property="og:description" content="Solo violin & piano, or DJ DX × Julie — the DJ + live musician duo. NYC-based, available across NY, NJ, CT and destination events.">
+<meta property="og:description" content="Solo violin & piano, or DJ DX × Julie, the DJ + live musician duo. NYC-based, available across NY, NJ, CT and destination events.">
 <meta property="og:url" content="https://julieschatzmusic.com/bookings/">
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-bookings.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz, NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bookings | Julie Schatz">
@@ -39,8 +39,8 @@
   "@type": "WebPage",
   "@id": "https://julieschatzmusic.com/bookings/#webpage",
   "url": "https://julieschatzmusic.com/bookings/",
-  "name": "Bookings — Live Music for Weddings & Private Events",
-  "description": "Solo violin and piano, the Soul Shades violin-and-piano duo, or DJ DX × Julie — book live music for weddings, private events, and corporate galas across NY, NJ, CT.",
+  "name": "Bookings: Live Music for Weddings & Private Events",
+  "description": "Solo violin and piano, the Soul Shades violin-and-piano duo, or DJ DX × Julie. Book live music for weddings, private events, and corporate galas across NY, NJ, CT.",
   "dateModified": "2026-05-04",
   "isPartOf": { "@id": "https://julieschatzmusic.com/#business" },
   "about": { "@id": "https://julieschatzmusic.com/#business" },
@@ -1059,95 +1059,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-// Identical shader to the home page — keeps the bg consistent across the site
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-  const vsSrc = `
-    attribute vec2 a_pos;
-    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
-  `;
-  const fsSrc = `
-    precision highp float;
-    uniform float u_time;
-    uniform vec2  u_res;
-    vec3 C1 = vec3(0.337, 0.024, 1.000);
-    vec3 C2 = vec3(0.482, 0.173, 0.749);
-    vec3 C3 = vec3(0.000, 0.000, 0.000);
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      float angle = radians(235.0);
-      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5;
-      st += vec2(-0.5, 0.1);
-      float t = u_time * 0.1;
-      float freq = 5.5;
-      float strength = 2.4;
-      float density = 1.1;
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
-      warped = clamp(warped, 0.0, 1.0);
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
-      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-      col = mix(col, C1, (1.0 - xGrad) * 0.4);
-      col = mix(col, C2, xGrad * 0.4);
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8);
-      col *= 1.1;
-      col += vec3(warped * 0.04);
-      col = clamp(col, 0.0, 1.0);
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-  function compile(type, src) {
-    const sh = gl.createShader(type);
-    gl.shaderSource(sh, src);
-    gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(sh));
-    return sh;
-  }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
-  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
-  let start = performance.now();
-  function draw() {
-    gl.uniform1f(uTime, (performance.now() - start) / 1000);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
 
@@ -1195,7 +1107,7 @@ body.nav-drawer-open { overflow: hidden; }
   <header class="bookings-hero">
     <span class="editorial-kicker">Bookings &amp; Inquiries</span>
     <h1>Two ways to score your day.</h1>
-    <p>Solo violin and piano for ceremonies, cocktail hours, and intimate evenings — or DJ DX × Julie, the DJ and live musician duo, for the full reception. Choose the experience that fits your event.</p>
+    <p>Solo violin and piano for ceremonies, cocktail hours, and intimate evenings, or DJ DX × Julie, the DJ and live musician duo, for the full reception. Choose the experience that fits your event.</p>
   </header>
 
   <!-- CHOOSER -->
@@ -1205,7 +1117,7 @@ body.nav-drawer-open { overflow: hidden; }
     <a href="/solo-violin-piano/" class="choice-card solo">
       <span class="choice-eyebrow">01 · Solo Musician</span>
       <h2 class="choice-title">Violin &amp; Piano</h2>
-      <p class="choice-tagline">An elegant solo performance with a low-profile, high-fidelity sound system. Zone-based pricing — travel included for NYC.</p>
+      <p class="choice-tagline">An elegant solo performance with a low-profile, high-fidelity sound system. Zone-based pricing; travel included for NYC.</p>
       <div class="choice-rule"></div>
       <ul class="choice-bullets">
         <li>Wedding Ceremonies</li>
@@ -1221,7 +1133,7 @@ body.nav-drawer-open { overflow: hidden; }
     <a href="/dj-violin-duo-nyc/" class="choice-card duo">
       <span class="choice-eyebrow">02 · DJ DX × Julie</span>
       <h2 class="choice-title">DJ + Live Musician</h2>
-      <p class="choice-tagline">A music-forward duo experience — DJ set woven through live violin and keyboard. Refined for private events, celebrations, and select weddings.</p>
+      <p class="choice-tagline">A music-forward duo experience: a DJ set woven through live violin and keyboard. Refined for private events, celebrations, and select weddings.</p>
       <div class="choice-rule"></div>
       <ul class="choice-bullets">
         <li>Wedding Receptions</li>
@@ -1238,8 +1150,8 @@ body.nav-drawer-open { overflow: hidden; }
   <!-- SOUL SHADES CALLOUT — clarifies that the violin+piano duo is a distinct product -->
   <section class="soul-shades-note" aria-label="Soul Shades violin and piano duo">
     <span class="editorial-kicker">Also Available</span>
-    <h2>Soul Shades — the violin &amp; piano duo.</h2>
-    <p>A separate offering from <em>DJ DX × Julie</em> above. Soul Shades is Julie on violin paired with a jazz pianist — a refined live duo for ceremony, cocktail hour, and dinner. Ceremony from <strong>$2,400</strong> in NYC, ceremony + cocktail from <strong>$3,200</strong>.</p>
+    <h2>Soul Shades, the violin &amp; piano duo.</h2>
+    <p>A separate offering from <em>DJ DX × Julie</em> above. Soul Shades is Julie on violin paired with a jazz pianist, a refined live duo for ceremony, cocktail hour, and dinner. Ceremony from <strong>$2,400</strong> in NYC, ceremony + cocktail from <strong>$3,200</strong>.</p>
     <a href="/wedding-violinist-pricing/" class="soul-shades-cta">View Soul Shades Pricing →</a>
   </section>
 
@@ -1247,11 +1159,11 @@ body.nav-drawer-open { overflow: hidden; }
   <section class="custom-ensemble-note" aria-label="Custom ensemble packages">
     <span class="editorial-kicker">Looking for something else?</span>
     <h2>Custom ensemble packages, on request.</h2>
-    <p>String trios and quartets, violin + cello pairings, jazz piano with upright bass, or hybrid groupings — Julie regularly assembles custom ensembles for ceremonies, cocktail hours, corporate galas, and brand events that need a specific sound. Each ensemble is curated from her trusted roster of NYC-based players.</p>
+    <p>String trios and quartets, violin + cello pairings, jazz piano with upright bass, or hybrid groupings. Julie regularly assembles custom ensembles for ceremonies, cocktail hours, corporate galas, and brand events that need a specific sound. Each ensemble is curated from her trusted roster of NYC-based players.</p>
     <p class="ensemble-list">
       <span>String Trio</span><span>String Quartet</span><span>Violin + Cello</span><span>Piano + Bass</span><span>Custom Hybrids</span>
     </p>
-    <p>Pricing is built per booking based on instrumentation and event length. Use the form below — select <em>Custom Ensemble</em> in the package dropdown.</p>
+    <p>Pricing is built per booking based on instrumentation and event length. Use the form below; select <em>Custom Ensemble</em> in the package dropdown.</p>
   </section>
 
   <!-- INLINE INQUIRY FORM — single, embedded, no redirect -->
@@ -1260,12 +1172,12 @@ body.nav-drawer-open { overflow: hidden; }
       <div class="form-heading">
         <span class="editorial-kicker">Send a quick inquiry</span>
         <h2>Not sure which fits?</h2>
-        <p>Solo violin and piano, the DJ DX × Julie duo, the Soul Shades violin-and-piano duo, or a custom ensemble — string trio, quartet, violin + cello, piano + bass, or hybrid groupings on request. Share a few details and Julie will respond within 24 hours with the right package, availability, and a tailored quote.</p>
+        <p>Solo violin and piano, the DJ DX × Julie duo, the Soul Shades violin-and-piano duo, or a custom ensemble: string trio, quartet, violin + cello, piano + bass, or hybrid groupings on request. Share a few details and Julie will respond within 24 hours with the right package, availability, and a tailored quote.</p>
       </div>
 
       <form class="inquiry-form hardened-form" id="bookingsInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
-        <input type="hidden" name="_subject" value="New Booking Inquiry — bookings page">
+        <input type="hidden" name="_subject" value="New Booking Inquiry · bookings page">
         <input type="hidden" name="_loaded_at" value="">
         <input type="hidden" name="form_source" value="bookings-page">
 
@@ -1329,13 +1241,13 @@ body.nav-drawer-open { overflow: hidden; }
               <option value="solo-ceremony-cocktail-zone">Ceremony &amp; Cocktail · $1,100</option>
               <option value="solo-full-day-zone">Full Day Soloist · $1,950</option>
             </optgroup>
-            <optgroup label="Soul Shades — Violin + Piano Duo">
+            <optgroup label="Soul Shades · Violin + Piano Duo">
               <option value="soulshades-ceremony-nyc">Ceremony · NYC · $2,400</option>
               <option value="soulshades-ceremony-zone">Ceremony · Inner-Ring Zone · $2,550</option>
               <option value="soulshades-cocktail-nyc">Ceremony + Cocktail · NYC · $3,200</option>
               <option value="soulshades-cocktail-zone">Ceremony + Cocktail · Inner-Ring Zone · $3,350</option>
             </optgroup>
-            <optgroup label="DJ DX × Julie — DJ + Live Musician Duo">
+            <optgroup label="DJ DX × Julie · DJ + Live Musician Duo">
               <option value="duo-essential">Essential Duo · $2,200</option>
               <option value="duo-signature">Signature DJ + Live · $2,800</option>
               <option value="duo-extended">Extended Experience · $3,500</option>
@@ -1353,7 +1265,7 @@ body.nav-drawer-open { overflow: hidden; }
               <option value="ensemble-piano-bass">Piano + Bass</option>
               <option value="ensemble-custom">Custom Hybrid Ensemble</option>
             </optgroup>
-            <option value="undecided">Not sure yet — let's talk</option>
+            <option value="undecided">Not sure yet; let's talk</option>
           </select>
         </div>
 
@@ -1542,7 +1454,7 @@ if (fy) fy.textContent = new Date().getFullYear();
         const email = emailField.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if (!emailRegex.test(email)) { e.preventDefault(); showError(form, 'That email address looks invalid. Please double-check.'); emailField.focus(); return; }
-        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address — Julie responds by email only.'); emailField.focus(); return; }
+        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address. Julie responds by email only.'); emailField.focus(); return; }
       }
       const phoneField = form.querySelector('input[type="tel"]');
       if (phoneField && phoneField.value) {

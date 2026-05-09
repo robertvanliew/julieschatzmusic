@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DJ DX × Julie — DJ + Live Musician Duo NYC | Julie Schatz</title>
-<meta name="description" content="Book DJ DX × Julie — Julie Schatz on violin/keys with DJ DX. Refined music-forward weddings, private events, and corporate galas. NYC. Packages from $2,200.">
+<title>DJ DX × Julie · DJ + Live Musician Duo NYC | Julie Schatz</title>
+<meta name="description" content="Book DJ DX × Julie: Julie Schatz on violin/keys with DJ DX. Refined music-forward weddings, private events, and corporate galas. NYC. Packages from $2,200.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/dj-violin-duo-nyc/">
 <meta property="og:type" content="website">
@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-bookings-duo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz · NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DJ DX × Julie · DJ + Live Musician Duo">
@@ -728,11 +728,22 @@ nav {
 }
 .rider-engineer {
   margin-top: 56px;
-  padding: 40px 48px;
+  padding: 40px 48px 40px 74px;
   border: 1px solid var(--hairline);
-  border-left: 2px solid var(--violet-soft);
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
   background: rgba(168, 85, 247, 0.04);
+  position: relative;
+}
+.rider-engineer::before {
+  content: '♪';
+  position: absolute;
+  left: 48px;
+  top: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--violet-soft);
+  opacity: 0.85;
 }
 .rider-engineer h3 {
   font-family: 'Inter', sans-serif;
@@ -1308,80 +1319,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-// Identical shader to the home page
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
-  resize();
-  window.addEventListener('resize', resize);
-  const vsSrc = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
-  const fsSrc = `
-    precision highp float;
-    uniform float u_time;
-    uniform vec2  u_res;
-    vec3 C1 = vec3(0.337, 0.024, 1.000);
-    vec3 C2 = vec3(0.482, 0.173, 0.749);
-    vec3 C3 = vec3(0.000, 0.000, 0.000);
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      float angle = radians(235.0);
-      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5;
-      st += vec2(-0.5, 0.1);
-      float t = u_time * 0.1;
-      float freq = 5.5; float strength = 2.4; float density = 1.1;
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
-      warped = clamp(warped, 0.0, 1.0);
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
-      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-      col = mix(col, C1, (1.0 - xGrad) * 0.4);
-      col = mix(col, C2, xGrad * 0.4);
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8);
-      col *= 1.1;
-      col += vec3(warped * 0.04);
-      col = clamp(col, 0.0, 1.0);
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-  function compile(type, src) { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
-  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
-  let start = performance.now();
-  function draw() {
-    gl.uniform1f(uTime, (performance.now() - start) / 1000);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
 
@@ -1434,8 +1372,8 @@ body.nav-drawer-open { overflow: hidden; }
       </div>
       <p class="duo-subtitle">DJ + Live Musician</p>
       <h1>Music-forward production,<br>scaled to suit the event.</h1>
-      <p class="lede">A NYC-based DJ and live musician duo delivering refined, music-forward experiences for private events, celebrations, and select weddings. DJ set woven through live violin and keyboard — production scaled intentionally to fit the room.</p>
-      <p class="duo-clarifier">Looking for the violin &amp; piano duo? That's <a href="/wedding-violinist-pricing/">Soul Shades</a> — a separate offering for ceremony and cocktail hour.</p>
+      <p class="lede">A NYC-based DJ and live musician duo delivering refined, music-forward experiences for private events, celebrations, and select weddings. DJ set woven through live violin and keyboard, with production scaled intentionally to fit the room.</p>
+      <p class="duo-clarifier">Looking for the violin &amp; piano duo? That's <a href="/wedding-violinist-pricing/">Soul Shades</a>, a separate offering for ceremony and cocktail hour.</p>
     </div>
   </header>
 
@@ -1502,7 +1440,7 @@ body.nav-drawer-open { overflow: hidden; }
     <div class="custom-ensemble-note">
       <span class="editorial-kicker">Need More Players?</span>
       <h2>Custom ensemble packages, on request.</h2>
-      <p>Beyond the duo, Julie regularly assembles custom ensembles for couples and planners who need a fuller sound — strings for a stately ceremony, jazz piano with upright bass for cocktail hour, or hybrid groupings that pair the DJ DX × Julie duo with additional live players for galas and brand events.</p>
+      <p>Beyond the duo, Julie regularly assembles custom ensembles for couples and planners who need a fuller sound: strings for a stately ceremony, jazz piano with upright bass for cocktail hour, or hybrid groupings that pair the DJ DX × Julie duo with additional live players for galas and brand events.</p>
       <p class="ensemble-list">
         <span>String Trio</span><span>String Quartet</span><span>Violin + Cello</span><span>Piano + Bass</span><span>Custom Hybrids</span>
       </p>
@@ -1518,15 +1456,15 @@ body.nav-drawer-open { overflow: hidden; }
       <ul class="included-list">
         <li>
           <span class="item-title">Music planning call</span>
-          <span class="item-desc">A pre-event session to map out flow — first dance, cocktail energy, peak moments, and the general arc of the night.</span>
+          <span class="item-desc">A pre-event session to map out flow: first dance, cocktail energy, peak moments, and the general arc of the night.</span>
         </li>
         <li>
           <span class="item-title">Professional sound system</span>
-          <span class="item-desc">Full DJ rig with live instrument inputs. Scaled to room size — clean coverage without dominating the space.</span>
+          <span class="item-desc">Full DJ rig with live instrument inputs. Scaled to room size for clean coverage without dominating the space.</span>
         </li>
         <li>
           <span class="item-title">Live + DJ blending</span>
-          <span class="item-desc">Live violin and keyboard layered over DJ sets — moments that feel composed, not performed-over.</span>
+          <span class="item-desc">Live violin and keyboard layered over DJ sets: moments that feel composed, not performed-over.</span>
         </li>
         <li>
           <span class="item-title">Coordinated logistics</span>
@@ -1541,7 +1479,7 @@ body.nav-drawer-open { overflow: hidden; }
     <div class="rider-heading">
       <span class="editorial-kicker">For Production &amp; Venue Staff</span>
       <h2>Technical Rider</h2>
-      <p>A blueprint for high-energy hybrid sets — DJ DX on decks with live violin and keyboard. Please share with the production team and venue tech well ahead of the event.</p>
+      <p>A blueprint for high-energy hybrid sets: DJ DX on decks with live violin and keyboard. Please share with the production team and venue tech well ahead of the event.</p>
     </div>
 
     <div class="rider-grid">
@@ -1598,7 +1536,7 @@ body.nav-drawer-open { overflow: hidden; }
         <dd><strong>Room-temperature still water</strong> at the booth and the live performer's station throughout setup, soundcheck, and the set.</dd>
 
         <dt>Catering</dt>
-        <dd>Healthy options with <strong>zero processed sugar</strong> — fresh fruit, raw nuts, vegetables, simple proteins. No energy drinks or candy on the rider.</dd>
+        <dd>Healthy options with <strong>zero processed sugar</strong>: fresh fruit, raw nuts, vegetables, simple proteins. No energy drinks or candy on the rider.</dd>
       </dl>
     </aside>
   </section>
@@ -1672,7 +1610,7 @@ body.nav-drawer-open { overflow: hidden; }
             <option value="signature">Signature DJ + Live Violin &amp; Keyboard · From $2,800</option>
             <option value="extended">Extended Experience · From $3,500</option>
             <option value="luxury">Luxury &amp; Destination Events · From $4,500</option>
-            <option value="undecided">Not sure yet — let's talk</option>
+            <option value="undecided">Not sure yet · let's talk</option>
           </select>
         </div>
 
@@ -1851,7 +1789,7 @@ if (fy) fy.textContent = new Date().getFullYear();
         const email = emailField.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if (!emailRegex.test(email)) { e.preventDefault(); showError(form, 'That email address looks invalid. Please double-check.'); emailField.focus(); return; }
-        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address — we respond by email only.'); emailField.focus(); return; }
+        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address. We respond by email only.'); emailField.focus(); return; }
       }
       const phoneField = form.querySelector('input[type="tel"]');
       if (phoneField && phoneField.value) {

@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Making a House Track With Only Orchestral Sounds (ft. Spitfire Audio) | Julie Schatz</title>
-<meta name="description" content="How to build a deep house groove from BBC Symphony strings, Eric Whitacre Choir, and a Spitfire double bass — no drum machines. Plugin walkthrough by Julie Schatz.">
+<meta name="description" content="How to build a deep house groove from BBC Symphony strings, Eric Whitacre Choir, and a Spitfire double bass: no drum machines. Plugin walkthrough by Julie Schatz.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/">
 <link rel="alternate" type="application/rss+xml" title="Julie Schatz · Blog (RSS)" href="https://julieschatzmusic.com/blog/feed.xml">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Making a House Track With Only Orchestral Sounds (ft. Spitfire Audio)">
-<meta property="og:description" content="Building a deep house groove from orchestral plugins — no drum machines, no synth presets. The plugins, the sidechain trick, and the granular reverb that ties it all together.">
+<meta property="og:description" content="Building a deep house groove from orchestral plugins. No drum machines, no synth presets. The plugins, the sidechain trick, and the granular reverb that ties it all together.">
 <meta property="og:url" content="https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/">
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-blog-spitfire.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz · NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta property="article:published_time" content="2026-05-02">
 <meta property="article:author" content="Julie Schatz">
@@ -38,7 +38,7 @@
   "@type": "BlogPosting",
   "@id": "https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/#post",
   "headline": "Making a House Track With Only Orchestral Sounds (ft. Spitfire Audio)",
-  "description": "How to build a deep house groove from BBC Symphony strings, Eric Whitacre Choir, and a Spitfire double bass — no drum machines. Plugin walkthrough by Julie Schatz.",
+  "description": "How to build a deep house groove from BBC Symphony strings, Eric Whitacre Choir, and a Spitfire double bass: no drum machines. Plugin walkthrough by Julie Schatz.",
   "datePublished": "2026-05-02",
   "dateModified": "2026-05-02",
   "image": "https://i.ytimg.com/vi/UDCKM_l8sC0/maxresdefault.jpg",
@@ -66,7 +66,7 @@
   "video": {
     "@type": "VideoObject",
     "name": "Making a House Track With Only Orchestral Sounds (ft. Spitfire Audio)",
-    "description": "Building a deep house track using only Spitfire Audio orchestral plugins — strings, choir, and double bass — instead of drum machines and synth presets.",
+    "description": "Building a deep house track using only Spitfire Audio orchestral plugins (strings, choir, and double bass) instead of drum machines and synth presets.",
     "thumbnailUrl": "https://i.ytimg.com/vi/UDCKM_l8sC0/maxresdefault.jpg",
     "uploadDate": "2026-05-02",
     "embedUrl": "https://www.youtube.com/embed/UDCKM_l8sC0",
@@ -812,52 +812,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
-  resize(); window.addEventListener('resize', resize);
-  const vsSrc = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
-  const fsSrc = `precision highp float; uniform float u_time; uniform vec2 u_res;
-    vec3 C1 = vec3(0.337, 0.024, 1.000); vec3 C2 = vec3(0.482, 0.173, 0.749); vec3 C3 = vec3(0.000, 0.000, 0.000);
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      float angle = radians(235.0); mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5; st += vec2(-0.5, 0.1);
-      float t = u_time * 0.1; float freq = 5.5; float strength = 2.4; float density = 1.1;
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12; warped = clamp(warped, 0.0, 1.0);
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped)); col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-      col = mix(col, C1, (1.0 - xGrad) * 0.4); col = mix(col, C2, xGrad * 0.4);
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8); col *= 1.1; col += vec3(warped * 0.04); col = clamp(col, 0.0, 1.0);
-      gl_FragColor = vec4(col, 1.0);
-    }`;
-  function compile(type, src) { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc)); gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time'); const uRes = gl.getUniformLocation(prog, 'u_res');
-  let start = performance.now();
-  function draw() { gl.uniform1f(uTime, (performance.now() - start) / 1000); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(draw); }
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
   <nav class="site-nav">
@@ -922,7 +877,7 @@ body.nav-drawer-open { overflow: hidden; }
     <!-- 2-column intro: article copy left, video right (collapses to stacked on mobile) -->
     <section class="post-intro">
       <div class="post-intro-text">
-        <p>House music lives on a four-on-the-floor kick, a synth bass, and a chord stab — that's the formula for a reason. But the formula gets predictable, and the most interesting tracks usually come from breaking one rule on purpose. So: what happens if you build a deep house groove using <em>only</em> orchestral plugins? No drum machines. No synth presets. Just strings, a choir, and a single double bass — pulled from <strong>Spitfire Audio</strong>'s library and stitched together with a few mixing tricks. Here's the walkthrough.</p>
+        <p>House music lives on a four-on-the-floor kick, a synth bass, and a chord stab. That's the formula for a reason. But the formula gets predictable, and the most interesting tracks usually come from breaking one rule on purpose. So: what happens if you build a deep house groove using <em>only</em> orchestral plugins? No drum machines. No synth presets. Just strings, a choir, and a single double bass, pulled from <strong>Spitfire Audio</strong>'s library and stitched together with a few mixing tricks. Here's the walkthrough.</p>
       </div>
       <a href="https://www.youtube.com/shorts/UDCKM_l8sC0"
          target="_blank"
@@ -940,17 +895,17 @@ body.nav-drawer-open { overflow: hidden; }
     <div class="post-body">
       <h2>The Foundation: Strings &amp; Bass</h2>
 
-      <p>The whole track starts with chords. Not a synth pad pretending to be strings — actual strings, played with the kind of articulations you can't fake. <strong>Spitfire Audio Abbey Road Two: Iconic Strings</strong> is the first plugin in the chain. The ensemble patch is what does the heavy lifting: it puts the entire string section in front of you, and the controls let you push the tone from intimate close-mic to room-soaked Abbey Road wash. I start with a basic four-chord progression — long, sustained, no rhythmic articulation — just the chord bed.</p>
+      <p>The whole track starts with chords. Not a synth pad pretending to be strings: actual strings, played with the kind of articulations you can't fake. <strong>Spitfire Audio Abbey Road Two: Iconic Strings</strong> is the first plugin in the chain. The ensemble patch is what does the heavy lifting: it puts the entire string section in front of you, and the controls let you push the tone from intimate close-mic to room-soaked Abbey Road wash. I start with a basic four-chord progression, long, sustained, no rhythmic articulation, just the chord bed.</p>
 
-      <p>To layer in detail, I go back to <strong>Spitfire Audio BBC Symphony Orchestra</strong>. There's a 16-player section in there that sits beautifully under the Abbey Road ensemble — closer mic position, more bow noise, more individual character. Stacking the two libraries gives the chord bed real depth: one library for size, the other for grain.</p>
+      <p>To layer in detail, I go back to <strong>Spitfire Audio BBC Symphony Orchestra</strong>. There's a 16-player section in there that sits beautifully under the Abbey Road ensemble: closer mic position, more bow noise, more individual character. Stacking the two libraries gives the chord bed real depth: one library for size, the other for grain.</p>
 
-      <p>Then the bass. House tracks usually run on a sub-synth or a Moog-style mono bass. Instead, I'm using <strong>BBC Symphony Orchestra</strong>'s <em>double bass</em> — the actual orchestral instrument. Pizzicato hits and short sustained notes, played on the root of each chord. It's surprisingly punchy when you commit to it, and it sits in a totally different frequency pocket than a synth bass would.</p>
+      <p>Then the bass. House tracks usually run on a sub-synth or a Moog-style mono bass. Instead, I'm using <strong>BBC Symphony Orchestra</strong>'s <em>double bass</em>: the actual orchestral instrument. Pizzicato hits and short sustained notes, played on the root of each chord. It's surprisingly punchy when you commit to it, and it sits in a totally different frequency pocket than a synth bass would.</p>
 
       <h2>Creative Sound Design: A Choir-Made Snare</h2>
 
-      <p>Now for the rule break. There's no drum machine in this session, so the snare needs to come from somewhere else. I pulled up <strong>Spitfire Audio Eric Whitacre Choir</strong> — a sample library built from layered choral recordings — and started chopping. The trick: take a single short choral hit, pitch it down, add transient shaping, and use it as a snare on the 2 and the 4.</p>
+      <p>Now for the rule break. There's no drum machine in this session, so the snare needs to come from somewhere else. I pulled up <strong>Spitfire Audio Eric Whitacre Choir</strong>, a sample library built from layered choral recordings, and started chopping. The trick: take a single short choral hit, pitch it down, add transient shaping, and use it as a snare on the 2 and the 4.</p>
 
-      <p>It doesn't sound like a snare in the traditional sense. It sounds like a breath, or a percussive vocal tic — closer to a clap-and-vocal hybrid than anything from a 909. Which is exactly the point. The track now has a rhythmic backbone, but the backbone has texture and human grain instead of a sample-pack drum hit.</p>
+      <p>It doesn't sound like a snare in the traditional sense. It sounds like a breath, or a percussive vocal tic, closer to a clap-and-vocal hybrid than anything from a 909. Which is exactly the point. The track now has a rhythmic backbone, but the backbone has texture and human grain instead of a sample-pack drum hit.</p>
 
       <blockquote>The most interesting beats usually come from misusing an instrument the library wasn't designed for.</blockquote>
 
@@ -958,23 +913,23 @@ body.nav-drawer-open { overflow: hidden; }
 
       <h3>Sidechaining the Low End</h3>
 
-      <p>Once the choir-snare is locked in, the kick goes back in. Standard four-on-the-floor, low-mid weight, nothing fancy. But the orchestral double bass is now stepping all over the kick's frequency range — every time the kick hits, the bass note muddies the transient. Solution: sidechain compression, but only on the lows.</p>
+      <p>Once the choir-snare is locked in, the kick goes back in. Standard four-on-the-floor, low-mid weight, nothing fancy. But the orchestral double bass is now stepping all over the kick's frequency range; every time the kick hits, the bass note muddies the transient. Solution: sidechain compression, but only on the lows.</p>
 
-      <p>I'm using <strong>Cableguys ShaperBox</strong> for this. Specifically the VolumeShaper module, which lets you draw a precise volume envelope locked to the kick's tempo. The trick that ShaperBox handles better than a normal compressor: <em>frequency-band-specific sidechain</em>. Instead of ducking the entire bass on every kick, you can isolate the lows (say, below 120 Hz) and only duck that band. The result is the kick punching through cleanly while the upper-bass body of the double bass keeps playing — no audible pumping on the harmonic content, just a clean low-end pocket carved out for the kick.</p>
+      <p>I'm using <strong>Cableguys ShaperBox</strong> for this. Specifically the VolumeShaper module, which lets you draw a precise volume envelope locked to the kick's tempo. The trick that ShaperBox handles better than a normal compressor: <em>frequency-band-specific sidechain</em>. Instead of ducking the entire bass on every kick, you can isolate the lows (say, below 120 Hz) and only duck that band. The result is the kick punching through cleanly while the upper-bass body of the double bass keeps playing. No audible pumping on the harmonic content, just a clean low-end pocket carved out for the kick.</p>
 
       <h3>Spatial Effects: Granular Reverb &amp; Delay</h3>
 
-      <p>The chord bed by itself is too clean. Real Abbey Road strings recorded in a real room are full of air and reflection — but the dry samples don't always deliver enough of that, and at this point in the arrangement the track needs <em>movement</em>. Two plugins handle that.</p>
+      <p>The chord bed by itself is too clean. Real Abbey Road strings recorded in a real room are full of air and reflection, but the dry samples don't always deliver enough of that, and at this point in the arrangement the track needs <em>movement</em>. Two plugins handle that.</p>
 
-      <p>First: <strong>Output Portal</strong>, dropped on the main string chord bus. Portal is a granular processor — it chops audio into tiny grains and lets you re-pitch, reverse, or shimmer them out into the stereo field. On strings, with the granular size set short and the wet signal subtle, it adds a halo of pitched air around the chords. Not so much that the chords sound granular — just enough that there's a sense of the room <em>breathing</em>.</p>
+      <p>First: <strong>Output Portal</strong>, dropped on the main string chord bus. Portal is a granular processor: it chops audio into tiny grains and lets you re-pitch, reverse, or shimmer them out into the stereo field. On strings, with the granular size set short and the wet signal subtle, it adds a halo of pitched air around the chords. Not so much that the chords sound granular, just enough that there's a sense of the room <em>breathing</em>.</p>
 
-      <p>Second: <strong>Baby Audio Spaced Out</strong>. This is one of my favorite reverbs because it bakes a delay tail into the verb itself, so you get reverb and rhythmic echo from a single instance. On the strings it creates contrast — the dry chord hits, the room blooms, then the delay echoes the tail across the stereo field. Used sparingly, it makes a 4-bar loop feel like 8.</p>
+      <p>Second: <strong>Baby Audio Spaced Out</strong>. This is one of my favorite reverbs because it bakes a delay tail into the verb itself, so you get reverb and rhythmic echo from a single instance. On the strings it creates contrast: the dry chord hits, the room blooms, then the delay echoes the tail across the stereo field. Used sparingly, it makes a 4-bar loop feel like 8.</p>
 
       <h2>Putting It Together</h2>
 
-      <p>What you're left with is a deep house track where every sound comes from an orchestral source — strings, choir, double bass — but the <em>arrangement</em> reads as house. Four-on-the-floor pulse. Sidechained low end. Stereo-wide reverb. Vocal-derived percussion on 2 and 4. The genre conventions are all there; only the instrumentation is unusual.</p>
+      <p>What you're left with is a deep house track where every sound comes from an orchestral source (strings, choir, double bass), but the <em>arrangement</em> reads as house. Four-on-the-floor pulse. Sidechained low end. Stereo-wide reverb. Vocal-derived percussion on 2 and 4. The genre conventions are all there; only the instrumentation is unusual.</p>
 
-      <p>This is the kind of approach that's worth pulling out when a track feels too templated. You don't need to throw out the formula — you just swap one variable and let the rest of the rules do the work. Strings instead of pads. Choir instead of a snare. Real double bass instead of a Moog. The framework holds; the texture changes completely.</p>
+      <p>This is the kind of approach that's worth pulling out when a track feels too templated. You don't need to throw out the formula. You just swap one variable and let the rest of the rules do the work. Strings instead of pads. Choir instead of a snare. Real double bass instead of a Moog. The framework holds; the texture changes completely.</p>
 
       <div class="post-tags-bottom">
         <span class="tag-label">Filed under</span>
@@ -1009,7 +964,7 @@ body.nav-drawer-open { overflow: hidden; }
 
       <div class="post-cta">
         <h2>Want to use these techniques in your own track?</h2>
-        <p>Browse the sample-pack catalog for live violin, piano, vocal hooks, and MIDI loops — or book Julie for a hybrid DJ/violin set at your event.</p>
+        <p>Browse the sample-pack catalog for live violin, piano, vocal hooks, and MIDI loops, or book Julie for a hybrid DJ/violin set at your event.</p>
         <div class="cta-buttons">
           <a href="/sample-pack-store/">Browse the Store</a>
           <a href="/bookings/">Book a Live Set</a>

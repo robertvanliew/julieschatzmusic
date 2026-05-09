@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz, NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Julie Schatz | Violinist, Jazz Pianist & Producer">
@@ -31,7 +31,7 @@
   "url": "https://julieschatzmusic.com/",
   "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
   "logo": "https://julieschatzmusic.com/assets/julie-schatz-logo.png",
-  "description": "Julie Schatz is a NYC-based violinist, jazz pianist, DJ, and producer. She plays weddings, private events, and corporate galas across New York, New Jersey, and Connecticut — solo violin for ceremonies, jazz piano for cocktail hours, and DJ sets with live violin layered over the tracks for receptions. A Roland artist with beats featured by Splice, Julie also performs as half of the violin-and-piano duo Soul Shades and produces hip-hop, R&B, and electronic music for independent artists.",
+  "description": "Julie Schatz is a NYC-based violinist, jazz pianist, DJ, and producer. She plays weddings, private events, and corporate galas across New York, New Jersey, and Connecticut: solo violin for ceremonies, jazz piano for cocktail hours, and DJ sets with live violin layered over the tracks for receptions. A Roland artist with beats featured by Splice, Julie also performs as half of the violin-and-piano duo Soul Shades and produces hip-hop, R&B, and electronic music for independent artists.",
   "genre": ["Jazz", "Classical", "Electronic", "R&B", "Hip Hop"],
   "address": {
     "@type": "PostalAddress",
@@ -62,7 +62,7 @@
   "dateModified": "2026-05-03",
   "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
   "logo": "https://julieschatzmusic.com/assets/julie-schatz-logo.png",
-  "description": "Julie Schatz is a NYC-based violinist, jazz pianist, DJ, and producer. She plays weddings, private events, and corporate galas across New York, New Jersey, and Connecticut — solo violin for ceremonies, jazz piano for cocktail hours, and DJ sets with live violin layered over the tracks for receptions. A Roland artist with beats featured by Splice, Julie also performs as half of the violin-and-piano duo Soul Shades and produces hip-hop, R&B, and electronic music for independent artists.",
+  "description": "Julie Schatz is a NYC-based violinist, jazz pianist, DJ, and producer. She plays weddings, private events, and corporate galas across New York, New Jersey, and Connecticut: solo violin for ceremonies, jazz piano for cocktail hours, and DJ sets with live violin layered over the tracks for receptions. A Roland artist with beats featured by Splice, Julie also performs as half of the violin-and-piano duo Soul Shades and produces hip-hop, R&B, and electronic music for independent artists.",
   "priceRange": "$$$",
   "telephone": "+1-631-365-9554",
   "email": "bookings@julieschatzmusic.com",
@@ -245,7 +245,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "Wedding Ceremony Music — Solo Violin",
+  "serviceType": "Wedding Ceremony Music: Solo Violin",
   "provider": { "@id": "https://julieschatzmusic.com/#business" },
   "areaServed": [
     { "@type": "City", "name": "New York" },
@@ -272,7 +272,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "Cocktail Hour — Jazz Piano",
+  "serviceType": "Cocktail Hour: Jazz Piano",
   "provider": { "@id": "https://julieschatzmusic.com/#business" },
   "areaServed": [
     { "@type": "City", "name": "New York" },
@@ -319,7 +319,7 @@
     { "@type": "City", "name": "Stamford" },
     { "@type": "AdministrativeArea", "name": "Fairfield County" }
   ],
-  "description": "Live music for corporate galas, brand events, and private parties — solo violin, jazz piano, vocals, DJ, or full hybrid live + DJ sets scaled to the room."
+  "description": "Live music for corporate galas, brand events, and private parties: solo violin, jazz piano, vocals, DJ, or full hybrid live + DJ sets scaled to the room."
 }
 </script>
 <script type="application/ld+json">
@@ -328,7 +328,7 @@
   "@type": "Service",
   "serviceType": "Beat Licensing & Music Production",
   "provider": { "@id": "https://julieschatzmusic.com/#business" },
-  "description": "Original sample packs and instrumentals for license — live violin, piano, vocal hooks, MIDI loops, and bass lines for producers across hip hop, R&B, pop, and house."
+  "description": "Original sample packs and instrumentals for license: live violin, piano, vocal hooks, MIDI loops, and bass lines for producers across hip hop, R&B, pop, and house."
 }
 </script>
 <script type="application/ld+json">
@@ -409,7 +409,7 @@
     { "@type": "City", "name": "Stamford" },
     { "@type": "AdministrativeArea", "name": "Fairfield County" }
   ],
-  "description": "Soul Shades — Julie Schatz on violin paired with a jazz pianist — a refined live duo for ceremony, cocktail hour, dinner, and private events. Ceremony packages from $2,400; ceremony + cocktail from $3,200."
+  "description": "Soul Shades: Julie Schatz on violin paired with a jazz pianist, a refined live duo for ceremony, cocktail hour, dinner, and private events. Ceremony packages from $2,400; ceremony + cocktail from $3,200."
 }
 </script>
 <!-- Review schema — verbatim quotes from real testimonials shown on this page.
@@ -680,11 +680,16 @@
 }
 
 
-/* Static gradient fallback for users with reduced-motion preference. */
+/* Static gradient fallback for users with reduced-motion preference.
+   Black base with two tiny violet pools — same character as the WebGL
+   shader but static. Black dominates; violet is suggestion only. */
 @media (prefers-reduced-motion: reduce) {
   #shader-bg { display: none !important; }
   html, body {
-    background: #0F0A1A radial-gradient(ellipse at 30% 30%, rgba(86, 6, 255, 0.45) 0%, rgba(123, 44, 191, 0.25) 35%, #0F0A1A 75%) fixed !important;
+    background:
+      radial-gradient(ellipse 50% 40% at 30% 35%, rgba(168, 85, 247, 0.13) 0%, rgba(123, 44, 191, 0.06) 40%, transparent 65%),
+      radial-gradient(ellipse 40% 35% at 72% 75%, rgba(123, 44, 191, 0.10) 0%, transparent 60%),
+      #050208 fixed !important;
   }
 }
 
@@ -734,6 +739,20 @@
 .nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* Hide the hamburger while the inquiry panel is open — they collide in the
+   top-right corner and the panel has its own close button. One modal at a time. */
+body:has(.inquiry-dropdown.active) .nav-hamburger {
+  display: none !important;
+}
+/* And hide the inquiry panel while the nav drawer is open — reverse direction
+   of the same one-modal-at-a-time rule. JS already enforces mutual exclusion;
+   this is the visual safety net for any edge case (older browsers, race
+   conditions, programmatic state changes). */
+body.nav-drawer-open .inquiry-dropdown.active {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Drawer (only rendered on mobile via hidden attribute toggle) */
 .nav-drawer {
   position: fixed;
@@ -769,6 +788,10 @@
   to { transform: translateX(0); }
 }
 .nav-drawer-close {
+  /* Redundant with the morphing hamburger (3 lines → X) which serves as the
+     close affordance. Hidden to remove the circle-behind-X visual collision.
+     Drawer can still be closed via hamburger tap, backdrop tap, or Escape. */
+  display: none;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -872,6 +895,30 @@ body.nav-drawer-open {
   --hairline:     rgba(244, 239, 230, 0.14);
   --hairline-strong: rgba(244, 239, 230, 0.22);
   --violet-soft:  rgba(168, 85, 247, 0.55);
+
+  /* Brand-color the browser UI: checkbox/radio ticks, range thumbs, and the
+     native select-option highlight in browsers that respect accent-color. */
+  accent-color: var(--violet);
+}
+
+/* Brand text-selection: when a visitor drags to highlight text on the page,
+   the highlight reads as on-brand violet, not OS default blue. */
+::selection {
+  background: rgba(123, 44, 191, 0.55);
+  color: #fff;
+}
+::-moz-selection {
+  background: rgba(123, 44, 191, 0.55);
+  color: #fff;
+}
+
+/* Native <select> option highlight color override — best-effort cross-browser.
+   Most browsers render <option> via OS chrome and ignore most CSS, but Chromium
+   and Firefox respect background-color on :checked / :hover where supported. */
+option:checked,
+option:hover {
+  background: linear-gradient(0deg, rgba(123, 44, 191, 0.95), rgba(123, 44, 191, 0.95)) !important;
+  color: #fff !important;
 }
 
 /* Shared editorial heading + kicker treatment used across all sections below the hero */
@@ -1300,20 +1347,27 @@ nav {
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
-  /* Soft bottom fade into the violet bg so the photo strip doesn't
-     hard-cut against the wordmark below. Last 22% feathers out. */
+  /* Long cinematic dissolve into the dark violet bg so the photo strip melts
+     into the wordmark area instead of cutting at a hard horizon. Feather
+     starts at 45%, eased multi-stop ramp through to fully transparent. */
   -webkit-mask-image: linear-gradient(
     to bottom,
     #000 0%,
-    #000 78%,
-    rgba(0,0,0,0.7) 90%,
+    #000 45%,
+    rgba(0,0,0,0.92) 60%,
+    rgba(0,0,0,0.70) 75%,
+    rgba(0,0,0,0.40) 88%,
+    rgba(0,0,0,0.15) 96%,
     transparent 100%
   );
           mask-image: linear-gradient(
     to bottom,
     #000 0%,
-    #000 78%,
-    rgba(0,0,0,0.7) 90%,
+    #000 45%,
+    rgba(0,0,0,0.92) 60%,
+    rgba(0,0,0,0.70) 75%,
+    rgba(0,0,0,0.40) 88%,
+    rgba(0,0,0,0.15) 96%,
     transparent 100%
   );
 }
@@ -1342,7 +1396,6 @@ nav {
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  margin-right: 8px;
 }
 
 /* Dots — always hidden (functionality kept via arrows only) */
@@ -1601,21 +1654,23 @@ nav {
   display: inline-block;
   position: relative;
   cursor: default;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .ltr {
   opacity: 0;
   animation: nameReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .ltr:hover {
   color: #6B21A8;
   text-shadow: 0 0 24px rgba(107, 33, 168, 0.8), 0 0 60px rgba(88, 12, 180, 0.4);
 }
+/* Bio heading letters: clean color lift on hover, no neon glow.
+   Strong ease-out custom curve, 180ms — feels intentional, not laggy. */
+.ltr-about {
+  transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
 .ltr-about:hover {
-  color: rgba(168, 85, 247, 0.7);
-  text-shadow: 0 0 16px rgba(168, 85, 247, 0.35);
+  color: var(--violet2);
 }
 
 @keyframes taglineReveal {
@@ -1963,10 +2018,22 @@ nav {
 }
 .ceremony-draft-banner {
   margin: 22px 44px 0;
-  padding: 16px 18px;
+  padding: 16px 18px 16px 44px;
   background: rgba(168, 85, 247, 0.08);
-  border-left: 2px solid #d4b872;
-  border-radius: 2px;
+  border: 1px solid rgba(212, 184, 114, 0.22);
+  border-radius: 4px;
+  position: relative;
+}
+.ceremony-draft-banner::before {
+  content: '♪';
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1;
+  color: #d4b872;
+  opacity: 0.85;
 }
 .ceremony-draft-banner[hidden] { display: none; }
 .ceremony-draft-banner__title {
@@ -2621,6 +2688,22 @@ nav {
   text-align: center;
   color: var(--ivory-faint);
 }
+.event-card.is-next {
+  background: linear-gradient(to right, rgba(168, 85, 247, 0.05), transparent 70%);
+  padding-left: 20px;
+}
+.event-card.is-next::before { width: 12px; }
+.event-next-tag {
+  display: block;
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--violet2);
+  margin-bottom: 6px;
+  line-height: 1;
+}
 .events-cta {
   display: flex;
   justify-content: center;
@@ -2981,10 +3064,10 @@ nav {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(56px, 6vw, 92px);
-  line-height: 1.02;
+  font-size: clamp(48px, 5.2vw, 72px);
+  line-height: 1.0;
   color: var(--ivory);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.018em;
   display: flex;
   flex-direction: column;
 }
@@ -3004,23 +3087,25 @@ nav {
 }
 .bio-text p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(19px, 1.45vw, 22px);
-  line-height: 1.65;
-  color: var(--ivory-dim);
-  font-weight: 300;
-  letter-spacing: 0.003em;
+  font-size: clamp(17px, 1.3vw, 20px);
+  line-height: 1.58;
+  color: var(--ivory);
+  font-weight: 400;
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+  letter-spacing: -0.003em;
   text-wrap: pretty;
   margin: 0;
 }
-/* Drop cap on the very first paragraph — magazine-style lead-in */
+/* Drop cap on the very first paragraph — magazine-style lead-in.
+   Anchored to first-line cap-height with tight horizontal clearance. */
 .bio-text > p:first-of-type::first-letter {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 4em;
-  line-height: 0.85;
+  font-size: 4.2em;
+  line-height: 0.82;
   float: left;
-  margin: 6px 14px 0 0;
+  margin: 6px 16px -2px 0;
   color: var(--ivory);
 }
 .bio-text a {
@@ -3029,22 +3114,32 @@ nav {
   text-decoration-color: var(--violet-soft);
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
-  transition: text-decoration-color 0.35s ease;
+  transition: text-decoration-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .bio-text a:hover { text-decoration-color: var(--ivory); }
 
-/* Pull quote — one signature editorial moment */
+/* Pull quote — magazine-style moment of breath. Smaller and tighter than
+   the previous "shouty" version; whitespace and hairline do the work. */
 .bio-pullquote {
-  margin: 16px 0 8px;
-  padding-left: 28px;
-  border-left: 1px solid var(--hairline-strong);
+  margin: 44px 0 36px;
+  padding-left: 0;
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(22px, 1.85vw, 28px);
-  line-height: 1.35;
+  font-size: clamp(24px, 2vw, 34px);
+  line-height: 1.22;
   color: var(--ivory);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.008em;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+.bio-pullquote::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--ivory-soft);
+  margin-bottom: 18px;
 }
 
 /* Editorial signature line — magazine-style location/credit */
@@ -3078,22 +3173,61 @@ nav {
 }
 .bio-facts dt {
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   font-size: 10px;
-  color: var(--ivory-soft);
+  color: var(--ivory-faint);
   align-self: baseline;
-  padding-top: 4px;
+  padding-top: 3px;
 }
 .bio-facts dd {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.45;
   color: var(--ivory);
-  letter-spacing: 0.005em;
+  letter-spacing: -0.002em;
+  font-feature-settings: "onum" 1, "kern" 1;
+}
+
+/* ── Bio section scroll-triggered reveal ──
+   Triggered once when section enters viewport (IntersectionObserver adds
+   .is-visible to .bio-section). Reduced-motion users skip the motion and
+   see content at rest. Stagger 60ms between elements; settle with strong
+   ease-out so the section feels intentional, not laggy. */
+@media (prefers-reduced-motion: no-preference) {
+  .bio-section .bio-heading h2,
+  .bio-section .bio-heading .editorial-kicker,
+  .bio-section .bio-heading .bio-rule,
+  .bio-section .bio-text > p,
+  .bio-section .bio-text > .bio-pullquote,
+  .bio-section .bio-text > .bio-facts {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 600ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: opacity, transform;
+  }
+  .bio-section.is-visible .bio-heading .editorial-kicker { transition-delay: 0ms; }
+  .bio-section.is-visible .bio-heading h2                 { transition-delay: 60ms; }
+  .bio-section.is-visible .bio-heading .bio-rule          { transition-delay: 120ms; }
+  .bio-section.is-visible .bio-text > p:nth-of-type(1)    { transition-delay: 180ms; }
+  .bio-section.is-visible .bio-text > p:nth-of-type(2)    { transition-delay: 240ms; }
+  .bio-section.is-visible .bio-text > .bio-pullquote      { transition-delay: 300ms; }
+  .bio-section.is-visible .bio-text > p:nth-of-type(4)    { transition-delay: 360ms; }
+  .bio-section.is-visible .bio-text > .bio-facts          { transition-delay: 440ms; }
+  .bio-section.is-visible .bio-heading h2,
+  .bio-section.is-visible .bio-heading .editorial-kicker,
+  .bio-section.is-visible .bio-heading .bio-rule,
+  .bio-section.is-visible .bio-text > p,
+  .bio-section.is-visible .bio-text > .bio-pullquote,
+  .bio-section.is-visible .bio-text > .bio-facts {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -3620,138 +3754,7 @@ nav {
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const vsSrc = `
-    attribute vec2 a_pos;
-    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
-  `;
-
-  // Matches ShaderGradient "Universe" / your exact config:
-  // color1:#5606ff (vivid violet-blue, LEFT)
-  // color2:#311b92 (deep indigo, RIGHT)
-  // color3:#000000 (black, deep pools CENTER)
-  // type:waterPlane, uFrequency:5.5, uStrength:2.4, uDensity:1.1
-  // uSpeed:0.1, rotationZ:235, positionX:-0.5, positionY:0.1
-  // brightness:1.1, cAzimuthAngle:180, cPolarAngle:115
-  const fsSrc = `
-    precision highp float;
-    uniform float u_time;
-    uniform vec2  u_res;
-
-    vec3 C1 = vec3(0.337, 0.024, 1.000); // #5606ff violet
-    vec3 C2 = vec3(0.482, 0.173, 0.749); // #7B2CBF deep purple
-    vec3 C3 = vec3(0.000, 0.000, 0.000); // #000000 black
-
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-
-      // rotationZ: 235deg — tilts the whole plane like ShaderGradient
-      float angle = radians(235.0);
-      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5;
-      st += vec2(-0.5, 0.1); // positionX, positionY
-
-      float t = u_time * 0.1; // uSpeed:0.1
-
-      // Layered sine waves — gives the smooth liquid/silk look, not cloud blobs
-      float freq = 5.5; // uFrequency
-      float strength = 2.4; // uStrength
-      float density = 1.1; // uDensity
-
-      // Primary slow wave along the rotated plane
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-
-      // Secondary cross-waves for depth
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-
-      // Blend into a single smooth field (no octaves = no clouds)
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-
-      // Warp field by strength
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
-      warped = clamp(warped, 0.0, 1.0);
-
-      // Horizontal gradient base: violet left → rose right
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-
-      // Mix colors: dark pools where field is low, violet left, rose right
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
-      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-
-      // Lateral pull — reinforce left=violet, right=rose
-      col = mix(col, C1, (1.0 - xGrad) * 0.4);
-      col = mix(col, C2, xGrad * 0.4);
-
-      // Dark centre pools (low-field regions go to black)
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8);
-
-      col *= 1.1; // brightness
-      col += vec3(warped * 0.04); // subtle reflection shimmer
-      col = clamp(col, 0.0, 1.0);
-
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-
-  function compile(type, src) {
-    const sh = gl.createShader(type);
-    gl.shaderSource(sh, src);
-    gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS))
-      console.error(gl.getShaderInfoLog(sh));
-    return sh;
-  }
-
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER,   vsSrc));
-  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER,
-    new Float32Array([-1,-1, 1,-1, -1,1, 1,1]),
-    gl.STATIC_DRAW
-  );
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
-
-  let start = performance.now();
-  function draw() {
-    gl.uniform1f(uTime, (performance.now() - start) / 1000);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
+<script defer src="assets/js/shader.js"></script>
 <div class="page">
 
   <!-- NAV -->
@@ -3798,7 +3801,7 @@ nav {
     <form class="inquiry-form hardened-form" id="inquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
       <!-- Honeypot: invisible to humans + screen readers; bots fill it and we silently drop -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
-      <input type="hidden" name="_subject" value="New Booking Inquiry — julieschatzmusic.com">
+      <input type="hidden" name="_subject" value="New Booking Inquiry · julieschatzmusic.com">
       <input type="hidden" name="_loaded_at" value="">
       <input type="hidden" name="form_source" value="dropdown-inquiry">
       <input type="hidden" name="ceremony_selections" id="ceremonySelectionsHidden" value="">
@@ -3862,14 +3865,14 @@ nav {
         <span class="field-label">Event Type</span>
         <select name="event_type" required>
           <option value="" disabled selected>Select…</option>
-          <optgroup label="Wedding — Solo Violin / Piano">
+          <optgroup label="Wedding · Solo Violin / Piano">
             <option value="wedding-ceremony">Wedding Ceremony</option>
             <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
             <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
           </optgroup>
-          <optgroup label="Wedding — Soul Shades Duo (Violin + Piano)">
-            <option value="duo-ceremony">Soul Shades — Ceremony</option>
-            <option value="duo-ceremony-cocktail">Soul Shades — Ceremony + Cocktail</option>
+          <optgroup label="Wedding · Soul Shades Duo (Violin + Piano)">
+            <option value="duo-ceremony">Soul Shades · Ceremony</option>
+            <option value="duo-ceremony-cocktail">Soul Shades · Ceremony + Cocktail</option>
           </optgroup>
           <optgroup label="Private Events">
             <option value="private-1hr">Private Event (1 hour)</option>
@@ -3911,7 +3914,7 @@ nav {
       <!-- Set 1 — original. <picture> serves WebP (~90% smaller) to modern browsers, falls back to PNG. -->
       <div class="mphoto"><picture>
         <source type="image/webp" srcset="assets/photos/julie-schatz-blacksteinway-nyc.webp">
-        <img src="assets/photos/julie-schatz-blacksteinway-nyc.png" alt="Julie Schatz at Steinway — NYC Skyline" width="1856" height="2304" fetchpriority="high" loading="eager" decoding="async">
+        <img src="assets/photos/julie-schatz-blacksteinway-nyc.png" alt="Julie Schatz at Steinway, NYC Skyline" width="1856" height="2304" fetchpriority="high" loading="eager" decoding="async">
       </picture></div>
       <div class="mphoto"><picture>
         <source type="image/webp" srcset="assets/photos/julie-schatz-event-719.webp">
@@ -4025,9 +4028,9 @@ nav {
     <div class="bio-text">
       <p>Julie Schatz is a multi-instrumentalist, music producer, and songwriter with a bachelor's degree in jazz theory and performance.</p>
 
-      <p>She has worked on numerous recording projects and live performances as a violinist, pianist, songwriter, and beat maker. Her credits range from Wu-Tang to Disney. Based in NYC, she performs at weddings, private events, and corporate galas across New York, New Jersey, and Connecticut — drawing from a <a href="/wedding-ceremony-songs/">repertoire of more than 200 songs</a> spanning classical, jazz, R&amp;B, country, contemporary pop, and worship.</p>
+      <p>She has worked on numerous recording projects and live performances as a violinist, pianist, songwriter, and beat maker. Her credits range from Wu-Tang to Disney. Based in NYC, she performs at weddings, private events, and corporate galas across New York, New Jersey, and Connecticut, drawing from a <a href="/wedding-ceremony-songs/">repertoire of more than 200 songs</a> spanning classical, jazz, R&amp;B, country, contemporary pop, and worship.</p>
 
-      <p class="bio-pullquote">A fresh mix of electronic, R&amp;B, and hip-hop sounds — coupled with deep roots in jazz.</p>
+      <p class="bio-pullquote">A fresh mix of electronic, R&amp;B, and hip-hop sounds, with deep roots in jazz.</p>
 
       <p>Julie is a Roland artist and music educator, contributing content to platforms including Splice. Producers can <a href="/sample-pack-store/">browse the sample-pack catalog</a>, and couples can read more about <a href="/wedding-violinist-nyc/">NYC</a>, <a href="/wedding-violinist-new-jersey/">New Jersey</a>, or <a href="/wedding-violinist-connecticut/">Connecticut</a> weddings.</p>
 
@@ -4093,8 +4096,8 @@ nav {
       <h2 class="editorial-h2">Upcoming Events</h2>
     </div>
     <div class="events-grid">
-      <div class="event-card">
-        <div class="event-date">May 13, 2026</div>
+      <div class="event-card is-next">
+        <div class="event-date"><span class="event-next-tag">Next up</span>May 13, 2026</div>
         <div class="event-title">Fundraiser</div>
         <div class="event-meta">Wed <span class="event-meta-sep">·</span> 1:30 &ndash; 2:00 PM <span class="event-meta-sep">·</span> Manhasset, NY</div>
       </div>
@@ -4271,7 +4274,7 @@ nav {
     </div>
     <div class="testimonials-dots" id="testimonialsDots" aria-label="Testimonial pagination"></div>
     <div class="bash-credential">
-      <img src="assets/badges/best-of-2025.svg" alt="The Bash — Best Of 2025" width="120" height="120" loading="lazy" decoding="async">
+      <img src="assets/badges/best-of-2025.svg" alt="The Bash, Best Of 2025" width="120" height="120" loading="lazy" decoding="async">
       <div class="bash-credential-text">
         <span class="bash-credential-label">Certified by The Bash</span>
         <span class="bash-credential-name">Best of 2025</span>
@@ -4626,31 +4629,31 @@ nav {
     <div class="faq-list">
       <details class="faq-item">
         <summary>How much does it cost to hire a wedding violinist in NYC?</summary>
-        <p>Pricing depends on the event and venue. Wedding ceremony bookings in NYC start at $595 — that includes up to 3 song requests from the repertoire, a low-profile high-fidelity sound system, and prelude + ceremony coverage. The most-booked package combines ceremony and cocktail hour at $950 (NYC). The Soul Shades violin-and-piano duo starts at $2,400 for ceremony. Private events, proposals, and corporate galas are priced separately. Travel is included within NYC. For a full breakdown, see the <a href="/wedding-violinist-pricing/">rate sheet</a> — and for a custom quote tailored to your venue and event, submit an inquiry. Typical response within 24 hours.</p>
+        <p>Pricing depends on the event and venue. Wedding ceremony bookings in NYC start at $595, which includes up to 3 song requests from the repertoire, a low-profile high-fidelity sound system, and prelude + ceremony coverage. The most-booked package combines ceremony and cocktail hour at $950 (NYC). The Soul Shades violin-and-piano duo starts at $2,400 for ceremony. Private events, proposals, and corporate galas are priced separately. Travel is included within NYC. For a full breakdown, see the <a href="/wedding-violinist-pricing/">rate sheet</a>. For a custom quote tailored to your venue and event, submit an inquiry. Typical response within 24 hours.</p>
       </details>
       <details class="faq-item">
         <summary>How far in advance should I book a wedding violinist?</summary>
-        <p>For Saturday weddings in peak season (May–October), 6–12 months out is typical, with the most-requested venues filling earliest. For weeknight events, intimate ceremonies, off-season dates, and corporate bookings, shorter timelines are usually fine — sometimes as little as 3–4 weeks. The earlier you reach out, the more flexibility there is on custom arrangements and ceremony rehearsals.</p>
+        <p>For Saturday weddings in peak season (May–October), 6–12 months out is typical, with the most-requested venues filling earliest. For weeknight events, intimate ceremonies, off-season dates, and corporate bookings, shorter timelines are usually fine, sometimes as little as 3–4 weeks. The earlier you reach out, the more flexibility there is on custom arrangements and ceremony rehearsals.</p>
       </details>
       <details class="faq-item">
         <summary>Can you learn a custom song or arrange our first dance?</summary>
-        <p>Yes — and every booking already includes up to 3 song requests from the repertoire of 200+ songs. For songs outside the repertoire, Julie can learn and prepare new material with at least 6 weeks of lead time (a custom-song fee applies — see the <a href="/wedding-violinist-pricing/">rate sheet</a>). For featured arrangements where Julie plays the song's vocal melody on violin by memory rather than over the recording, an instrumental-version fee applies. Browse the <a href="/wedding-ceremony-songs/">full repertoire</a> to see what's already prepared, and send the song reference at the time of inquiry.</p>
+        <p>Every booking already includes up to 3 song requests from the repertoire of 200+ songs. For songs outside the repertoire, Julie can learn and prepare new material with at least 6 weeks of lead time (a custom-song fee applies; see the <a href="/wedding-violinist-pricing/">rate sheet</a>). For featured arrangements where Julie plays the song's vocal melody on violin by memory rather than over the recording, an instrumental-version fee applies. Browse the <a href="/wedding-ceremony-songs/">full repertoire</a> to see what's already prepared, and send the song reference at the time of inquiry.</p>
       </details>
       <details class="faq-item">
-        <summary>Solo violinist vs. string quartet — which should we choose for the ceremony?</summary>
-        <p>A solo violinist gives an intimate, conversational sound that fits ceremonies of any size and reads beautifully on video. A string quartet adds harmonic depth — best for very large rooms or guests who want a fuller classical texture. Julie's solo offering is amplified through a low-profile, high-fidelity PA, which means it carries cleanly even in large outdoor or stone-walled venues — without the cost or staging footprint of four players. For couples who specifically want quartet coverage, that can be arranged on request.</p>
+        <summary>Solo violinist vs. string quartet: which should we choose for the ceremony?</summary>
+        <p>A solo violinist gives an intimate, conversational sound that fits ceremonies of any size and reads beautifully on video. A string quartet adds harmonic depth, best for very large rooms or guests who want a fuller classical texture. Julie's solo offering is amplified through a low-profile, high-fidelity PA, which means it carries cleanly even in large outdoor or stone-walled venues, without the cost or staging footprint of four players. For couples who specifically want quartet coverage, that can be arranged on request.</p>
       </details>
       <details class="faq-item">
         <summary>Do you travel to weddings in New Jersey, Connecticut, and the Hudson Valley?</summary>
-        <p>Yes — NYC-based, with regular bookings across all of <a href="/wedding-violinist-nyc/">NYC</a>, <a href="/wedding-violinist-new-jersey/">New Jersey</a>, <a href="/wedding-violinist-connecticut/">Connecticut</a>, and the Hudson Valley. Travel is included for NYC bookings (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Hoboken, Jersey City). A second tier covers Long Island, Westchester, Northern New Jersey, and Greenwich at standard zone pricing. <strong>The Hudson Valley and beyond are custom-quoted</strong> based on venue distance — please confirm the address at the time of inquiry so the quote reflects the correct travel scope. Destination events outside the tri-state region are available on request.</p>
+        <p>NYC-based, with regular bookings across all of <a href="/wedding-violinist-nyc/">NYC</a>, <a href="/wedding-violinist-new-jersey/">New Jersey</a>, <a href="/wedding-violinist-connecticut/">Connecticut</a>, and the Hudson Valley. Travel is included for NYC bookings (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Hoboken, Jersey City). A second tier covers Long Island, Westchester, Northern New Jersey, and Greenwich at standard zone pricing. <strong>The Hudson Valley and beyond are custom-quoted</strong> based on venue distance. Please confirm the address at the time of inquiry so the quote reflects the correct travel scope. Destination events outside the tri-state region are available on request.</p>
       </details>
       <details class="faq-item">
         <summary>Do you bring your own sound system / PA for outdoor ceremonies?</summary>
-        <p>Yes. Every booking includes a low-profile, high-fidelity PA system suited to the venue — wired XLR for indoor rooms, battery-powered amplification for outdoor lawns and rooftops, and wireless lavalier mics for officiants and vows when needed. Julie also travels with a professional electric violin and a portable keyboard rig when no venue piano is available. The setup is designed to disappear visually while filling the space cleanly on audio.</p>
+        <p>Yes. Every booking includes a low-profile, high-fidelity PA system suited to the venue: wired XLR for indoor rooms, battery-powered amplification for outdoor lawns and rooftops, and wireless lavalier mics for officiants and vows when needed. Julie also travels with a professional electric violin and a portable keyboard rig when no venue piano is available. Setup is low-profile and sized to the room.</p>
       </details>
       <details class="faq-item">
         <summary>Can one musician cover both the ceremony and cocktail hour?</summary>
-        <p>Yes — that's the most-booked configuration. Julie performs solo violin for the ceremony (prelude, processional, vows, recessional) and switches to jazz piano or violin-and-keyboard for cocktail hour. The single-musician approach keeps the energy continuous, simplifies coordination with planners, and is significantly more cost-effective than booking separate ensembles for each segment. Combined ceremony + cocktail packages start at $950 in NYC, $1,100 in Long Island / Westchester / Northern New Jersey / Greenwich, and are custom-quoted for the Hudson Valley and beyond.</p>
+        <p>That's the most-booked configuration. Julie performs solo violin for the ceremony (prelude, processional, vows, recessional) and switches to jazz piano or violin-and-keyboard for cocktail hour. One musician means no break in the music between ceremony and cocktail, simpler coordination with planners, and noticeably lower cost than two separate ensembles. Combined ceremony + cocktail packages start at $950 in NYC, $1,100 in Long Island / Westchester / Northern New Jersey / Greenwich, and are custom-quoted for the Hudson Valley and beyond.</p>
       </details>
       <details class="faq-item">
         <summary>What's your deposit, contract, and cancellation policy?</summary>
@@ -4670,7 +4673,7 @@ nav {
       "name": "How much does it cost to hire a wedding violinist in NYC?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pricing depends on the event and venue. Wedding ceremony bookings in NYC start at $595 — that includes up to 3 song requests from the repertoire, a low-profile high-fidelity sound system, and prelude + ceremony coverage. The most-booked package combines ceremony and cocktail hour at $950 (NYC). The Soul Shades violin-and-piano duo starts at $2,400 for ceremony. Private events, proposals, and corporate galas are priced separately. Travel is included within NYC. For a full breakdown, see the rate sheet — and for a custom quote tailored to your venue and event, submit an inquiry. Typical response within 24 hours."
+        "text": "Pricing depends on the event and venue. Wedding ceremony bookings in NYC start at $595, which includes up to 3 song requests from the repertoire, a low-profile high-fidelity sound system, and prelude + ceremony coverage. The most-booked package combines ceremony and cocktail hour at $950 (NYC). The Soul Shades violin-and-piano duo starts at $2,400 for ceremony. Private events, proposals, and corporate galas are priced separately. Travel is included within NYC. For a full breakdown, see the rate sheet. For a custom quote tailored to your venue and event, submit an inquiry. Typical response within 24 hours."
       }
     },
     {
@@ -4678,7 +4681,7 @@ nav {
       "name": "How far in advance should I book a wedding violinist?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For Saturday weddings in peak season (May–October), 6–12 months out is typical, with the most-requested venues filling earliest. For weeknight events, intimate ceremonies, off-season dates, and corporate bookings, shorter timelines are usually fine — sometimes as little as 3–4 weeks. The earlier you reach out, the more flexibility there is on custom arrangements and ceremony rehearsals."
+        "text": "For Saturday weddings in peak season (May–October), 6–12 months out is typical, with the most-requested venues filling earliest. For weeknight events, intimate ceremonies, off-season dates, and corporate bookings, shorter timelines are usually fine, sometimes as little as 3–4 weeks. The earlier you reach out, the more flexibility there is on custom arrangements and ceremony rehearsals."
       }
     },
     {
@@ -4686,15 +4689,15 @@ nav {
       "name": "Can you learn a custom song or arrange our first dance?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — and every booking already includes up to 3 song requests from the repertoire of 200+ songs. For songs outside the repertoire, Julie can learn and prepare new material with at least 6 weeks of lead time (a custom-song fee applies — see the rate sheet). For featured arrangements where Julie plays the song's vocal melody on violin by memory rather than over the recording, an instrumental-version fee applies. Browse the full repertoire to see what's already prepared, and send the song reference at the time of inquiry."
+        "text": "Every booking already includes up to 3 song requests from the repertoire of 200+ songs. For songs outside the repertoire, Julie can learn and prepare new material with at least 6 weeks of lead time (a custom-song fee applies; see the rate sheet). For featured arrangements where Julie plays the song's vocal melody on violin by memory rather than over the recording, an instrumental-version fee applies. Browse the full repertoire to see what's already prepared, and send the song reference at the time of inquiry."
       }
     },
     {
       "@type": "Question",
-      "name": "Solo violinist vs. string quartet — which should we choose for the ceremony?",
+      "name": "Solo violinist vs. string quartet: which should we choose for the ceremony?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A solo violinist gives an intimate, conversational sound that fits ceremonies of any size and reads beautifully on video. A string quartet adds harmonic depth — best for very large rooms or guests who want a fuller classical texture. Julie's solo offering is amplified through a low-profile, high-fidelity PA, which means it carries cleanly even in large outdoor or stone-walled venues — without the cost or staging footprint of four players. For couples who specifically want quartet coverage, that can be arranged on request."
+        "text": "A solo violinist gives an intimate, conversational sound that fits ceremonies of any size and reads beautifully on video. A string quartet adds harmonic depth, best for very large rooms or guests who want a fuller classical texture. Julie's solo offering is amplified through a low-profile, high-fidelity PA, which means it carries cleanly even in large outdoor or stone-walled venues, without the cost or staging footprint of four players. For couples who specifically want quartet coverage, that can be arranged on request."
       }
     },
     {
@@ -4702,7 +4705,7 @@ nav {
       "name": "Do you travel to weddings in New Jersey, Connecticut, and the Hudson Valley?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — NYC-based, with regular bookings across all of NYC, New Jersey, Connecticut, and the Hudson Valley. Travel is included for NYC bookings (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Hoboken, Jersey City). A second tier covers Long Island, Westchester, Northern New Jersey, and Greenwich at standard zone pricing. The Hudson Valley and beyond are custom-quoted based on venue distance — please confirm the address at the time of inquiry so the quote reflects the correct travel scope. Destination events outside the tri-state region are available on request."
+        "text": "NYC-based, with regular bookings across all of NYC, New Jersey, Connecticut, and the Hudson Valley. Travel is included for NYC bookings (Manhattan, Brooklyn, Queens, Bronx, Staten Island, Hoboken, Jersey City). A second tier covers Long Island, Westchester, Northern New Jersey, and Greenwich at standard zone pricing. The Hudson Valley and beyond are custom-quoted based on venue distance. Please confirm the address at the time of inquiry so the quote reflects the correct travel scope. Destination events outside the tri-state region are available on request."
       }
     },
     {
@@ -4710,7 +4713,7 @@ nav {
       "name": "Do you bring your own sound system / PA for outdoor ceremonies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Every booking includes a low-profile, high-fidelity PA system suited to the venue — wired XLR for indoor rooms, battery-powered amplification for outdoor lawns and rooftops, and wireless lavalier mics for officiants and vows when needed. Julie also travels with a professional electric violin and a portable keyboard rig when no venue piano is available. The setup is designed to disappear visually while filling the space cleanly on audio."
+        "text": "Yes. Every booking includes a low-profile, high-fidelity PA system suited to the venue: wired XLR for indoor rooms, battery-powered amplification for outdoor lawns and rooftops, and wireless lavalier mics for officiants and vows when needed. Julie also travels with a professional electric violin and a portable keyboard rig when no venue piano is available. Setup is low-profile and sized to the room."
       }
     },
     {
@@ -4718,7 +4721,7 @@ nav {
       "name": "Can one musician cover both the ceremony and cocktail hour?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — that's the most-booked configuration. Julie performs solo violin for the ceremony (prelude, processional, vows, recessional) and switches to jazz piano or violin-and-keyboard for cocktail hour. The single-musician approach keeps the energy continuous, simplifies coordination with planners, and is significantly more cost-effective than booking separate ensembles for each segment. Combined ceremony + cocktail packages start at $950 in NYC, $1,100 in Long Island / Westchester / Northern New Jersey / Greenwich, and are custom-quoted for the Hudson Valley and beyond."
+        "text": "That's the most-booked configuration. Julie performs solo violin for the ceremony (prelude, processional, vows, recessional) and switches to jazz piano or violin-and-keyboard for cocktail hour. One musician means no break in the music between ceremony and cocktail, simpler coordination with planners, and noticeably lower cost than two separate ensembles. Combined ceremony + cocktail packages start at $950 in NYC, $1,100 in Long Island / Westchester / Northern New Jersey / Greenwich, and are custom-quoted for the Hudson Valley and beyond."
       }
     },
     {
@@ -4844,6 +4847,30 @@ if (aboutHeading) {
   });
 }
 
+// ── Bio section scroll-triggered reveal (staggered) ──
+// Adds `.is-visible` to .bio-section when it enters the viewport. CSS handles
+// the actual reveal (transition-delay cascade). Skips on reduced-motion via
+// the matching @media query in CSS — JS still adds the class but no transform
+// runs, so the user sees instant content with no lag.
+(function () {
+  var section = document.getElementById('about');
+  if (!section) return;
+  // No IntersectionObserver: show everything immediately as a graceful fallback.
+  if (!('IntersectionObserver' in window)) {
+    section.classList.add('is-visible');
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('is-visible');
+        io.unobserve(section);
+      }
+    });
+  }, { rootMargin: '-100px 0px', threshold: 0 });
+  io.observe(section);
+})();
+
 // ── Mobile photo carousel (≤900px). Desktop infinite-scroll untouched. ──
 (function () {
   var SLIDES = 6;
@@ -4940,6 +4967,11 @@ if (aboutHeading) {
 
   function setOpen(open) {
     if (open) {
+      // Mutual exclusion: if the inquiry panel is open, close it before opening the drawer.
+      const inquiry = document.getElementById('inquiryDropdown');
+      if (inquiry && inquiry.classList.contains('active')) {
+        inquiry.classList.remove('active');
+      }
       drawer.hidden = false;
       // Force a reflow so the slide-in animation actually runs on first open
       void drawer.offsetWidth;
@@ -4993,7 +5025,22 @@ function toggleDropdown(e) {
     e.preventDefault();
     e.stopPropagation();
   }
+  const wasActive = dropdown.classList.contains('active');
   dropdown.classList.toggle('active');
+  // Mutual exclusion: when opening the inquiry panel, force-close the nav drawer
+  // so the hamburger and the panel's × can't fight for the same corner.
+  if (!wasActive) {
+    const drawerEl = document.getElementById('mobileDrawer');
+    const burgerEl = document.getElementById('navHamburger');
+    if (drawerEl && !drawerEl.hidden) {
+      drawerEl.hidden = true;
+      document.body.classList.remove('nav-drawer-open');
+      if (burgerEl) {
+        burgerEl.classList.remove('is-open');
+        burgerEl.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
 }
 
 // Attach clicks to the Inquiry buttons
@@ -5502,7 +5549,7 @@ if (testimonialsTrack) {
         }
         if (isDisposableEmail(email)) {
           e.preventDefault();
-          showError(form, 'Please use a permanent email address — I respond by email only.');
+          showError(form, 'Please use a permanent email address. I respond by email only.');
           emailField.focus();
           return;
         }
@@ -5655,7 +5702,7 @@ if (testimonialsTrack) {
   function buildSelectionsText(draft) {
     const lines = [];
     lines.push('═════════ CEREMONY MUSIC SELECTIONS ═════════');
-    lines.push('(Submitted from the homepage inquiry form —');
+    lines.push('(Submitted from the homepage inquiry form,');
     lines.push(' originally drafted in the ceremony picker)');
     lines.push('');
 
@@ -5683,7 +5730,7 @@ if (testimonialsTrack) {
         if (!cs || !cs.title || !cs.title.trim()) return;
         const fee = cs.instrumental ? FEES.CUSTOM_INSTRUMENTAL : FEES.CUSTOM;
         customFees += fee;
-        lines.push('   ' + cs.title.trim() + ' — ' + (cs.artist ? cs.artist.trim() : '(artist not specified)'));
+        lines.push('   ' + cs.title.trim() + ' · ' + (cs.artist ? cs.artist.trim() : '(artist not specified)'));
         lines.push('   ' + (cs.instrumental ? '✦ Custom + featured arrangement' : 'Custom request') + ' (+$' + fee + ')');
         lines.push('');
       });

@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://julieschatzmusic.com/assets/og/og-bookings-solo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Julie Schatz — NYC violinist, jazz pianist, and producer">
+<meta property="og:image:alt" content="Julie Schatz · NYC violinist, jazz pianist, and producer">
 <meta property="og:site_name" content="Julie Schatz Music">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Solo Violinist & Pianist Bookings | Julie Schatz">
@@ -45,7 +45,7 @@
     {"@type": "Offer", "name": "Wedding Ceremony · Long Island / Westchester / Northern NJ / Greenwich", "price": "745", "priceCurrency": "USD", "description": "Standard zone pricing for Long Island, Westchester County, Northern New Jersey, and Greenwich CT."},
     {"@type": "Offer", "name": "Ceremony + Cocktail Hour · NYC", "price": "950", "priceCurrency": "USD", "description": "Most-booked package. Solo violin for ceremony, jazz piano or violin/keys for cocktail hour. Travel included."},
     {"@type": "Offer", "name": "Ceremony + Cocktail Hour · Long Island / Westchester / Northern NJ / Greenwich", "price": "1100", "priceCurrency": "USD", "description": "Standard zone pricing for the inner ring."},
-    {"@type": "Offer", "name": "Full Day Soloist · NYC", "price": "1800", "priceCurrency": "USD", "description": "Ceremony, cocktail hour, and dinner — single musician across the day. Travel included."},
+    {"@type": "Offer", "name": "Full Day Soloist · NYC", "price": "1800", "priceCurrency": "USD", "description": "Ceremony, cocktail hour, and dinner with a single musician across the day. Travel included."},
     {"@type": "Offer", "name": "Full Day Soloist · Long Island / Westchester / Northern NJ / Greenwich", "price": "1950", "priceCurrency": "USD", "description": "Standard zone pricing for the inner ring."}
   ]
 }
@@ -656,11 +656,22 @@ nav {
 }
 .rider-engineer {
   margin-top: 56px;
-  padding: 40px 48px;
+  padding: 40px 48px 40px 74px;
   border: 1px solid var(--hairline);
-  border-left: 2px solid var(--violet-soft);
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
   background: rgba(168, 85, 247, 0.04);
+  position: relative;
+}
+.rider-engineer::before {
+  content: '♪';
+  position: absolute;
+  left: 48px;
+  top: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--violet-soft);
+  opacity: 0.85;
 }
 .rider-engineer h3 {
   font-family: 'Inter', sans-serif;
@@ -1236,80 +1247,7 @@ body.nav-drawer-open { overflow: hidden; }
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
-<script>
-// Identical shader to the home page
-(function(){
-  const canvas = document.getElementById('shader-bg');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) return;
-  // Honor prefers-reduced-motion: bail before WebGL init so the static CSS gradient takes over.
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
-    return;
-  }
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); }
-  resize();
-  window.addEventListener('resize', resize);
-  const vsSrc = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
-  const fsSrc = `
-    precision highp float;
-    uniform float u_time;
-    uniform vec2  u_res;
-    vec3 C1 = vec3(0.337, 0.024, 1.000);
-    vec3 C2 = vec3(0.482, 0.173, 0.749);
-    vec3 C3 = vec3(0.000, 0.000, 0.000);
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      float angle = radians(235.0);
-      mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-      vec2 st = rot * (uv - 0.5) + 0.5;
-      st += vec2(-0.5, 0.1);
-      float t = u_time * 0.1;
-      float freq = 5.5; float strength = 2.4; float density = 1.1;
-      float w1 = sin(st.x * freq * density + t) * 0.5 + 0.5;
-      float w2 = sin(st.y * freq * density * 0.7 - t * 0.8 + 1.2) * 0.5 + 0.5;
-      float w3 = sin((st.x + st.y) * freq * 0.6 + t * 0.5 + 2.1) * 0.5 + 0.5;
-      float w4 = sin((st.x - st.y) * freq * 0.4 - t * 0.3 + 3.7) * 0.5 + 0.5;
-      float field = w1 * 0.35 + w2 * 0.25 + w3 * 0.25 + w4 * 0.15;
-      float warped = field + sin(field * 6.28318 * strength * 0.15 + t * 0.4) * 0.12;
-      warped = clamp(warped, 0.0, 1.0);
-      float xGrad = smoothstep(0.0, 1.0, uv.x);
-      vec3 col = mix(C3, C1, smoothstep(0.15, 0.55, warped));
-      col = mix(col, C2, smoothstep(0.4, 0.85, warped));
-      col = mix(col, C1, (1.0 - xGrad) * 0.4);
-      col = mix(col, C2, xGrad * 0.4);
-      float dark = (1.0 - smoothstep(0.2, 0.5, warped)) * (1.0 - smoothstep(0.2, 0.8, xGrad));
-      col = mix(col, C3, dark * 0.8);
-      col *= 1.1;
-      col += vec3(warped * 0.04);
-      col = clamp(col, 0.0, 1.0);
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-  function compile(type, src) { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
-  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
-  let start = performance.now();
-  function draw() {
-    gl.uniform1f(uTime, (performance.now() - start) / 1000);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
+<script defer src="/assets/js/shader.js"></script>
 
 <div class="page">
 
@@ -1357,7 +1295,7 @@ body.nav-drawer-open { overflow: hidden; }
   <header class="solo-hero" style="padding: 40px 48px 80px;">
     <span class="editorial-kicker">01 · Solo Musician Services</span>
     <h1>Violin &amp; Piano,<br>tailored to the room.</h1>
-    <p class="lede">An elegant solo performance with a low-profile, high-fidelity sound system. Pricing is zone-based — travel is included for <em>NYC</em>, with standard zone pricing across Long Island, Westchester, Northern NJ, and Greenwich. Hudson Valley and beyond are custom-quoted. Up to 3 song requests from the existing repertoire included with every booking; <a href="/wedding-violinist-pricing/">add-on rates</a> apply for custom songs outside the repertoire.</p>
+    <p class="lede">An elegant solo performance with a low-profile, high-fidelity sound system. Pricing is zone-based: travel is included for <em>NYC</em>, with standard zone pricing across Long Island, Westchester, Northern NJ, and Greenwich. Hudson Valley and beyond are custom-quoted. Up to 3 song requests from the existing repertoire included with every booking; <a href="/wedding-violinist-pricing/">add-on rates</a> apply for custom songs outside the repertoire.</p>
   </header>
 
   <!-- RATE MATRIX -->
@@ -1401,7 +1339,7 @@ body.nav-drawer-open { overflow: hidden; }
         <div class="row-service">Full Day Soloist</div>
         <div class="rate-cell col-standard">
           <div class="price">$1,800</div>
-          <div class="desc">Ceremony, cocktail hour, and dinner — full-day coverage.</div>
+          <div class="desc">Ceremony, cocktail hour, and dinner: full-day coverage.</div>
         </div>
         <div class="rate-cell col-bespoke">
           <div class="price">$1,950</div>
@@ -1416,7 +1354,7 @@ body.nav-drawer-open { overflow: hidden; }
     <div class="custom-ensemble-note">
       <span class="editorial-kicker">Need More Players?</span>
       <h2>Custom ensemble packages, on request.</h2>
-      <p>Beyond the solo offering, Julie regularly assembles custom ensembles for couples and planners who need a specific instrumental texture — strings for a stately ceremony, jazz piano with upright bass for cocktail hour, or hybrid groupings for galas and brand events.</p>
+      <p>Beyond the solo offering, Julie regularly assembles custom ensembles for couples and planners who need a specific instrumental texture: strings for a stately ceremony, jazz piano with upright bass for cocktail hour, or hybrid groupings for galas and brand events.</p>
       <p class="ensemble-list">
         <span>String Trio</span><span>String Quartet</span><span>Violin + Cello</span><span>Piano + Bass</span><span>Custom Hybrids</span>
       </p>
@@ -1467,7 +1405,7 @@ body.nav-drawer-open { overflow: hidden; }
           <dd>2× 1/4" TRS line outputs (stereo L/R) from Apollo Twin. Apollo Twin provided by Julie Schatz.</dd>
 
           <dt>Staging</dt>
-          <dd>1× small table or equipment riser (approx. 24" × 24" or larger) at the performer's station — holds laptop, audio interface, wireless receiver, and effects pedal.</dd>
+          <dd>1× small table or equipment riser (approx. 24" × 24" or larger) at the performer's station, holding laptop, audio interface, wireless receiver, and effects pedal.</dd>
 
           <dt>Power</dt>
           <dd>1× power strip with a minimum of 4 outlets at the performer's station (laptop, Apollo, BLX4 receiver, Zoom pedal).</dd>
@@ -1488,7 +1426,7 @@ body.nav-drawer-open { overflow: hidden; }
           <dd>Venue to provide 1× mono DI box and an XLR cable to the front-of-house console.</dd>
 
           <dt>Staging</dt>
-          <dd>1× small table or riser (approx. 24" × 24") at the performer's station — holds wireless receiver and effects pedal.</dd>
+          <dd>1× small table or riser (approx. 24" × 24") at the performer's station, holding wireless receiver and effects pedal.</dd>
 
           <dt>Power</dt>
           <dd>1× power strip with a minimum of 2 outlets (BLX4 wireless receiver and Zoom pedal).</dd>
@@ -1506,7 +1444,7 @@ body.nav-drawer-open { overflow: hidden; }
         <dd>For the violin, please apply standard <strong>EQ and compression</strong> at the console to smooth out the electric violin transients. A high-pass filter at <strong>~180 Hz</strong> is appreciated.</dd>
 
         <dt>Effects</dt>
-        <dd>Performer is using a Zoom pedal for core tone — please add a <strong>tasteful Hall Reverb</strong> on the house mix to suit the room acoustics.</dd>
+        <dd>Performer is using a Zoom pedal for core tone. Please add a <strong>tasteful Hall Reverb</strong> on the house mix to suit the room acoustics.</dd>
 
         <dt>Monitoring</dt>
         <dd>Please provide a clear monitor mix. If the house reverb makes intonation difficult to hear, keep the monitor mix <strong>dry</strong> (no house reverb) while keeping the house mix <strong>wet</strong>.</dd>
@@ -1527,7 +1465,7 @@ body.nav-drawer-open { overflow: hidden; }
       <form class="inquiry-form hardened-form" id="soloInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
         <!-- Honeypot: invisible to humans + screen readers -->
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
-        <input type="hidden" name="_subject" value="New Solo Booking Inquiry — Julie Schatz">
+        <input type="hidden" name="_subject" value="New Solo Booking Inquiry · Julie Schatz">
         <input type="hidden" name="_loaded_at" value="">
         <input type="hidden" name="form_source" value="solo-bookings">
 
@@ -1581,7 +1519,7 @@ body.nav-drawer-open { overflow: hidden; }
           <label class="field-label" for="solo-package">Package / Service</label>
           <select id="solo-package" name="service" required>
             <option value="" disabled selected>Choose a package…</option>
-            <optgroup label="NYC — Travel Included">
+            <optgroup label="NYC · Travel Included">
               <option value="ceremony-nyc">Wedding Ceremony · $595</option>
               <option value="ceremony-cocktail-nyc">Ceremony &amp; Cocktail · $950</option>
               <option value="full-day-nyc">Full Day Soloist · $1,800</option>
@@ -1596,7 +1534,7 @@ body.nav-drawer-open { overflow: hidden; }
               <option value="ceremony-cocktail-custom">Ceremony &amp; Cocktail · Custom Quote</option>
               <option value="full-day-custom">Full Day Soloist · Custom Quote</option>
             </optgroup>
-            <option value="undecided">Not sure yet — let's talk</option>
+            <option value="undecided">Not sure yet · let's talk</option>
           </select>
         </div>
 
@@ -1784,7 +1722,7 @@ if (fy) fy.textContent = new Date().getFullYear();
         const email = emailField.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if (!emailRegex.test(email)) { e.preventDefault(); showError(form, 'That email address looks invalid. Please double-check.'); emailField.focus(); return; }
-        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address — I respond by email only.'); emailField.focus(); return; }
+        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address. I respond by email only.'); emailField.focus(); return; }
       }
       const phoneField = form.querySelector('input[type="tel"]');
       if (phoneField && phoneField.value) {
