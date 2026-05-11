@@ -476,8 +476,14 @@ nav {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ivory-soft);
-  margin: 24px 0 32px;
+  margin: 24px auto 32px;
+  max-width: none;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
 }
 .custom-ensemble-note .ensemble-list span { display: inline-block; margin: 0 6px; }
 .custom-ensemble-note .ensemble-list span + span::before { content: '·'; margin-right: 12px; color: var(--ivory-faint); }
