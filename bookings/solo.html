@@ -1517,9 +1517,23 @@ body.nav-drawer-open { overflow: hidden; }
             </select>
           </div>
           <div class="field-group">
-            <label class="field-label" for="solo-referral">How Did You Hear About Julie?</label>
-            <input id="solo-referral" type="text" name="referral" placeholder="Instagram, planner, friend…">
+            <label class="field-label" for="solo-hours">Event Length</label>
+            <select id="solo-hours" name="event_hours" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="30-min">30 minutes (ceremony only)</option>
+              <option value="1-hr">1 hour</option>
+              <option value="1.5-hr">1.5 hours</option>
+              <option value="2-hr">2 hours</option>
+              <option value="3-hr">3 hours</option>
+              <option value="4-hr">4 hours</option>
+              <option value="5-plus-hr">5+ hours</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
           </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="solo-referral">How Did You Hear About Julie?</label>
+          <input id="solo-referral" type="text" name="referral" placeholder="Instagram, planner, friend…">
         </div>
 
         <div class="field-group">
