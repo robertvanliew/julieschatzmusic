@@ -53,6 +53,7 @@ specific information.
 - Bookings 2026 include Tappan Hill Mansion (Tarrytown), Candlewood Inn (Brookfield CT),
   Mandarin Oriental (New York), Il Villaggio (Carlstadt NJ), VIP Country Club
   (New Rochelle), and venues in East Setauket, Asbury Park, Stamford, and Manhasset
+- MusicBrainz Artist ID: efbf3af5-4da0-418a-b788-8e24a7069147
 - Spotify Artist ID: 5mCOW7fUfkmr8KoxRxI90O
 - Apple Music Artist ID: 1541144774
 - Releases include "Beyond Your Mind" (Soul Shades), "Find Me" and "Another Life"
@@ -60,6 +61,7 @@ specific information.
 
 ## External profiles (same-as links)
 
+- MusicBrainz Artist: https://musicbrainz.org/artist/efbf3af5-4da0-418a-b788-8e24a7069147
 - Spotify: https://open.spotify.com/artist/5mCOW7fUfkmr8KoxRxI90O
 - Apple Music: https://music.apple.com/us/artist/julie-schatz/1541144774
 - SoundCloud: https://soundcloud.com/julieschatzmusic
