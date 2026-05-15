@@ -14,6 +14,7 @@
     { "source": "/venues/", "destination": "/venues.html" },
     { "source": "/privacy/", "destination": "/privacy.html" },
     { "source": "/wedding-violinist-nyc/", "destination": "/wedding-violinist-nyc.html" },
+    { "source": "/wedding-violinist-long-island/", "destination": "/wedding-violinist-long-island.html" },
     { "source": "/wedding-violinist-new-jersey/", "destination": "/wedding-violinist-new-jersey.html" },
     { "source": "/wedding-violinist-connecticut/", "destination": "/wedding-violinist-connecticut.html" },
     { "source": "/sample-pack/live-yamaha-piano/", "destination": "/beats/AJ7Hj.html" },
