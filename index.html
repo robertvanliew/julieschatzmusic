@@ -550,7 +550,7 @@
 <script src="https://open.spotify.com/embed/iframe-api/v1" defer></script>
 <style>
 /* ═══════════════════════════════════
-   FAQ — accessible disclosure list, matches editorial register
+   FAQ, accessible disclosure list, matches editorial register
    ═══════════════════════════════════ */
 .faq-section {
   width: 100vw;
@@ -645,7 +645,7 @@
   border: 0;
 }
 
-/* Global Spotify embed sink — kept out of layout flow.
+/* Global Spotify embed sink, kept out of layout flow.
    Spotify's createController() replaces the host element with an iframe.
    Sits at fixed position with transform: translate to push offscreen. */
 #spotify-embed-sink {
@@ -669,7 +669,7 @@
   pointer-events: none;
 }
 
-/* NAP contact strip — shared footer block (phone + form-linked email) */
+/* NAP contact strip, shared footer block (phone + form-linked email) */
 .footer-contact-strip {
   display: flex;
   flex-wrap: wrap;
@@ -715,7 +715,7 @@
 
 
 /* Static gradient fallback for users with reduced-motion preference.
-   Black base with two tiny violet pools — same character as the WebGL
+   Black base with two tiny violet pools, same character as the WebGL
    shader but static. Black dominates; violet is suggestion only. */
 @media (prefers-reduced-motion: reduce) {
   #shader-bg { display: none !important; }
@@ -733,7 +733,7 @@
    ═══════════════════════════════════════════════════════════════════ */
 .nav-hamburger {
   display: none;
-  /* Fixed over the photo — escapes all stacking contexts */
+  /* Fixed over the photo, escapes all stacking contexts */
   position: fixed;
   top: max(14px, env(safe-area-inset-top));
   right: max(14px, env(safe-area-inset-right));
@@ -746,7 +746,7 @@
   border-radius: 8px;
   cursor: pointer;
   padding: 0;
-  /* Must be above everything — shader canvas is z-index 0, page z-index 1 */
+  /* Must be above everything, shader canvas is z-index 0, page z-index 1 */
   z-index: 9999;
   align-items: center;
   justify-content: center;
@@ -773,12 +773,12 @@
 .nav-hamburger.is-open .nav-ham-line:nth-child(2) { opacity: 0; }
 .nav-hamburger.is-open .nav-ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* Hide the hamburger while the inquiry panel is open — they collide in the
+/* Hide the hamburger while the inquiry panel is open, they collide in the
    top-right corner and the panel has its own close button. One modal at a time. */
 body:has(.inquiry-dropdown.active) .nav-hamburger {
   display: none !important;
 }
-/* And hide the inquiry panel while the nav drawer is open — reverse direction
+/* And hide the inquiry panel while the nav drawer is open, reverse direction
    of the same one-modal-at-a-time rule. JS already enforces mutual exclusion;
    this is the visual safety net for any edge case (older browsers, race
    conditions, programmatic state changes). */
@@ -808,7 +808,7 @@ body.nav-drawer-open .inquiry-dropdown.active {
   position: absolute;
   top: 0; right: 0; bottom: 0;
   width: min(82vw, 360px);
-  /* Premium violet drawer — readable, on-brand */
+  /* Premium violet drawer, readable, on-brand */
   background: linear-gradient(160deg, #5b1e9a 0%, #2a0f4d 60%, #15082a 100%);
   border-left: 1px solid rgba(212, 184, 114, 0.25);
   padding: 80px 28px 40px;
@@ -871,7 +871,7 @@ body.nav-drawer-open .inquiry-dropdown.active {
   color: #d4b3ff;
   padding-left: 8px;
 }
-/* Soft scroll lock — overflow:hidden only. Works on Chrome/Firefox/Edge
+/* Soft scroll lock, overflow:hidden only. Works on Chrome/Firefox/Edge
    reliably; on iOS Safari there's a known minor scroll-bleed quirk but
    the drawer/dropdown sits z-index above the page so it doesn't matter
    visually. The previous position:fixed approach was locking body
@@ -889,7 +889,7 @@ body.nav-drawer-open {
   .nav-hamburger { display: flex !important; }
 
   /* Strip the SITE nav of all visual chrome so hamburger floats freely over
-     the photo. CRITICAL: this MUST exclude the footer sitemap nav — a bare
+     the photo. CRITICAL: this MUST exclude the footer sitemap nav, a bare
      `nav` selector also matches the footer and collapses it to height:0,
      stacking all footer columns on top of each other. */
   nav.site-nav,
@@ -921,7 +921,7 @@ body.nav-drawer-open {
   --beige:   #F0EAD6;
   --white:   #FFFFFF;
 
-  /* Premium pass — quiet luxury system */
+  /* Premium pass, quiet luxury system */
   --ivory:        #F4EFE6;
   --ivory-dim:    rgba(244, 239, 230, 0.72);
   --ivory-soft:   rgba(244, 239, 230, 0.55);
@@ -946,7 +946,7 @@ body.nav-drawer-open {
   color: #fff;
 }
 
-/* Native <select> option highlight color override — best-effort cross-browser.
+/* Native <select> option highlight color override, best-effort cross-browser.
    Most browsers render <option> via OS chrome and ignore most CSS, but Chromium
    and Firefox respect background-color on :checked / :hover where supported. */
 option:checked,
@@ -990,7 +990,7 @@ option:hover {
   background: linear-gradient(to right, var(--violet-soft), transparent);
 }
 
-/* Unified CTA — slim ivory hairline pill with quiet violet underglow + arrow */
+/* Unified CTA, slim ivory hairline pill with quiet violet underglow + arrow */
 .btn-premium {
   display: inline-flex;
   align-items: center;
@@ -1049,7 +1049,7 @@ body {
   background: var(--bg);
   /* `overflow-x: clip` blocks horizontal scroll without trapping
      position:fixed children (unlike `hidden` which would). Mirrors
-     the html rule above as a second line of defense — some mobile
+     the html rule above as a second line of defense, some mobile
      browsers (older iOS Safari) don't fully respect overflow-x:clip
      on <html>, so applying it here too ensures no element can push
      the page wider than the viewport. */
@@ -1058,7 +1058,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
 }
 
-/* ── WebGL shader gradient canvas — covers entire page ── */
+/* ── WebGL shader gradient canvas, covers entire page ── */
 #shader-bg {
   position: fixed;
   inset: 0;
@@ -1069,7 +1069,7 @@ body {
 }
 
 /* ═══════════════════════════════════
-   LAYOUT — stacked rows
+   LAYOUT, stacked rows
    ═══════════════════════════════════ */
 .page {
   width: 100%;
@@ -1117,7 +1117,7 @@ nav {
   transform: scale(1.04);
 }
 /* ═══════════════════════════════════
-   FOOTER — quiet editorial sign-off
+   FOOTER, quiet editorial sign-off
    ═══════════════════════════════════ */
 .site-footer {
   width: 100%;
@@ -1160,7 +1160,7 @@ nav {
   margin-top: -16px;
 }
 
-/* Site map — centered editorial grid */
+/* Site map, centered editorial grid */
 .footer-sitemap {
   /* Override global nav { position: absolute } from line 405 */
   position: static;
@@ -1213,7 +1213,7 @@ nav {
   .footer-sitemap { grid-template-columns: 1fr; gap: 28px; }
 }
 
-/* Socials — flat hairline circles, no glow */
+/* Socials, flat hairline circles, no glow */
 .footer-socials {
   display: flex;
   gap: 12px;
@@ -1244,7 +1244,7 @@ nav {
   display: block;
 }
 
-/* Hairline divider — matches site vocabulary, no purple gradient */
+/* Hairline divider, matches site vocabulary, no purple gradient */
 .footer-divider {
   width: 48px;
   height: 1px;
@@ -1372,7 +1372,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   MARQUEE — horizontal photo strip
+   MARQUEE, horizontal photo strip
    top 55% of the page
    ═══════════════════════════════════ */
 .marquee-section {
@@ -1432,12 +1432,12 @@ nav {
   overflow: hidden;
 }
 
-/* Dots — always hidden (functionality kept via arrows only) */
+/* Dots, always hidden (functionality kept via arrows only) */
 .marquee-dots {
   display: none !important;
 }
 
-/* Arrows — hidden on desktop, shown on mobile in brand purple */
+/* Arrows, hidden on desktop, shown on mobile in brand purple */
 .marquee-arrow {
   display: none;
   position: absolute;
@@ -1470,10 +1470,10 @@ nav {
 .marquee-arrow-next { right: 14px; }
 
 /* Mobile carousel: replace infinite-scroll with paginated single-slide auto-advance.
-   Section height comes from the layout block above (50vh, max 480px) — don't
+   Section height comes from the layout block above (50vh, max 480px), don't
    override it here. */
 @media (max-width: 900px) {
-  /* Carousel container — taller on mobile, with the name overlapping from bottom */
+  /* Carousel container, taller on mobile, with the name overlapping from bottom */
   .marquee-section {
     height: 56vh;
     min-height: 340px;
@@ -1508,7 +1508,7 @@ nav {
     object-position: center top;
   }
   /* Per-photo darkening (desktop) is too heavy when stacked with the
-     section-level color-match tint on mobile — turn it off so we get
+     section-level color-match tint on mobile, turn it off so we get
      one smooth continuous fade, not a doubled-up dark strip. */
   .mphoto::after { background: none !important; }
 
@@ -1516,9 +1516,9 @@ nav {
      The photo's lower half is gradually tinted toward the shader bg color
      (#0F0A1A) AND alpha-masked over a long distance. Two-stage blend so
      the photo's chroma desaturates into the bg before the alpha fade
-     finishes — no horizon line, looks like one continuous surface. */
+     finishes, no horizon line, looks like one continuous surface. */
   .marquee-section {
-    /* Long, eased alpha fade — starts at 55%, fully transparent at bottom */
+    /* Long, eased alpha fade, starts at 55%, fully transparent at bottom */
     -webkit-mask-image: linear-gradient(
       to bottom,
       #000 0%,
@@ -1535,7 +1535,7 @@ nav {
       rgba(0,0,0,0.45) 88%,
       transparent 100%
     );
-    /* Section is transparent above the shader — no opaque box */
+    /* Section is transparent above the shader, no opaque box */
     background: transparent;
   }
   /* Color-match tint on the photo's lower half: pull chroma toward the
@@ -1571,10 +1571,10 @@ nav {
     pointer-events: none;
   }
 
-  /* dots hidden globally — arrows only */
+  /* dots hidden globally, arrows only */
   .marquee-arrow { display: inline-flex; z-index: 12; }
 
-  /* Hide the second (duplicate) set — single-image mode uses first 6 only */
+  /* Hide the second (duplicate) set, single-image mode uses first 6 only */
   .marquee-track > .mphoto:nth-child(n+7) { display: none; }
 }
 
@@ -1621,7 +1621,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   LOWER — name + CTA
+   LOWER, name + CTA
    ═══════════════════════════════════ */
 .lower {
   flex: 1;
@@ -1699,7 +1699,7 @@ nav {
   text-shadow: 0 0 24px rgba(107, 33, 168, 0.8), 0 0 60px rgba(88, 12, 180, 0.4);
 }
 /* Bio heading letters: clean color lift on hover, no neon glow.
-   Strong ease-out custom curve, 180ms — feels intentional, not laggy. */
+   Strong ease-out custom curve, 180ms, feels intentional, not laggy. */
 .ltr-about {
   transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -1712,7 +1712,7 @@ nav {
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Visible H1 — small italic sub-statement under the JULIE SCHATZ wordmark.
+/* Visible H1, small italic sub-statement under the JULIE SCHATZ wordmark.
    Reads to crawlers as the page's main heading; visually defers to the wordmark. */
 .hero-h1 {
   margin-top: 24px;
@@ -1764,7 +1764,7 @@ nav {
     padding-top: 0 !important;
     margin-top: 0 !important;
   }
-  /* Photo carousel pinned to top of page — no gap above */
+  /* Photo carousel pinned to top of page, no gap above */
   .marquee-section {
     margin-top: 0 !important;
     padding-top: 0 !important;
@@ -1801,7 +1801,7 @@ nav {
     margin: 0 !important;
     /* Subtle dark tint in the middle for legibility, fading to transparent
        at top (so it blends with the photo above) AND at bottom (so it
-       blends with the shader bg below — no hard purple band under the
+       blends with the shader bg below, no hard purple band under the
        Inquiry button). */
     background: linear-gradient(
       to bottom,
@@ -1820,7 +1820,7 @@ nav {
     gap: 0;
   }
 
-  /* JULIE SCHATZ wordmark — crisp white, no blend-mode on mobile */
+  /* JULIE SCHATZ wordmark, crisp white, no blend-mode on mobile */
   .name {
     font-size: clamp(58px, 17vw, 100px) !important;
     mix-blend-mode: normal !important;
@@ -1900,7 +1900,7 @@ nav {
   padding-bottom: 8px;
 }
 
-/* Hero Inquiry — primary variant of unified pill */
+/* Hero Inquiry, primary variant of unified pill */
 .cta-btn {
   display: inline-flex;
   align-items: center;
@@ -1958,7 +1958,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   INQUIRY PANEL — Side Drawer
+   INQUIRY PANEL, Side Drawer
    ═══════════════════════════════════ */
 .inquiry-dropdown {
   position: fixed;
@@ -2440,7 +2440,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   PERFORMANCE HIGHLIGHTS — Video Carousel
+   PERFORMANCE HIGHLIGHTS, Video Carousel
    ═══════════════════════════════════ */
 .highlights-section {
   width: 100vw;
@@ -2829,7 +2829,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   TESTIMONIALS — Client Reviews
+   TESTIMONIALS, Client Reviews
    ═══════════════════════════════════ */
 .testimonials-section {
   width: 100%;
@@ -2960,7 +2960,7 @@ nav {
   color: var(--ivory-soft);
 }
 
-/* Quote crossfade nav arrows — hairline ring style */
+/* Quote crossfade nav arrows, hairline ring style */
 .testimonials-slider .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -3013,7 +3013,7 @@ nav {
   transform: scale(1.5);
 }
 
-/* Bash certification — pulled out as standalone credential below the carousel */
+/* Bash certification, pulled out as standalone credential below the carousel */
 .bash-credential {
   display: flex;
   align-items: center;
@@ -3169,7 +3169,7 @@ nav {
   text-wrap: pretty;
   margin: 0;
 }
-/* Drop cap on the very first paragraph — magazine-style lead-in.
+/* Drop cap on the very first paragraph, magazine-style lead-in.
    Anchored to first-line cap-height with tight horizontal clearance. */
 .bio-text > p:first-of-type::first-letter {
   font-family: 'Playfair Display', serif;
@@ -3191,7 +3191,7 @@ nav {
 }
 .bio-text a:hover { text-decoration-color: var(--ivory); }
 
-/* Pull quote — magazine-style moment of breath. Smaller and tighter than
+/* Pull quote, magazine-style moment of breath. Smaller and tighter than
    the previous "shouty" version; whitespace and hairline do the work. */
 .bio-pullquote {
   margin: 44px 0 36px;
@@ -3215,7 +3215,7 @@ nav {
   margin-bottom: 18px;
 }
 
-/* Editorial signature line — magazine-style location/credit */
+/* Editorial signature line, magazine-style location/credit */
 .bio-signature {
   margin-top: 8px;
   font-family: 'Inter', sans-serif;
@@ -3226,12 +3226,12 @@ nav {
   color: var(--ivory-soft);
 }
 .bio-signature::before {
-  content: '— ';
+  content: ', ';
   letter-spacing: 0;
   margin-right: 2px;
 }
 
-/* Bio facts — refined editorial list, no Inter clash */
+/* Bio facts, refined editorial list, no Inter clash */
 .bio-facts {
   margin-top: 56px;
   padding-top: 40px;
@@ -3385,7 +3385,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   BRAND STRIP — Featured & Endorsed
+   BRAND STRIP, Featured & Endorsed
    ═══════════════════════════════════ */
 .brands-section {
   width: 100%;
@@ -3489,7 +3489,7 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   TRACK LIST — Custom music discovery card
+   TRACK LIST, Custom music discovery card
    ═══════════════════════════════════ */
 .track-list {
   width: 100%;
@@ -3527,7 +3527,7 @@ nav {
 }
 .track.is-playing::before { width: 20px; }
 
-/* Play button — replaces the track number, doubles as play/pause toggle */
+/* Play button, replaces the track number, doubles as play/pause toggle */
 .track-play {
   position: relative;
   width: 44px;
@@ -3598,7 +3598,7 @@ nav {
 .track.is-loading .track-play .icon-pause { opacity: 0; }
 .track.is-loading .track-play .icon-loading { opacity: 1; }
 
-/* Progress underline — shows playback progress beneath the title */
+/* Progress underline, shows playback progress beneath the title */
 .track-progress {
   position: absolute;
   left: 0;
@@ -3676,9 +3676,9 @@ nav {
   display: none;
 }
 
-/* (Spotify embed hosts now live in the global #spotify-embed-sink — see head.) */
+/* (Spotify embed hosts now live in the global #spotify-embed-sink, see head.) */
 
-/* Preview-ended hint — appears as 30s preview wraps */
+/* Preview-ended hint, appears as 30s preview wraps */
 .track-preview-note {
   font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
   font-size: 9px;
@@ -4312,7 +4312,7 @@ nav {
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie was absolutely incredible — from the very first note she filled the party with warmth and elegance, setting the perfect tone for our celebration. Her performance captivated every guest and couldn't have been more memorable!"</p>
+          <p class="testimonial-quote">"Julie was absolutely incredible, from the very first note she filled the party with warmth and elegance, setting the perfect tone for our celebration. Her performance captivated every guest and couldn't have been more memorable!"</p>
           <div class="testimonial-meta">
             <span class="testimonial-name">Eric M.</span>
             <span class="testimonial-event">Birthday Party · May 2025</span>
@@ -4320,7 +4320,7 @@ nav {
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"First time hiring a violinist — beautiful performance, and a beautiful experience. I will definitely hire Julie again. Friends and family were super happy and amazed with the music she played and also sang. Beautiful experience. Thanks Julie."</p>
+          <p class="testimonial-quote">"First time hiring a violinist, beautiful performance, and a beautiful experience. I will definitely hire Julie again. Friends and family were super happy and amazed with the music she played and also sang. Beautiful experience. Thanks Julie."</p>
           <div class="testimonial-meta">
             <span class="testimonial-name">Jaime L.</span>
             <span class="testimonial-event">Christening · May 2025</span>
@@ -4328,7 +4328,7 @@ nav {
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Highly recommend! Very talented and an absolute professional — made our evening event incredibly special."</p>
+          <p class="testimonial-quote">"Highly recommend! Very talented and an absolute professional, made our evening event incredibly special."</p>
           <div class="testimonial-meta">
             <span class="testimonial-name">Kale P.</span>
             <span class="testimonial-event">Evening Event · Nov 2025</span>
@@ -4344,7 +4344,7 @@ nav {
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Beautiful performance. Julie was wonderful to work with — incredibly talented, patient and understanding throughout the entire process. Wasn't easy putting together my wedding playlist; Julie guided me and helped me find my vision. Would absolutely recommend her!"</p>
+          <p class="testimonial-quote">"Beautiful performance. Julie was wonderful to work with, incredibly talented, patient and understanding throughout the entire process. Wasn't easy putting together my wedding playlist; Julie guided me and helped me find my vision. Would absolutely recommend her!"</p>
           <div class="testimonial-meta">
             <span class="testimonial-name">Georgette Y.</span>
             <span class="testimonial-event">Wedding · Oct 2025</span>
@@ -4352,7 +4352,7 @@ nav {
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-          <p class="testimonial-quote">"65th Birthday Celebration — Julie was on time, professional, and very entertaining."</p>
+          <p class="testimonial-quote">"65th Birthday Celebration, Julie was on time, professional, and very entertaining."</p>
           <div class="testimonial-meta">
             <span class="testimonial-name">Donna G.</span>
             <span class="testimonial-event">Birthday Celebration · Aug 2024</span>
@@ -4944,7 +4944,7 @@ if (aboutHeading) {
 // ── Bio section scroll-triggered reveal (staggered) ──
 // Adds `.is-visible` to .bio-section when it enters the viewport. CSS handles
 // the actual reveal (transition-delay cascade). Skips on reduced-motion via
-// the matching @media query in CSS — JS still adds the class but no transform
+// the matching @media query in CSS, JS still adds the class but no transform
 // runs, so the user sees instant content with no lag.
 (function () {
   var section = document.getElementById('about');
@@ -4978,7 +4978,7 @@ if (aboutHeading) {
   var arrowNext = document.getElementById('marqueeArrowNext');
   var idx = 0;
   var timer = null;
-  // Detect touch capability — on touch devices, mouseenter fires on first
+  // Detect touch capability, on touch devices, mouseenter fires on first
   // touch and would permanently pause the carousel. So mouseenter/leave
   // hover-pause is desktop-only.
   var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
@@ -5171,7 +5171,7 @@ function openInquiryFromHash() {
 window.addEventListener('load', openInquiryFromHash);
 window.addEventListener('hashchange', openInquiryFromHash);
 
-// ── Performance Highlights — click poster to load Vimeo iframe with autoplay ──
+// ── Performance Highlights, click poster to load Vimeo iframe with autoplay ──
 (() => {
   const cards = Array.from(document.querySelectorAll('.video-card[data-vimeo]'));
   if (!cards.length) return;
@@ -5193,7 +5193,7 @@ window.addEventListener('hashchange', openInquiryFromHash);
   });
 })();
 
-// ── Performance Highlights — translateX-based carousel ──
+// ── Performance Highlights, translateX-based carousel ──
 (() => {
   const track = document.getElementById('carouselTrack');
   if (!track) return;
@@ -5251,7 +5251,7 @@ window.addEventListener('hashchange', openInquiryFromHash);
 const footerYear = document.getElementById('footerYear');
 if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-// ── Testimonials — crossfade carousel ──
+// ── Testimonials, crossfade carousel ──
 const testimonialsTrack = document.getElementById('testimonialsTrack');
 const testimonialsDots = document.getElementById('testimonialsDots');
 if (testimonialsTrack) {
@@ -5326,7 +5326,7 @@ if (testimonialsTrack) {
   }
 }
 
-// ── Track list — Spotify IFrame API integration (30s preview playback) ──
+// ── Track list, Spotify IFrame API integration (30s preview playback) ──
 (() => {
   const trackEls = Array.from(document.querySelectorAll('#trackList .track[data-spotify-id]'));
   if (!trackEls.length) return;
@@ -5342,7 +5342,7 @@ if (testimonialsTrack) {
     document.body.appendChild(sink);
   }
 
-  // Per-track state — only created lazily on first play
+  // Per-track state, only created lazily on first play
   const state = trackEls.map(el => {
     const host = document.createElement('div');
     sink.appendChild(host);
@@ -5363,7 +5363,7 @@ if (testimonialsTrack) {
   let iframeApi = null;     // SpotifyIframeApi once ready
   let apiQueue = [];        // play actions queued until API loads
 
-  // Spotify's iframe API entry point — global
+  // Spotify's iframe API entry point, global
   window.onSpotifyIframeApiReady = (IFrameAPI) => {
     iframeApi = IFrameAPI;
     // Drain queue
@@ -5428,7 +5428,7 @@ if (testimonialsTrack) {
           const pct = Math.min(100, (pos / s.duration) * 100);
           s.progressEl.style.width = `${pct}%`;
           if (s.timeEl) s.timeEl.textContent = fmt(pos);
-          // Spotify auto-pauses at 30s for previews — sync our visual state
+          // Spotify auto-pauses at 30s for previews, sync our visual state
           if (data.isPaused && pos >= s.duration - 0.3) {
             setPlaying(s, false);
             activeIdx = -1;
@@ -5445,7 +5445,7 @@ if (testimonialsTrack) {
   const playTrack = (idx) => {
     const s = state[idx];
     if (!s) return;
-    // If this track is already active and playing — toggle pause
+    // If this track is already active and playing, toggle pause
     if (idx === activeIdx && s.controller) {
       try { s.controller.pause(); } catch (e) {}
       setPlaying(s, false);
@@ -5494,10 +5494,10 @@ if (testimonialsTrack) {
     'mailcatch.com','spamfree24.org','byom.de','jetable.org','nada.email','dropmail.me','tempmail.plus','mail-temp.com',
     'mail.tm','eyepaste.com','mintemail.com','pokemail.net','mailsac.com','luxusmail.org','vomoto.com','tmpmail.org','tmpeml.com',
     'inboxbear.com','tempmailo.com','simplelogin.io','duck.com','protonmail.com','tutanota.com',
-    // Note: protonmail/tutanota are legitimate privacy providers — left in as a
+    // Note: protonmail/tutanota are legitimate privacy providers, left in as a
     // soft signal in the field-counter UI but NOT auto-rejected. (See isDisposable below.)
   ]);
-  // Domains that are technically privacy-focused but not "disposable" — don't reject.
+  // Domains that are technically privacy-focused but not "disposable", don't reject.
   const ALLOWED_PRIVACY_DOMAINS = new Set([
     'protonmail.com','proton.me','tutanota.com','duck.com','simplelogin.io',
   ]);
@@ -5593,14 +5593,14 @@ if (testimonialsTrack) {
     }
 
     form.addEventListener('submit', async function(e) {
-      // 1. Honeypot — silently drop
+      // 1. Honeypot, silently drop
       const honeypot = form.querySelector('input[name="_gotcha"]');
       if (honeypot && honeypot.value) {
         e.preventDefault();
         return;
       }
 
-      // 2. Time-trap — silently drop if submitted < 4 sec after load
+      // 2. Time-trap, silently drop if submitted < 4 sec after load
       if (Date.now() - loadedAt < 4000) {
         e.preventDefault();
         return;
@@ -5648,7 +5648,7 @@ if (testimonialsTrack) {
         }
       }
 
-      // Phone — soft-check that pattern is reasonable
+      // Phone, soft-check that pattern is reasonable
       const phoneField = form.querySelector('input[type="tel"]');
       if (phoneField && phoneField.value) {
         const digits = phoneField.value.replace(/\D/g, '');
@@ -5689,7 +5689,7 @@ if (testimonialsTrack) {
         }
       }
 
-      // 4. Validation passed — fetch-submit to Formspree (no page redirect)
+      // 4. Validation passed, fetch-submit to Formspree (no page redirect)
       e.preventDefault();
       setSubmitting(form, true);
       try {
@@ -5742,7 +5742,7 @@ if (testimonialsTrack) {
   const FEES = { INSTRUMENTAL: 125, CUSTOM: 200, CUSTOM_INSTRUMENTAL: 300 };
   const INCLUDED_REPERTOIRE_LIMIT = 3;
 
-  // Mirror of moments list in /wedding-ceremony-songs/ — kept in sync.
+  // Mirror of moments list in /wedding-ceremony-songs/, kept in sync.
   const MOMENTS = [
     { id: 'prelude',        name: 'Prelude' },
     { id: 'processional',   name: 'Processional' },
@@ -5909,7 +5909,7 @@ if (testimonialsTrack) {
   // shows success by either (a) revealing a sibling .form-success and
   // setting display:none on the form, or (b) replacing the form with a
   // .form-success-inline div. Either way the form is no longer rendered
-  // after success — observe the form for that transition and clear the
+  // after success, observe the form for that transition and clear the
   // draft only then. This avoids clearing on validation errors,
   // disposable-email rejection, network failure, or Formspree 4xx.
   let alreadyCleared = false;

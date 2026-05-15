@@ -76,7 +76,7 @@ html, body {
 }
 a { color: inherit; }
 
-/* WebGL shader canvas — same as rest of site */
+/* WebGL shader canvas, same as rest of site */
 #shader-bg {
   position: fixed;
   inset: 0;
@@ -1827,7 +1827,7 @@ body.nav-drawer-open { overflow: hidden; }
       } else {
         const song = SONG_BY_ID[sel.songId];
         if (!song) {
-          // Stale id — clean up and re-render
+          // Stale id, clean up and re-render
           delete state.selections[m.id];
           saveState();
           renderMoments();
@@ -2255,7 +2255,7 @@ body.nav-drawer-open { overflow: hidden; }
 
     const formData = new FormData(inquiryForm);
 
-    // 1. Honeypot — silent reject if filled
+    // 1. Honeypot, silent reject if filled
     const honey = (formData.get('_gotcha') || '').toString().trim();
     if (honey.length > 0) {
       // Pretend success so bots don't retry
@@ -2264,7 +2264,7 @@ body.nav-drawer-open { overflow: hidden; }
       return;
     }
 
-    // 2. Time-trap — reject if submission < 4 seconds after page load
+    // 2. Time-trap, reject if submission < 4 seconds after page load
     const elapsed = Date.now() - loadedAt;
     if (elapsed < 4000) {
       // Likely a bot. Silent reject.
@@ -2306,7 +2306,7 @@ body.nav-drawer-open { overflow: hidden; }
       return;
     }
 
-    // Validation passed — refresh ceremony_selections snapshot
+    // Validation passed, refresh ceremony_selections snapshot
     ceremonySelectionsField.value = buildSelectionsText();
     formData.set('ceremony_selections', ceremonySelectionsField.value);
 
