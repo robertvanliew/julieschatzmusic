@@ -11,6 +11,7 @@
     { "source": "/blog/", "destination": "/blog.html" },
     { "source": "/blog/orchestral-house-music-spitfire/", "destination": "/blog/spitfire-house-track.html" },
     { "source": "/sample-pack-store/", "destination": "/beats.html" },
+    { "source": "/venues/", "destination": "/venues.html" },
     { "source": "/privacy/", "destination": "/privacy.html" },
     { "source": "/wedding-violinist-nyc/", "destination": "/wedding-violinist-nyc.html" },
     { "source": "/wedding-violinist-new-jersey/", "destination": "/wedding-violinist-new-jersey.html" },
