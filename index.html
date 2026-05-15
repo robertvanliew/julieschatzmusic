@@ -52,6 +52,31 @@
   ]
 }
 </script>
+<!-- WebSite schema with SearchAction, enables Google Sitelinks Search Box
+     (the search bar that appears under the site's main result in Google).
+     The target points to the ceremony builder which is the closest thing
+     to an on-site search; couples searching from Google can use it to
+     filter songs by name. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://julieschatzmusic.com/#website",
+  "url": "https://julieschatzmusic.com/",
+  "name": "Julie Schatz Music",
+  "description": "NYC-based violinist, jazz pianist, DJ, and producer. Weddings, private events, and corporate galas across NY, NJ, CT.",
+  "publisher": { "@id": "https://julieschatzmusic.com/#business" },
+  "inLanguage": "en-US",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://julieschatzmusic.com/wedding-ceremony-songs/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <!-- AggregateRating intentionally omitted — must be added with real verified data. Never fabricate. -->
 <script type="application/ld+json">
 {
@@ -534,6 +559,21 @@
       "datePublished": "2024-08-01"
     }
   ]
+}
+</script>
+<!-- AggregateRating, derived from the 10 verified Review blocks above.
+     9 five-star + 1 four-star = 4.9 average. Eligible for star-rating
+     rich results in Google search when paired with itemReviewed → #business. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AggregateRating",
+  "itemReviewed": { "@id": "https://julieschatzmusic.com/#business" },
+  "ratingValue": "4.9",
+  "bestRating": "5",
+  "worstRating": "4",
+  "ratingCount": 10,
+  "reviewCount": 10
 }
 </script>
 
@@ -2472,17 +2512,17 @@ nav {
   justify-content: center;
   gap: 20px;
 }
-/* Viewport reveals exactly 4 cards × 280px + 3 gaps × 24px = 1192px */
+/* Viewport reveals exactly 4 cards × 280px = 1120px */
 .carousel-viewport {
-  width: calc(280px * 4 + 24px * 3);
+  width: calc(280px * 4);
   max-width: 100%;
   overflow: hidden;
   padding: 8px 0 24px;
 }
 .carousel-track {
   display: flex;
-  gap: 24px;
-  /* JS sets transform: translateX(-N * (280 + 24)px) to scroll */
+  gap: 0;
+  /* JS sets transform: translateX(-N * 280px) to scroll */
   transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
@@ -4188,6 +4228,70 @@ nav {
   </div>
 </section>
 
+<!-- VideoObject schema for the 5 Performance Highlights, enables video
+     thumbnails in Google search results and inclusion in Bing Video Search.
+     Each entry uses the existing /assets/highlights/<id>.jpg as thumbnailUrl
+     and the Vimeo embed URL as embedUrl. publisher links back to the business. -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Live Performance Highlight (1)",
+    "description": "Julie Schatz performing live violin at a wedding event. Solo violin ceremony repertoire and jazz piano cocktail hours by a NYC-based violinist and jazz pianist.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1075415415.jpg",
+    "uploadDate": "2025-09-01",
+    "contentUrl": "https://vimeo.com/1075415415",
+    "embedUrl": "https://player.vimeo.com/video/1075415415",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Solo Violin Performance Highlight",
+    "description": "Julie Schatz solo violin performance highlight. NYC wedding violinist for ceremonies, cocktail hours, and private events across NY, NJ, and CT.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057963862.jpg",
+    "uploadDate": "2025-02-01",
+    "contentUrl": "https://vimeo.com/1057963862",
+    "embedUrl": "https://player.vimeo.com/video/1057963862",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Violin and Piano Private Event Highlight",
+    "description": "Julie Schatz performing violin and piano at a private event. NYC-based violinist and jazz pianist for weddings, private events, and corporate galas.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057967144.jpg",
+    "uploadDate": "2025-02-01",
+    "contentUrl": "https://vimeo.com/1057967144",
+    "embedUrl": "https://player.vimeo.com/video/1057967144",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Wedding Ceremony Live Performance",
+    "description": "Julie Schatz performing live at a wedding ceremony. Solo violin ceremony coverage with classical and cinematic-modern repertoire arranged for solo violin.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057964770.jpg",
+    "uploadDate": "2025-02-01",
+    "contentUrl": "https://vimeo.com/1057964770",
+    "embedUrl": "https://player.vimeo.com/video/1057964770",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "DJ DX with Julie Schatz Live Violin Hybrid Set",
+    "description": "DJ DX × Julie Schatz hybrid performance with live violin layered over DJ tracks. The signature reception format combining DJ energy with live music.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057966752.jpg",
+    "uploadDate": "2025-02-01",
+    "contentUrl": "https://vimeo.com/1057966752",
+    "embedUrl": "https://player.vimeo.com/video/1057966752",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  }
+]
+</script>
+
 <!-- UPCOMING EVENTS -->
 <section id="events" class="events-section">
   <div class="events-container">
@@ -4272,6 +4376,198 @@ nav {
     </div>
   </div>
 </section>
+
+<!-- Event schema for the 14 upcoming confirmed bookings.
+     Each entry uses generic public-facing names ("Wedding Ceremony" etc.)
+     and town-level locations only, never private client identifiers.
+     performer references Julie's Person entity; organizer is the business.
+     isAccessibleForFree:false signals these are not public-ticketed events. -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Fundraiser Performance",
+    "startDate": "2026-05-13T13:30:00-04:00",
+    "endDate": "2026-05-13T14:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Manhasset, NY", "address": { "@type": "PostalAddress", "addressLocality": "Manhasset", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-05-23T14:00:00-04:00",
+    "endDate": "2026-05-23T15:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Brooklyn, NY", "address": { "@type": "PostalAddress", "addressLocality": "Brooklyn", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-05-24T17:00:00-04:00",
+    "endDate": "2026-05-24T18:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "VIP Country Club", "address": { "@type": "PostalAddress", "addressLocality": "New Rochelle", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Reception Performance",
+    "startDate": "2026-06-06T19:00:00-04:00",
+    "endDate": "2026-06-06T23:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Candlewood Inn", "address": { "@type": "PostalAddress", "addressLocality": "Brookfield", "addressRegion": "CT", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-07-09T16:00:00-04:00",
+    "endDate": "2026-07-09T17:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Candlewood Inn", "address": { "@type": "PostalAddress", "addressLocality": "Brookfield", "addressRegion": "CT", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Reception Performance",
+    "startDate": "2026-07-31T19:00:00-04:00",
+    "endDate": "2026-07-31T23:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "South Salem, NY", "address": { "@type": "PostalAddress", "addressLocality": "South Salem", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Reception Performance",
+    "startDate": "2026-08-02T18:00:00-04:00",
+    "endDate": "2026-08-02T22:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Tappan Hill Mansion", "address": { "@type": "PostalAddress", "addressLocality": "Tarrytown", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-09-06T16:00:00-04:00",
+    "endDate": "2026-09-06T17:30:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Asbury Park, NJ", "address": { "@type": "PostalAddress", "addressLocality": "Asbury Park", "addressRegion": "NJ", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Cocktail and Reception Performance",
+    "startDate": "2026-09-19T18:00:00-04:00",
+    "endDate": "2026-09-19T23:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Il Villaggio", "address": { "@type": "PostalAddress", "addressLocality": "Carlstadt", "addressRegion": "NJ", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-10-10T18:00:00-04:00",
+    "endDate": "2026-10-10T19:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Freehold, NJ", "address": { "@type": "PostalAddress", "addressLocality": "Freehold", "addressRegion": "NJ", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-10-11T16:00:00-04:00",
+    "endDate": "2026-10-11T16:45:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Stamford, CT", "address": { "@type": "PostalAddress", "addressLocality": "Stamford", "addressRegion": "CT", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Reception Performance",
+    "startDate": "2026-10-24T19:30:00-04:00",
+    "endDate": "2026-10-24T21:30:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Mandarin Oriental, New York", "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Ceremony Performance",
+    "startDate": "2026-11-15T15:00:00-05:00",
+    "endDate": "2026-11-15T16:00:00-05:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "East Setauket, NY", "address": { "@type": "PostalAddress", "addressLocality": "East Setauket", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding Performance",
+    "startDate": "2026-11-15T16:00:00-05:00",
+    "endDate": "2026-11-15T17:00:00-05:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "East Setauket, NY", "address": { "@type": "PostalAddress", "addressLocality": "East Setauket", "addressRegion": "NY", "addressCountry": "US" } },
+    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
+    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "isAccessibleForFree": false
+  }
+]
+</script>
 
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="testimonials-section">
