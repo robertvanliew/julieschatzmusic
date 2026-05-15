@@ -212,6 +212,47 @@ main.region-main p a:hover, main.region-main p a:focus-visible { text-decoration
 .nav-drawer-links a:hover, .nav-drawer-links a:focus-visible { color:#d4b3ff; padding-left:8px; }
 body.nav-drawer-open { overflow:hidden; }
 @media (max-width:900px) { nav .nav-links, nav.site-nav .nav-links { display:none !important; } .nav-hamburger { display:flex; } }
+
+/* ───────────── INLINE INQUIRY FORM ───────────── */
+.form-section { padding:120px 48px; position:relative; border-top:1px solid var(--hairline); scroll-margin-top:80px; }
+.form-container { max-width:720px; margin:0 auto; width:100%; }
+.form-heading { text-align:center; margin-bottom:56px; display:flex; flex-direction:column; align-items:center; }
+.form-heading .editorial-kicker { display:inline-flex; align-items:center; gap:14px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.32em; text-transform:uppercase; color:var(--ivory-dim); margin-bottom:20px; }
+.form-heading .editorial-kicker::before, .form-heading .editorial-kicker::after { content:''; width:32px; height:1px; background:linear-gradient(to right, transparent, var(--violet-soft), transparent); }
+.form-heading h2 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:clamp(40px, 5vw, 64px); line-height:1.05; letter-spacing:-0.015em; color:var(--ivory); margin:0 0 20px !important; }
+.form-heading p { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(17px, 1.3vw, 20px); line-height:1.55; color:var(--ivory-dim); max-width:56ch; text-wrap:pretty; }
+.inquiry-form { display:flex; flex-direction:column; gap:24px; }
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+@media (max-width: 600px) { .field-row { grid-template-columns:1fr; } }
+.field-group { display:flex; flex-direction:column; }
+.field-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:rgba(255,255,255,0.85); margin-bottom:12px; }
+.inquiry-form input, .inquiry-form select, .inquiry-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid var(--hairline-strong); padding:14px 4px; color:#fff; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; outline:none; transition:border-color 0.3s ease; -webkit-appearance:none; appearance:none; border-radius:0; }
+.inquiry-form textarea { resize:vertical; min-height:100px; line-height:1.5; }
+.inquiry-form input::placeholder, .inquiry-form textarea::placeholder { color:rgba(255,255,255,0.5); font-style:italic; }
+.inquiry-form input:focus, .inquiry-form select:focus, .inquiry-form textarea:focus { border-bottom-color:var(--violet-soft); }
+.inquiry-form select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(244,239,230,0.6)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 8px center; padding-right:32px; }
+.inquiry-form select option { background:#0F0A1A; color:#fff; padding:10px 12px; font-family:'Cormorant Garamond',serif; font-size:16px; }
+.inquiry-form select optgroup { background:#1a0f2e; color:#d4b872; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; font-style:normal; letter-spacing:0.18em; text-transform:uppercase; padding:8px 0; }
+.field-hint { display:block; margin-top:8px; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+.field-hint.is-met { color:rgba(168,85,247,0.8); }
+.consent-row { display:flex; align-items:flex-start; gap:12px; margin-top:8px; font-family:'Inter',sans-serif; font-size:12px; color:rgba(255,255,255,0.7); line-height:1.5; cursor:pointer; }
+.inquiry-form .consent-row input[type="checkbox"], .consent-row input[type="checkbox"] { -webkit-appearance:none !important; appearance:none !important; width:18px !important; min-width:18px !important; max-width:18px !important; height:18px !important; min-height:18px !important; max-height:18px !important; padding:0 !important; margin:2px 0 0 !important; flex-shrink:0; flex-grow:0; align-self:flex-start; display:inline-block; vertical-align:top; cursor:pointer; position:relative; box-sizing:border-box !important; background:transparent !important; border:1.5px solid #fff !important; border-radius:3px !important; transition:background 0.2s ease, border-color 0.2s ease; }
+.inquiry-form .consent-row input[type="checkbox"]:hover, .consent-row input[type="checkbox"]:hover { border-color:rgba(168,85,247,0.85) !important; }
+.inquiry-form .consent-row input[type="checkbox"]:checked, .consent-row input[type="checkbox"]:checked { background:rgba(168,85,247,0.9) !important; border-color:rgba(168,85,247,0.9) !important; }
+.inquiry-form .consent-row input[type="checkbox"]:checked::after, .consent-row input[type="checkbox"]:checked::after { content:''; position:absolute; left:4px; top:0; width:5px; height:10px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.consent-row a { color:rgba(255,255,255,0.92); text-decoration:underline; text-decoration-color:rgba(244,239,230,0.45); text-underline-offset:3px; }
+.consent-row a:hover { text-decoration-color:#fff; }
+.submit-btn { display:inline-flex; align-items:center; justify-content:center; gap:14px; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:var(--ivory); background:rgba(244,239,230,0.02); border:1px solid var(--hairline-strong); border-radius:999px; padding:18px 38px; cursor:pointer; margin-top:16px; transition:border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease; }
+.submit-btn::after { content:'→'; font-size:14px; transition:transform 0.4s cubic-bezier(0.25,1,0.5,1); }
+.submit-btn:hover { color:#fff; border-color:rgba(244,239,230,0.5); background:rgba(244,239,230,0.04); box-shadow:0 0 0 1px rgba(168,85,247,0.15), 0 12px 40px -12px rgba(168,85,247,0.45); transform:translateY(-1px); }
+.submit-btn:hover::after { transform:translateX(6px); }
+.form-note { margin-top:24px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ivory-soft); letter-spacing:0.04em; text-align:center; line-height:1.7; }
+.form-error { margin-top:16px; font-family:'Inter',sans-serif; font-size:12px; color:#ff8a8a; text-align:center; line-height:1.6; padding:12px 16px; border:1px solid rgba(255,138,138,0.3); border-radius:8px; background:rgba(255,138,138,0.05); }
+.form-success { display:none; padding:40px 0; text-align:center; }
+.form-success.is-active { display:block; }
+.form-success h3 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:32px; color:var(--ivory); margin-bottom:16px; }
+.form-success p { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--ivory-dim); }
+@media (max-width: 768px) { .form-section { padding:80px 24px; } }
 </style>
 <script defer data-domain="julieschatzmusic.com" src="https://plausible.io/js/script.outbound-links.js"></script>
 <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
@@ -360,9 +401,134 @@ body.nav-drawer-open { overflow:hidden; }
     <div class="region-cta">
       <h2>Has Julie played at your venue?</h2>
       <p>Send a quick inquiry with your venue and event date. Typical response within 24 hours.</p>
-      <a href="/#inquire">Submit an Inquiry</a>
+      <a href="#inquire">Submit an Inquiry</a>
     </div>
   </main>
+
+  <!-- INLINE INQUIRY FORM — embedded so visitors can book without leaving the venues page -->
+  <section class="form-section" id="inquire">
+    <div class="form-container">
+      <div class="form-heading">
+        <span class="editorial-kicker">Send a quick inquiry</span>
+        <h2>Tell Julie about your event.</h2>
+        <p>Share your venue, date, and a few details. Julie reviews every inquiry personally and responds within 24 hours with availability and a tailored quote.</p>
+      </div>
+
+      <form class="inquiry-form hardened-form" id="venuesInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
+        <input type="hidden" name="_subject" value="New Booking Inquiry · venues page">
+        <input type="hidden" name="_loaded_at" value="">
+        <input type="hidden" name="form_source" value="venues-page">
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="vn-name">Your Name</label>
+            <input id="vn-name" type="text" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="vn-email">Email</label>
+            <input id="vn-email" type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="vn-date">Event Date</label>
+            <input id="vn-date" type="date" name="event_date" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="vn-phone">Phone</label>
+            <input id="vn-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="vn-venue">Venue Name + City</label>
+          <input id="vn-venue" type="text" name="venue" placeholder="e.g. Oheka Castle, Huntington NY" required minlength="5">
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="vn-guests">Guest Count</label>
+            <select id="vn-guests" name="guest_count" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="under-50">Under 50</option>
+              <option value="50-100">50–100</option>
+              <option value="100-150">100–150</option>
+              <option value="150-250">150–250</option>
+              <option value="250-plus">250+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="vn-hours">Event Length</label>
+            <select id="vn-hours" name="event_hours" required>
+              <option value="" disabled selected>Choose…</option>
+              <option value="30-min">30 minutes (ceremony only)</option>
+              <option value="1-hr">1 hour</option>
+              <option value="1.5-hr">1.5 hours</option>
+              <option value="2-hr">2 hours</option>
+              <option value="3-hr">3 hours</option>
+              <option value="4-hr">4 hours</option>
+              <option value="5-plus-hr">5+ hours</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="vn-referral">How Did You Hear About Julie?</label>
+          <input id="vn-referral" type="text" name="referral" placeholder="Instagram, planner, friend…">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="vn-event-type">Event Type</label>
+          <select id="vn-event-type" name="event_type" required>
+            <option value="" disabled selected>Select…</option>
+            <optgroup label="Wedding · Solo Violin / Piano">
+              <option value="wedding-ceremony">Wedding Ceremony</option>
+              <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
+              <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
+            </optgroup>
+            <optgroup label="Wedding · Soul Shades Duo (Violin + Piano)">
+              <option value="duo-ceremony">Soul Shades · Ceremony</option>
+              <option value="duo-ceremony-cocktail">Soul Shades · Ceremony + Cocktail</option>
+            </optgroup>
+            <optgroup label="Private Events">
+              <option value="private-1hr">Private Event (1 hour)</option>
+              <option value="proposal">Proposal</option>
+              <option value="corporate">Corporate Gala / Brand Event</option>
+            </optgroup>
+            <optgroup label="DJ + Live">
+              <option value="dj-dx-julie">DJ DX × Julie (DJ + Live Violin)</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="other">Other / Not Sure Yet</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="vn-message">Tell me about your event</label>
+          <textarea id="vn-message" name="message" placeholder="Venue atmosphere, musical vibe, special song requests, anything you'd want me to know…" rows="4" required minlength="30"></textarea>
+          <span class="field-hint" data-counter>0 / 30 minimum</span>
+        </div>
+
+        <label class="consent-row">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted about this inquiry. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</span>
+        </label>
+
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+        <p class="form-note">Typically responds within 24 hours · All inquiries confidential</p>
+        <p class="form-error" data-form-error hidden></p>
+      </form>
+
+      <div class="form-success" id="venuesFormSuccess">
+        <h3>Thank you.</h3>
+        <p>Your inquiry is in. Julie will be in touch within 24 hours with availability and a tailored proposal.</p>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="footer-container">
@@ -444,6 +610,128 @@ body.nav-drawer-open { overflow:hidden; }
   drawer.querySelectorAll('.nav-drawer-links a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !drawer.hidden) setOpen(false); });
   window.addEventListener('resize', function () { if (window.innerWidth > 900 && !drawer.hidden) setOpen(false); });
+})();
+</script>
+
+<!-- Hardened-form anti-spam + validation (shared logic; identical to home + bookings + solo + duo) -->
+<script>
+(function() {
+  const DISPOSABLE_DOMAINS = new Set([
+    'mailinator.com','tempmail.com','temp-mail.io','temp-mail.org','guerrillamail.com','guerrillamail.net','guerrillamail.org','sharklasers.com',
+    'yopmail.com','10minutemail.com','10minutemail.net','throwawaymail.com','dispostable.com','trashmail.com','trashmail.net','maildrop.cc',
+    'getairmail.com','mailnesia.com','mintemail.com','mytemp.email','spambox.us','spamgourmet.com','tempinbox.com','fakeinbox.com',
+    'mvrht.com','spam4.me','meltmail.com','mohmal.com','tempr.email','emailondeck.com','tempemail.com','spamavert.com',
+    'mailcatch.com','spamfree24.org','byom.de','jetable.org','nada.email','dropmail.me','tempmail.plus','mail-temp.com',
+    'mail.tm','eyepaste.com','pokemail.net','mailsac.com','luxusmail.org','vomoto.com','tmpmail.org','tmpeml.com',
+    'inboxbear.com','tempmailo.com',
+  ]);
+  const ALLOWED_PRIVACY_DOMAINS = new Set(['protonmail.com','proton.me','tutanota.com','duck.com','simplelogin.io']);
+  function isDisposableEmail(email) {
+    if (!email || typeof email !== 'string') return false;
+    const at = email.lastIndexOf('@'); if (at < 0) return false;
+    const domain = email.slice(at + 1).toLowerCase().trim();
+    if (ALLOWED_PRIVACY_DOMAINS.has(domain)) return false;
+    return DISPOSABLE_DOMAINS.has(domain);
+  }
+  function daysFromNow(yyyymmdd) {
+    if (!yyyymmdd) return null;
+    const d = new Date(yyyymmdd + 'T00:00:00');
+    if (isNaN(d.getTime())) return null;
+    const now = new Date(); now.setHours(0,0,0,0);
+    return Math.round((d - now) / 86400000);
+  }
+  function showError(form, msg) {
+    const el = form.querySelector('[data-form-error]');
+    if (el) { el.textContent = msg; el.hidden = false; } else { alert(msg); }
+  }
+  function clearError(form) {
+    const el = form.querySelector('[data-form-error]');
+    if (el) { el.hidden = true; el.textContent = ''; }
+  }
+  function setSubmitting(form, on) {
+    const btn = form.querySelector('button[type="submit"]'); if (!btn) return;
+    if (on) { btn.dataset.originalLabel = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity='0.7'; btn.style.cursor='wait'; }
+    else { if (btn.dataset.originalLabel) btn.textContent = btn.dataset.originalLabel; btn.disabled = false; btn.style.opacity=''; btn.style.cursor=''; }
+  }
+  function showSuccess(form) {
+    const existingSuccess = form.parentElement && form.parentElement.querySelector('.form-success');
+    if (existingSuccess) { form.style.display = 'none'; existingSuccess.classList.add('is-active'); return; }
+    const wrap = document.createElement('div');
+    wrap.className = 'form-success-inline';
+    wrap.innerHTML = '<h3 style="font-family:Playfair Display,serif;font-style:italic;font-weight:400;font-size:28px;color:#fff;margin-bottom:12px;">Thank you.</h3>'
+      + '<p style="font-family:Cormorant Garamond,serif;font-size:17px;color:rgba(255,255,255,0.8);">Your inquiry is in. Julie will be in touch within 24 hours.</p>';
+    wrap.style.padding = '40px 0'; wrap.style.textAlign = 'center';
+    form.replaceWith(wrap);
+  }
+  function hardenForm(form) {
+    const loadedAtField = form.querySelector('input[name="_loaded_at"]');
+    const loadedAt = Date.now();
+    if (loadedAtField) loadedAtField.value = String(loadedAt);
+    form.dataset.loadedAt = String(loadedAt);
+    const messageInput = form.querySelector('textarea[name="message"], textarea[name="vision"]');
+    const counter = form.querySelector('[data-counter]');
+    const minMessage = messageInput ? parseInt(messageInput.getAttribute('minlength') || '0', 10) : 0;
+    if (messageInput && counter && minMessage > 0) {
+      const update = () => {
+        const len = messageInput.value.trim().length;
+        counter.textContent = `${len} / ${minMessage} minimum`;
+        counter.classList.toggle('is-met', len >= minMessage);
+      };
+      messageInput.addEventListener('input', update); update();
+    }
+    form.addEventListener('submit', async function(e) {
+      const honeypot = form.querySelector('input[name="_gotcha"]');
+      if (honeypot && honeypot.value) { e.preventDefault(); return; }
+      if (Date.now() - loadedAt < 4000) { e.preventDefault(); return; }
+      clearError(form);
+      const formData = new FormData(form);
+      const requiredFields = form.querySelectorAll('[required]');
+      for (const f of requiredFields) {
+        if (f.type === 'checkbox') {
+          if (!f.checked) { e.preventDefault(); showError(form, 'Please confirm consent to be contacted before submitting.'); f.focus(); return; }
+        } else if (!f.value || !f.value.trim()) {
+          e.preventDefault();
+          const label = f.closest('.field-group')?.querySelector('.field-label')?.textContent || 'A required field';
+          showError(form, `Please fill in: ${label}.`); f.focus(); return;
+        }
+      }
+      const emailField = form.querySelector('input[type="email"]');
+      if (emailField) {
+        const email = emailField.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailRegex.test(email)) { e.preventDefault(); showError(form, 'That email address looks invalid. Please double-check.'); emailField.focus(); return; }
+        if (isDisposableEmail(email)) { e.preventDefault(); showError(form, 'Please use a permanent email address. Julie responds by email only.'); emailField.focus(); return; }
+      }
+      const phoneField = form.querySelector('input[type="tel"]');
+      if (phoneField && phoneField.value) {
+        const digits = phoneField.value.replace(/\D/g, '');
+        if (digits.length < 10) { e.preventDefault(); showError(form, 'Please include a phone number with country code (10+ digits).'); phoneField.focus(); return; }
+      }
+      const dateField = form.querySelector('input[type="date"][name="event_date"]');
+      if (dateField && dateField.value) {
+        const days = daysFromNow(dateField.value);
+        if (days === null) { e.preventDefault(); showError(form, 'Please select a valid event date.'); dateField.focus(); return; }
+        if (days < 1) { e.preventDefault(); showError(form, 'Bookings require at least 1 day advance notice. For same-day inquiries, please email directly.'); dateField.focus(); return; }
+      }
+      if (messageInput && minMessage > 0) {
+        const len = (messageInput.value || '').trim().length;
+        if (len < minMessage) { e.preventDefault(); showError(form, `Please share a few more details about your event (${minMessage}+ characters).`); messageInput.focus(); return; }
+      }
+      e.preventDefault();
+      setSubmitting(form, true);
+      try {
+        const resp = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        if (resp.ok) { setSubmitting(form, false); showSuccess(form); }
+        else {
+          let detail = '';
+          try { const j = await resp.json(); if (j && j.errors && j.errors.length) detail = ' (' + j.errors.map(e => e.message).join('; ') + ')'; } catch (_) {}
+          setSubmitting(form, false); showError(form, 'Something went wrong on submission' + detail + '. Please try again in a moment.');
+        }
+      } catch (err) { setSubmitting(form, false); showError(form, 'Could not reach the server. Please check your connection and try again.'); }
+    });
+  }
+  function init() { document.querySelectorAll('form.hardened-form').forEach(hardenForm); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
 </body>
