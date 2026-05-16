@@ -2874,6 +2874,157 @@ nav {
 }
 
 /* ═══════════════════════════════════
+   FEATURED VENUES & REGIONS, internal link hub
+   Surfaces dedicated venue + regional pages directly from the homepage
+   so authority flows downstream and couples can jump to a specific
+   venue/region page from the main flow.
+   ═══════════════════════════════════ */
+.venues-section {
+  width: 100vw;
+  padding: 140px 48px 140px;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  border-top: 1px solid var(--hairline);
+}
+.venues-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.venues-heading {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.venues-heading p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: var(--ivory-dim);
+  max-width: 60ch;
+  margin: 18px auto 0;
+  text-wrap: pretty;
+  text-align: center;
+}
+.venues-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.venues-col h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory-soft);
+  margin: 0 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.venues-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.venues-list li {
+  border-bottom: 1px solid var(--hairline);
+}
+.venues-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 4px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--ivory);
+  text-decoration: none;
+  transition: padding-left 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+}
+.venues-list a:hover {
+  padding-left: 12px;
+  color: #fff;
+}
+.venues-list .venues-list__city {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--ivory-soft);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.regions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.regions-grid a {
+  display: block;
+  padding: 18px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  text-decoration: none;
+  background: rgba(244, 239, 230, 0.015);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+}
+.regions-grid a:hover {
+  border-color: rgba(244, 239, 230, 0.4);
+  background: rgba(244, 239, 230, 0.04);
+  transform: translateY(-1px);
+}
+.venues-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+}
+.venues-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: rgba(244, 239, 230, 0.02);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: gap 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+.venues-cta a::after { content: '→'; font-size: 13px; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+.venues-cta a:hover {
+  gap: 22px;
+  color: #fff;
+  border-color: rgba(244, 239, 230, 0.5);
+  background: rgba(244, 239, 230, 0.04);
+  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.15);
+}
+.venues-cta a:hover::after { transform: translateX(6px); }
+@media (max-width: 900px) {
+  .venues-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  .venues-section { padding: 80px 24px 100px; }
+  .regions-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════
    TESTIMONIALS, Client Reviews
    ═══════════════════════════════════ */
 .testimonials-section {
@@ -4610,6 +4761,50 @@ nav {
   }
 ]
 </script>
+
+<!-- FEATURED VENUES & REGIONS -->
+<section id="venues" class="venues-section" aria-label="Featured venues and service regions">
+  <div class="venues-container">
+    <div class="venues-heading">
+      <span class="editorial-kicker">Where Julie Plays</span>
+      <h2 class="editorial-h2">Featured Venues &amp; Regions</h2>
+      <p>A selection of venues Julie has performed at across the New York tri-state. See the <a href="/venues/" style="color:#fff;text-decoration:underline;text-decoration-color:rgba(244,239,230,0.45);text-underline-offset:3px;">full list of 46 venues</a> or browse by region below.</p>
+    </div>
+    <div class="venues-layout">
+      <div class="venues-col">
+        <h3>Featured Venues</h3>
+        <ul class="venues-list">
+          <li><a href="/wedding-violinist-oheka-castle/">Oheka Castle<span class="venues-list__city">Huntington, NY</span></a></li>
+          <li><a href="/wedding-violinist-tappan-hill-mansion/">Tappan Hill Mansion<span class="venues-list__city">Tarrytown, NY</span></a></li>
+          <li><a href="/wedding-violinist-pendry-natirar/">Pendry Natirar<span class="venues-list__city">Peapack, NJ</span></a></li>
+          <li><a href="/wedding-violinist-blue-hill-at-stone-barns/">Blue Hill at Stone Barns<span class="venues-list__city">Pocantico Hills, NY</span></a></li>
+          <li><a href="/wedding-violinist-gotham-hall/">Gotham Hall<span class="venues-list__city">New York, NY</span></a></li>
+          <li><a href="/wedding-violinist-the-wythe-hotel/">The Wythe Hotel<span class="venues-list__city">Brooklyn, NY</span></a></li>
+          <li><a href="/wedding-violinist-park-chateau-estate/">Park Chateau Estate &amp; Garden<span class="venues-list__city">East Brunswick, NJ</span></a></li>
+          <li><a href="/wedding-violinist-capitale/">Capitale<span class="venues-list__city">New York, NY</span></a></li>
+          <li><a href="/wedding-violinist-the-garden-city-hotel/">The Garden City Hotel<span class="venues-list__city">Garden City, NY</span></a></li>
+          <li><a href="/wedding-violinist-falkirk-estate/">Falkirk Estate<span class="venues-list__city">Central Valley, NY</span></a></li>
+        </ul>
+      </div>
+      <div class="venues-col">
+        <h3>By Region</h3>
+        <div class="regions-grid">
+          <a href="/wedding-violinist-nyc/">NYC</a>
+          <a href="/wedding-violinist-long-island/">Long Island</a>
+          <a href="/wedding-violinist-westchester/">Westchester</a>
+          <a href="/wedding-violinist-hudson-valley/">Hudson Valley</a>
+          <a href="/wedding-violinist-northern-nj/">Northern NJ</a>
+          <a href="/wedding-violinist-central-nj-shore/">Central NJ &amp; Shore</a>
+          <a href="/wedding-violinist-connecticut/">Fairfield County, CT</a>
+          <a href="/venues/">All Venues</a>
+        </div>
+      </div>
+    </div>
+    <div class="venues-cta">
+      <a href="/venues/">Browse the Full Venue List</a>
+    </div>
+  </div>
+</section>
 
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="testimonials-section">
