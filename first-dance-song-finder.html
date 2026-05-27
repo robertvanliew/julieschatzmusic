@@ -877,32 +877,6 @@ h1 {
   font-size: 16px;
 }
 
-.capture-form {
-  display: flex;
-  gap: 12px;
-  max-width: 440px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.capture-form input {
-  flex: 1;
-  min-width: 240px;
-  padding: 14px 18px;
-  background: rgba(15, 10, 26, 0.7);
-  border: 1px solid var(--ivory-border);
-  border-radius: 2px;
-  color: var(--ivory);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.25s ease;
-}
-
-.capture-form input:focus { border-color: var(--violet); }
-.capture-form input::placeholder { color: var(--ivory-faint); }
-
 /* ═══════════════ CTA TO INQUIRY ═══════════════ */
 .cta-banner {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(168, 85, 247, 0.04));
@@ -1096,12 +1070,157 @@ h1 {
   .capture, .cta-banner { padding: 32px 24px; }
 }
 
-/* Print: hide quiz controls, optimize for printout */
+/* Helper note under the download button */
+.capture-note {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+  margin-top: 18px;
+}
+
+/* Print-only blocks: hidden on screen, shown in print dialog. */
+.print-only { display: none; }
+
+/* Print: render a clean, brand-consistent PDF layout */
 @media print {
-  body::before, body::after { display: none; }
-  body { background: white; color: black; }
-  .quiz, .intro, .capture, .cta-banner, .footer-actions { display: none !important; }
-  .song-card { border-color: #ccc; }
+  /* Reset page chrome */
+  @page { margin: 0.6in 0.55in; }
+  body::before, body::after { display: none !important; }
+  html, body {
+    background: #ffffff !important;
+    color: #111 !important;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  /* Hide everything that isn't the picks + print-only blocks */
+  nav.site-nav, .nav-drawer, .site-footer, .toast,
+  .intro, .quiz, .loading,
+  .capture, .cta-banner, .share-card, .footer-actions,
+  .results-header {
+    display: none !important;
+  }
+
+  .shell { padding: 0 !important; max-width: 100% !important; }
+  .results { display: block !important; }
+
+  /* Make print-only blocks visible */
+  .print-only { display: block !important; }
+
+  /* Print header */
+  .print-header {
+    text-align: center;
+    border-bottom: 1px solid #999;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+  .print-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30pt;
+    line-height: 1.1;
+    margin: 0 0 10px;
+    color: #111;
+  }
+  .print-byline {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.08em;
+    color: #555;
+    margin: 0;
+  }
+
+  /* Song cards in print */
+  .song-list { display: block !important; }
+  .song-card {
+    display: grid !important;
+    grid-template-columns: 40px 1fr !important;
+    gap: 18px !important;
+    padding: 14px 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  .song-rank { color: #888 !important; font-size: 24pt !important; }
+  .song-title { color: #111 !important; font-size: 15pt !important; margin: 0 0 2px !important; }
+  .song-artist { color: #555 !important; font-size: 8pt !important; margin: 0 0 6px !important; }
+  .song-why { color: #333 !important; font-size: 10pt !important; }
+  .song-actions { display: none !important; }
+
+  /* Reception starter playlist */
+  .print-playlist {
+    margin-top: 32px;
+    page-break-inside: avoid;
+  }
+  .print-playlist h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18pt;
+    color: #111;
+    margin: 0 0 6px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 8px;
+  }
+  .print-subtitle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
+    color: #555;
+    margin: 8px 0 18px;
+  }
+  .print-playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .print-playlist-col h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #111;
+    margin: 0 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+  }
+  .print-playlist-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .print-playlist-col li {
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #222;
+    padding: 3px 0;
+  }
+
+  /* Booking CTA at bottom */
+  .print-footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid #999;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .print-footer p {
+    font-size: 10pt;
+    color: #333;
+    margin: 4px 0;
+    line-height: 1.5;
+  }
+  .print-footer p:first-child {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: #111;
+  }
 }
 </style>
 
@@ -1361,6 +1480,14 @@ h1 {
   <!-- ═══════════════ RESULTS ═══════════════ -->
   <section class="results" id="results">
 
+    <!-- Print-only header. Hidden in screen view, visible when the
+         visitor uses "Save your picks (PDF)". -->
+    <header class="print-only print-header" aria-hidden="true">
+      <h1>Your First Dance Song Picks</h1>
+      <p class="print-byline">Curated by Julie Schatz Music · NYC wedding violinist &amp; jazz pianist<br>
+        julieschatzmusic.com · bookings@julieschatzmusic.com · 631 · 365 · 9554</p>
+    </header>
+
     <div class="results-header">
       <div class="eyebrow">Your three picks</div>
       <h2>These three songs fit you.</h2>
@@ -1371,21 +1498,61 @@ h1 {
       <!-- Songs injected by JS -->
     </div>
 
-    <!-- Email capture -->
+    <!-- Print-only: starter playlist for the rest of the reception. -->
+    <section class="print-only print-playlist" aria-hidden="true">
+      <h2>Reception Playlist Starters</h2>
+      <p class="print-subtitle">A starting framework to share with your DJ. Pick a few from each moment that match the energy you want.</p>
+
+      <div class="print-playlist-grid">
+        <div class="print-playlist-col">
+          <h3>Cocktail Hour</h3>
+          <ul>
+            <li>Lovely Day — Bill Withers</li>
+            <li>Fly Me to the Moon — Frank Sinatra</li>
+            <li>Smooth Operator — Sade</li>
+            <li>Feeling Good — Nina Simone</li>
+            <li>L-O-V-E — Nat King Cole</li>
+            <li>Killing Me Softly — Roberta Flack</li>
+          </ul>
+        </div>
+        <div class="print-playlist-col">
+          <h3>Dinner</h3>
+          <ul>
+            <li>Sunday Best — Surfaces</li>
+            <li>Three Little Birds — Bob Marley</li>
+            <li>Brown Eyed Girl — Van Morrison</li>
+            <li>Sir Duke — Stevie Wonder</li>
+            <li>Daddy's Home — Usher</li>
+            <li>Better Together — Jack Johnson</li>
+          </ul>
+        </div>
+        <div class="print-playlist-col">
+          <h3>Dancing</h3>
+          <ul>
+            <li>September — Earth, Wind &amp; Fire</li>
+            <li>Uptown Funk — Bruno Mars</li>
+            <li>Crazy in Love — Beyoncé</li>
+            <li>I Wanna Dance with Somebody — Whitney Houston</li>
+            <li>Don't Stop Believin' — Journey</li>
+            <li>Dancing Queen — ABBA</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Print-only booking CTA. Stays at bottom of the printed PDF. -->
+    <footer class="print-only print-footer" aria-hidden="true">
+      <p><strong>Want Julie to perform live during your first dance?</strong></p>
+      <p>Live violin or piano transforms the moment into a memory. Julie performs across NY, NJ, and CT.</p>
+      <p>Inquire: <strong>julieschatzmusic.com</strong> · bookings@julieschatzmusic.com · 631 · 365 · 9554</p>
+    </footer>
+
+    <!-- Save / Print -->
     <div class="capture">
-      <h3>Want a printable version for your DJ?</h3>
-      <p>We'll send your three picks plus a starter playlist for the rest of your reception, all formatted to share with your DJ or coordinator.</p>
-      <!--
-        Wire to the same Formspree endpoint Julie's homepage uses (xjgjdeya),
-        or create a separate Formspree form so leads can be tagged differently.
-      -->
-      <form class="capture-form" id="capture-form" action="https://formspree.io/f/xjgjdeya" method="POST">
-        <input type="email" name="email" placeholder="your@email.com" required>
-        <input type="hidden" name="_subject" value="First Dance Song Finder — Email Capture">
-        <input type="hidden" name="source" value="first-dance-song-finder">
-        <input type="hidden" name="picks" id="picks-hidden" value="">
-        <button type="submit" class="btn-secondary">Send it to me</button>
-      </form>
+      <h3>Save your picks for your DJ</h3>
+      <p>Download a printable version with your three picks, reasoning, plus a starter playlist for the rest of your reception — formatted to share with your coordinator.</p>
+      <button type="button" class="btn-primary" id="downloadPdfBtn">Save your picks (PDF) ↓</button>
+      <p class="capture-note">Opens your browser's print dialog — choose <strong>Save as PDF</strong> as the destination.</p>
     </div>
 
     <!-- Inquiry CTA -->
@@ -1824,10 +1991,6 @@ function renderResults() {
     : 'Based on your answers, here are three songs that would work for your first dance.';
   document.getElementById('results-summary').textContent = summary;
 
-  // Stash picks in the hidden form field so it submits with the email
-  const picksText = state.picks.map((p, i) => `${i + 1}. ${p.title} — ${p.artist}`).join(' | ');
-  document.getElementById('picks-hidden').value = picksText;
-
   // Populate all share destination buttons with the proper URL and text
   updateShareLinks();
 }
@@ -2006,68 +2169,14 @@ document.querySelectorAll('.option').forEach(opt => {
   opt.addEventListener('click', () => handleAnswer(opt));
 });
 
-// Capture form: AJAX submit to Formspree so the visitor stays on this
-// page and never sees Formspree's hosted confirmation screen.
+// Download button: open the browser print dialog so the visitor can
+// "Save as PDF". Print stylesheet renders a clean two-page-ish layout
+// (cover/header, 3 picks with reasoning, reception playlist, booking CTA).
 (function () {
-  const form = document.getElementById('capture-form');
-  if (!form) return;
-  const emailInput = form.querySelector('input[type="email"]');
-  const submitBtn = form.querySelector('button[type="submit"]');
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    if (!emailInput || !emailInput.value.trim()) {
-      emailInput && emailInput.focus();
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailInput.value.trim())) {
-      showToast('Please enter a valid email.');
-      emailInput.focus();
-      return;
-    }
-
-    const originalLabel = submitBtn ? submitBtn.textContent : '';
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-      submitBtn.style.opacity = '0.7';
-    }
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        // Replace the form with an inline success state — no redirect.
-        const wrap = form.closest('.capture');
-        if (wrap) {
-          wrap.innerHTML =
-            '<h3>Got it. Check your inbox.</h3>' +
-            '<p>We\'ll send your picks plus a starter playlist shortly. ' +
-            'If it doesn\'t arrive within a few minutes, check spam or write to ' +
-            '<a href="mailto:bookings@julieschatzmusic.com" style="color:inherit;text-decoration:underline;">bookings@julieschatzmusic.com</a>.</p>';
-        } else {
-          showToast('Sent. Check your inbox.');
-        }
-      } else {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalLabel;
-          submitBtn.style.opacity = '';
-        }
-        showToast('Something went wrong. Please try again.');
-      }
-    } catch (err) {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalLabel;
-        submitBtn.style.opacity = '';
-      }
-      showToast('Could not reach the server. Check your connection.');
-    }
+  const btn = document.getElementById('downloadPdfBtn');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    window.print();
   });
 })();
 
