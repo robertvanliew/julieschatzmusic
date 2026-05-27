@@ -184,12 +184,17 @@ nav.site-nav {
   z-index: 200;
 }
 .nav-item-has-dropdown:hover .nav-dropdown,
-.nav-item-has-dropdown:focus-within .nav-dropdown {
+.nav-item-has-dropdown:focus-within .nav-dropdown,
+.nav-item-has-dropdown.is-open .nav-dropdown {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
+}
+.nav-item-has-dropdown.is-open > a::after {
+  opacity: 1;
+  transform: translateY(0) rotate(225deg);
 }
 .nav-dropdown li { display: block; }
 .nav-dropdown a {
@@ -2032,6 +2037,39 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
   });
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
+  });
+})();
+
+// ─── Songs nav dropdown: click-to-toggle ───
+(function () {
+  const items = document.querySelectorAll('.nav-item-has-dropdown');
+  if (!items.length) return;
+  function closeAll() {
+    items.forEach(li => {
+      li.classList.remove('is-open');
+      const trigger = li.querySelector(':scope > a');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    });
+  }
+  items.forEach(li => {
+    const trigger = li.querySelector(':scope > a');
+    if (!trigger) return;
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      const wasOpen = li.classList.contains('is-open');
+      closeAll();
+      if (!wasOpen) {
+        li.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-item-has-dropdown')) closeAll();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
   });
 })();
 </script>
