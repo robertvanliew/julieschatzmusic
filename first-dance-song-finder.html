@@ -1115,17 +1115,21 @@ h1 {
   width: 36px;
   height: 36px;
   background: transparent;
-  border: 1px solid rgba(244, 239, 230, 0.22);
+  border: 1px solid rgba(244, 239, 230, 0.28);
   border-radius: 50%;
   color: var(--ivory);
   font-size: 20px;
   line-height: 1;
   cursor: pointer;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
-.inquiry-modal__close:hover {
-  border-color: rgba(244, 239, 230, 0.55);
-  background: rgba(244, 239, 230, 0.04);
+.inquiry-modal__close:hover,
+.inquiry-modal__close:focus-visible {
+  border-color: var(--violet);
+  background: rgba(168, 85, 247, 0.12);
+  color: #ffffff;
+  transform: rotate(90deg);
+  outline: none;
 }
 .inquiry-modal__head {
   text-align: center;
@@ -1190,20 +1194,41 @@ h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 16px;
   outline: none;
-  transition: border-color 0.25s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .inquiry-modal__field textarea {
   resize: vertical;
   min-height: 96px;
   line-height: 1.5;
 }
+/* Hover: lift the border to ~40% white, slight bg brighten. Distinct from focus. */
+.inquiry-modal__field input:hover,
+.inquiry-modal__field select:hover,
+.inquiry-modal__field textarea:hover {
+  border-color: rgba(244, 239, 230, 0.38);
+  background: rgba(15, 10, 26, 0.85);
+}
+/* Focus: violet ring + soft glow so it's unambiguous which field is active. */
 .inquiry-modal__field input:focus,
 .inquiry-modal__field select:focus,
 .inquiry-modal__field textarea:focus {
   border-color: var(--violet);
+  background: rgba(15, 10, 26, 0.85);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18);
 }
 .inquiry-modal__field input::placeholder,
 .inquiry-modal__field textarea::placeholder { color: var(--ivory-faint); }
+/* Filled state: subtle border bump so user can see "this is done" */
+.inquiry-modal__field input:not(:placeholder-shown),
+.inquiry-modal__field textarea:not(:placeholder-shown) {
+  border-color: rgba(244, 239, 230, 0.28);
+}
+/* Browser-native validation styling — soft red on invalid-but-touched */
+.inquiry-modal__field input:user-invalid,
+.inquiry-modal__field select:user-invalid,
+.inquiry-modal__field textarea:user-invalid {
+  border-color: rgba(255, 122, 122, 0.55);
+}
 .inquiry-modal__field select {
   appearance: none;
   -webkit-appearance: none;
@@ -1223,8 +1248,19 @@ h1 {
   line-height: 1.45;
   margin-top: 4px;
 }
-.inquiry-modal__consent input { margin-top: 3px; accent-color: var(--violet); }
-.inquiry-modal__consent a { color: var(--ivory); text-decoration: underline; text-underline-offset: 2px; }
+.inquiry-modal__consent input { margin-top: 3px; accent-color: var(--violet); cursor: pointer; }
+.inquiry-modal__consent a {
+  color: var(--ivory);
+  text-decoration: underline;
+  text-decoration-color: rgba(168, 85, 247, 0.55);
+  text-underline-offset: 3px;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+.inquiry-modal__consent a:hover,
+.inquiry-modal__consent a:focus-visible {
+  color: #ffffff;
+  text-decoration-color: var(--violet);
+}
 
 .inquiry-modal__error {
   color: #ff7a7a;
@@ -2375,6 +2411,26 @@ document.querySelectorAll('.option').forEach(opt => {
   const errorEl = document.getElementById('inquiryModalError');
   const dateInput = document.getElementById('inquiryEventDate');
   const picksHidden = document.getElementById('quizPicksHidden');
+  const loadedAtField = document.getElementById('inquiryLoadedAt');
+
+  // Common disposable / throwaway email domains. Blocks the most common
+  // spam vectors without false-positiving real privacy users (proton, fastmail, etc.).
+  const DISPOSABLE = new Set([
+    'mailinator.com','tempmail.com','temp-mail.io','temp-mail.org','guerrillamail.com',
+    'guerrillamail.net','guerrillamail.org','sharklasers.com','yopmail.com',
+    '10minutemail.com','10minutemail.net','throwawaymail.com','dispostable.com',
+    'trashmail.com','trashmail.net','maildrop.cc','getairmail.com','mailnesia.com',
+    'mintemail.com','mytemp.email','spambox.us','spamgourmet.com','tempinbox.com',
+    'fakeinbox.com','mvrht.com','spam4.me','meltmail.com','mohmal.com','tempr.email',
+    'emailondeck.com','tempemail.com','spamavert.com','mailcatch.com','spamfree24.org',
+    'jetable.org','nada.email','dropmail.me','tempmail.plus','mail.tm','eyepaste.com',
+    'pokemail.net','mailsac.com','vomoto.com','tmpmail.org','tmpeml.com'
+  ]);
+  function isDisposable(email) {
+    const at = email.lastIndexOf('@');
+    if (at < 0) return false;
+    return DISPOSABLE.has(email.slice(at + 1).toLowerCase().trim());
+  }
 
   // Constrain event date to today through +3 years
   (function () {
@@ -2392,6 +2448,9 @@ document.querySelectorAll('.option').forEach(opt => {
       if (picksHidden && state.picks && state.picks.length) {
         picksHidden.value = state.picks.map((p, i) => `${i + 1}. ${p.title} — ${p.artist}`).join(' | ');
       }
+      // Time-trap: record when the form was first shown. Submissions in
+      // < 4 seconds are dropped silently (bots fire instantly).
+      if (loadedAtField) loadedAtField.value = String(Date.now());
       modal.hidden = false;
       document.body.classList.add('inquiry-modal-open');
       const firstField = form.querySelector('input[name="name"]');
@@ -2421,11 +2480,17 @@ document.querySelectorAll('.option').forEach(opt => {
     e.preventDefault();
     clearErr();
 
-    // Honeypot
+    // 1. Honeypot — silently drop if filled
     const gotcha = form.querySelector('input[name="_gotcha"]');
     if (gotcha && gotcha.value) { setOpen(false); return; }
 
-    // Required-field check
+    // 2. Time-trap — silently drop if submitted < 4s after modal open
+    if (loadedAtField && loadedAtField.value) {
+      const loadedAt = parseInt(loadedAtField.value, 10);
+      if (loadedAt && (Date.now() - loadedAt) < 4000) { setOpen(false); return; }
+    }
+
+    // 3. Required-field check (every field is required)
     const required = form.querySelectorAll('[required]');
     for (const f of required) {
       if (f.type === 'checkbox') {
@@ -2438,12 +2503,28 @@ document.querySelectorAll('.option').forEach(opt => {
       }
     }
 
-    // Email format
+    // 4. Name sanity — reject 1 character, or all digits
+    const nameField = form.querySelector('input[name="name"]');
+    if (nameField) {
+      const name = nameField.value.trim();
+      if (name.length < 2) { showErr('Please enter your full name.'); nameField.focus(); return; }
+      if (/^\d+$/.test(name)) { showErr('Please enter a real name.'); nameField.focus(); return; }
+    }
+
+    // 5. Email — format + disposable-domain block
     const emailField = form.querySelector('input[type="email"]');
-    if (emailField && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailField.value.trim())) {
-      showErr('That email address looks invalid.');
-      emailField.focus();
-      return;
+    if (emailField) {
+      const email = emailField.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        showErr('That email address looks invalid.');
+        emailField.focus();
+        return;
+      }
+      if (isDisposable(email)) {
+        showErr('Please use a permanent email address. Julie responds by email only.');
+        emailField.focus();
+        return;
+      }
     }
 
     // Phone: 10–15 digits (E.164 max), reject longer
@@ -2608,20 +2689,21 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
     </header>
 
     <form class="inquiry-modal__form" id="inquiryModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
-      <!-- Honeypot -->
+      <!-- Honeypot: invisible to humans + screen readers; bots fill, we drop silently -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
       <input type="hidden" name="_subject" value="New Booking Inquiry · First Dance Song Finder">
       <input type="hidden" name="form_source" value="first-dance-song-finder">
       <input type="hidden" name="quiz_picks" id="quizPicksHidden" value="">
+      <input type="hidden" name="_loaded_at" id="inquiryLoadedAt" value="">
 
       <div class="inquiry-modal__row">
         <label class="inquiry-modal__field">
           <span>Your name</span>
-          <input type="text" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+          <input type="text" name="name" autocomplete="name" placeholder="Full name" required minlength="2" maxlength="80">
         </label>
         <label class="inquiry-modal__field">
           <span>Email</span>
-          <input type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          <input type="email" name="email" autocomplete="email" placeholder="you@email.com" required maxlength="120">
         </label>
       </div>
 
@@ -2632,14 +2714,14 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
         </label>
         <label class="inquiry-modal__field">
           <span>Phone</span>
-          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,25}" maxlength="25" placeholder="+1 555 123 4567" required>
         </label>
       </div>
 
       <div class="inquiry-modal__row">
         <label class="inquiry-modal__field">
           <span>Venue + city</span>
-          <input type="text" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
+          <input type="text" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5" maxlength="160">
         </label>
         <label class="inquiry-modal__field">
           <span>Venue zone</span>
@@ -2655,7 +2737,7 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
 
       <label class="inquiry-modal__field inquiry-modal__field--full">
         <span>Tell Julie about your event</span>
-        <textarea name="message" rows="4" placeholder="Venue atmosphere, musical vibe, ceremony vs cocktail vs first dance, any special requests…" required minlength="30"></textarea>
+        <textarea name="message" rows="4" placeholder="Venue atmosphere, musical vibe, ceremony vs cocktail vs first dance, any special requests…" required minlength="30" maxlength="3000"></textarea>
       </label>
 
       <label class="inquiry-modal__consent">
