@@ -146,6 +146,22 @@ nav.site-nav {
 
 /* Songs dropdown */
 .nav-item-has-dropdown { position: relative; }
+/* Invisible bridge across the 14px margin gap so the cursor's hover
+   path from "Songs" down to a dropdown item never enters a dead zone. */
+.nav-item-has-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  right: -20px;
+  height: 24px;
+  pointer-events: none;
+}
+.nav-item-has-dropdown:hover::before,
+.nav-item-has-dropdown:focus-within::before,
+.nav-item-has-dropdown.is-open::before {
+  pointer-events: auto;
+}
 .nav-item-has-dropdown > a::after {
   content: '';
   display: inline-block;
