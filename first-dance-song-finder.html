@@ -1070,6 +1070,193 @@ h1 {
   .capture, .cta-banner { padding: 32px 24px; }
 }
 
+/* ═══════════════ INQUIRY MODAL ═══════════════ */
+.inquiry-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-y: auto;
+}
+.inquiry-modal[hidden] { display: none; }
+.inquiry-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 4, 18, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  animation: inquiryFadeIn 0.28s ease forwards;
+}
+@keyframes inquiryFadeIn { to { opacity: 1; } }
+.inquiry-modal__panel {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  background: linear-gradient(160deg, rgba(26, 20, 40, 0.98) 0%, rgba(15, 10, 26, 0.98) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  border-radius: 4px;
+  padding: 48px 44px 36px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  animation: inquirySlideUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes inquirySlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.inquiry-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba(244, 239, 230, 0.22);
+  border-radius: 50%;
+  color: var(--ivory);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.inquiry-modal__close:hover {
+  border-color: rgba(244, 239, 230, 0.55);
+  background: rgba(244, 239, 230, 0.04);
+}
+.inquiry-modal__head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.inquiry-modal__head .eyebrow {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.inquiry-modal__head h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.15;
+  margin: 0 0 10px;
+  color: var(--ivory);
+}
+.inquiry-modal__head p {
+  font-size: 15px;
+  color: var(--ivory-soft);
+  margin: 0;
+}
+
+.inquiry-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.inquiry-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.inquiry-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.inquiry-modal__field span {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+.inquiry-modal__field input,
+.inquiry-modal__field select,
+.inquiry-modal__field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(15, 10, 26, 0.7);
+  border: 1px solid var(--ivory-border);
+  border-radius: 2px;
+  color: var(--ivory);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.inquiry-modal__field textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+.inquiry-modal__field input:focus,
+.inquiry-modal__field select:focus,
+.inquiry-modal__field textarea:focus {
+  border-color: var(--violet);
+}
+.inquiry-modal__field input::placeholder,
+.inquiry-modal__field textarea::placeholder { color: var(--ivory-faint); }
+.inquiry-modal__field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23F4EFE6' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.inquiry-modal__field--full { grid-column: 1 / -1; }
+
+.inquiry-modal__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ivory-soft);
+  line-height: 1.45;
+  margin-top: 4px;
+}
+.inquiry-modal__consent input { margin-top: 3px; accent-color: var(--violet); }
+.inquiry-modal__consent a { color: var(--ivory); text-decoration: underline; text-underline-offset: 2px; }
+
+.inquiry-modal__error {
+  color: #ff7a7a;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 10px 14px;
+  background: rgba(255, 122, 122, 0.08);
+  border: 1px solid rgba(255, 122, 122, 0.25);
+  border-radius: 2px;
+}
+
+.inquiry-modal__submit { margin-top: 8px; width: 100%; }
+.inquiry-modal__note {
+  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+  margin: 6px 0 0;
+}
+
+body.inquiry-modal-open { overflow: hidden; }
+
+@media (max-width: 640px) {
+  .inquiry-modal { padding: 16px 8px; }
+  .inquiry-modal__panel { padding: 56px 24px 28px; }
+  .inquiry-modal__row { grid-template-columns: 1fr; gap: 16px; }
+  .inquiry-modal__head h2 { font-size: 24px; }
+}
+
 /* Helper note under the download button */
 .capture-note {
   font-family: 'Inter', system-ui, sans-serif;
@@ -1559,7 +1746,7 @@ h1 {
     <div class="cta-banner">
       <h3>Want Julie to play one of these live?</h3>
       <p>Live violin or piano during your first dance transforms it from a moment into a memory. Julie performs across NY, NJ, and CT.</p>
-      <a href="/#inquire?utm_source=first-dance-finder&utm_medium=tool&utm_campaign=first-dance" class="btn-primary">Inquire about your date</a>
+      <button type="button" class="btn-primary" id="inquiryOpenBtn">Inquire about your date</button>
     </div>
 
     <!-- Share section: the viral loop -->
@@ -2170,13 +2357,166 @@ document.querySelectorAll('.option').forEach(opt => {
 });
 
 // Download button: open the browser print dialog so the visitor can
-// "Save as PDF". Print stylesheet renders a clean two-page-ish layout
-// (cover/header, 3 picks with reasoning, reception playlist, booking CTA).
+// "Save as PDF". Print stylesheet renders a clean two-page-ish layout.
 (function () {
   const btn = document.getElementById('downloadPdfBtn');
   if (!btn) return;
-  btn.addEventListener('click', function () {
-    window.print();
+  btn.addEventListener('click', function () { window.print(); });
+})();
+
+// ─── Inquiry modal: open/close + Formspree AJAX submit ───
+(function () {
+  const modal = document.getElementById('inquiryModal');
+  const openBtn = document.getElementById('inquiryOpenBtn');
+  const form = document.getElementById('inquiryModalForm');
+  if (!modal || !openBtn || !form) return;
+
+  const submitBtn = document.getElementById('inquiryModalSubmit');
+  const errorEl = document.getElementById('inquiryModalError');
+  const dateInput = document.getElementById('inquiryEventDate');
+  const picksHidden = document.getElementById('quizPicksHidden');
+
+  // Constrain event date to today through +3 years
+  (function () {
+    const pad = n => String(n).padStart(2, '0');
+    const t = new Date();
+    const min = t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate());
+    const max3 = new Date(t.getFullYear() + 3, t.getMonth(), t.getDate());
+    const max = max3.getFullYear() + '-' + pad(max3.getMonth() + 1) + '-' + pad(max3.getDate());
+    if (dateInput) { dateInput.min = min; dateInput.max = max; }
+  })();
+
+  function setOpen(open) {
+    if (open) {
+      // Attach the visitor's quiz picks so Julie sees the context
+      if (picksHidden && state.picks && state.picks.length) {
+        picksHidden.value = state.picks.map((p, i) => `${i + 1}. ${p.title} — ${p.artist}`).join(' | ');
+      }
+      modal.hidden = false;
+      document.body.classList.add('inquiry-modal-open');
+      const firstField = form.querySelector('input[name="name"]');
+      setTimeout(() => firstField && firstField.focus(), 100);
+    } else {
+      modal.hidden = true;
+      document.body.classList.remove('inquiry-modal-open');
+    }
+  }
+
+  function showErr(msg) {
+    if (!errorEl) return;
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+  }
+  function clearErr() { if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; } }
+
+  openBtn.addEventListener('click', function () { clearErr(); setOpen(true); });
+  modal.querySelectorAll('[data-modal-close]').forEach(el =>
+    el.addEventListener('click', () => setOpen(false))
+  );
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) setOpen(false);
+  });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    clearErr();
+
+    // Honeypot
+    const gotcha = form.querySelector('input[name="_gotcha"]');
+    if (gotcha && gotcha.value) { setOpen(false); return; }
+
+    // Required-field check
+    const required = form.querySelectorAll('[required]');
+    for (const f of required) {
+      if (f.type === 'checkbox') {
+        if (!f.checked) { showErr('Please confirm consent to be contacted.'); f.focus(); return; }
+      } else if (!f.value || !f.value.trim()) {
+        const label = f.closest('label')?.querySelector('span')?.textContent || 'A required field';
+        showErr('Please fill in: ' + label + '.');
+        f.focus();
+        return;
+      }
+    }
+
+    // Email format
+    const emailField = form.querySelector('input[type="email"]');
+    if (emailField && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailField.value.trim())) {
+      showErr('That email address looks invalid.');
+      emailField.focus();
+      return;
+    }
+
+    // Phone: 10–15 digits (E.164 max), reject longer
+    const phoneField = form.querySelector('input[type="tel"]');
+    if (phoneField) {
+      const digits = phoneField.value.replace(/\D/g, '');
+      if (digits.length < 10) {
+        showErr('Please include a phone number with country code (10+ digits).');
+        phoneField.focus();
+        return;
+      }
+      if (digits.length > 15) {
+        showErr('Phone number is too long — please use a real number (max 15 digits).');
+        phoneField.focus();
+        return;
+      }
+      // Anti-spam: reject runs of >6 identical digits or obvious 1234567 sequences
+      if (/(\d)\1{6,}/.test(digits) ||
+          /0?1234567|2345678|3456789|4567890|5678901|6789012|7890123|8901234|9012345/.test(digits)) {
+        showErr('Please enter a valid phone number.');
+        phoneField.focus();
+        return;
+      }
+    }
+
+    // Event date >= today
+    if (dateInput && dateInput.value) {
+      const picked = new Date(dateInput.value + 'T00:00:00');
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      if (isNaN(picked.getTime()) || picked < today) {
+        showErr('Please choose an event date in the future.');
+        dateInput.focus();
+        return;
+      }
+    }
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    submitBtn.style.opacity = '0.7';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        const panel = modal.querySelector('.inquiry-modal__panel');
+        if (panel) {
+          panel.innerHTML =
+            '<button type="button" class="inquiry-modal__close" data-modal-close aria-label="Close">&times;</button>' +
+            '<header class="inquiry-modal__head" style="margin-bottom:0;">' +
+              '<span class="eyebrow" style="color: var(--violet-soft);">Inquiry sent</span>' +
+              '<h2>Thanks — you\'ll hear from Julie soon.</h2>' +
+              '<p>Typical response within 24 hours. Your quiz picks were included.</p>' +
+            '</header>';
+          panel.querySelectorAll('[data-modal-close]').forEach(el =>
+            el.addEventListener('click', () => setOpen(false))
+          );
+        }
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        submitBtn.style.opacity = '';
+        showErr('Something went wrong. Please try again or email bookings@julieschatzmusic.com directly.');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+      submitBtn.style.opacity = '';
+      showErr('Could not reach the server. Check your connection.');
+    }
   });
 })();
 
@@ -2255,6 +2595,81 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
   });
 })();
 </script>
+
+<!-- ═══════════════ INQUIRY MODAL ═══════════════ -->
+<div class="inquiry-modal" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle" hidden>
+  <div class="inquiry-modal__backdrop" data-modal-close></div>
+  <div class="inquiry-modal__panel" role="document">
+    <button type="button" class="inquiry-modal__close" data-modal-close aria-label="Close">&times;</button>
+    <header class="inquiry-modal__head">
+      <span class="eyebrow" style="color: var(--violet-soft);">Booking inquiry</span>
+      <h2 id="inquiryModalTitle">Let's connect about your date.</h2>
+      <p>Tell Julie a little about your event. Typical response within 24 hours.</p>
+    </header>
+
+    <form class="inquiry-modal__form" id="inquiryModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+      <!-- Honeypot -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
+      <input type="hidden" name="_subject" value="New Booking Inquiry · First Dance Song Finder">
+      <input type="hidden" name="form_source" value="first-dance-song-finder">
+      <input type="hidden" name="quiz_picks" id="quizPicksHidden" value="">
+
+      <div class="inquiry-modal__row">
+        <label class="inquiry-modal__field">
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+        </label>
+        <label class="inquiry-modal__field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+        </label>
+      </div>
+
+      <div class="inquiry-modal__row">
+        <label class="inquiry-modal__field">
+          <span>Event date</span>
+          <input type="date" name="event_date" id="inquiryEventDate" required>
+        </label>
+        <label class="inquiry-modal__field">
+          <span>Phone</span>
+          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+        </label>
+      </div>
+
+      <div class="inquiry-modal__row">
+        <label class="inquiry-modal__field">
+          <span>Venue + city</span>
+          <input type="text" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
+        </label>
+        <label class="inquiry-modal__field">
+          <span>Venue zone</span>
+          <select name="venue_state" required>
+            <option value="" disabled selected>Choose…</option>
+            <option value="nyc">NYC (Manhattan, Brooklyn, Queens, Bronx, SI, Hoboken, JC)</option>
+            <option value="li-westch-nnj-greenwich">Long Island / Westchester / Northern NJ / Greenwich</option>
+            <option value="hudson-valley-beyond">Hudson Valley &amp; Beyond</option>
+            <option value="other">Other / Destination</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="inquiry-modal__field inquiry-modal__field--full">
+        <span>Tell Julie about your event</span>
+        <textarea name="message" rows="4" placeholder="Venue atmosphere, musical vibe, ceremony vs cocktail vs first dance, any special requests…" required minlength="30"></textarea>
+      </label>
+
+      <label class="inquiry-modal__consent">
+        <input type="checkbox" name="consent" required>
+        <span>I agree to be contacted about this inquiry. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</span>
+      </label>
+
+      <p class="inquiry-modal__error" id="inquiryModalError" hidden></p>
+
+      <button type="submit" class="btn-primary inquiry-modal__submit" id="inquiryModalSubmit">Send inquiry</button>
+      <p class="inquiry-modal__note">Typically responds within 24 hours · All inquiries confidential</p>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

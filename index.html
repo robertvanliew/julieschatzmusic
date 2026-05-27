@@ -4263,7 +4263,7 @@ nav {
         </div>
         <div class="field-group">
           <span class="field-label">Phone</span>
-          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
+          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,25}" maxlength="25" placeholder="+1 555 123 4567" required>
         </div>
       </div>
       <div class="field-row">
@@ -6427,13 +6427,34 @@ if (testimonialsTrack) {
         }
       }
 
-      // Phone, soft-check that pattern is reasonable
+      // Phone: enforce 10–15 digits (E.164 max). Stops spam mashes like
+      // "1234567891011121314" sailing through with the previous 10+ rule.
       const phoneField = form.querySelector('input[type="tel"]');
       if (phoneField && phoneField.value) {
         const digits = phoneField.value.replace(/\D/g, '');
         if (digits.length < 10) {
           e.preventDefault();
           showError(form, 'Please include a phone number with country code (10+ digits).');
+          phoneField.focus();
+          return;
+        }
+        if (digits.length > 15) {
+          e.preventDefault();
+          showError(form, 'That phone number is too long. Please enter a real number (max 15 digits including country code).');
+          phoneField.focus();
+          return;
+        }
+        // Reject runs of >6 identical digits — classic spam pattern
+        if (/(\d)\1{6,}/.test(digits)) {
+          e.preventDefault();
+          showError(form, 'Please enter a valid phone number.');
+          phoneField.focus();
+          return;
+        }
+        // Reject obvious incrementing sequences (12345678910...)
+        if (/0?1234567|2345678|3456789|4567890|5678901|6789012|7890123|8901234|9012345/.test(digits)) {
+          e.preventDefault();
+          showError(form, 'Please enter a valid phone number.');
           phoneField.focus();
           return;
         }
