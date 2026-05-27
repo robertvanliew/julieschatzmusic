@@ -1127,6 +1127,10 @@ body {
 
 /* All direct children of .page sit above the body gradient */
 .page > * { position: relative; z-index: 1; }
+/* Lift the nav above sibling sections so the Songs dropdown can paint
+   over the carousel/photo grid below. .page > * sets z-index:1 with
+   higher specificity than `nav`, so we override with a class-scoped rule. */
+.page > nav.site-nav { z-index: 300; }
 
 /* ── NAV ── */
 nav {
