@@ -4232,7 +4232,7 @@ nav {
       <div class="field-row">
         <div class="field-group">
           <span class="field-label">Event Date</span>
-          <input type="date" name="event_date" required>
+          <input type="date" name="event_date" id="eventDateInput" required>
         </div>
         <div class="field-group">
           <span class="field-label">Phone</span>
@@ -6434,8 +6434,23 @@ if (testimonialsTrack) {
     });
   }
 
+  function constrainEventDateInputs() {
+    // Stop typeable bogus years (e.g. 1985) at the browser level.
+    // Server-side and the submit handler also enforce >= today; this is UX insurance.
+    const pad = n => String(n).padStart(2, '0');
+    const today = new Date();
+    const minStr = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+    const maxDate = new Date(today.getFullYear() + 3, today.getMonth(), today.getDate());
+    const maxStr = maxDate.getFullYear() + '-' + pad(maxDate.getMonth() + 1) + '-' + pad(maxDate.getDate());
+    document.querySelectorAll('input[type="date"][name="event_date"]').forEach(el => {
+      el.min = minStr;
+      el.max = maxStr;
+    });
+  }
+
   function init() {
     document.querySelectorAll('form.hardened-form').forEach(hardenForm);
+    constrainEventDateInputs();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
