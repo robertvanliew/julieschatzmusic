@@ -2006,13 +2006,70 @@ document.querySelectorAll('.option').forEach(opt => {
   opt.addEventListener('click', () => handleAnswer(opt));
 });
 
-// Capture form: prevent default, show success state.
-// (In production, the existing Formspree handler on the site will manage this.)
-document.getElementById('capture-form').addEventListener('submit', function(e) {
-  // Let it submit naturally to Formspree, but also show toast.
-  // If you want to keep them on the page, e.preventDefault() and use fetch().
-  showToast('Sent. Check your inbox.');
-});
+// Capture form: AJAX submit to Formspree so the visitor stays on this
+// page and never sees Formspree's hosted confirmation screen.
+(function () {
+  const form = document.getElementById('capture-form');
+  if (!form) return;
+  const emailInput = form.querySelector('input[type="email"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    if (!emailInput || !emailInput.value.trim()) {
+      emailInput && emailInput.focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailInput.value.trim())) {
+      showToast('Please enter a valid email.');
+      emailInput.focus();
+      return;
+    }
+
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      submitBtn.style.opacity = '0.7';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        // Replace the form with an inline success state — no redirect.
+        const wrap = form.closest('.capture');
+        if (wrap) {
+          wrap.innerHTML =
+            '<h3>Got it. Check your inbox.</h3>' +
+            '<p>We\'ll send your picks plus a starter playlist shortly. ' +
+            'If it doesn\'t arrive within a few minutes, check spam or write to ' +
+            '<a href="mailto:bookings@julieschatzmusic.com" style="color:inherit;text-decoration:underline;">bookings@julieschatzmusic.com</a>.</p>';
+        } else {
+          showToast('Sent. Check your inbox.');
+        }
+      } else {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+          submitBtn.style.opacity = '';
+        }
+        showToast('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        submitBtn.style.opacity = '';
+      }
+      showToast('Could not reach the server. Check your connection.');
+    }
+  });
+})();
 
 // On page load: check for shared results in URL
 maybeLoadSharedResults();
