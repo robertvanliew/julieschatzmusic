@@ -1393,6 +1393,141 @@ nav {
 
 /* Mobile nav handled by hamburger system in the nav-hamburger CSS block above */
 
+/* ═══════════════════════════════════
+   Desktop nav dropdown (Songs → Ceremony Repertoire / First Dance Finder)
+   Hover- and focus-within-activated; touch falls back to parent link.
+   ═══════════════════════════════════ */
+.nav-item-has-dropdown {
+  position: relative;
+}
+.nav-item-has-dropdown > a::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  opacity: 0.6;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-item-has-dropdown:hover > a::after,
+.nav-item-has-dropdown:focus-within > a::after {
+  opacity: 1;
+  transform: translateY(0) rotate(225deg);
+}
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  margin: 14px 0 0;
+  padding: 8px 0;
+  min-width: 240px;
+  list-style: none;
+  background: rgba(15, 10, 26, 0.96);
+  border: 1px solid rgba(244, 239, 230, 0.14);
+  border-radius: 2px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  z-index: 200;
+}
+.nav-item-has-dropdown:hover .nav-dropdown,
+.nav-item-has-dropdown:focus-within .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
+}
+.nav-dropdown li { display: block; }
+.nav-dropdown a {
+  display: block;
+  padding: 10px 24px;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-dropdown a:hover,
+.nav-dropdown a:focus-visible {
+  background: rgba(168, 85, 247, 0.1);
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* ═══════════════════════════════════
+   First Dance Song Finder promo section
+   ═══════════════════════════════════ */
+.first-dance-promo {
+  width: 100vw;
+  padding: 120px 48px;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+.first-dance-promo__container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.first-dance-promo__inner {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(168, 85, 247, 0.04));
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  border-radius: 4px;
+  padding: 72px 56px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.first-dance-promo__inner .editorial-kicker {
+  color: rgba(168, 85, 247, 0.95);
+  margin-bottom: 18px;
+}
+.first-dance-promo__inner .editorial-h2 {
+  margin: 0 0 20px;
+}
+.first-dance-promo__inner p {
+  color: rgba(244, 239, 230, 0.78);
+  max-width: 540px;
+  margin: 0 auto 36px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.first-dance-promo__cta {
+  display: inline-block;
+  padding: 18px 40px;
+  background: #a855f7;
+  color: #F4EFE6;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.first-dance-promo__cta:hover {
+  background: #b568fb;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.4);
+}
+@media (max-width: 640px) {
+  .first-dance-promo { padding: 80px 24px; }
+  .first-dance-promo__inner { padding: 48px 28px; }
+  .first-dance-promo__inner p { font-size: 16px; }
+}
+
 .nav-cta {
   font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
   font-weight: 600;
@@ -4036,7 +4171,13 @@ nav {
       <li><a href="#listen">Listen</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="/sample-pack-store/">Store</a></li>
-      <li><a href="/wedding-ceremony-songs/">Repertoire</a></li>
+      <li class="nav-item-has-dropdown">
+        <a href="/wedding-ceremony-songs/" aria-haspopup="true">Songs</a>
+        <ul class="nav-dropdown" role="menu">
+          <li role="none"><a href="/wedding-ceremony-songs/" role="menuitem">Ceremony Repertoire</a></li>
+          <li role="none"><a href="/first-dance-song-finder/" role="menuitem">First Dance Finder</a></li>
+        </ul>
+      </li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
     <!-- Hamburger lives INSIDE nav so it escapes the `.page > * { z-index:1 }`
@@ -5251,6 +5392,18 @@ nav {
           </a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST DANCE SONG FINDER — PROMO -->
+<section id="first-dance-promo" class="first-dance-promo" aria-label="First Dance Song Finder">
+  <div class="first-dance-promo__container">
+    <div class="first-dance-promo__inner">
+      <span class="editorial-kicker">A Tool for Couples</span>
+      <h2 class="editorial-h2">Stuck on your first dance song?</h2>
+      <p>Take our 60-second quiz and get three personalized picks with reasoning for each. Built for couples planning their wedding.</p>
+      <a href="/first-dance-song-finder/" class="first-dance-promo__cta">Find your song →</a>
     </div>
   </div>
 </section>
