@@ -767,6 +767,28 @@ h1 {
   transform: translateX(-50%) translateY(0);
 }
 
+/* ═══════════════ PAGE CREDIT ═══════════════ */
+.page-credit {
+  text-align: center;
+  margin: 64px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+}
+.page-credit a {
+  color: var(--ivory-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ivory-border);
+  padding-bottom: 1px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.page-credit a:hover {
+  color: var(--ivory);
+  border-color: var(--violet);
+}
+
 /* ═══════════════ RESPONSIVE ═══════════════ */
 @media (max-width: 640px) {
   .shell { padding: 48px 20px 80px; }
@@ -1036,7 +1058,7 @@ h1 {
     <div class="cta-banner">
       <h3>Want Julie to play one of these live?</h3>
       <p>Live violin or piano during your first dance transforms it from a moment into a memory. Julie performs across NY, NJ, and CT.</p>
-      <a href="/#contact?utm_source=first-dance-finder&utm_medium=tool&utm_campaign=first-dance" class="btn-primary">Inquire about your date</a>
+      <a href="/#inquire?utm_source=first-dance-finder&utm_medium=tool&utm_campaign=first-dance" class="btn-primary">Inquire about your date</a>
     </div>
 
     <!-- Share section: the viral loop -->
@@ -1095,6 +1117,8 @@ h1 {
     </div>
 
   </section>
+
+  <p class="page-credit">Designed by <a href="https://robertvanliew.com" target="_blank" rel="noopener">Robert Van Liew</a></p>
 
 </div>
 
