@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>First Dance Song Finder: Free Wedding Song Quiz (60 sec) | Julie Schatz</title>
-<meta name="description" content="Take the free 5-question first dance song quiz and get 3 personalized wedding song picks with reasoning — from Etta James to Ed Sheeran. Built by NYC wedding violinist Julie Schatz.">
-<meta name="keywords" content="first dance song finder, first dance songs, wedding first dance songs, first dance song quiz, popular first dance songs, romantic first dance songs, wedding song picker, wedding song generator">
+<title>First Dance Song Finder — Free 60-Second Wedding Quiz</title>
+<meta name="description" content="Take the free 5-question first dance song quiz and get 3 personalized wedding song picks with reasoning — from Etta James to Ed Sheeran. By NYC wedding violinist Julie Schatz.">
 <meta name="author" content="Julie Schatz">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://julieschatzmusic.com/first-dance-song-finder/">
@@ -49,15 +48,17 @@
         { "@type": "Thing", "name": "Wedding music planning" }
       ],
       "audience": { "@type": "Audience", "audienceType": "Engaged couples planning a wedding" },
-      "primaryImageOfPage": "https://julieschatzmusic.com/assets/og/og-home.jpg",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://julieschatzmusic.com/assets/og/og-home.jpg",
+        "width": 1200,
+        "height": 630
+      },
       "datePublished": "2026-05-27",
       "dateModified": "2026-05-27",
       "inLanguage": "en-US",
-      "author": {
-        "@type": "Person",
-        "name": "Julie Schatz",
-        "url": "https://julieschatzmusic.com/#person"
-      }
+      "author": { "@id": "https://julieschatzmusic.com/#julie" },
+      "publisher": { "@id": "https://julieschatzmusic.com/#business" }
     },
     {
       "@type": "BreadcrumbList",
@@ -128,6 +129,38 @@
         }
       ]
     }
+  ]
+}
+</script>
+
+<!-- ItemList schema for the visible Reception Playlist Starters section -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Wedding Reception Playlist Starters",
+  "description": "Curated starter songs for cocktail hour, dinner, and dancing portions of a wedding reception. Recommended by NYC wedding violinist Julie Schatz.",
+  "numberOfItems": 18,
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "MusicRecording", "name": "Lovely Day", "byArtist": { "@type": "MusicGroup", "name": "Bill Withers" } } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "MusicRecording", "name": "Fly Me to the Moon", "byArtist": { "@type": "MusicGroup", "name": "Frank Sinatra" } } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "MusicRecording", "name": "Smooth Operator", "byArtist": { "@type": "MusicGroup", "name": "Sade" } } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "MusicRecording", "name": "Feeling Good", "byArtist": { "@type": "MusicGroup", "name": "Nina Simone" } } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "MusicRecording", "name": "L-O-V-E", "byArtist": { "@type": "MusicGroup", "name": "Nat King Cole" } } },
+    { "@type": "ListItem", "position": 6, "item": { "@type": "MusicRecording", "name": "Killing Me Softly", "byArtist": { "@type": "MusicGroup", "name": "Roberta Flack" } } },
+    { "@type": "ListItem", "position": 7, "item": { "@type": "MusicRecording", "name": "Sunday Best", "byArtist": { "@type": "MusicGroup", "name": "Surfaces" } } },
+    { "@type": "ListItem", "position": 8, "item": { "@type": "MusicRecording", "name": "Three Little Birds", "byArtist": { "@type": "MusicGroup", "name": "Bob Marley" } } },
+    { "@type": "ListItem", "position": 9, "item": { "@type": "MusicRecording", "name": "Brown Eyed Girl", "byArtist": { "@type": "MusicGroup", "name": "Van Morrison" } } },
+    { "@type": "ListItem", "position": 10, "item": { "@type": "MusicRecording", "name": "Sir Duke", "byArtist": { "@type": "MusicGroup", "name": "Stevie Wonder" } } },
+    { "@type": "ListItem", "position": 11, "item": { "@type": "MusicRecording", "name": "Daddy's Home", "byArtist": { "@type": "MusicGroup", "name": "Usher" } } },
+    { "@type": "ListItem", "position": 12, "item": { "@type": "MusicRecording", "name": "Better Together", "byArtist": { "@type": "MusicGroup", "name": "Jack Johnson" } } },
+    { "@type": "ListItem", "position": 13, "item": { "@type": "MusicRecording", "name": "September", "byArtist": { "@type": "MusicGroup", "name": "Earth, Wind & Fire" } } },
+    { "@type": "ListItem", "position": 14, "item": { "@type": "MusicRecording", "name": "Uptown Funk", "byArtist": { "@type": "MusicGroup", "name": "Bruno Mars" } } },
+    { "@type": "ListItem", "position": 15, "item": { "@type": "MusicRecording", "name": "Crazy in Love", "byArtist": { "@type": "MusicGroup", "name": "Beyoncé" } } },
+    { "@type": "ListItem", "position": 16, "item": { "@type": "MusicRecording", "name": "I Wanna Dance with Somebody", "byArtist": { "@type": "MusicGroup", "name": "Whitney Houston" } } },
+    { "@type": "ListItem", "position": 17, "item": { "@type": "MusicRecording", "name": "Don't Stop Believin'", "byArtist": { "@type": "MusicGroup", "name": "Journey" } } },
+    { "@type": "ListItem", "position": 18, "item": { "@type": "MusicRecording", "name": "Dancing Queen", "byArtist": { "@type": "MusicGroup", "name": "ABBA" } } }
   ]
 }
 </script>
@@ -1567,6 +1600,87 @@ body.inquiry-modal-open { overflow: hidden; }
   .inquiry-modal__head h2 { font-size: 24px; }
 }
 
+/* ═══════════════ RECEPTION PLAYLIST (visible on screen + in print) ═══════════════
+   Screen-only styling — wrapped in @media screen so print CSS isn't
+   shadowed by higher-specificity .reception-playlist__* selectors. */
+@media screen {
+  .reception-playlist {
+    margin: 56px 0 32px;
+    padding: 48px 0 8px;
+    border-top: 1px solid var(--hairline);
+  }
+  .reception-playlist__head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .reception-playlist__head .eyebrow {
+    display: block;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .reception-playlist__head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 3.6vw, 36px);
+    line-height: 1.2;
+    margin: 0 0 12px;
+    color: var(--ivory);
+  }
+  .reception-playlist__head .print-subtitle {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ivory-soft);
+    max-width: 56ch;
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+  .reception-playlist .print-playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .reception-playlist .print-playlist-col h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--violet-soft);
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ivory-border);
+  }
+  .reception-playlist .print-playlist-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .reception-playlist .print-playlist-col li {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ivory-soft);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(244, 239, 230, 0.06);
+  }
+  .reception-playlist .print-playlist-col li:last-child { border-bottom: 0; }
+}
+
+@media screen and (max-width: 700px) {
+  .reception-playlist .print-playlist-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
 /* Helper note under the download button */
 .capture-note {
   font-family: 'Inter', system-ui, sans-serif;
@@ -1612,7 +1726,8 @@ body.inquiry-modal-open { overflow: hidden; }
     padding-bottom: 18px;
     margin-bottom: 28px;
   }
-  .print-header h1 {
+  .print-header h1,
+  .print-header .print-h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 400;
@@ -1737,7 +1852,7 @@ body.inquiry-modal-open { overflow: hidden; }
 
 <nav class="site-nav">
   <a href="/" class="nav-logo" aria-label="Julie Schatz home">
-    <img src="/assets/julie-schatz-logo.png" alt="Julie Schatz" width="4000" height="4000" loading="eager" decoding="async">
+    <img src="/assets/julie-schatz-logo.png" alt="Julie Schatz Music - NYC wedding violinist and jazz pianist" width="4000" height="4000" loading="eager" decoding="async">
   </a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
@@ -1978,9 +2093,10 @@ body.inquiry-modal-open { overflow: hidden; }
   <section class="results" id="results">
 
     <!-- Print-only header. Hidden in screen view, visible when the
-         visitor uses "Save your picks (PDF)". -->
+         visitor uses "Save your picks (PDF)". Uses h2 (not h1) to avoid
+         creating two H1s in the DOM — print CSS sizes it like an h1. -->
     <header class="print-only print-header" aria-hidden="true">
-      <h1>Your First Dance Song Picks</h1>
+      <h2 class="print-h1">Your First Dance Song Picks</h2>
       <p class="print-byline">Curated by Julie Schatz Music · NYC wedding violinist &amp; jazz pianist<br>
         julieschatzmusic.com · bookings@julieschatzmusic.com · 631 · 365 · 9554</p>
     </header>
@@ -1995,10 +2111,15 @@ body.inquiry-modal-open { overflow: hidden; }
       <!-- Songs injected by JS -->
     </div>
 
-    <!-- Print-only: starter playlist for the rest of the reception. -->
-    <section class="print-only print-playlist" aria-hidden="true">
-      <h2>Reception Playlist Starters</h2>
-      <p class="print-subtitle">A starting framework to share with your DJ. Pick a few from each moment that match the energy you want.</p>
+    <!-- Reception playlist: visible on screen + in the printed PDF.
+         Carries long-tail SEO weight (cocktail hour songs, wedding dinner
+         music, wedding reception playlist) plus genuine couple value. -->
+    <section class="reception-playlist print-playlist" aria-labelledby="playlistHeading">
+      <div class="reception-playlist__head">
+        <span class="eyebrow" style="color: var(--violet-soft);">Bonus</span>
+        <h2 id="playlistHeading">Reception Playlist Starters</h2>
+        <p class="print-subtitle">A starting framework to share with your DJ. Pick a few from each moment that match the energy you want.</p>
+      </div>
 
       <div class="print-playlist-grid">
         <div class="print-playlist-col">
@@ -2190,7 +2311,7 @@ body.inquiry-modal-open { overflow: hidden; }
 <footer class="site-footer">
   <div class="footer-container">
     <a href="/" class="footer-logo" aria-label="Julie Schatz home">
-      <img src="/assets/julie-schatz-logo.png" alt="Julie Schatz" width="4000" height="4000" loading="lazy" decoding="async">
+      <img src="/assets/julie-schatz-logo.png" alt="Julie Schatz Music - NYC wedding violinist and jazz pianist" width="4000" height="4000" loading="lazy" decoding="async">
     </a>
     <span class="footer-tagline">Stay in the Music</span>
     <nav class="footer-sitemap" aria-label="Site map">
