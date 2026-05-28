@@ -2865,7 +2865,7 @@ document.querySelectorAll('.option').forEach(opt => {
 })();
 
 // ─── Inquiry modal: open/close + Formspree AJAX submit ───
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('inquiryModal');
   const openBtn = document.getElementById('inquiryOpenBtn');
   const form = document.getElementById('inquiryModalForm');
@@ -3063,7 +3063,7 @@ document.querySelectorAll('.option').forEach(opt => {
       showErr('Could not reach the server. Check your connection.');
     }
   });
-})();
+});
 
 // On page load: check for shared results in URL
 maybeLoadSharedResults();
