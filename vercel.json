@@ -47,6 +47,43 @@
     { "source": "/sample-pack/all-9-packs-bundle/", "destination": "/beats/PK6Cm.html" }
   ],
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+
+    { "source": "/contact", "destination": "/bookings/", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/collection/all", "destination": "/sample-pack-store/", "permanent": true },
+    { "source": "/b/:path*", "destination": "/sample-pack-store/", "permanent": true },
+
+    { "source": "/bookings.html", "destination": "/bookings/", "permanent": true },
+    { "source": "/bookings/solo.html", "destination": "/solo-violin-piano/", "permanent": true },
+    { "source": "/bookings/duo.html", "destination": "/dj-violin-duo-nyc/", "permanent": true },
+    { "source": "/pricing.html", "destination": "/wedding-violinist-pricing/", "permanent": true },
+    { "source": "/faq.html", "destination": "/wedding-violinist-faq/", "permanent": true },
+    { "source": "/repertoire.html", "destination": "/wedding-ceremony-songs/", "permanent": true },
+    { "source": "/first-dance-song-finder.html", "destination": "/first-dance-song-finder/", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog/", "permanent": true },
+    { "source": "/blog/spitfire-house-track.html", "destination": "/blog/orchestral-house-music-spitfire/", "permanent": true },
+    { "source": "/beats.html", "destination": "/sample-pack-store/", "permanent": true },
+    { "source": "/venues.html", "destination": "/venues/", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy/", "permanent": true },
+
+    { "source": "/wedding-violinist-nyc.html", "destination": "/wedding-violinist-nyc/", "permanent": true },
+    { "source": "/wedding-violinist-long-island.html", "destination": "/wedding-violinist-long-island/", "permanent": true },
+    { "source": "/wedding-violinist-westchester.html", "destination": "/wedding-violinist-westchester/", "permanent": true },
+    { "source": "/wedding-violinist-hudson-valley.html", "destination": "/wedding-violinist-hudson-valley/", "permanent": true },
+    { "source": "/wedding-violinist-northern-nj.html", "destination": "/wedding-violinist-northern-nj/", "permanent": true },
+    { "source": "/wedding-violinist-central-nj-shore.html", "destination": "/wedding-violinist-central-nj-shore/", "permanent": true },
+    { "source": "/wedding-violinist-oheka-castle.html", "destination": "/wedding-violinist-oheka-castle/", "permanent": true },
+    { "source": "/wedding-violinist-tappan-hill-mansion.html", "destination": "/wedding-violinist-tappan-hill-mansion/", "permanent": true },
+    { "source": "/wedding-violinist-pendry-natirar.html", "destination": "/wedding-violinist-pendry-natirar/", "permanent": true },
+    { "source": "/wedding-violinist-blue-hill-at-stone-barns.html", "destination": "/wedding-violinist-blue-hill-at-stone-barns/", "permanent": true },
+    { "source": "/wedding-violinist-gotham-hall.html", "destination": "/wedding-violinist-gotham-hall/", "permanent": true },
+    { "source": "/wedding-violinist-the-wythe-hotel.html", "destination": "/wedding-violinist-the-wythe-hotel/", "permanent": true },
+    { "source": "/wedding-violinist-park-chateau-estate.html", "destination": "/wedding-violinist-park-chateau-estate/", "permanent": true },
+    { "source": "/wedding-violinist-capitale.html", "destination": "/wedding-violinist-capitale/", "permanent": true },
+    { "source": "/wedding-violinist-the-garden-city-hotel.html", "destination": "/wedding-violinist-the-garden-city-hotel/", "permanent": true },
+    { "source": "/wedding-violinist-falkirk-estate.html", "destination": "/wedding-violinist-falkirk-estate/", "permanent": true },
+    { "source": "/wedding-violinist-new-jersey.html", "destination": "/wedding-violinist-new-jersey/", "permanent": true },
+    { "source": "/wedding-violinist-connecticut.html", "destination": "/wedding-violinist-connecticut/", "permanent": true }
   ]
 }
