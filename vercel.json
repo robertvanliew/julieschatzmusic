@@ -15,6 +15,7 @@
     { "source": "/venues/", "destination": "/venues.html" },
     { "source": "/privacy/", "destination": "/privacy.html" },
     { "source": "/wedding-violinist-nyc/", "destination": "/wedding-violinist-nyc.html" },
+    { "source": "/wedding-dj-nyc/", "destination": "/wedding-dj-nyc.html" },
     { "source": "/wedding-violinist-long-island/", "destination": "/wedding-violinist-long-island.html" },
     { "source": "/wedding-violinist-westchester/", "destination": "/wedding-violinist-westchester.html" },
     { "source": "/wedding-violinist-hudson-valley/", "destination": "/wedding-violinist-hudson-valley.html" },
@@ -68,6 +69,7 @@
     { "source": "/privacy.html", "destination": "/privacy/", "permanent": true },
 
     { "source": "/wedding-violinist-nyc.html", "destination": "/wedding-violinist-nyc/", "permanent": true },
+    { "source": "/wedding-dj-nyc.html", "destination": "/wedding-dj-nyc/", "permanent": true },
     { "source": "/wedding-violinist-long-island.html", "destination": "/wedding-violinist-long-island/", "permanent": true },
     { "source": "/wedding-violinist-westchester.html", "destination": "/wedding-violinist-westchester/", "permanent": true },
     { "source": "/wedding-violinist-hudson-valley.html", "destination": "/wedding-violinist-hudson-valley/", "permanent": true },
