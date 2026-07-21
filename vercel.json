@@ -57,8 +57,9 @@
     { "source": "/collection/all/", "destination": "/sample-pack-store/", "permanent": true },
     { "source": "/b/:slug/", "destination": "/sample-pack-store/", "permanent": true },
     { "source": "/b/:slug", "destination": "/sample-pack-store/", "permanent": true },
-    { "source": "/blog/flipping-a-country-sample-in-afro-house-sponsored-by-splice/:slug*/", "destination": "/blog/", "permanent": true },
-    { "source": "/blog/flipping-a-country-sample-in-afro-house-sponsored-by-splice/:slug*", "destination": "/blog/", "permanent": true },
+    { "source": "/blog/flipping-a-country-sample-in-afro-house-sponsored-by-splice/:slug/", "destination": "/blog/", "permanent": true },
+    { "source": "/blog/flipping-a-country-sample-in-afro-house-sponsored-by-splice/:slug", "destination": "/blog/", "permanent": true },
+    { "source": "/blog/flipping-a-country-sample-in-afro-house-sponsored-by-splice/", "destination": "/blog/", "permanent": true },
 
     { "source": "/bookings.html", "destination": "/bookings/", "permanent": true },
     { "source": "/bookings/solo.html", "destination": "/solo-violin-piano/", "permanent": true },
