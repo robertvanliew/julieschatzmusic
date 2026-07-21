@@ -49,6 +49,15 @@
     { "source": "/sample-pack/free-sampler/", "destination": "/beats/Cy82d.html" },
     { "source": "/sample-pack/all-9-packs-bundle/", "destination": "/beats/PK6Cm.html" }
   ],
+  "headers": [
+    {
+      "source": "/blog/feed.xml",
+      "headers": [
+        { "key": "Link", "value": "<https://julieschatzmusic.com/blog/feed.xml>; rel=\"canonical\"" },
+        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
 
