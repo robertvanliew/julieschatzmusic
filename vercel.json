@@ -52,10 +52,11 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
 
-    { "source": "/contact", "destination": "/bookings/", "permanent": true },
-    { "source": "/home", "destination": "/", "permanent": true },
-    { "source": "/collection/all", "destination": "/sample-pack-store/", "permanent": true },
-    { "source": "/b/:path*", "destination": "/sample-pack-store/", "permanent": true },
+    { "source": "/contact/", "destination": "/bookings/", "permanent": true },
+    { "source": "/home/", "destination": "/", "permanent": true },
+    { "source": "/collection/all/", "destination": "/sample-pack-store/", "permanent": true },
+    { "source": "/b/:slug/", "destination": "/sample-pack-store/", "permanent": true },
+    { "source": "/b/:slug", "destination": "/sample-pack-store/", "permanent": true },
 
     { "source": "/bookings.html", "destination": "/bookings/", "permanent": true },
     { "source": "/bookings/solo.html", "destination": "/solo-violin-piano/", "permanent": true },
