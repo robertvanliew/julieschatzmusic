@@ -57,12 +57,12 @@
     // Prefer sendBeacon for fire-and-forget reliability during page unload
     if (navigator.sendBeacon) {
       var blob = new Blob([body], { type: 'application/json' });
-      var ok = navigator.sendBeacon('/api/track', blob);
+      var ok = navigator.sendBeacon('/api/track/', blob);
       if (ok) return;
     }
     // Fallback to fetch keepalive
     try {
-      fetch('/api/track', {
+      fetch('/api/track/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: body,
