@@ -1872,6 +1872,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script src="/assets/js/meta-conversions.js" defer></script>
 </head>
 <body>
 
@@ -2753,6 +2754,16 @@ function handleAnswer(button) {
       setTimeout(() => {
         renderResults();
         showSection('results');
+        // Meta conversion event: CompleteRegistration (quiz finished)
+        if (typeof window.fbTrack === 'function') {
+          try {
+            window.fbTrack('CompleteRegistration', {
+              content_name: 'First Dance Song Finder Quiz',
+              content_category: 'Song Finder',
+              status: true
+            });
+          } catch (_) {}
+        }
       }, 1400);
     }
   }, 280);
@@ -2870,6 +2881,16 @@ function maybeLoadSharedResults() {
     state.answers = sharedAnswers;
     renderResults();
     showSection('results');
+    // Meta conversion event: CompleteRegistration (arrived via shared results URL)
+    if (typeof window.fbTrack === 'function') {
+      try {
+        window.fbTrack('CompleteRegistration', {
+          content_name: 'First Dance Song Finder Quiz (Shared)',
+          content_category: 'Song Finder',
+          status: true
+        });
+      } catch (_) {}
+    }
   }
 }/* ═══════════════════════════════════════════════════════════════
    WIRE UP
@@ -3071,6 +3092,22 @@ document.addEventListener('DOMContentLoaded', function () {
         headers: { 'Accept': 'application/json' }
       });
       if (response.ok) {
+        // Meta conversion event: Lead (form successfully submitted to Formspree)
+        try {
+          const fd = new FormData(form);
+          const email = fd.get('email') || '';
+          const phone = fd.get('phone') || '';
+          const name = String(fd.get('name') || '').trim();
+          const spaceIdx = name.indexOf(' ');
+          const first_name = spaceIdx > 0 ? name.slice(0, spaceIdx) : name;
+          const last_name = spaceIdx > 0 ? name.slice(spaceIdx + 1) : '';
+          if (typeof window.fbTrack === 'function') {
+            window.fbTrack('Lead',
+              { content_name: 'Song Finder Inquiry', content_category: 'Song Finder', value: 595, currency: 'USD' },
+              { email, phone, first_name, last_name }
+            );
+          }
+        } catch (_) {}
         const panel = modal.querySelector('.inquiry-modal__panel');
         if (panel) {
           panel.innerHTML =
