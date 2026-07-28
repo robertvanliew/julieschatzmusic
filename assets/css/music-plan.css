@@ -1,0 +1,112 @@
+/* Music Plan sticky bar — shared across finder pages */
+#jsmMusicPlanBar {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: min(680px, calc(100vw - 24px));
+  z-index: 9999;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #F4EFE6;
+  background: rgba(20, 12, 40, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,85,247,0.08) inset;
+}
+#jsmMusicPlanBar .jsm-mp-inner { padding: 0; }
+#jsmMusicPlanBar .jsm-mp-toggle {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 12px 16px;
+  background: transparent; border: 0; color: inherit;
+  cursor: pointer; text-align: left;
+  font: inherit; letter-spacing: 0.01em;
+}
+#jsmMusicPlanBar .jsm-mp-kicker {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: rgba(244,239,230,0.72); flex-shrink: 0;
+}
+#jsmMusicPlanBar .jsm-mp-count {
+  font-size: 13px; font-weight: 600; color: #d4b872; flex-shrink: 0;
+}
+#jsmMusicPlanBar .jsm-mp-progress {
+  flex: 1; height: 4px; background: rgba(244,239,230,0.12);
+  border-radius: 2px; overflow: hidden; min-width: 60px;
+}
+#jsmMusicPlanBar .jsm-mp-fill {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  transition: width 0.3s ease;
+}
+#jsmMusicPlanBar .jsm-mp-caret {
+  font-size: 14px; color: rgba(244,239,230,0.6); transition: transform 0.2s;
+}
+#jsmMusicPlanBar.is-open .jsm-mp-caret { transform: rotate(180deg); }
+
+#jsmMusicPlanBar .jsm-mp-body {
+  padding: 8px 16px 16px;
+  border-top: 1px solid rgba(244,239,230,0.08);
+}
+#jsmMusicPlanBar .jsm-mp-list { list-style: none; padding: 0; margin: 8px 0 12px; }
+#jsmMusicPlanBar .jsm-mp-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(244,239,230,0.06);
+}
+#jsmMusicPlanBar .jsm-mp-item:last-child { border-bottom: 0; }
+#jsmMusicPlanBar .jsm-mp-item-main { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+#jsmMusicPlanBar .jsm-mp-moment {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(244,239,230,0.6);
+}
+#jsmMusicPlanBar .jsm-mp-song {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px; color: #F4EFE6;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#jsmMusicPlanBar .jsm-mp-song em {
+  font-style: italic; color: rgba(244,239,230,0.72); font-size: 14px;
+}
+#jsmMusicPlanBar .jsm-mp-live {
+  display: inline-block; font-family: 'Inter', sans-serif;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 2px 6px; margin-left: 6px;
+  background: rgba(168,85,247,0.22); color: #d4b872;
+  border-radius: 3px;
+}
+#jsmMusicPlanBar .jsm-mp-next {
+  font-size: 13px; color: #a855f7; text-decoration: none;
+}
+#jsmMusicPlanBar .jsm-mp-next:hover { color: #d4b872; }
+#jsmMusicPlanBar .jsm-mp-remove {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(244,239,230,0.08); border: 0; color: rgba(244,239,230,0.7);
+  cursor: pointer; font-size: 18px; line-height: 1;
+}
+#jsmMusicPlanBar .jsm-mp-remove:hover { background: rgba(168,85,247,0.3); color: #F4EFE6; }
+#jsmMusicPlanBar .jsm-mp-actions {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding-top: 8px;
+}
+#jsmMusicPlanBar .jsm-mp-cta {
+  flex: 1; min-width: 200px;
+  display: inline-block; text-align: center;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  color: #F4EFE6; text-decoration: none; font-weight: 600;
+  border-radius: 8px; font-size: 14px;
+}
+#jsmMusicPlanBar .jsm-mp-cta:hover { filter: brightness(1.1); }
+#jsmMusicPlanBar .jsm-mp-reset {
+  background: transparent; border: 1px solid rgba(244,239,230,0.2);
+  color: rgba(244,239,230,0.7); padding: 8px 12px;
+  border-radius: 8px; font-size: 12px; cursor: pointer;
+}
+#jsmMusicPlanBar .jsm-mp-reset:hover { border-color: rgba(168,85,247,0.5); color: #F4EFE6; }
+@media (max-width: 480px) {
+  #jsmMusicPlanBar { bottom: 8px; }
+  #jsmMusicPlanBar .jsm-mp-progress { display: none; }
+  #jsmMusicPlanBar .jsm-mp-song { white-space: normal; }
+}
+@media print { #jsmMusicPlanBar { display: none !important; } }

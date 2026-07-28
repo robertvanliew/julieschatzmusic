@@ -1882,6 +1882,8 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<link rel="stylesheet" href="/assets/css/music-plan.css">
+<script src="/assets/js/music-plan.js" defer></script>
 </head>
 <body>
 
@@ -2344,6 +2346,9 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       </details>
     </section>
 
+    <p class="fdf-guide__related">
+      Planning music for other moments? <a href="/wedding-song-finder/">See all wedding song finders →</a>
+    </p>
     <p class="fdf-guide__related">
       Related: <a href="/wedding-ceremony-songs/">Ceremony Repertoire &amp; Builder</a> · <a href="/wedding-violinist-pricing/">Wedding Violinist Pricing</a> · <a href="/wedding-violinist-faq/">All FAQs</a> · <a href="/bookings/">Booking Options</a>
     </p>
@@ -3300,5 +3305,44 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
   </div>
 </div>
 
+<script>
+/* Music Plan hook — Save First Dance pick to jsm_music_plan without touching quiz logic */
+(function () {
+  var MOMENT_SLUG = 'first-dance';
+  function attachSaveButtons() {
+    var list = document.getElementById('song-list');
+    if (!list) return;
+    list.querySelectorAll('.song-card').forEach(function (card) {
+      var actions = card.querySelector('.song-actions');
+      if (!actions || actions.querySelector('.jsm-save-plan')) return;
+      var titleEl = card.querySelector('.song-title');
+      var artistEl = card.querySelector('.song-artist');
+      if (!titleEl || !artistEl) return;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'jsm-save-plan';
+      btn.textContent = 'Save to Music Plan';
+      btn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:8px 12px;margin-left:8px;background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.35);color:#F4EFE6;border-radius:6px;font-family:Inter,sans-serif;font-size:12px;letter-spacing:0.06em;cursor:pointer;';
+      btn.addEventListener('click', function () {
+        if (!window.JSMMusicPlan) return;
+        window.JSMMusicPlan.save(MOMENT_SLUG, {
+          title: titleEl.textContent.trim(),
+          artist: artistEl.textContent.trim(),
+          inRepertoire: true
+        });
+        btn.textContent = 'Saved ✓';
+        btn.style.background = 'rgba(212,184,114,0.2)';
+        btn.style.borderColor = 'rgba(212,184,114,0.5)';
+      });
+      actions.appendChild(btn);
+    });
+  }
+  var list = document.getElementById('song-list');
+  if (list && 'MutationObserver' in window) {
+    new MutationObserver(attachSaveButtons).observe(list, { childList: true });
+  }
+  document.addEventListener('DOMContentLoaded', attachSaveButtons);
+})();
+</script>
 </body>
 </html>
