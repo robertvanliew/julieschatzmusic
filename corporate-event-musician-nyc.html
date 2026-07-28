@@ -100,6 +100,14 @@ main.region-main p { font-family:'Cormorant Garamond',serif; font-weight:300; fo
 main.region-main p strong { color:#fff; font-weight:400; }
 main.region-main p a, main.region-main p a:visited { color:#fff; text-decoration:underline; text-decoration-color:rgba(244, 239, 230, 0.45); text-underline-offset:3px; transition:text-decoration-color 0.3s ease; } main.region-main p a:hover, main.region-main p a:focus-visible { text-decoration-color:#fff; }
 .region-rule { width:32px; height:1px; background:var(--hairline-strong); margin:28px 0; }
+/* TL;DR quick-answer summary — designed to be extractable by AI search */
+.tldr { max-width:800px; margin:32px 0 0; padding:26px 32px 28px; background:linear-gradient(160deg, rgba(168,85,247,0.06) 0%, rgba(15,10,26,0.5) 100%); border:1px solid var(--hairline-strong); border-left:3px solid rgba(168,85,247,0.7); border-radius:3px; }
+.tldr .tldr__label { display:inline-block; font-family:'Inter',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.36em; text-transform:uppercase; color:var(--ivory); margin-bottom:14px; padding:4px 12px; background:rgba(168,85,247,0.18); border:1px solid rgba(168,85,247,0.35); border-radius:999px; }
+.tldr .tldr__list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.tldr .tldr__list li { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(15px,1.15vw,18px); line-height:1.5; color:var(--ivory-dim); padding-left:18px; position:relative; margin:0; max-width:none; }
+.tldr .tldr__list li::before { content:'·'; position:absolute; left:4px; top:-1px; color:rgba(168,85,247,0.9); }
+.tldr .tldr__list li strong { color:var(--ivory); font-weight:500; }
+@media (max-width:640px) { .tldr { padding:22px 22px 24px; } .tldr .tldr__list li { font-size:15px; } }
 
 .region-cta { margin-top:80px; padding:48px 32px; border:1px solid var(--hairline); border-radius:4px; text-align:center; }
 .region-cta h2 { margin-top:0 !important; margin-bottom:16px; font-size:clamp(28px, 3vw, 40px) !important; }
@@ -437,6 +445,17 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">NYC Corporate Events · Galas · Brand Activations · Private Client</span>
     <h1>Corporate Event Musician &amp; DJ in NYC</h1>
     <p><strong>Bookings from $2,200</strong> for a 3-hour set. Julie Schatz is a versatile NYC-based musician built for corporate calendars: solo violin for cocktail receptions, jazz piano for seated dinners, and hybrid DJ + live violin sets for after-dinner dancing — often across the same event, from one artist. Recent bookings include a <strong>$5,500 private engagement in Watermill (Hamptons)</strong> for a 3-hour violin + DJ set, and in December 2025 sharing a bill with house music pioneer <a href="https://en.wikipedia.org/wiki/Crystal_Waters">Crystal Waters</a> at a corporate event hosted by tech executive <a href="https://en.wikipedia.org/wiki/Charles_Phillips_(businessman)">Charles Phillips</a>. Music-industry credentials: <a href="https://soundcloud.com/ninjatune">featured by Ninja Tune</a> (Soul Shades project, 10M+ combined views), <a href="https://splice.com/blog/author/julie-schatz/">Splice contributor</a>, and <a href="https://www.roland.com">Roland</a> endorsed artist.</p>
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">TL;DR</span>
+      <ul class="tldr__list">
+        <li><strong>Formats:</strong> solo violin, jazz piano, hybrid DJ + live violin — one artist, one load-in, three sounds across a single event.</li>
+        <li><strong>Cocktail 1–2 hrs:</strong> from $1,200 · <strong>Cocktail + dinner:</strong> from $2,400 · <strong>3-hr hybrid DJ + violin reception:</strong> from $2,200 · <strong>Full-day corporate coverage:</strong> $4,500–$8,000</li>
+        <li><strong>Recent proof:</strong> $5,500 Watermill (Hamptons) private booking · shared bill with Crystal Waters at a Charles Phillips-hosted event · featured by Ninja Tune (10M+ combined views).</li>
+        <li><strong>Corporate compatibility:</strong> NDAs signed same-day · general liability insurance + COI issued within 48 hours · feeds cleanly into house PA via XLR · black formal default dress code.</li>
+        <li><strong>Best for:</strong> executive dinners, holiday parties, corporate galas, product launches, brand activations, hedge fund/family office private events, conference receptions. Sweet spot: 30–300 guests.</li>
+        <li><strong>Travel:</strong> NYC, Long Island/Hamptons, Westchester, Northern NJ, Fairfield County CT are regular; farther destinations custom-quoted.</li>
+      </ul>
+    </aside>
     <div class="region-rule"></div>
 
     <h2>Where Julie plays inside a corporate event</h2>

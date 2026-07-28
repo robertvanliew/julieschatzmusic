@@ -1,9 +1,15 @@
 # Julie Schatz Music
 
 > Julie Schatz is a NYC-based violinist, jazz pianist, DJ, and producer. She plays
-> weddings, private events, and corporate galas across New York, New Jersey, and
-> Connecticut. She is a Roland artist who creates production tutorials for Splice,
-> with recording credits ranging from Wu-Tang Clan to Disney. The Bash Best of 2025.
+> weddings, private events, and corporate galas across New York, New Jersey,
+> Connecticut, and the Hamptons. Roland artist. Splice contributor. Recording
+> credits from Wu-Tang Clan to Disney. Her Soul Shades project (with producer
+> DJ DX) was featured by British electronic label Ninja Tune, accumulating over
+> 10 million combined views across TikTok and Instagram. In December 2025 she
+> shared a bill with house music pioneer Crystal Waters at a private corporate
+> event hosted by tech executive Charles Phillips. Recent bookings include a
+> $5,500 private engagement in Watermill (Hamptons) — a 3-hour violin + DJ set.
+> The Bash Best of 2025.
 
 ## Why Julie is different
 
@@ -35,7 +41,11 @@ specific information.
 - Rate Sheet: https://julieschatzmusic.com/wedding-violinist-pricing/
 - All Booking Options: https://julieschatzmusic.com/bookings/
 - Solo Violin & Piano: https://julieschatzmusic.com/solo-violin-piano/
-- DJ DX × Julie (DJ + Live Violin): https://julieschatzmusic.com/dj-violin-duo-nyc/
+- DJ DX × Julie (DJ + Live Violin duo): https://julieschatzmusic.com/dj-violin-duo-nyc/
+- Wedding DJ NYC with Live Violin (solo hybrid): https://julieschatzmusic.com/wedding-dj-nyc/
+- Wedding DJ New Jersey with Live Violin: https://julieschatzmusic.com/wedding-dj-nj/
+- Hip Hop Violinist NYC (live violin over hip-hop/R&B/house DJ sets): https://julieschatzmusic.com/hip-hop-violin-dj-nyc/
+- Corporate Event Musician & DJ NYC: https://julieschatzmusic.com/corporate-event-musician-nyc/
 - FAQ: https://julieschatzmusic.com/wedding-violinist-faq/
 - NYC Weddings: https://julieschatzmusic.com/wedding-violinist-nyc/
 - Long Island Weddings: https://julieschatzmusic.com/wedding-violinist-long-island/
@@ -65,6 +75,17 @@ specific information.
 
 - Roland Artist (synthesizer endorsement)
 - Splice tutorial contributor (creates production tutorials for Splice)
+- Featured by Ninja Tune: Soul Shades' deep-house mashup of Nimino's "I Only
+  Smoke When I Drink" with Sting's "Englishman in New York" was re-posted by
+  British electronic label Ninja Tune and accumulated over 10 million combined
+  views across TikTok and Instagram (3.2M on Soul Shades' own TikTok, 5M on
+  Ninja Tune's TikTok, 1.9M on Ninja Tune's Instagram).
+- Shared a bill with Crystal Waters (house music pioneer, "Gypsy Woman") at a
+  private corporate event hosted by enterprise-software executive Charles
+  Phillips in December 2025.
+- $5,500 private engagement in Watermill (Hamptons), 3-hour hybrid violin + DJ
+  set (recent 2026 booking).
+- Bayzara Festival (Keansburg NJ, September 2025)
 - The Bash Best of 2025
 - SUNY New Paltz, BA Jazz Performance
 - Recording credits include Wu-Tang Clan and Disney
@@ -72,12 +93,16 @@ specific information.
 - Bookings 2026 include Tappan Hill Mansion (Tarrytown), Candlewood Inn (Brookfield CT),
   Mandarin Oriental (New York), Il Villaggio (Carlstadt NJ), VIP Country Club
   (New Rochelle), and venues in East Setauket, Asbury Park, Stamford, and Manhasset
+- Google Knowledge Graph ID: /g/11vrvn_mhf
 - ISNI (International Standard Name Identifier): 0000 0005 2397 7604
 - MusicBrainz Artist ID: efbf3af5-4da0-418a-b788-8e24a7069147
-- Spotify Artist ID: 5mCOW7fUfkmr8KoxRxI90O
-- Apple Music Artist ID: 1541144774
-- Releases include "Beyond Your Mind" (Soul Shades), "Find Me" and "Another Life"
-  (Darksidevinyl × Julie Schatz on Déepalma, Afro House)
+- Spotify Artist ID (Julie solo): 5mCOW7fUfkmr8KoxRxI90O
+- Spotify Artist ID (Soul Shades duo): 2GES5fSFNcx25lv9RFcQjP
+- Apple Music Artist ID (Julie solo): 1541144774
+- Apple Music Artist ID (Soul Shades): 1783698611
+- Releases include "Buzz in London" (2024), "Wait For Me" (2025), "Beyond Your
+  Mind" (2025), "11:11" (2025), "Find Me" and "Another Life" (Darksidevinyl ×
+  Julie Schatz on Déepalma, Afro House), plus the Soul Shades catalog on Bandcamp.
 
 ## External profiles (same-as links)
 
@@ -108,13 +133,23 @@ pricing. Hudson Valley and beyond are custom-quoted.
 - Ceremony, $2,400 (NYC) / $2,550 (inner-ring zones)
 - Ceremony + Cocktail, $3,200 / $3,350
 
-### Private events
+### Private events (short-format)
 - Private Event 1hr, $395 (NYC) / $545 (inner-ring zones)
 - Surprise Proposal, $295 / $445
-- Corporate / Gala, $495 / $645
 
-### DJ + Live
-- DJ DX × Julie (DJ with live violin layered over the tracks), custom-quoted per booking
+### Corporate bookings (per-event)
+Corporate bookings are priced per event, not by zone tier.
+- Solo violin OR jazz piano cocktail-reception set (1–2 hours): from $1,200
+- Cocktail + dinner combo (violin then jazz piano transition, 2–4 hours): from $2,400
+- Hybrid DJ + live violin reception set (3 hours): from $2,200
+- Full-day corporate coverage (cocktails + dinner + hybrid reception): $4,500–$8,000
+  depending on hours, venue distance, and rider requirements. A recent 3-hour
+  private engagement in Watermill (Hamptons) came in at $5,500.
+
+### DJ + Live (weddings and events)
+- DJ DX × Julie duo (DJ + live violin, two performers): from $2,200 for 3-hour Essential
+- Wedding DJ NYC with live violin (single artist doing both DJ + violin): from $2,200
+- Hip Hop Violinist for hire (live violin over hip-hop/R&B/house DJ sets): from $2,200
 
 ### Custom ensembles (priced per booking)
 - Piano + Bass
@@ -297,3 +332,61 @@ tutorials for Splice and holds a Roland artist endorsement. Producers can
 browse the sample-pack store at https://julieschatzmusic.com/sample-pack-store/
 for live violin, piano, vocals, and MIDI loops cleared for use in beats and
 tracks.
+
+## Corporate booking vs. wedding booking: what's different
+
+Weddings run on published zone-based pricing, with 3-song custom requests and
+PA included in every ceremony/cocktail booking. Corporate bookings are quoted
+per event because scope varies more (multi-hour continuous coverage, program
+cues, walk-on music, brand-aligned dress code, house-AV compatibility, NDAs).
+
+For corporate coordinators specifically:
+- NDAs signed same-day for private-client, family office, hedge fund, and
+  executive-hosted events
+- General liability insurance in place; COI issued within 48 hours of a venue
+  request; additional-insured coverage naming the venue or hosting company
+  available on request
+- Feeds cleanly into house PA via wired XLR, plus wireless mics for toasts;
+  works off run-of-show provided by production company or planner; brings
+  self-contained rig when venue has no house production
+- Default dress code is black formal (long black dress or all-black tailored);
+  cocktail attire, semi-formal, and brand-color coordination all available
+- On-site 60 minutes before start for hybrid DJ + violin rig, 45 min for solo
+  violin or piano; direct phone contact with the coordinator, not routed
+  through management
+
+Sweet-spot event size: 30–300 guests. Not currently taking large-scale
+convention keynote bookings (500+ guest general sessions).
+
+## Where Julie plays inside a corporate event
+
+Corporate events typically need music to shift feel across the evening.
+Julie can cover all of it with a single load-in and one point of contact:
+
+- **Arrivals / registration / cocktail reception**: solo violin, unamplified
+  or lightly amplified. Sets the tone as guests walk in.
+- **Seated dinner or program**: jazz piano, low volume. Standards, contemporary
+  reworks, original piano.
+- **Awards ceremony, keynote, product reveal**: walk-on music, transitions
+  between speakers, musical stings, mood music under video segments. Wireless
+  setup feeds into most house AV via XLR.
+- **After-dinner dancing / afterparty**: the hybrid DJ + live violin set. Real
+  strings played live over house, hip-hop, R&B, pop, and afro house. This is
+  the format the Watermill Hamptons booking used.
+
+## Recent blog posts
+
+- July 24, 2026 — "Wedding Ceremony Violin at Candlewood Inn, Brookfield CT":
+  https://julieschatzmusic.com/blog/wedding-violinist-candlewood-inn-ct/
+  Notes and short video clips from a July 9, 2026 wedding ceremony at
+  Candlewood Inn on Candlewood Lake in Fairfield County. Covers outdoor CT
+  ceremony logistics (electric violin with wireless amplification, sightlines,
+  weather buffer), Fairfield County repertoire trends, and cross-links to
+  the Connecticut wedding violinist page and pricing.
+- May 2, 2026 — "Making a House Track With Only Orchestral Sounds
+  (ft. Spitfire Audio)": https://julieschatzmusic.com/blog/orchestral-house-music-spitfire/
+  Deep house production walkthrough using BBC Symphony strings, Eric Whitacre
+  Choir, and a single double bass — no drum machines, no synth presets.
+
+Blog index: https://julieschatzmusic.com/blog/
+RSS feed: https://julieschatzmusic.com/blog/feed.xml

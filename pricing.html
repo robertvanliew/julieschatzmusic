@@ -49,7 +49,7 @@
   "name": "How Much Does a Wedding Violinist Cost? Pricing for NYC, NJ & CT",
   "url": "https://julieschatzmusic.com/wedding-violinist-pricing/",
   "description": "Wedding violinist pricing from $595 for a NYC ceremony, $950 for ceremony + cocktail hour, $2,400 for the violin-and-piano duo. Transparent 2026 rates across NYC, New Jersey, and Connecticut.",
-  "dateModified": "2026-06-24",
+  "dateModified": "2026-07-25",
   "isPartOf": { "@id": "https://julieschatzmusic.com/#business" },
   "about": { "@id": "https://julieschatzmusic.com/#business" },
   "primaryImageOfPage": "https://julieschatzmusic.com/assets/og/og-faq.jpg",
@@ -210,6 +210,57 @@ main.pricing-main .lede {
   max-width: 62ch;
   margin: 0 auto;
   text-wrap: pretty;
+}
+/* TL;DR quick-answer summary — designed to be extractable by AI search
+   (Google AI Overviews, ChatGPT, Perplexity, Claude). Question-based
+   heading + short, structured factual claims + clean HTML. */
+.tldr {
+  max-width: 780px;
+  margin: 40px auto 0;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before {
+  content: '·';
+  position: absolute; left: 4px; top: -1px;
+  color: rgba(168, 85, 247, 0.9);
+  font-weight: 400;
+}
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) {
+  .tldr { padding: 22px 22px 24px; margin-top: 32px; }
+  .tldr .tldr__list li { font-size: 15px; }
 }
 
 /* Section */
@@ -811,6 +862,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <span class="kicker">2026 Pricing</span>
       <h1>How Much Does a Wedding Violinist &amp; Pianist Cost?</h1>
       <p class="lede">Wedding violinist pricing in NYC starts at <strong>$595</strong> for a ceremony, <strong>$950</strong> for ceremony + cocktail hour, and <strong>$2,400</strong> for the Soul Shades violin-and-piano duo. Transparent 2026 rates for weddings, private events, and corporate galas across NYC, New Jersey, and Connecticut. No quote forms required — full pricing below.</p>
+      <aside class="tldr" role="note" aria-label="Quick answer summary">
+        <span class="tldr__label">TL;DR</span>
+        <ul class="tldr__list">
+          <li><strong>NYC ceremony:</strong> from $595 (solo violin OR jazz piano, travel included in NYC zone)</li>
+          <li><strong>NYC ceremony + cocktail hour:</strong> from $950 (most-booked wedding package)</li>
+          <li><strong>Full-day soloist</strong> (ceremony + cocktail + dinner): from $1,800</li>
+          <li><strong>Soul Shades duo</strong> (violin + piano): from $2,400</li>
+          <li><strong>Hybrid DJ + live violin reception:</strong> from $2,200</li>
+          <li><strong>Corporate bookings:</strong> priced per event, typically $1,200–$8,000 depending on scope</li>
+          <li><strong>Custom song arrangements:</strong> +$200/song (2-week lead time)</li>
+          <li><strong>Zones:</strong> NYC (travel included); Long Island/Westchester/Northern NJ/Greenwich at standard zone; Hudson Valley/South Jersey/inland CT custom-quoted.</li>
+        </ul>
+      </aside>
     </header>
 
     <!-- ───────── Wedding Services ───────── -->
