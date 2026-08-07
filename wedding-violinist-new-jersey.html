@@ -378,88 +378,125 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
 <style>
-/* Paid landing: video hero + sticky CTA (NJ page only) */
+/* Paid landing: two-column video hero + sticky CTA (NJ page only) */
 .nj-hero {
   position: relative;
   max-width: 1200px;
-  margin: 40px auto 20px;
-  padding: 0 20px;
-}
-.nj-hero-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #0a0616;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
-}
-.nj-hero-frame video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.nj-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,10,26,0) 55%, rgba(15,10,26,0.85) 100%);
-  pointer-events: none;
+  margin: 60px auto 40px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 48px;
+  align-items: center;
 }
 .nj-hero-copy {
-  position: absolute; left: 32px; right: 32px; bottom: 28px;
-  z-index: 2;
   color: #F4EFE6;
 }
 .nj-hero-kicker {
   display: inline-block;
   font-family: 'Inter', sans-serif;
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
   color: #d4b872;
-  padding: 5px 12px; margin-bottom: 12px;
-  background: rgba(168,85,247,0.25);
-  border-radius: 999px;
+  margin-bottom: 20px;
 }
 .nj-hero-h1 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(28px, 4.2vw, 46px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  margin: 0 0 8px;
+  font-size: clamp(32px, 4.4vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 20px;
   color: #fff;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.nj-hero-h1 em {
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
 }
 .nj-hero-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 1.6vw, 20px);
+  font-size: clamp(18px, 1.7vw, 22px);
   font-style: italic;
-  color: rgba(244,239,230,0.9);
-  margin: 0 0 18px;
-  max-width: 560px;
+  line-height: 1.5;
+  color: rgba(244,239,230,0.82);
+  margin: 0 0 30px;
+  max-width: 520px;
+}
+.nj-hero-meta {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  margin: 0 0 30px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(244,239,230,0.14);
+  border-bottom: 1px solid rgba(244,239,230,0.14);
+}
+.nj-hero-meta > div { display: flex; flex-direction: column; gap: 2px; }
+.nj-hero-meta-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(244,239,230,0.5);
+}
+.nj-hero-meta-value {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #F4EFE6;
 }
 .nj-hero-cta {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 26px;
+  padding: 15px 28px;
   background: linear-gradient(90deg, #7B2CBF, #a855f7);
   color: #F4EFE6; text-decoration: none;
   font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  border-radius: 8px;
-  transition: filter 0.2s, transform 0.2s;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  border-radius: 4px;
+  transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
   border: 0; cursor: pointer;
+  box-shadow: 0 10px 30px rgba(123, 44, 191, 0.35);
 }
-.nj-hero-cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
-.nj-hero-caption {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+.nj-hero-cta:hover { filter: brightness(1.12); transform: translateY(-1px); box-shadow: 0 14px 36px rgba(123, 44, 191, 0.5); }
+.nj-hero-cta-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
   color: rgba(244,239,230,0.55);
-  text-align: right;
-  margin: 10px 4px 0;
+  margin: 12px 0 0;
 }
-@media (max-width: 640px) {
-  .nj-hero { margin: 20px auto 10px; padding: 0 12px; }
-  .nj-hero-copy { left: 18px; right: 18px; bottom: 18px; }
-  .nj-hero-cta { padding: 12px 20px; font-size: 12px; }
+
+.nj-hero-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 11;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0616;
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02);
+}
+.nj-hero-media video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nj-hero-media-caption {
+  position: absolute; left: 16px; bottom: 14px;
+  z-index: 2;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  background: rgba(15,10,26,0.55);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 3px;
+}
+
+@media (max-width: 900px) {
+  .nj-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 30px auto 20px;
+    padding: 0 18px;
+  }
+  .nj-hero-media { aspect-ratio: 4 / 5; max-width: 480px; margin: 0 auto; }
 }
 
 /* Sticky Inquire bar */
@@ -553,23 +590,32 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
 
   <section class="nj-hero" aria-label="New Jersey wedding violinist introduction">
-    <div class="nj-hero-frame">
-      <video autoplay muted loop playsinline preload="metadata" poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg">
+    <div class="nj-hero-copy">
+      <span class="nj-hero-kicker">New Jersey Weddings</span>
+      <h1 class="nj-hero-h1">Wedding Violinist <em>for New Jersey.</em></h1>
+      <p class="nj-hero-sub">Live solo violin for ceremonies, jazz piano for cocktail hour, and hybrid DJ + violin sets for the reception — from Hoboken and Jersey City to Princeton, Morristown, the Jersey Shore, and Cape May.</p>
+      <div class="nj-hero-meta">
+        <div>
+          <span class="nj-hero-meta-label">Ceremony + Cocktail</span>
+          <span class="nj-hero-meta-value">from $1,150</span>
+        </div>
+        <div>
+          <span class="nj-hero-meta-label">Featured on</span>
+          <span class="nj-hero-meta-value">Ninja Tune · 10M+ views</span>
+        </div>
+      </div>
+      <a class="nj-hero-cta" href="/#inquire" data-nj-cta>Check availability for your date →</a>
+      <p class="nj-hero-cta-note">Typically responds within 24 hours.</p>
+    </div>
+    <div class="nj-hero-media">
+      <video autoplay muted loop playsinline preload="metadata" poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg" aria-label="Julie Schatz performing solo violin at a wedding ceremony">
         <source src="/assets/blog/candlewood-inn/clip-4542.mp4" type="video/mp4">
       </video>
-      <div class="nj-hero-overlay"></div>
-      <div class="nj-hero-copy">
-        <span class="nj-hero-kicker">New Jersey Weddings</span>
-        <h1 class="nj-hero-h1">Wedding Violinist for New Jersey.</h1>
-        <p class="nj-hero-sub">Live solo violin for ceremonies, jazz piano for cocktail hour, and hybrid DJ + violin sets for the reception. Hoboken to the Jersey Shore and Cape May.</p>
-        <a class="nj-hero-cta" href="/#inquire" data-nj-cta>Check availability for your date →</a>
-      </div>
+      <span class="nj-hero-media-caption">Recent Northeast wedding · July 2026</span>
     </div>
-    <p class="nj-hero-caption">Recent Northeast wedding · July 2026</p>
   </section>
 
   <main class="region-main">
-    <span class="kicker">New Jersey Weddings &amp; Events</span>
     <p><strong>Wedding ceremony violin from $725, ceremony + cocktail from $1,150</strong>, serving all of New Jersey from a NYC base. Julie Schatz is a Roland artist and Splice contributor whose Soul Shades remix work has been featured by Ninja Tune (10M+ combined views). From Jersey City rooftops to Princeton estates, Morristown country clubs, the Jersey Shore, and Cape May — solo violin for ceremonies, jazz piano for cocktail hours, and hybrid DJ + live violin sets for receptions. For region-specific venue lists and pricing, see the dedicated <a href="/wedding-violinist-northern-nj/">Northern New Jersey page</a> (Bergen, Hudson, Essex, Morris, Somerset, Union Counties) and the <a href="/wedding-violinist-central-nj-shore/">Central NJ &amp; Jersey Shore page</a> (Monmouth, Middlesex, Ocean Counties and the shore towns).</p>
     <div class="region-rule"></div>
 
