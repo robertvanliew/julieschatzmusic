@@ -12,8 +12,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Violinist for New Jersey · From $725 | Julie Schatz</title>
-<meta name="description" content="New Jersey wedding violinist & jazz pianist. Ceremony from $725, ceremony + cocktail from $1,150. NYC-based, serving Northern NJ, Central NJ, Jersey Shore, and Cape May. Featured by Ninja Tune.">
+<title>Wedding Violinist New Jersey · Ceremony + Cocktail from $1,150 · Julie Schatz</title>
+<meta name="description" content="New Jersey wedding violinist Julie Schatz. Ceremony + cocktail hour from $1,150, solo ceremony from $725. Featured on Ninja Tune (10M+ views). Live solo violin and jazz piano across Hoboken, Jersey City, Northern NJ, Princeton, Morristown, the Jersey Shore, and Cape May.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/wedding-violinist-new-jersey/">
 <meta property="og:type" content="website">
@@ -377,6 +377,130 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<style>
+/* Paid landing: video hero + sticky CTA (NJ page only) */
+.nj-hero {
+  position: relative;
+  max-width: 1200px;
+  margin: 40px auto 20px;
+  padding: 0 20px;
+}
+.nj-hero-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0616;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+}
+.nj-hero-frame video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nj-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,10,26,0) 55%, rgba(15,10,26,0.85) 100%);
+  pointer-events: none;
+}
+.nj-hero-copy {
+  position: absolute; left: 32px; right: 32px; bottom: 28px;
+  z-index: 2;
+  color: #F4EFE6;
+}
+.nj-hero-kicker {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #d4b872;
+  padding: 5px 12px; margin-bottom: 12px;
+  background: rgba(168,85,247,0.25);
+  border-radius: 999px;
+}
+.nj-hero-h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4.2vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.nj-hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-style: italic;
+  color: rgba(244,239,230,0.9);
+  margin: 0 0 18px;
+  max-width: 560px;
+}
+.nj-hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  color: #F4EFE6; text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: 8px;
+  transition: filter 0.2s, transform 0.2s;
+  border: 0; cursor: pointer;
+}
+.nj-hero-cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.nj-hero-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(244,239,230,0.55);
+  text-align: right;
+  margin: 10px 4px 0;
+}
+@media (max-width: 640px) {
+  .nj-hero { margin: 20px auto 10px; padding: 0 12px; }
+  .nj-hero-copy { left: 18px; right: 18px; bottom: 18px; }
+  .nj-hero-cta { padding: 12px 20px; font-size: 12px; }
+}
+
+/* Sticky Inquire bar */
+.nj-sticky-cta {
+  position: fixed; left: 50%; bottom: 20px;
+  transform: translateX(-50%) translateY(120%);
+  z-index: 950;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px 12px 20px;
+  background: rgba(15, 10, 26, 0.96);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 999px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: calc(100vw - 24px);
+}
+.nj-sticky-cta.is-visible { transform: translateX(-50%) translateY(0); }
+.nj-sticky-cta-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic;
+  color: rgba(244,239,230,0.9);
+  white-space: nowrap;
+}
+.nj-sticky-cta-btn {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  color: #F4EFE6; text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: 999px; border: 0; cursor: pointer;
+  white-space: nowrap;
+}
+.nj-sticky-cta-btn:hover { filter: brightness(1.12); }
+@media (max-width: 480px) {
+  .nj-sticky-cta { padding: 10px 12px 10px 14px; gap: 8px; }
+  .nj-sticky-cta-text { font-size: 14px; }
+  .nj-sticky-cta-btn { padding: 9px 14px; font-size: 11px; }
+}
+@media print { .nj-sticky-cta { display: none !important; } }
+</style>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -428,9 +552,24 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   </div>
 
 
+  <section class="nj-hero" aria-label="New Jersey wedding violinist introduction">
+    <div class="nj-hero-frame">
+      <video autoplay muted loop playsinline preload="metadata" poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg">
+        <source src="/assets/blog/candlewood-inn/clip-4542.mp4" type="video/mp4">
+      </video>
+      <div class="nj-hero-overlay"></div>
+      <div class="nj-hero-copy">
+        <span class="nj-hero-kicker">New Jersey Weddings</span>
+        <h1 class="nj-hero-h1">Wedding Violinist for New Jersey.</h1>
+        <p class="nj-hero-sub">Live solo violin for ceremonies, jazz piano for cocktail hour, and hybrid DJ + violin sets for the reception. Hoboken to the Jersey Shore and Cape May.</p>
+        <a class="nj-hero-cta" href="/#inquire" data-nj-cta>Check availability for your date →</a>
+      </div>
+    </div>
+    <p class="nj-hero-caption">Recent Northeast wedding · July 2026</p>
+  </section>
+
   <main class="region-main">
     <span class="kicker">New Jersey Weddings &amp; Events</span>
-    <h1>Wedding Violinist &amp; Pianist for New Jersey</h1>
     <p><strong>Wedding ceremony violin from $725, ceremony + cocktail from $1,150</strong>, serving all of New Jersey from a NYC base. Julie Schatz is a Roland artist and Splice contributor whose Soul Shades remix work has been featured by Ninja Tune (10M+ combined views). From Jersey City rooftops to Princeton estates, Morristown country clubs, the Jersey Shore, and Cape May — solo violin for ceremonies, jazz piano for cocktail hours, and hybrid DJ + live violin sets for receptions. For region-specific venue lists and pricing, see the dedicated <a href="/wedding-violinist-northern-nj/">Northern New Jersey page</a> (Bergen, Hudson, Essex, Morris, Somerset, Union Counties) and the <a href="/wedding-violinist-central-nj-shore/">Central NJ &amp; Jersey Shore page</a> (Monmouth, Middlesex, Ocean Counties and the shore towns).</p>
     <div class="region-rule"></div>
 
@@ -459,7 +598,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage", "dateModified": "2026-07-14",
+      "@type": "FAQPage", "dateModified": "2026-08-07",
       "mainEntity": [
         {"@type": "Question", "name": "How much does a wedding violinist cost for a New Jersey wedding?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is zone-based. Hoboken and Jersey City are part of the NYC zone with travel included: wedding ceremony from $725, ceremony + cocktail from $1,150, full-day soloist from $2,150. The rest of Northern NJ (Bergen County, Montclair, Newark, Morristown, Princeton, the Gold Coast) is at standard zone pricing: ceremony $825, ceremony + cocktail $1,250, full-day soloist $2,250. The Soul Shades violin-and-piano duo starts at $2,875 (NYC) / $2,975 (zone). The DJ DX × Julie duo starts at $2,650. South Jersey and the Jersey Shore beyond Asbury Park are custom-quoted."}},
         {"@type": "Question", "name": "Do you charge a travel fee for New Jersey weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Travel is included for Hoboken and Jersey City; they're part of the NYC zone. The rest of Northern New Jersey and the Jersey Shore through Asbury Park are at standard zone pricing with no separate travel fee, just the zone-tier rate. For South Jersey, Cape May, or venues beyond the Pine Barrens, the booking is custom-quoted based on venue distance."}},
@@ -468,6 +607,20 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         {"@type": "Question", "name": "Can you learn a custom song for our NJ ceremony or first dance?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always, yes. Julie regularly arranges custom versions of pop, R&B, indie, and classical songs for solo violin and piano. Every booking includes up to 3 song requests from the existing repertoire; custom arrangements outside the repertoire are an add-on (+$200 per song). An instrumental-only version of a repertoire song is +$125, or both for +$300."}},
         {"@type": "Question", "name": "Can one musician cover both the ceremony and cocktail hour?", "acceptedAnswer": {"@type": "Answer", "text": "That's the most-booked NJ configuration. Solo violin for the ceremony, then a switch to jazz piano or violin-and-keyboard for cocktail hour. One musician means a single load-in, a single point of contact, and one fee instead of two booked ensembles."}}
       ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Wedding Violinist New Jersey · Live Solo Violin Ceremony",
+      "description": "Julie Schatz performing solo violin at a live wedding ceremony. NYC-based wedding violinist serving New Jersey — Hoboken, Jersey City, Northern NJ, Central NJ, and the Jersey Shore.",
+      "thumbnailUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542-poster.jpg",
+      "uploadDate": "2026-07-24T00:00:00-04:00",
+      "contentUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542.mp4",
+      "duration": "PT37S",
+      "publisher": { "@id": "https://julieschatzmusic.com/#business" }
     }
     </script>
 
@@ -577,6 +730,37 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   });
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
+  });
+})();
+</script>
+
+<!-- Sticky Inquire CTA (paid landing) -->
+<div class="nj-sticky-cta" id="njStickyCta" role="complementary" aria-label="Book Julie">
+  <span class="nj-sticky-cta-text">Book Julie for your NJ wedding</span>
+  <a class="nj-sticky-cta-btn" href="/#inquire" data-nj-cta>Inquire →</a>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('njStickyCta');
+  var hero = document.querySelector('.nj-hero');
+  if (!bar || !hero) return;
+  var shown = false;
+  function onScroll() {
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    var visible = heroBottom < 40;
+    if (visible !== shown) {
+      shown = visible;
+      bar.classList.toggle('is-visible', shown);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  // Meta Pixel: fire Lead attribution when either CTA is clicked
+  document.querySelectorAll('[data-nj-cta]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'NJ landing CTA' });
+      if (typeof gtag === 'function') gtag('event', 'nj_landing_cta_click', { landing: 'wedding-violinist-new-jersey' });
+    });
   });
 })();
 </script>
