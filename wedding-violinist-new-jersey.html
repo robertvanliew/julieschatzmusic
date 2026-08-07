@@ -499,44 +499,128 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   .nj-hero-media { aspect-ratio: 4 / 5; max-width: 480px; margin: 0 auto; }
 }
 
-/* Sticky Inquire bar */
+/* Sticky Inquire button — bottom-right corner, doesn't cover content */
 .nj-sticky-cta {
-  position: fixed; left: 50%; bottom: 20px;
-  transform: translateX(-50%) translateY(120%);
+  position: fixed; right: 24px; bottom: 24px;
+  transform: translateY(140%);
   z-index: 950;
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px 12px 20px;
-  background: rgba(15, 10, 26, 0.96);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  border-radius: 999px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  max-width: calc(100vw - 24px);
-}
-.nj-sticky-cta.is-visible { transform: translateX(-50%) translateY(0); }
-.nj-sticky-cta-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; font-style: italic;
-  color: rgba(244,239,230,0.9);
-  white-space: nowrap;
-}
-.nj-sticky-cta-btn {
-  padding: 10px 20px;
+  padding: 14px 22px;
   background: linear-gradient(90deg, #7B2CBF, #a855f7);
-  color: #F4EFE6; text-decoration: none;
+  color: #F4EFE6; border: 0; cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  border-radius: 999px; border: 0; cursor: pointer;
-  white-space: nowrap;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 14px 40px rgba(123, 44, 191, 0.5), 0 0 0 1px rgba(255,255,255,0.06);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s;
 }
-.nj-sticky-cta-btn:hover { filter: brightness(1.12); }
+.nj-sticky-cta.is-visible { transform: translateY(0); }
+.nj-sticky-cta:hover { filter: brightness(1.12); }
 @media (max-width: 480px) {
-  .nj-sticky-cta { padding: 10px 12px 10px 14px; gap: 8px; }
-  .nj-sticky-cta-text { font-size: 14px; }
-  .nj-sticky-cta-btn { padding: 9px 14px; font-size: 11px; }
+  .nj-sticky-cta { right: 12px; bottom: 12px; padding: 12px 18px; font-size: 11px; }
 }
 @media print { .nj-sticky-cta { display: none !important; } }
+
+/* ─── NJ Inquiry Modal (in-page, no navigation away) ─── */
+.nj-modal {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: flex-start; justify-content: center;
+  padding: 40px 16px;
+  background: rgba(8, 4, 18, 0.72);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+.nj-modal.is-open { display: flex; }
+.nj-modal-card {
+  position: relative;
+  width: 100%; max-width: 560px;
+  background: linear-gradient(160deg, rgba(28, 16, 52, 0.98) 0%, rgba(15, 10, 26, 0.98) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.32);
+  border-radius: 14px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  animation: njModalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes njModalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.nj-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px;
+  background: transparent; border: 1px solid rgba(244,239,230,0.2);
+  color: #F4EFE6; border-radius: 50%;
+  font-size: 18px; line-height: 1; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.nj-modal-close:hover { border-color: rgba(168,85,247,0.6); background: rgba(168,85,247,0.12); }
+.nj-modal-kicker {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: #d4b872;
+  margin-bottom: 10px;
+}
+.nj-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; line-height: 1.15; letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.nj-modal-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(244,239,230,0.75);
+  margin: 0 0 22px;
+}
+.nj-modal-form { display: flex; flex-direction: column; gap: 14px; }
+.nj-modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .nj-modal-row { grid-template-columns: 1fr; } }
+.nj-field { display: flex; flex-direction: column; gap: 6px; }
+.nj-field label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(244,239,230,0.6);
+}
+.nj-field input, .nj-field select, .nj-field textarea {
+  background: rgba(244,239,230,0.04);
+  border: 1px solid rgba(244,239,230,0.14);
+  color: #F4EFE6;
+  padding: 11px 12px;
+  border-radius: 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.nj-field select { font-family: 'Inter', sans-serif; font-size: 14px; }
+.nj-field textarea { resize: vertical; min-height: 90px; font-family: 'Cormorant Garamond', serif; }
+.nj-field input:focus, .nj-field select:focus, .nj-field textarea:focus {
+  outline: none;
+  border-color: rgba(168,85,247,0.6);
+  background: rgba(244,239,230,0.07);
+}
+.nj-consent { display: flex; align-items: flex-start; gap: 10px; font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(244,239,230,0.6); line-height: 1.5; margin-top: 6px; }
+.nj-consent input { width: 16px; height: 16px; margin-top: 2px; accent-color: #a855f7; }
+.nj-consent a { color: #d4b872; }
+.nj-honey { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.nj-submit {
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  color: #F4EFE6; border: 0; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 6px;
+  margin-top: 8px;
+  transition: filter 0.2s, transform 0.2s;
+}
+.nj-submit:hover:not(:disabled) { filter: brightness(1.12); transform: translateY(-1px); }
+.nj-submit:disabled { opacity: 0.6; cursor: wait; }
+.nj-modal-note { font-family: 'Inter', sans-serif; font-size: 11px; text-align: center; color: rgba(244,239,230,0.45); margin: 8px 0 0; letter-spacing: 0.06em; }
+.nj-modal-error { font-family: 'Inter', sans-serif; font-size: 13px; color: #ff8a80; margin: 10px 0 0; text-align: center; }
+.nj-modal-success {
+  text-align: center; padding: 20px 0;
+}
+.nj-modal-success h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: #d4b872; margin: 0 0 10px; }
+.nj-modal-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: rgba(244,239,230,0.8); }
 </style>
 </head>
 <body>
@@ -604,7 +688,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
           <span class="nj-hero-meta-value">Ninja Tune · 10M+ views</span>
         </div>
       </div>
-      <a class="nj-hero-cta" href="/#inquire" data-nj-cta>Check availability for your date →</a>
+      <a class="nj-hero-cta" href="#nj-inquire" data-nj-cta>Check availability for your date →</a>
       <p class="nj-hero-cta-note">Typically responds within 24 hours.</p>
     </div>
     <div class="nj-hero-media">
@@ -674,7 +758,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <div class="region-cta">
       <h2>Ready to inquire about a NJ date?</h2>
       <p>Send a few details about your event and Julie will respond within 24 hours.</p>
-      <a href="/#inquire">Submit an Inquiry</a>
+      <a href="#nj-inquire" data-nj-cta>Submit an Inquiry</a>
     </div>
   </main>
 
@@ -780,34 +864,153 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 })();
 </script>
 
-<!-- Sticky Inquire CTA (paid landing) -->
-<div class="nj-sticky-cta" id="njStickyCta" role="complementary" aria-label="Book Julie">
-  <span class="nj-sticky-cta-text">Book Julie for your NJ wedding</span>
-  <a class="nj-sticky-cta-btn" href="/#inquire" data-nj-cta>Inquire →</a>
+<!-- Sticky Inquire button (paid landing, bottom-right corner) -->
+<button type="button" class="nj-sticky-cta" id="njStickyCta" data-nj-cta aria-label="Open inquiry form">Inquire →</button>
+
+<!-- In-page inquiry modal — visitors never leave this page -->
+<div class="nj-modal" id="njModal" role="dialog" aria-modal="true" aria-labelledby="njModalTitle" hidden>
+  <div class="nj-modal-card">
+    <button type="button" class="nj-modal-close" id="njModalClose" aria-label="Close inquiry form">&times;</button>
+    <div id="njModalBody">
+      <span class="nj-modal-kicker">New Jersey Weddings</span>
+      <h2 class="nj-modal-title" id="njModalTitle">Tell Julie about your date.</h2>
+      <p class="nj-modal-sub">A few details and Julie will respond within 24 hours with availability and a tailored quote.</p>
+      <form class="nj-modal-form" id="njModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+        <input type="text" name="_gotcha" class="nj-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="New Booking Inquiry · NJ Landing Page">
+        <input type="hidden" name="form_source" value="nj-landing-page">
+        <input type="hidden" name="_landing_url" id="njLandingUrl" value="">
+        <div class="nj-modal-row">
+          <div class="nj-field">
+            <label for="njName">Your Name</label>
+            <input type="text" id="njName" name="name" autocomplete="name" placeholder="Full name" required minlength="2">
+          </div>
+          <div class="nj-field">
+            <label for="njEmail">Email</label>
+            <input type="email" id="njEmail" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="nj-modal-row">
+          <div class="nj-field">
+            <label for="njPhone">Phone</label>
+            <input type="tel" id="njPhone" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,25}" maxlength="25" placeholder="+1 555 123 4567" required>
+          </div>
+          <div class="nj-field">
+            <label for="njDate">Event Date</label>
+            <input type="date" id="njDate" name="event_date" required>
+          </div>
+        </div>
+        <div class="nj-field">
+          <label for="njVenue">Venue Name + City (NJ)</label>
+          <input type="text" id="njVenue" name="venue" placeholder="e.g. Pendry Natirar, Peapack, NJ" required minlength="5">
+        </div>
+        <div class="nj-field">
+          <label for="njEventType">Event Type</label>
+          <select id="njEventType" name="event_type" required>
+            <option value="" disabled selected>Choose…</option>
+            <option value="wedding-ceremony">Wedding Ceremony</option>
+            <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
+            <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
+            <option value="duo-ceremony-cocktail">Soul Shades Duo (Violin + Piano)</option>
+            <option value="dj-dx-julie">DJ DX × Julie (DJ + Live Violin)</option>
+            <option value="other">Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="nj-field">
+          <label for="njMessage">Tell Julie about your day</label>
+          <textarea id="njMessage" name="message" rows="4" placeholder="Venue atmosphere, musical vibe, ceremony vs cocktail vs reception, special requests…" required minlength="20"></textarea>
+        </div>
+        <label class="nj-consent">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted about this inquiry. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</span>
+        </label>
+        <button type="submit" class="nj-submit" id="njSubmit">Send Inquiry</button>
+        <p class="nj-modal-note">Typically responds within 24 hours · All inquiries confidential</p>
+        <p class="nj-modal-error" id="njModalError" hidden></p>
+      </form>
+    </div>
+  </div>
 </div>
+
 <script>
 (function () {
-  var bar = document.getElementById('njStickyCta');
+  var stickyBtn = document.getElementById('njStickyCta');
   var hero = document.querySelector('.nj-hero');
-  if (!bar || !hero) return;
+  var modal = document.getElementById('njModal');
+  var modalBody = document.getElementById('njModalBody');
+  var closeBtn = document.getElementById('njModalClose');
+  var form = document.getElementById('njModalForm');
+  var submitBtn = document.getElementById('njSubmit');
+  var errorEl = document.getElementById('njModalError');
+  var landingUrlInput = document.getElementById('njLandingUrl');
+  if (landingUrlInput) landingUrlInput.value = window.location.href;
+
+  // Sticky button appears after user scrolls past the hero
   var shown = false;
   function onScroll() {
+    if (!hero || !stickyBtn) return;
     var heroBottom = hero.getBoundingClientRect().bottom;
     var visible = heroBottom < 40;
-    if (visible !== shown) {
-      shown = visible;
-      bar.classList.toggle('is-visible', shown);
-    }
+    if (visible !== shown) { shown = visible; stickyBtn.classList.toggle('is-visible', shown); }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  // Meta Pixel: fire Lead attribution when either CTA is clicked
+
+  function openModal(source) {
+    if (!modal) return;
+    modal.hidden = false;
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    var first = modal.querySelector('input, select, textarea');
+    if (first) setTimeout(function () { first.focus(); }, 100);
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { content_name: 'NJ landing modal opened', source: source || 'unknown' });
+    if (typeof gtag === 'function') gtag('event', 'nj_modal_open', { source: source || 'unknown', landing: 'wedding-violinist-new-jersey' });
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
   document.querySelectorAll('[data-nj-cta]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'NJ landing CTA' });
-      if (typeof gtag === 'function') gtag('event', 'nj_landing_cta_click', { landing: 'wedding-violinist-new-jersey' });
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal((el.textContent || '').trim().slice(0, 40));
     });
   });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+  });
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Formspree returned ' + res.status);
+          if (modalBody) modalBody.innerHTML =
+            '<div class="nj-modal-success">' +
+              '<h3>Thank you.</h3>' +
+              '<p>Julie will reply within 24 hours. Check your inbox — and the spam folder just in case.</p>' +
+            '</div>';
+          if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'NJ landing inquiry submitted' });
+          if (typeof gtag === 'function') gtag('event', 'nj_lead_submit', { landing: 'wedding-violinist-new-jersey' });
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Inquiry';
+          if (errorEl) { errorEl.hidden = false; errorEl.textContent = 'Something went wrong. Please try again or email bookings@julieschatzmusic.com directly.'; }
+        });
+    });
+  }
 })();
 </script>
 </body>
