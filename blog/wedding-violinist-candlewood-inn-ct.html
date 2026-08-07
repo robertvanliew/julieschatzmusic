@@ -303,13 +303,20 @@ main.post-main h1 {
   cursor: pointer;
   isolation: isolate;
 }
-/* Override for landscape self-hosted <video> tags used in this wedding post */
+/* Portrait self-hosted video tags — vertical Reel format, no black bars */
 video.video-embed {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   position: relative;
   top: auto;
   cursor: auto;
   height: auto;
+  max-width: 420px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  object-fit: cover;
+  background: #0a0616;
 }
 .video-embed img {
   position: absolute;
@@ -970,8 +977,8 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <div class="post-intro-text">
         <p>On <strong>July 9, 2026</strong>, I played a 4:00 PM wedding ceremony at <strong>Candlewood Inn</strong> in <strong>Brookfield, Connecticut</strong> — solo violin, an hour of prelude and processional music on a summer Thursday. The Inn sits above Candlewood Lake in Fairfield County, and the ceremony space looks straight out over the water. Sharing a few short clips from the day, plus notes on what worked for a lakeside CT ceremony.</p>
       </div>
-      <video class="video-embed" controls playsinline preload="metadata"
-             poster="/assets/blog/candlewood-inn/clip-4540-poster.jpg">
+      <video class="video-embed" controls playsinline preload="metadata" controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;"
+             poster="/assets/blog/candlewood-inn/clip-4540-poster.jpg" controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
         <source src="/assets/blog/candlewood-inn/clip-4540.mp4" type="video/mp4">
         Your browser doesn't support embedded video.
       </video>
@@ -984,9 +991,9 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
       <p>Brookfield sits in <strong>Fairfield County</strong>, about a 90-minute drive from Manhattan and roughly the same from Hartford. That geographic middle-ground pulls couples from all across the tri-state — this particular booking had guests coming in from NYC, Boston, and DC — which is worth noting if you're planning a CT wedding and thinking about musician travel logistics.</p>
 
-      <video class="video-embed" style="margin:32px 0;" controls playsinline preload="metadata"
+      <video class="video-embed" style="margin:32px 0;" controls playsinline preload="metadata" controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;"
              poster="/assets/blog/candlewood-inn/clip-4541-poster.jpg"
-             width="1280" height="720">
+             controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
         <source src="/assets/blog/candlewood-inn/clip-4541.mp4" type="video/mp4">
         Your browser doesn't support embedded video.
       </video>
@@ -1001,9 +1008,9 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
       <p><strong>Sightlines.</strong> At most outdoor CT ceremonies the musician sits off to one side rather than centered behind the officiant. This one had me stage left about 15 feet from the arch, visible to the couple during vows and out of frame for the photographer. Because the violin is wireless, placement comes down to sound and sightlines rather than where a cable can reach. Power is worth a quick word with the coordinator ahead of time, but it's never a dealbreaker: I'll use an outlet if the ceremony site has one nearby, and I carry a fully self contained setup for the venues that don't. Coordinators usually know where the last violinist stood; ask them and it saves 20 minutes of figuring it out on the day.</p>
 
-      <video class="video-embed" style="margin:32px 0;" controls playsinline preload="metadata"
+      <video class="video-embed" style="margin:32px 0;" controls playsinline preload="metadata" controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;"
              poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg"
-             width="1280" height="720">
+             controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
         <source src="/assets/blog/candlewood-inn/clip-4542.mp4" type="video/mp4">
         Your browser doesn't support embedded video.
       </video>
