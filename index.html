@@ -4567,6 +4567,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <button class="carousel-arrow carousel-arrow-desktop" id="carouselPrev" aria-label="Previous">&#8249;</button>
       <div class="carousel-viewport">
         <div class="carousel-track" id="carouselTrack">
+          <button type="button" class="video-card" data-mp4="/assets/blog/candlewood-inn/clip-4542.mp4" data-poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg" aria-label="Play video · Wedding ceremony at Candlewood Inn, Brookfield CT · July 2026">
+            <img src="/assets/blog/candlewood-inn/clip-4542-poster.jpg" alt="Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn, Brookfield Connecticut, July 2026" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
           <button type="button" class="video-card" data-vimeo="1075415415" aria-label="Play video">
             <img src="/assets/highlights/1075415415.jpg" alt="Julie Schatz performing live violin at a wedding event" loading="lazy" decoding="async">
             <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
@@ -4607,6 +4611,17 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
      and the Vimeo embed URL as embedUrl. publisher links back to the business. -->
 <script type="application/ld+json">
 [
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Wedding Ceremony Violin at Candlewood Inn, Brookfield CT · July 2026",
+    "description": "Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn in Brookfield, Connecticut, July 2026. Fairfield County wedding violinist coverage.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542-poster.jpg",
+    "uploadDate": "2026-07-24T00:00:00-04:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542.mp4",
+    "duration": "PT37S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
@@ -6023,22 +6038,37 @@ function openInquiryFromHash() {
 window.addEventListener('load', openInquiryFromHash);
 window.addEventListener('hashchange', openInquiryFromHash);
 
-// ── Performance Highlights, click poster to load Vimeo iframe with autoplay ──
+// ── Performance Highlights, click poster to load Vimeo iframe or self-hosted MP4 ──
 (() => {
-  const cards = Array.from(document.querySelectorAll('.video-card[data-vimeo]'));
+  const cards = Array.from(document.querySelectorAll('.video-card[data-vimeo], .video-card[data-mp4]'));
   if (!cards.length) return;
   cards.forEach(card => {
     card.addEventListener('click', () => {
-      const id = card.dataset.vimeo;
-      if (!id) return;
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&autoplay=1`;
-      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.allowFullscreen = true;
-      iframe.setAttribute('frameborder', '0');
-      // Replace poster + play button with the live iframe
+      let el;
+      if (card.dataset.mp4) {
+        el = document.createElement('video');
+        el.src = card.dataset.mp4;
+        if (card.dataset.poster) el.poster = card.dataset.poster;
+        el.controls = true;
+        el.autoplay = true;
+        el.playsInline = true;
+        el.setAttribute('playsinline', '');
+        el.preload = 'auto';
+        el.style.width = '100%';
+        el.style.height = '100%';
+        el.style.objectFit = 'cover';
+      } else if (card.dataset.vimeo) {
+        const id = card.dataset.vimeo;
+        el = document.createElement('iframe');
+        el.src = `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&autoplay=1`;
+        el.allow = 'autoplay; fullscreen; picture-in-picture';
+        el.allowFullscreen = true;
+        el.setAttribute('frameborder', '0');
+      } else {
+        return;
+      }
       card.innerHTML = '';
-      card.appendChild(iframe);
+      card.appendChild(el);
       card.classList.add('is-playing');
       card.style.cursor = 'default';
     }, { once: true });
