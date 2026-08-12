@@ -367,6 +367,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -448,6 +486,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">Central NJ &amp; Jersey Shore Weddings</span>
     <h1>Wedding Violinist &amp; Pianist in Central New Jersey &amp; the Jersey Shore</h1>
     <p>Julie Schatz performs Central New Jersey and Jersey Shore weddings from Brooklyn studio base, covering Monmouth, Middlesex, and Ocean Counties for ceremonies, cocktail hours, and private events. Featured venues include Shadowbrook at Shrewsbury, The Gramercy at Lakeside Manor in Hazlet, and The Wave Resort in Long Branch, with regular bookings at venues across Asbury Park, Red Bank, Freehold, and the surrounding shore towns.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — Central NJ & Shore</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Monmouth, Middlesex, and Ocean Counties — Asbury Park, Spring Lake, Long Branch, Hazlet, Freehold, Point Pleasant, and the shore towns.</li>
+        <li><strong>Travel zones:</strong> Zone 2 (+$100 travel) for closer Central NJ · Zone 3 (+$250) for deeper shore points and inland · Cape May and South Jersey typically custom-quoted.</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$825</strong> (Zone 2) / <strong>$975</strong> (Zone 3). Ceremony + cocktail: from <strong>$1,250</strong> / <strong>$1,400</strong>.</li>
+        <li><strong>Beach ceremonies:</strong> regular part of summer bookings — acoustic violin handles wind well; keyboard rig needs tent, gazebo, or porch for shade and weather protection.</li>
+        <li><strong>Frequent Central NJ venues:</strong> Shadowbrook at Shrewsbury, The Wave Resort (Long Branch), The Gramercy at Lakeside Manor (Hazlet), Asbury Park venues.</li>
+        <li><strong>Response:</strong> typically within 24 hours; summer shore dates book 6–12 months ahead.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What Central NJ and Shore couples are asking for right now</h2>

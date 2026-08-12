@@ -351,6 +351,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -432,6 +470,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">Fairfield County, Connecticut Weddings &amp; Events</span>
     <h1>Wedding Violinist &amp; Pianist in Fairfield County, Connecticut</h1>
     <p>Julie Schatz performs Fairfield County weddings from Brooklyn studio base, covering Greenwich, Stamford, Westport, New Canaan, Darien, Norwalk, Westport, and Fairfield for ceremonies, cocktail hours, and private events. Travel to lower Fairfield County is a routine same-day round trip; bookings further into Connecticut (Candlewood Inn in Brookfield, the Litchfield Hills, the shoreline past New Haven, Mystic) are also covered with custom-quoted travel.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — Connecticut</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Fairfield County (Greenwich, Stamford, Norwalk, Westport, Fairfield) · Litchfield County · inland CT venues (Brookfield, Danbury, New Haven area).</li>
+        <li><strong>Travel zones from Brooklyn:</strong> Zone 2 (+$100) for Greenwich · Zone 3 (+$250) for mid-Fairfield County · Zone 4 (custom) for Litchfield, Candlewood Inn, and inland CT.</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$825</strong> (Zone 2 — Greenwich) · <strong>$975</strong> (Zone 3 — most of Fairfield County) · custom quote for Zone 4.</li>
+        <li><strong>Frequent CT venues:</strong> Candlewood Inn (Brookfield), Greenwich estates, Fairfield County country clubs, boutique CT wedding venues.</li>
+        <li><strong>Recent CT ceremony:</strong> July 2026 solo violin at Candlewood Inn — see the <a href="/blog/wedding-violinist-candlewood-inn-ct/">blog post with video clips</a>.</li>
+        <li><strong>Response:</strong> typically within 24 hours; peak wedding season (May–October) books 6–12 months out.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What CT couples are asking for right now</h2>

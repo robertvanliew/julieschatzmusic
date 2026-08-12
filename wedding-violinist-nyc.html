@@ -351,6 +351,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -432,6 +470,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">New York City Weddings &amp; Events</span>
     <h1>Wedding Violinist & Pianist in New York City</h1>
     <p>NYC-based and built for the city. Julie Schatz performs solo violin ceremonies, jazz piano cocktail hours, and full DJ + live hybrid sets at weddings, private events, and corporate galas across all five boroughs of New York City. Manhattan rooftops, Brooklyn waterfront venues, Queens museum receptions, Bronx country clubs, Staten Island estates: the load-in playbook is already written.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — NYC</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Manhattan, Brooklyn, Queens, Bronx, Staten Island, plus Hoboken and Jersey City — all Zone 1 with travel included.</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$725</strong> · Ceremony + cocktail hour (most-booked): from <strong>$1,150</strong> · Full-day soloist: from <strong>$2,150</strong>.</li>
+        <li><strong>Duo option:</strong> Soul Shades violin + piano from <strong>$2,875</strong>. Hybrid DJ + live violin reception from <strong>$2,650</strong>.</li>
+        <li><strong>Frequent NYC venues:</strong> Gotham Hall, Capitale, The Wythe Hotel, Tribeca Rooftop, boutique hotels and rooftops.</li>
+        <li><strong>Credentials:</strong> Featured on Ninja Tune (10M+ combined views); Roland artist; Splice contributor.</li>
+        <li><strong>Response:</strong> typically within 24 hours; 6–12 months' lead time recommended for Saturday peak dates.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What NYC couples are asking for right now</h2>

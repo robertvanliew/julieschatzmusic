@@ -367,6 +367,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -448,6 +486,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">Long Island Weddings &amp; Events</span>
     <h1>Wedding Violinist &amp; Pianist on Long Island</h1>
     <p>Julie Schatz performs Long Island weddings from Brooklyn studio base, covering Nassau and Suffolk Counties for ceremonies, cocktail hours, and private events. Gold Coast country clubs, North Shore estates, South Shore catering halls, and Suffolk waterfront properties are all on the regular calendar. Featured venues include Oheka Castle in Huntington, Westbury Manor, Coral House in Baldwin, The Garden City Hotel, North Hills Country Club in Manhasset, The Inn at New Hyde Park, Hendrick's Tavern in Roslyn, Mio Posto in Merrick, One10 in Melville, and Woodbury Jewish Center.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — Long Island</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Nassau County (Zone 2 — Garden City, Manhasset, Great Neck) · inner Suffolk (Zone 2–3 — Huntington, Smithtown) · Hamptons and North Fork (Zone 4, custom-quoted).</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$825</strong> in Zone 2 (20–40 miles from Brooklyn) · <strong>$975</strong> in Zone 3 (40–60 miles).</li>
+        <li><strong>Ceremony + cocktail:</strong> from <strong>$1,250</strong> · Full-day soloist: from <strong>$2,250</strong> · Soul Shades duo: from <strong>$2,975</strong>.</li>
+        <li><strong>Frequent LI venues:</strong> Oheka Castle (Huntington), The Garden City Hotel, Long Island wedding country clubs, Nassau + inner Suffolk estates.</li>
+        <li><strong>Hamptons and North Fork:</strong> full-day bookings custom-quoted based on venue distance, timing, and overnight requirements.</li>
+        <li><strong>Response:</strong> typically within 24 hours; peak Hamptons dates book 9–12 months out.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What Long Island couples are asking for right now</h2>

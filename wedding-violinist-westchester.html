@@ -366,6 +366,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -447,6 +485,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">Westchester County Weddings &amp; Events</span>
     <h1>Wedding Violinist &amp; Pianist in Westchester County</h1>
     <p>Julie Schatz performs Westchester County weddings from Brooklyn studio base, covering country clubs, historic estates, and house-of-worship ceremonies from Yonkers and Bronxville north through Tarrytown, Scarsdale, Rye, Bedford, and the Sound Shore. Featured venues include Tappan Hill Mansion in Tarrytown, VIP Country Club and Glen Island Harbour Club in New Rochelle, Reid Castle at Manhattanville College in Purchase, Church of the Holy Family in New Rochelle, and Blue Hill at Stone Barns in Pocantico Hills.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — Westchester</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Westchester County — Tarrytown, Rye, Scarsdale, Pocantico Hills, Bronxville, White Plains, and surrounding towns.</li>
+        <li><strong>Travel zone:</strong> Zone 2 (20–40 miles from Brooklyn) — flat $100 travel add-on above base rate.</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$825</strong> · Ceremony + cocktail: from <strong>$1,250</strong> · Full-day soloist: from <strong>$2,250</strong>.</li>
+        <li><strong>Frequent Westchester venues:</strong> Tappan Hill Mansion (Tarrytown), Blue Hill at Stone Barns (Pocantico Hills), Sleepy Hollow Country Club, Rye Country Club.</li>
+        <li><strong>Duo option:</strong> Soul Shades violin + piano from <strong>$2,975</strong>. Custom song arrangements +$200/song with 4–6 weeks lead time.</li>
+        <li><strong>Response:</strong> typically within 24 hours; 6–12 months' lead time for Saturday peak dates.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What Westchester couples are asking for right now</h2>

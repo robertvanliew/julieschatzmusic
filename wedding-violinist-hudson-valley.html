@@ -367,6 +367,44 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* TL;DR block — AI-citation-friendly summary at top of page */
+.tldr {
+  max-width: 780px;
+  margin: 24px 0 40px;
+  padding: 26px 32px 28px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 3px;
+  text-align: left;
+}
+.tldr .tldr__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--ivory);
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+.tldr .tldr__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tldr .tldr__list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--ivory-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.tldr .tldr__list li::before { content: '·'; position: absolute; left: 4px; top: -1px; color: rgba(168, 85, 247, 0.9); }
+.tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
+@media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
+
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -448,6 +486,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">Hudson Valley Weddings &amp; Events</span>
     <h1>Wedding Violinist &amp; Pianist in the Hudson Valley</h1>
     <p>Julie Schatz performs Hudson Valley weddings from Brooklyn studio base, covering Orange, Putnam, Dutchess, and Ulster Counties along the Hudson corridor. Featured venues include Falkirk Estate in Central Valley and Blue Hill at Stone Barns in Pocantico Hills. The Hudson Valley region runs the full range from intimate barn weddings and farm-to-table estates to grand mansion ceremonies, and Julie's setup adapts to each: classical and cinematic-modern solo violin for outdoor ceremonies, jazz piano or violin-and-keyboard for indoor cocktail hours.</p>
+
+    <aside class="tldr" role="note" aria-label="Quick answer summary">
+      <span class="tldr__label">Fast Answer — Hudson Valley</span>
+      <ul class="tldr__list">
+        <li><strong>Coverage:</strong> Orange, Dutchess, Ulster, Rockland, Sullivan, and Columbia Counties — Cold Spring, Rhinebeck, Hudson, Beacon, Garrison, New Paltz.</li>
+        <li><strong>Travel zones:</strong> Zone 2 for close-in venues (Pocantico Hills, Garrison) · Zone 3 for mid-Hudson (Falkirk Estate, Central Valley) · Zone 4 (60+ mi) for deep Hudson Valley — custom-quoted.</li>
+        <li><strong>Ceremony pricing:</strong> from <strong>$825</strong> in Zone 2 · <strong>$975</strong> in Zone 3 (Falkirk Estate and similar) · custom quote for Zone 4.</li>
+        <li><strong>Frequent Hudson Valley venues:</strong> Falkirk Estate (Central Valley), Blue Hill at Stone Barns (Pocantico), Astor Court, historic Hudson Valley estates.</li>
+        <li><strong>Overnight logistics:</strong> factored into Zone 3–4 quotes for evening receptions when same-day return isn't practical.</li>
+        <li><strong>Response:</strong> typically within 24 hours; fall foliage dates (Sept–Oct) book 9–12 months out.</li>
+      </ul>
+    </aside>
+
     <div class="region-rule"></div>
 
     <h2>What Hudson Valley couples are asking for right now</h2>
