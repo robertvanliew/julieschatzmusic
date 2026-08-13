@@ -366,6 +366,141 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* ─── Trusted-by credential strip (top of corporate page) ─── */
+.trusted-strip {
+  max-width: 780px;
+  margin: 24px 0 20px;
+  padding: 18px 22px;
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid rgba(212, 184, 114, 0.7);
+  background: linear-gradient(160deg, rgba(212, 184, 114, 0.05) 0%, rgba(15, 10, 26, 0.4) 100%);
+  border-radius: 3px;
+}
+.trusted-strip__label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.36em; text-transform: uppercase;
+  color: #d4b872;
+  margin-bottom: 10px;
+}
+.trusted-strip__list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(244, 239, 230, 0.85);
+}
+.trusted-strip__list li { position: relative; padding-right: 20px; }
+.trusted-strip__list li:not(:last-child)::after {
+  content: '·'; position: absolute; right: 4px; color: rgba(168, 85, 247, 0.6);
+}
+
+/* ─── Watermill case study ─── */
+.case-study {
+  max-width: 780px;
+  margin: 48px 0;
+  padding: 28px 32px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.05) 0%, rgba(15, 10, 26, 0.55) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 6px;
+}
+.case-study__kicker {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: #d4b872;
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  background: rgba(168, 85, 247, 0.14);
+  border-radius: 999px;
+}
+.case-study__h { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; margin: 0 0 16px; color: #fff; }
+.case-study__facts { list-style: none; margin: 0 0 18px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; }
+.case-study__facts dt { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,239,230,0.55); margin-bottom: 4px; }
+.case-study__facts dd { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--ivory); margin: 0; line-height: 1.2; }
+.case-study__body { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.65; color: rgba(244, 239, 230, 0.82); margin: 0; }
+
+/* ─── Corporate fast-lane CTA + contact strip ─── */
+.corp-cta-block {
+  max-width: 780px;
+  margin: 60px 0 40px;
+  padding: 36px 32px;
+  background: linear-gradient(160deg, rgba(168, 85, 247, 0.09) 0%, rgba(15, 10, 26, 0.65) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-left: 3px solid rgba(168, 85, 247, 0.7);
+  border-radius: 4px;
+}
+.corp-cta-block h2 { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(26px, 3vw, 36px); margin: 0 0 10px; color: #fff; }
+.corp-cta-block p { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: rgba(244,239,230,0.8); margin: 0 0 22px; max-width: 60ch; }
+.corp-cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.corp-cta-btn {
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  color: #F4EFE6; border: 0; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 6px; text-decoration: none;
+  box-shadow: 0 10px 26px rgba(123, 44, 191, 0.35);
+  transition: filter 0.2s, transform 0.2s;
+}
+.corp-cta-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.corp-direct {
+  display: flex; flex-wrap: wrap; gap: 18px 26px;
+  margin-top: 22px; padding-top: 18px;
+  border-top: 1px solid rgba(244,239,230,0.1);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; letter-spacing: 0.06em;
+  color: rgba(244,239,230,0.7);
+}
+.corp-direct a { color: #d4b872; text-decoration: none; font-weight: 500; }
+.corp-direct a:hover { color: #fff; }
+.corp-direct .corp-direct__label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 10px; color: rgba(244,239,230,0.5); display: block; margin-bottom: 2px; }
+
+/* ─── Corporate fast-lane modal ─── */
+.corp-modal {
+  position: fixed; inset: 0;
+  z-index: 1000; display: none;
+  align-items: flex-start; justify-content: center;
+  padding: 40px 16px;
+  background: rgba(8, 4, 18, 0.72);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+.corp-modal.is-open { display: flex; }
+.corp-modal-card {
+  position: relative;
+  width: 100%; max-width: 520px;
+  background: linear-gradient(160deg, rgba(28, 16, 52, 0.98) 0%, rgba(15, 10, 26, 0.98) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.32);
+  border-radius: 12px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  animation: corpModalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes corpModalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.corp-modal-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; background: transparent; border: 1px solid rgba(244,239,230,0.2); color: #F4EFE6; border-radius: 50%; font-size: 18px; cursor: pointer; }
+.corp-modal-close:hover { border-color: rgba(168,85,247,0.6); background: rgba(168,85,247,0.12); }
+.corp-modal-kicker { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #d4b872; margin-bottom: 10px; }
+.corp-modal-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; line-height: 1.15; color: #fff; margin: 0 0 6px; }
+.corp-modal-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(244,239,230,0.75); margin: 0 0 22px; }
+.corp-modal-form { display: flex; flex-direction: column; gap: 14px; }
+.corp-field { display: flex; flex-direction: column; gap: 6px; }
+.corp-field label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,239,230,0.6); }
+.corp-field input, .corp-field textarea { background: rgba(244,239,230,0.04); border: 1px solid rgba(244,239,230,0.14); color: #F4EFE6; padding: 11px 12px; border-radius: 6px; font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+.corp-field textarea { resize: vertical; min-height: 100px; }
+.corp-field input:focus, .corp-field textarea:focus { outline: none; border-color: rgba(168,85,247,0.6); background: rgba(244,239,230,0.07); }
+.corp-honey { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.corp-submit { padding: 14px 22px; background: linear-gradient(90deg, #7B2CBF, #a855f7); color: #F4EFE6; border: 0; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 6px; margin-top: 4px; }
+.corp-submit:disabled { opacity: 0.6; cursor: wait; }
+.corp-submit:hover:not(:disabled) { filter: brightness(1.12); }
+.corp-modal-note { font-family: 'Inter', sans-serif; font-size: 11px; text-align: center; color: rgba(244,239,230,0.45); margin: 8px 0 0; }
+.corp-modal-error { font-family: 'Inter', sans-serif; font-size: 13px; color: #ff8a80; margin: 10px 0 0; text-align: center; }
+.corp-modal-success { text-align: center; padding: 20px 0; }
+.corp-modal-success h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: #d4b872; margin: 0 0 10px; }
+.corp-modal-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: rgba(244,239,230,0.8); }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -445,6 +580,18 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <span class="kicker">NYC Corporate Events · Galas · Brand Activations · Private Client</span>
     <h1>Corporate Event Musician &amp; DJ in NYC</h1>
     <p><strong>Bookings from $2,200</strong> for a 3-hour set. Julie Schatz is a versatile NYC-based musician built for corporate calendars: solo violin for cocktail receptions, jazz piano for seated dinners, and hybrid DJ + live violin sets for after-dinner dancing — often across the same event, from one artist. Recent bookings include a <strong>$5,500 private engagement in Watermill (Hamptons)</strong> for a 3-hour violin + DJ set, and in December 2025 sharing a bill with house music pioneer <a href="https://en.wikipedia.org/wiki/Crystal_Waters">Crystal Waters</a> at a corporate event hosted by tech executive <a href="https://en.wikipedia.org/wiki/Charles_Phillips_(businessman)">Charles Phillips</a>. Music-industry credentials: <a href="https://soundcloud.com/ninjatune">featured by Ninja Tune</a> (Soul Shades project, 10M+ combined views), <a href="https://splice.com/blog/author/julie-schatz/">Splice contributor</a>, and <a href="https://www.roland.com">Roland</a> endorsed artist.</p>
+    <aside class="trusted-strip" role="note" aria-label="Trusted by and credentials">
+      <span class="trusted-strip__label">Trusted by · Recent Credits</span>
+      <ul class="trusted-strip__list">
+        <li>Ninja Tune</li>
+        <li>Splice</li>
+        <li>Roland</li>
+        <li>Crystal Waters</li>
+        <li>Charles Phillips</li>
+        <li>Watermill / Hamptons private</li>
+      </ul>
+    </aside>
+
     <aside class="tldr" role="note" aria-label="Quick answer summary">
       <span class="tldr__label">TL;DR</span>
       <ul class="tldr__list">
@@ -464,6 +611,18 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <p><strong>Seated dinner or program</strong> — jazz piano, low volume. Standards from the American songbook, contemporary reworks, or original piano compositions. Works for both formal galas and executive-dinner intimacy.</p>
     <p><strong>Awards ceremony, keynote, or product reveal</strong> — walk-on music, transitions between speakers, live musical stings, mood music under video segments. Wireless setup fits into most house AV systems via XLR.</p>
     <p><strong>After-dinner dancing / afterparty</strong> — the hybrid DJ + live violin set. Real strings played live over house, hip-hop, R&amp;B, pop, and afro house. Different from either a standard DJ or a wedding band — closer to a live-remix performance. This is the format the Watermill Hamptons booking used.</p>
+
+    <section class="case-study" aria-label="Case study: Watermill Hamptons booking">
+      <span class="case-study__kicker">Case Study · Hamptons Private</span>
+      <h2 class="case-study__h">3 hours, one artist, $5,500 — Watermill, NY.</h2>
+      <dl class="case-study__facts">
+        <div><dt>Client</dt><dd>Private (Hamptons)</dd></div>
+        <div><dt>Format</dt><dd>Violin + DJ Hybrid</dd></div>
+        <div><dt>Duration</dt><dd>3 hours</dd></div>
+        <div><dt>Fee</dt><dd>$5,500</dd></div>
+      </dl>
+      <p class="case-study__body">A 3-hour private engagement in Watermill combining live electric violin with a DJ set — the same hybrid format that anchors the after-dinner slot on most corporate bookings. Solo violin opened cocktails as guests arrived, then transitioned into the DJ + live violin format for the reception with Julie playing real strings live over house, hip-hop, and R&amp;B. One artist, one load-in, one contact for the coordinator. The Hamptons booking is priced in-line with the full-day corporate coverage tier ($4,500–$8,000) despite being only 3 hours because it includes travel from Brooklyn (Zone 4) and Hamptons market dynamics. If your event is executive private, product launch, brand activation, or a milestone corporate celebration in the $4K–$8K range, this is the reference booking.</p>
+    </section>
 
     <h2>Recent corporate and private-event bookings</h2>
     <p>A partial list, kept updated as the calendar fills:</p>
@@ -509,7 +668,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage", "dateModified": "2026-07-24",
+      "@type": "FAQPage", "dateModified": "2026-08-12",
       "mainEntity": [
         {"@type": "Question", "name": "What types of corporate events do you play?", "acceptedAnswer": {"@type": "Answer", "text": "Executive dinners, holiday parties, corporate galas, product launches, brand activations, panel and conference receptions, hedge fund and family office private events, and after-party bookings tied to industry conferences. The most common formats: solo violin during cocktail arrivals, jazz piano through seated dinner or program segments, and the hybrid DJ + live violin format for after-dinner dancing. Sweet spot is 30-300 guest corporate events."}},
         {"@type": "Question", "name": "Do you sign NDAs for private client events?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Julie regularly signs event and client NDAs, including for private-client, family office, hedge fund, and executive-hosted events. Standard turnaround is same-day signing once the NDA and event details are shared."}},
@@ -524,10 +683,26 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     </script>
 
 
-    <div class="region-cta">
-      <h2>Book a corporate event, gala, or private client engagement</h2>
-      <p>Send a few details about your event (date, venue, guest count, and the format you're planning) and Julie will respond within 24 hours with availability and a quote. NDAs signed same-day for sensitive bookings.</p>
-      <a href="/#inquire">Submit an Inquiry</a>
+    <div class="corp-cta-block">
+      <h2>Fast lane for corporate inquiries.</h2>
+      <p>Three fields — name, email, event brief. Julie replies within 24 hours with availability and a quote. NDAs signed same-day for sensitive bookings. For urgent bookings inside 14 days, use the direct phone below.</p>
+      <div class="corp-cta-row">
+        <button type="button" class="corp-cta-btn" data-corp-cta>Send corporate inquiry →</button>
+      </div>
+      <div class="corp-direct" aria-label="Direct contact for corporate bookings">
+        <div>
+          <span class="corp-direct__label">Direct Email</span>
+          <a href="mailto:bookings@julieschatzmusic.com?subject=Corporate%20Inquiry">bookings@julieschatzmusic.com</a>
+        </div>
+        <div>
+          <span class="corp-direct__label">Direct Phone</span>
+          <a href="tel:+16313659554">631 · 365 · 9554</a>
+        </div>
+        <div>
+          <span class="corp-direct__label">Typical Response</span>
+          <span style="color: rgba(244,239,230,0.75);">Within 24 hours</span>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -630,6 +805,108 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
   });
+})();
+</script>
+
+<!-- Corporate fast-lane modal (3-field form) -->
+<div class="corp-modal" id="corpModal" role="dialog" aria-modal="true" aria-labelledby="corpModalTitle" hidden>
+  <div class="corp-modal-card">
+    <button type="button" class="corp-modal-close" id="corpModalClose" aria-label="Close inquiry form">&times;</button>
+    <div id="corpModalBody">
+      <span class="corp-modal-kicker">Corporate Inquiry · Fast Lane</span>
+      <h2 class="corp-modal-title" id="corpModalTitle">Three fields. 24-hour reply.</h2>
+      <p class="corp-modal-sub">For urgent bookings under 14 days, call direct: <a href="tel:+16313659554" style="color:#d4b872;text-decoration:none;">631&nbsp;·&nbsp;365&nbsp;·&nbsp;9554</a>.</p>
+      <form class="corp-modal-form" id="corpModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+        <input type="text" name="_gotcha" class="corp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Corporate Inquiry · Fast Lane">
+        <input type="hidden" name="form_source" value="corporate-fastlane">
+        <input type="hidden" name="_landing_url" id="corpLandingUrl" value="">
+        <div class="corp-field">
+          <label for="corpName">Your Name + Company</label>
+          <input type="text" id="corpName" name="name" autocomplete="name" placeholder="e.g. Jane Smith · Infor" required minlength="2">
+        </div>
+        <div class="corp-field">
+          <label for="corpEmail">Work Email</label>
+          <input type="email" id="corpEmail" name="email" autocomplete="email" placeholder="you@company.com" required>
+        </div>
+        <div class="corp-field">
+          <label for="corpBrief">Event Brief</label>
+          <textarea id="corpBrief" name="message" rows="4" placeholder="Date, venue, guest count, format (violin / piano / hybrid DJ + violin), and any special notes (NDA, dress code, brand alignment)." required minlength="20"></textarea>
+        </div>
+        <button type="submit" class="corp-submit" id="corpSubmit">Send Inquiry</button>
+        <p class="corp-modal-note">Confidential · NDAs signed same-day on request</p>
+        <p class="corp-modal-error" id="corpModalError" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal = document.getElementById('corpModal');
+  var modalBody = document.getElementById('corpModalBody');
+  var closeBtn = document.getElementById('corpModalClose');
+  var form = document.getElementById('corpModalForm');
+  var submitBtn = document.getElementById('corpSubmit');
+  var errorEl = document.getElementById('corpModalError');
+  var urlInput = document.getElementById('corpLandingUrl');
+  if (urlInput) urlInput.value = window.location.href;
+
+  function openModal(source) {
+    if (!modal) return;
+    modal.hidden = false;
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    var first = modal.querySelector('input, textarea');
+    if (first) setTimeout(function () { first.focus(); }, 100);
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { content_name: 'Corporate fast-lane opened', source: source || 'unknown' });
+    if (typeof gtag === 'function') gtag('event', 'corp_modal_open', { source: source || 'unknown' });
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-corp-cta]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal((el.textContent || '').trim().slice(0, 40));
+    });
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+  });
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Formspree returned ' + res.status);
+          if (modalBody) modalBody.innerHTML =
+            '<div class="corp-modal-success">' +
+              '<h3>Thank you.</h3>' +
+              '<p>Julie will reply within 24 hours. For anything urgent, direct phone is <a href="tel:+16313659554" style="color:#d4b872;">631·365·9554</a>.</p>' +
+            '</div>';
+          if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Corporate fast-lane submitted' });
+          if (typeof gtag === 'function') gtag('event', 'corp_lead_submit');
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Inquiry';
+          if (errorEl) { errorEl.hidden = false; errorEl.textContent = 'Something went wrong. Email bookings@julieschatzmusic.com directly.'; }
+        });
+    });
+  }
 })();
 </script>
 </body>
