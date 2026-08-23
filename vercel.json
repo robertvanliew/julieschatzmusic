@@ -22,7 +22,9 @@
     { "source": "/wedding-dj-nyc/", "destination": "/wedding-dj-nyc.html" },
     { "source": "/wedding-dj-nj/", "destination": "/wedding-dj-nj.html" },
     { "source": "/hip-hop-violin-dj-nyc/", "destination": "/hip-hop-violin-dj-nyc.html" },
-    { "source": "/corporate-event-musician-nyc/", "destination": "/corporate-event-musician-nyc.html" },
+    { "source": "/corporate-events/", "destination": "/corporate-events.html" },
+    { "source": "/private-events/", "destination": "/private-events.html" },
+    { "source": "/weddings/", "destination": "/weddings.html" },
     { "source": "/wedding-violinist-long-island/", "destination": "/wedding-violinist-long-island.html" },
     { "source": "/wedding-violinist-westchester/", "destination": "/wedding-violinist-westchester.html" },
     { "source": "/wedding-violinist-hudson-valley/", "destination": "/wedding-violinist-hudson-valley.html" },
@@ -65,6 +67,9 @@
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
+
+    { "source": "/corporate-event-musician-nyc/", "destination": "/corporate-events/", "permanent": true },
+    { "source": "/corporate-event-musician-nyc", "destination": "/corporate-events/", "permanent": true },
 
     { "source": "/contact/", "destination": "/bookings/", "permanent": true },
     { "source": "/home/", "destination": "/", "permanent": true },

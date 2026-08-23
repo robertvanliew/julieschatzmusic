@@ -12,8 +12,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julie Schatz | NYC Violinist, Jazz Pianist & Producer</title>
-<meta name="description" content="NYC-based violinist, jazz pianist, DJ, and producer for weddings, private events, and corporate galas across NY, NJ, CT. Roland artist · Splice contributor · Featured by Ninja Tune (10M+ views).">
+<title>Julie Schatz Music | Live Violin for Corporate, Private &amp; Wedding Events | NYC</title>
+<meta name="description" content="Violinist, producer and composer performing across New York. Corporate events, private celebrations and weddings.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://julieschatzmusic.com/">
 <meta property="og:type" content="website">
@@ -4240,20 +4240,12 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   <!-- NAV -->
   <nav class="site-nav">
     <ul class="nav-links">
-      <li><a href="#top" class="is-current">Home</a></li>
-      <li><a href="/bookings/">Bookings</a></li>
-      <li><a href="/wedding-dj-nyc/">Wedding DJ</a></li>
-      <li><a href="/corporate-event-musician-nyc/">Corporate</a></li>
+      <li><a href="/corporate-events/">Corporate</a></li>
+      <li><a href="/private-events/">Private</a></li>
+      <li><a href="/weddings/">Weddings</a></li>
       <li><a href="#listen">Listen</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="/sample-pack-store/">Store</a></li>
-      <li class="nav-item-has-dropdown">
-        <a href="/wedding-ceremony-songs/" aria-haspopup="true">Songs</a>
-        <ul class="nav-dropdown" role="menu">
-          <li role="none"><a href="/wedding-ceremony-songs/" role="menuitem">Ceremony Repertoire</a></li>
-          <li role="none"><a href="/first-dance-song-finder/" role="menuitem">First Dance Finder</a></li>
-        </ul>
-      </li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
     <!-- Hamburger lives INSIDE nav so it escapes the `.page > * { z-index:1 }`
@@ -4490,15 +4482,106 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <div class="name-block">
       <div class="name-left">
         <div class="name" id="nameEl" aria-hidden="true"></div>
-        <h1 class="hero-h1">Weddings &middot; Private Events &middot; Corporate Galas</h1>
+        <h1 class="hero-h1">Live music, built around the moment your event is actually for.</h1>
+        <p class="hero-sub">Violinist, producer and composer. Corporate events, private celebrations and weddings across New York.</p>
       </div>
       <div class="name-right">
-        <button class="cta-btn" id="lowerInquiryBtn">Inquiry</button>
+        <button class="cta-btn" id="lowerInquiryBtn">Check your date</button>
       </div>
     </div>
   </div>
 
 </div>
+
+<!-- Three-vertical chooser (primary conversion fork per Julie's site-update-spec) -->
+<section id="chooser" class="vertical-chooser" aria-label="Choose your event type">
+  <div class="vertical-chooser-inner">
+    <a href="/corporate-events/" class="vchoose">
+      <span class="vchoose__kicker">Corporate Events</span>
+      <span class="vchoose__title">Live music built around your brand moment.</span>
+      <span class="vchoose__body">Original music scored to your brand moment, performed live. Product launches, galas, holiday parties and conferences.</span>
+      <span class="vchoose__arrow">See corporate →</span>
+    </a>
+    <a href="/private-events/" class="vchoose">
+      <span class="vchoose__kicker">Private Events</span>
+      <span class="vchoose__title">The part of the night people talk about on the way home.</span>
+      <span class="vchoose__body">Milestone birthdays, mitzvahs, anniversaries and celebrations at home, at the club, or on the water.</span>
+      <span class="vchoose__arrow">See private →</span>
+    </a>
+    <a href="/weddings/" class="vchoose">
+      <span class="vchoose__kicker">Weddings</span>
+      <span class="vchoose__title">Ceremony, cocktail hour, reception.</span>
+      <span class="vchoose__body">From classical to the song you actually want. 255-song repertoire. Mile-band pricing from Brooklyn.</span>
+      <span class="vchoose__arrow">See weddings →</span>
+    </a>
+  </div>
+</section>
+<style>
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.3vw, 20px);
+  color: rgba(244, 239, 230, 0.75);
+  margin-top: 12px;
+  max-width: 52ch;
+  line-height: 1.45;
+}
+.vertical-chooser {
+  padding: 80px 32px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.vertical-chooser-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 900px) { .vertical-chooser-inner { grid-template-columns: 1fr; gap: 14px; } .vertical-chooser { padding: 50px 20px 20px; } }
+.vchoose {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 30px 26px;
+  background: linear-gradient(160deg, rgba(30, 18, 55, 0.5) 0%, rgba(15, 10, 26, 0.6) 100%);
+  border: 1px solid rgba(244, 239, 230, 0.14);
+  border-left: 3px solid rgba(168, 85, 247, 0.5);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ivory);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.vchoose:hover {
+  border-color: rgba(212, 184, 114, 0.55);
+  border-left-color: rgba(212, 184, 114, 0.85);
+  transform: translateY(-3px);
+}
+.vchoose__kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: #d4b872;
+}
+.vchoose__title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  color: #fff;
+  text-wrap: balance;
+}
+.vchoose__body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(244, 239, 230, 0.78);
+}
+.vchoose__arrow {
+  margin-top: auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #a855f7;
+}
+.vchoose:hover .vchoose__arrow { color: #d4b872; }
+</style>
 
 <!-- Mobile drawer — sits OUTSIDE .page so .page > * { position:relative } can't
      override the drawer's position:fixed. Must also appear BEFORE the inline
@@ -4508,10 +4591,9 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   <div class="nav-drawer-panel">
     <button class="nav-drawer-close" data-drawer-close aria-label="Close menu">×</button>
     <ul class="nav-drawer-links">
-      <li><a href="#top">Home</a></li>
-      <li><a href="/bookings/">Bookings</a></li>
-      <li><a href="/wedding-dj-nyc/">Wedding DJ</a></li>
-      <li><a href="/corporate-event-musician-nyc/">Corporate</a></li>
+      <li><a href="/corporate-events/">Corporate</a></li>
+      <li><a href="/private-events/">Private Events</a></li>
+      <li><a href="/weddings/">Weddings</a></li>
       <li><a href="#listen">Listen</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="/sample-pack-store/">Store</a></li>
@@ -4534,9 +4616,9 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <span class="bio-rule" aria-hidden="true"></span>
     </div>
     <div class="bio-text">
-      <p>Julie Schatz is a multi-instrumentalist, music producer, and songwriter with a bachelor's degree in jazz theory and performance.</p>
+      <p>Julie Schatz is a violinist, producer and composer based in Brooklyn. She builds live music around what an event is actually for — from original scores written to a client's product video and performed live in sync, to solo violin at MoMA and the Metropolitan Club, to unobtrusive instrumental for a client dinner where the conversation is the point.</p>
 
-      <p>She has worked on numerous recording projects and live performances as a violinist, pianist, songwriter, and beat maker. Her credits range from Wu-Tang to Disney. Based in NYC, she performs at weddings, private events, and corporate galas across New York, New Jersey, and Connecticut, drawing from a <a href="/wedding-ceremony-songs/">repertoire of more than 200 songs</a> spanning classical, jazz, R&amp;B, country, contemporary pop, and worship.</p>
+      <p>She holds a bachelor's degree in jazz theory and performance and has worked on recording projects and live performances as a violinist, pianist, songwriter, and beat maker; credits range from Wu-Tang to Disney. Selected venues include The Museum of Modern Art, The Metropolitan Club, Mandarin Oriental, Webster Hall, Sony Hall, 620 Loft &amp; Garden, and Moxy Hotel. Corporate events, private celebrations and weddings across New York, New Jersey, and Connecticut, with a <a href="/wedding-ceremony-songs/">repertoire of 255 songs</a> for wedding bookings spanning classical, jazz, R&amp;B, country, contemporary pop, and worship.</p>
 
       <p class="bio-pullquote">A fresh mix of electronic, R&amp;B, and hip-hop sounds, with deep roots in jazz.</p>
 
