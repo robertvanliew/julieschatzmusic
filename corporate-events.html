@@ -491,71 +491,432 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
 .corp-form-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ivory-dim); }
 .corp-form-error { font-family: 'Inter', sans-serif; font-size: 13px; color: #ff8a80; margin-top: 12px; text-align: center; }
 
-/* ─── Call-request modal (in-page, 3 preferred times) ─── */
+/* ─── Call-request modal — premium, interactive ─── */
+:root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
 .call-modal {
   position: fixed; inset: 0;
   z-index: 1100;
   display: none;
   align-items: flex-start; justify-content: center;
   padding: 40px 16px;
-  background: rgba(8, 4, 18, 0.72);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   overflow-y: auto;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(15, 8, 32, 0.35), rgba(0, 0, 0, 0.85) 90%),
+    rgba(6, 3, 14, 0.72);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-out-strong);
 }
-.call-modal.is-open { display: flex; }
+.call-modal.is-open { display: flex; opacity: 1; }
+.call-modal.is-open .call-modal-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+@media (max-width: 520px) {
+  .call-modal { padding: 20px 12px; align-items: flex-end; }
+  .call-modal.is-open { align-items: flex-end; }
+}
+
 .call-modal-card {
   position: relative;
-  width: 100%; max-width: 540px;
-  background: linear-gradient(160deg, rgba(28, 16, 52, 0.98) 0%, rgba(15, 10, 26, 0.98) 100%);
-  border: 1px solid rgba(168, 85, 247, 0.32);
-  border-radius: 12px;
-  padding: 36px 32px 28px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-  animation: callModalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%; max-width: 560px;
+  color-scheme: dark;
+  background:
+    radial-gradient(140% 90% at 0% 0%, rgba(168, 85, 247, 0.09), transparent 55%),
+    radial-gradient(120% 60% at 100% 100%, rgba(212, 184, 114, 0.05), transparent 60%),
+    linear-gradient(160deg, rgba(28, 16, 52, 0.98) 0%, rgba(12, 8, 22, 0.98) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  border-radius: 16px;
+  padding: 40px 34px 30px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 0 0 1px rgba(168, 85, 247, 0.05),
+    0 24px 60px -12px rgba(123, 44, 191, 0.28),
+    0 60px 120px -20px rgba(0, 0, 0, 0.75);
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transition:
+    opacity 380ms var(--ease-out-strong),
+    transform 420ms var(--ease-drawer);
 }
-@keyframes callModalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.call-modal-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; background: transparent; border: 1px solid rgba(244,239,230,0.2); color: var(--ivory); border-radius: 50%; font-size: 18px; cursor: pointer; }
-.call-modal-close:hover { border-color: rgba(168,85,247,0.6); background: rgba(168,85,247,0.12); }
-.call-modal-kicker { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-.call-modal-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; line-height: 1.15; color: #fff; margin: 0 0 8px; }
-.call-modal-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--ivory-dim); margin: 0 0 22px; }
-.call-modal form { display: flex; flex-direction: column; gap: 14px; }
+.call-modal-card::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(212, 184, 114, 0.35), rgba(168, 85, 247, 0.35) 40%, transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none; opacity: 0.7;
+}
+@media (max-width: 520px) {
+  .call-modal-card {
+    padding: 30px 22px 24px;
+    border-radius: 20px 20px 6px 6px;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+}
+
+.call-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 38px; height: 38px;
+  background: rgba(244, 239, 230, 0.03);
+  border: 1px solid rgba(244, 239, 230, 0.14);
+  color: var(--ivory);
+  border-radius: 50%;
+  font-size: 20px; line-height: 1;
+  cursor: pointer;
+  transition:
+    background 180ms var(--ease-out-strong),
+    border-color 180ms var(--ease-out-strong),
+    color 180ms var(--ease-out-strong),
+    transform 320ms var(--ease-out-strong);
+}
+.call-modal-close:hover {
+  border-color: rgba(212, 184, 114, 0.6);
+  background: rgba(212, 184, 114, 0.1);
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+.call-modal-close:active { transform: rotate(90deg) scale(0.9); }
+.call-modal-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.4);
+}
+
+/* Staggered entrance for body content */
+.call-modal-card > * {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 400ms var(--ease-out-strong),
+    transform 400ms var(--ease-out-strong);
+  transition-delay: calc(var(--i, 0) * 45ms + 100ms);
+}
+.call-modal.is-open .call-modal-card > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.call-modal-card > .call-modal-close {
+  transition:
+    background 180ms var(--ease-out-strong),
+    border-color 180ms var(--ease-out-strong),
+    color 180ms var(--ease-out-strong),
+    transform 320ms var(--ease-out-strong),
+    opacity 300ms var(--ease-out-strong);
+  transition-delay: 0ms;
+}
+
+.call-modal-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-shadow: 0 0 24px rgba(212, 184, 114, 0.25);
+}
+.call-modal-kicker::before {
+  content: ''; width: 22px; height: 1px;
+  background: linear-gradient(90deg, rgba(212, 184, 114, 0.8), transparent);
+}
+.call-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 10px;
+  text-wrap: balance;
+  text-shadow: 0 0 40px rgba(212, 184, 114, 0.12);
+}
+.call-modal-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ivory-dim);
+  margin: 0 0 24px;
+  text-wrap: pretty;
+}
+
+.call-modal form { display: flex; flex-direction: column; gap: 16px; }
 .call-modal .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 520px) { .call-modal .row { grid-template-columns: 1fr; } }
-.call-modal label { display: block; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,239,230,0.6); margin-bottom: 5px; }
-.call-modal input, .call-modal textarea, .call-modal select {
-  width: 100%; padding: 11px 12px;
-  background: rgba(244,239,230,0.04);
-  border: 1px solid var(--hairline-strong);
+
+.call-field { position: relative; display: flex; flex-direction: column; gap: 6px; }
+.call-modal label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.55);
+  transition: color 200ms var(--ease-out-strong);
+  margin: 0;
+}
+.call-field:focus-within > label { color: var(--gold); }
+
+.call-modal input,
+.call-modal textarea,
+.call-modal select {
+  width: 100%;
+  padding: 13px 14px;
+  background: rgba(244, 239, 230, 0.035);
+  border: 1px solid rgba(244, 239, 230, 0.1);
   color: var(--ivory);
-  border-radius: 5px;
+  border-radius: 8px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
+  transition:
+    background 200ms var(--ease-out-strong),
+    border-color 200ms var(--ease-out-strong),
+    box-shadow 200ms var(--ease-out-strong);
 }
-.call-modal input[type="datetime-local"], .call-modal select { font-family: 'Inter', sans-serif; font-size: 14px; }
-.call-modal textarea { resize: vertical; min-height: 70px; }
-.call-modal input:focus, .call-modal textarea:focus, .call-modal select:focus { outline: none; border-color: rgba(168,85,247,0.6); background: rgba(244,239,230,0.07); }
+.call-modal input::placeholder,
+.call-modal textarea::placeholder { color: rgba(244, 239, 230, 0.32); font-style: italic; }
+.call-modal input[type="datetime-local"],
+.call-modal select { font-family: 'Inter', sans-serif; font-size: 15px; }
+.call-modal input[type="datetime-local"] { color-scheme: dark; }
+.call-modal input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(0.9) sepia(1) hue-rotate(15deg) saturate(2);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 180ms var(--ease-out-strong);
+}
+.call-modal input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator,
+.call-modal input[type="datetime-local"]:focus::-webkit-calendar-picker-indicator { opacity: 1; }
+.call-modal textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+
+.call-modal input:hover:not(:focus),
+.call-modal textarea:hover:not(:focus) {
+  background: rgba(244, 239, 230, 0.055);
+  border-color: rgba(244, 239, 230, 0.18);
+}
+.call-modal input:focus,
+.call-modal textarea:focus,
+.call-modal select:focus {
+  outline: none;
+  background: rgba(244, 239, 230, 0.07);
+  border-color: rgba(168, 85, 247, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(168, 85, 247, 0.16),
+    0 0 24px -4px rgba(168, 85, 247, 0.35);
+}
+
+/* Slots section — three preferred windows */
 .call-slots {
-  padding: 14px 16px;
-  background: rgba(212,184,114,0.06);
-  border: 1px solid rgba(212,184,114,0.22);
-  border-left: 3px solid rgba(212,184,114,0.7);
-  border-radius: 4px;
-  display: flex; flex-direction: column; gap: 12px;
+  position: relative;
+  padding: 20px 20px 22px;
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(212, 184, 114, 0.08), transparent 55%),
+    linear-gradient(160deg, rgba(212, 184, 114, 0.04) 0%, rgba(15, 10, 26, 0.45) 100%);
+  border: 1px solid rgba(212, 184, 114, 0.2);
+  border-radius: 12px;
+  display: flex; flex-direction: column; gap: 16px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
 }
-.call-slots-h { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-.call-slots-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ivory-soft); margin-top: -4px; }
-.call-slot-row { display: grid; grid-template-columns: 60px 1fr; gap: 10px; align-items: center; }
-.call-slot-row .slot-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ivory-soft); }
+.call-slots-h {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 0 24px rgba(212, 184, 114, 0.3);
+}
+.call-slots-note {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 14px; line-height: 1.45;
+  color: rgba(244, 239, 230, 0.58);
+  margin-top: -6px;
+}
+.call-slots-note strong { color: var(--gold); font-weight: 500; font-style: normal; }
+
+.call-slot {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 14px;
+  align-items: center;
+}
+.slot-badge {
+  grid-row: 1 / span 2;
+  align-self: start; justify-self: center;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 15px; font-weight: 400;
+  color: var(--gold);
+  background: rgba(212, 184, 114, 0.08);
+  border: 1px solid rgba(212, 184, 114, 0.28);
+  border-radius: 50%;
+  margin-top: 20px;
+  transition:
+    background 260ms var(--ease-out-strong),
+    border-color 260ms var(--ease-out-strong),
+    color 260ms var(--ease-out-strong),
+    box-shadow 260ms var(--ease-out-strong),
+    transform 260ms var(--ease-out-strong);
+}
+.call-slot.is-filled .slot-badge {
+  background: linear-gradient(140deg, rgba(212, 184, 114, 0.35), rgba(168, 85, 247, 0.28));
+  border-color: rgba(212, 184, 114, 0.55);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(212, 184, 114, 0.28);
+  transform: scale(1.05);
+}
+.call-slot-label {
+  grid-column: 2;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.55);
+  transition: color 200ms var(--ease-out-strong);
+}
+.call-slot:focus-within .call-slot-label,
+.call-slot.is-filled .call-slot-label { color: var(--gold); }
+.call-slot-input { grid-column: 2; position: relative; }
+.call-slot-input input {
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif; font-size: 15px;
+  letter-spacing: 0.01em;
+}
+.call-slot.is-filled .call-slot-input input {
+  border-color: rgba(212, 184, 114, 0.35);
+  background: rgba(212, 184, 114, 0.04);
+}
+
 .call-honey { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.call-submit { padding: 14px 22px; background: linear-gradient(90deg, var(--violet), var(--violet-2)); color: var(--ivory); border: 0; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 6px; margin-top: 6px; box-shadow: 0 10px 26px rgba(123,44,191,0.35); transition: filter 0.2s, transform 0.2s; }
-.call-submit:hover:not(:disabled) { filter: brightness(1.12); transform: translateY(-1px); }
+
+.call-submit {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px;
+  padding: 16px 26px;
+  background: linear-gradient(135deg, #7B2CBF 0%, #9d4bd8 55%, #a855f7 100%);
+  color: var(--ivory);
+  border: 0; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  border-radius: 10px;
+  margin-top: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 10px 28px -6px rgba(123, 44, 191, 0.5),
+    0 22px 48px -12px rgba(123, 44, 191, 0.35);
+  transition:
+    transform 220ms var(--ease-out-strong),
+    box-shadow 260ms var(--ease-out-strong),
+    filter 200ms var(--ease-out-strong);
+}
+.call-submit::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.18) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform 900ms var(--ease-out-strong);
+}
+.call-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 16px 36px -6px rgba(168, 85, 247, 0.55),
+    0 28px 60px -14px rgba(168, 85, 247, 0.4);
+}
+.call-submit:hover::before { transform: translateX(120%); }
+.call-submit:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 6px 18px -6px rgba(123, 44, 191, 0.5);
+  transition-duration: 100ms;
+}
+.call-submit:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(212, 184, 114, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 16px 36px -6px rgba(168, 85, 247, 0.55);
+}
 .call-submit:disabled { opacity: 0.6; cursor: wait; }
-.call-modal-note { font-family: 'Inter', sans-serif; font-size: 11px; text-align: center; color: rgba(244,239,230,0.45); margin: 6px 0 0; }
-.call-modal-error { font-family: 'Inter', sans-serif; font-size: 13px; color: #ff8a80; margin-top: 10px; text-align: center; }
-.call-modal-success { text-align: center; padding: 24px 0 6px; }
-.call-modal-success h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; color: var(--gold); margin-bottom: 10px; }
-.call-modal-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ivory-dim); margin-bottom: 8px; }
+.call-submit .arrow {
+  display: inline-block;
+  transition: transform 320ms var(--ease-out-strong);
+}
+.call-submit:hover:not(:disabled) .arrow { transform: translateX(4px); }
+
+.call-modal-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 0.04em;
+  text-align: center;
+  color: rgba(244, 239, 230, 0.42);
+  margin: 8px 0 0;
+}
+.call-modal-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #ff9994;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px 14px;
+  background: rgba(255, 128, 128, 0.08);
+  border: 1px solid rgba(255, 128, 128, 0.2);
+  border-radius: 6px;
+}
+
+.call-modal-success {
+  text-align: center;
+  padding: 28px 12px 8px;
+  animation: successIn 500ms var(--ease-drawer);
+}
+@keyframes successIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+.call-modal-success h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 34px);
+  color: var(--gold);
+  margin-bottom: 14px;
+  text-shadow: 0 0 40px rgba(212, 184, 114, 0.3);
+}
+.call-modal-success h3::before {
+  content: '✓';
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; margin: 0 auto 16px;
+  background: linear-gradient(140deg, rgba(212, 184, 114, 0.25), rgba(168, 85, 247, 0.2));
+  border: 1px solid rgba(212, 184, 114, 0.4);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 22px; font-style: normal; font-weight: 300;
+  box-shadow: 0 0 32px rgba(212, 184, 114, 0.25);
+}
+.call-modal-success h3 { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.call-modal-success p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px; line-height: 1.55;
+  color: var(--ivory-dim);
+  margin-bottom: 10px;
+  max-width: 40ch;
+  margin-left: auto; margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .call-modal, .call-modal-card, .call-modal-card > *, .call-slot .slot-badge, .call-submit, .call-submit .arrow {
+    transition-duration: 120ms !important;
+    animation-duration: 120ms !important;
+  }
+  .call-submit::before { display: none; }
+}
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--hairline); margin-top: 60px; padding: 40px 20px 20px; text-align: center; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ivory-faint); }
@@ -857,10 +1218,10 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
   <div class="call-modal-card">
     <button type="button" class="call-modal-close" id="callModalClose" aria-label="Close">&times;</button>
     <div id="callModalBody">
-      <span class="call-modal-kicker">15-Minute Call</span>
-      <h2 class="call-modal-title" id="callModalTitle">Pick three times that work.</h2>
-      <p class="call-modal-sub">Send Julie three windows and she'll confirm one within 24 hours — or reply with an alternative if none of them fit her calendar.</p>
-      <form id="callRequestForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+      <span class="call-modal-kicker" style="--i:0;">15-Minute Call</span>
+      <h2 class="call-modal-title" id="callModalTitle" style="--i:1;">Pick three times that work.</h2>
+      <p class="call-modal-sub" style="--i:2;">Send Julie three windows and she'll confirm one within 24 hours — or reply with an alternative if none of them fit her calendar.</p>
+      <form id="callRequestForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate style="--i:3;">
         <input type="text" name="_gotcha" class="call-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="15-Min Call Request · Corporate Events">
         <input type="hidden" name="form_source" value="corporate-15min-call-request">
@@ -868,46 +1229,58 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
         <input type="hidden" name="viewer_timezone" id="callViewerTz" value="">
 
         <div class="row">
-          <div>
+          <div class="call-field">
             <label for="callName">Your Name + Company</label>
             <input type="text" id="callName" name="name" autocomplete="name" placeholder="e.g. Jane Smith · Company" required minlength="2">
           </div>
-          <div>
+          <div class="call-field">
             <label for="callEmail">Work Email</label>
             <input type="email" id="callEmail" name="email" autocomplete="email" placeholder="you@company.com" required>
           </div>
         </div>
 
-        <div>
-          <label for="callPhone">Phone (optional)</label>
+        <div class="call-field">
+          <label for="callPhone">Phone <span style="color:rgba(244,239,230,0.35);font-weight:400;text-transform:none;letter-spacing:0.02em;">(optional)</span></label>
           <input type="tel" id="callPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567">
         </div>
 
         <div class="call-slots">
           <span class="call-slots-h">Your three preferred windows</span>
-          <p class="call-slots-note">15-minute call. Times are in your local timezone (auto-detected: <span id="callTzLabel">detecting…</span>).</p>
+          <p class="call-slots-note">15-minute call. Times shown in <strong id="callTzLabel">your local time</strong>.</p>
 
-          <div class="call-slot-row">
-            <span class="slot-label">Option 1</span>
-            <input type="datetime-local" id="callTime1" name="time_option_1" required>
+          <div class="call-slot" data-slot="1">
+            <span class="slot-badge" aria-hidden="true">1</span>
+            <span class="call-slot-label">Option 1</span>
+            <div class="call-slot-input">
+              <input type="datetime-local" id="callTime1" name="time_option_1" required>
+            </div>
           </div>
-          <div class="call-slot-row">
-            <span class="slot-label">Option 2</span>
-            <input type="datetime-local" id="callTime2" name="time_option_2" required>
+          <div class="call-slot" data-slot="2">
+            <span class="slot-badge" aria-hidden="true">2</span>
+            <span class="call-slot-label">Option 2</span>
+            <div class="call-slot-input">
+              <input type="datetime-local" id="callTime2" name="time_option_2" required>
+            </div>
           </div>
-          <div class="call-slot-row">
-            <span class="slot-label">Option 3</span>
-            <input type="datetime-local" id="callTime3" name="time_option_3" required>
+          <div class="call-slot" data-slot="3">
+            <span class="slot-badge" aria-hidden="true">3</span>
+            <span class="call-slot-label">Option 3</span>
+            <div class="call-slot-input">
+              <input type="datetime-local" id="callTime3" name="time_option_3" required>
+            </div>
           </div>
         </div>
 
-        <div>
-          <label for="callContext">Brief context (optional)</label>
+        <div class="call-field">
+          <label for="callContext">Brief context <span style="color:rgba(244,239,230,0.35);font-weight:400;text-transform:none;letter-spacing:0.02em;">(optional)</span></label>
           <textarea id="callContext" name="context" rows="3" placeholder="One or two sentences on what you're planning — event type, rough date, format if you know it."></textarea>
         </div>
 
-        <button type="submit" class="call-submit" id="callSubmit">Send call request</button>
-        <p class="call-modal-note">Julie confirms one time (or suggests an alternative) within 24 hours.</p>
+        <button type="submit" class="call-submit" id="callSubmit">
+          <span>Send call request</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+        <p class="call-modal-note">Julie confirms one time — or suggests an alternative — within 24 hours.</p>
         <p class="call-modal-error" id="callModalError" hidden></p>
       </form>
     </div>
@@ -931,8 +1304,18 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
   try {
     var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown';
     if (tzInput) tzInput.value = tz;
-    if (tzLabel) tzLabel.textContent = tz;
-  } catch (e) { if (tzLabel) tzLabel.textContent = 'local time'; }
+    if (tzLabel) {
+      // Friendly TZ display: city + short zone (e.g. "New York · EDT")
+      var city = tz.split('/').pop().replace(/_/g, ' ');
+      var shortTz = '';
+      try {
+        shortTz = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'short' })
+          .formatToParts(new Date())
+          .find(function (p) { return p.type === 'timeZoneName'; }).value;
+      } catch (e) {}
+      tzLabel.textContent = shortTz ? (city + ' · ' + shortTz) : city;
+    }
+  } catch (e) { if (tzLabel) tzLabel.textContent = 'your local time'; }
 
   // Prevent picking past times — sets min to now (+1hr) on all three datetime inputs
   function pad(n) { return (n < 10 ? '0' : '') + n; }
@@ -943,7 +1326,17 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
   var minAttr = nowPlusHoursLocal(2);
   ['callTime1','callTime2','callTime3'].forEach(function (id) {
     var el = document.getElementById(id);
-    if (el) el.setAttribute('min', minAttr);
+    if (!el) return;
+    el.setAttribute('min', minAttr);
+    // Toggle .is-filled on parent slot when a valid datetime is picked — gold pulse feedback
+    var slot = el.closest('.call-slot');
+    if (!slot) return;
+    var updateFilled = function () {
+      if (el.value && el.value.length >= 16) slot.classList.add('is-filled');
+      else slot.classList.remove('is-filled');
+    };
+    el.addEventListener('change', updateFilled);
+    el.addEventListener('input', updateFilled);
   });
 
   function openModal(source) {
@@ -985,7 +1378,9 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
         return;
       }
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      submitBtn.disabled = true; submitBtn.textContent = 'Sending…';
+      var origHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending…</span>';
       var data = new FormData(form);
       fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
         .then(function (res) {
@@ -994,13 +1389,13 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
             '<div class="call-modal-success">' +
               '<h3>Sent.</h3>' +
               '<p>Julie will confirm one of your three times — or suggest an alternative — within 24 hours.</p>' +
-              '<p style="margin-top:14px;font-family:\'Inter\',sans-serif;font-size:12px;color:rgba(244,239,230,0.5);letter-spacing:0.08em;">For anything urgent, call direct: <a href="tel:+16313659554" style="color:#d4b872;text-decoration:none;">631·365·9554</a></p>' +
+              '<p style="margin-top:18px;font-family:\'Inter\',sans-serif;font-size:12px;color:rgba(244,239,230,0.5);letter-spacing:0.08em;">For anything urgent, call direct: <a href="tel:+16313659554" style="color:#d4b872;text-decoration:none;">631·365·9554</a></p>' +
             '</div>';
           if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Corporate 15-min call request submitted' });
           if (typeof gtag === 'function') gtag('event', 'corp_call_request_submit');
         })
         .catch(function () {
-          submitBtn.disabled = false; submitBtn.textContent = 'Send call request';
+          submitBtn.disabled = false; submitBtn.innerHTML = origHtml;
           if (errEl) { errEl.hidden = false; errEl.textContent = 'Something went wrong. Email bookings@julieschatzmusic.com directly.'; }
         });
     });
