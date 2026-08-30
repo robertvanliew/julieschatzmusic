@@ -202,7 +202,7 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
       var id = btn.getAttribute('data-yt');
       if (!id) return;
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1&iv_load_policy=3';
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       iframe.setAttribute('title', btn.getAttribute('aria-label') || 'Video');
