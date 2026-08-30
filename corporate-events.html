@@ -980,6 +980,39 @@ main.corp-main { max-width: 1080px; margin: 0 auto; padding: 200px 40px 100px; f
     </div>
     <p class="tiers-note">Every event is quoted individually based on format, duration and production requirements.</p>
 
+    <!-- Section 19: Investment floor statement, no rate sheet -->
+    <aside class="corp-floor" role="note" aria-label="Investment floor">
+      <p class="corp-floor__lead"><strong>Investment.</strong> Corporate engagements begin at <strong class="gold">$3,000</strong> and are quoted individually based on format, duration, guest count and production requirements. Tell me the shape of your event and I'll come back with a real number within 24 hours.</p>
+      <p class="corp-floor__sub"><strong>DJ and live violin</strong> is available for holiday parties, receptions and after-parties as part of any engagement, and is quoted with the rest of the event.</p>
+    </aside>
+    <style>
+      .corp-floor {
+        max-width: 780px;
+        margin: 32px 0 20px;
+        padding: 30px 34px;
+        background: linear-gradient(160deg, rgba(212, 184, 114, 0.06) 0%, rgba(15, 10, 26, 0.5) 100%);
+        border: 1px solid rgba(212, 184, 114, 0.25);
+        border-left: 3px solid rgba(212, 184, 114, 0.7);
+        border-radius: 4px;
+      }
+      .corp-floor__lead {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(18px, 1.6vw, 22px);
+        line-height: 1.55;
+        color: var(--ivory-dim);
+        margin: 0;
+      }
+      .corp-floor__lead strong { color: #fff; font-weight: 500; }
+      .corp-floor__lead .gold { color: var(--gold); }
+      .corp-floor__sub {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px; line-height: 1.55;
+        color: var(--ivory-soft);
+        margin: 18px 0 0;
+      }
+      .corp-floor__sub strong { color: #fff; font-weight: 500; }
+    </style>
+
     <!-- Section 6: Immersive synced, expanded -->
     <section class="synced-section" aria-label="Immersive synced performance">
       <h2>Original score, performed live to your screen.</h2>

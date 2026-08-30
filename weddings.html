@@ -221,6 +221,62 @@ h2.editorial { font-family:'Playfair Display',serif; font-style:italic; font-wei
     </a>
   </div>
 
+  <!-- Wedding pricing (per site-updates.md Section 17) -->
+  <h2 class="editorial">Wedding pricing</h2>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.55;color:var(--ivory-dim);margin-bottom:22px;max-width:66ch;">Priced by miles from Brooklyn. Piano is its own service — different setup, different footprint. Additional hour <strong style="color:#fff;">$300</strong>, any zone.</p>
+  <div class="wed-pricing-wrap">
+    <table class="wed-pricing" aria-label="Wedding pricing by zone">
+      <thead>
+        <tr><th scope="col">Service</th><th scope="col">Zone 1<br><small>Under 20 mi</small></th><th scope="col">Zone 2<br><small>20–40 mi</small></th><th scope="col">Zone 3<br><small>40–60 mi</small></th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row"><strong>Violin</strong><span>Ceremony or cocktail hour, to 1 hr</span></th><td>$725</td><td>$825</td><td>$925</td></tr>
+        <tr><th scope="row"><strong>Piano</strong><span>Ceremony or cocktail hour, to 1 hr</span></th><td>$875</td><td>$975</td><td>$1,075</td></tr>
+        <tr><th scope="row"><strong>Violin</strong><span>Ceremony and cocktail hour</span></th><td>$1,250</td><td>$1,350</td><td>$1,450</td></tr>
+        <tr><th scope="row"><strong>Piano</strong><span>Ceremony and cocktail hour</span></th><td>$1,450</td><td>$1,550</td><td>$1,650</td></tr>
+        <tr><th scope="row"><strong>Violin and piano</strong><span>Across the event</span></th><td>$1,550</td><td>$1,650</td><td>$1,750</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="editorial" style="font-size:clamp(20px,2.4vw,28px);margin-top:36px;">Reception · DJ and live violin</h2>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.55;color:var(--ivory-dim);margin-bottom:22px;max-width:66ch;">Full DJ setup with live violin performed over the set, sound and lighting included. Additional hour <strong style="color:#fff;">$500</strong>.</p>
+  <div class="wed-pricing-wrap">
+    <table class="wed-pricing" aria-label="DJ and live violin reception pricing by zone">
+      <thead>
+        <tr><th scope="col">Booking</th><th scope="col">Zone 1</th><th scope="col">Zone 2</th><th scope="col">Zone 3</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row"><strong>Added to ceremony/cocktail booking</strong><span>One vendor across the day</span></th><td>$3,800</td><td>$4,000</td><td>$4,200</td></tr>
+        <tr><th scope="row"><strong>Standalone, 4 hours</strong><span>Reception only</span></th><td>$4,500</td><td>$4,700</td><td>$4,900</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <aside style="margin:26px 0 40px;padding:22px 26px;background:linear-gradient(160deg,rgba(168,85,247,0.06) 0%,rgba(15,10,26,0.4) 100%);border-left:3px solid rgba(168,85,247,0.7);border-radius:3px;font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.55;color:var(--ivory-dim);">
+    <strong style="color:#fff;">Why one vendor for the whole night.</strong> Your DJ knows exactly how the ceremony ended, because he was there. One contract, one load-in, one point of contact, and no gap where two vendors are working out each other's equipment in your reception space. The music runs as one arc instead of three separate bookings hoping to line up.
+  </aside>
+
+  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--ivory-soft);margin-bottom:40px;">Zone 4 (60+ miles — Hamptons, deep Hudson Valley, inland CT): custom-quoted. See the full rate sheet at <a href="/wedding-violinist-pricing/">wedding pricing</a>.</p>
+
+  <style>
+    .wed-pricing-wrap { overflow-x: auto; margin-bottom: 24px; }
+    table.wed-pricing { width: 100%; border-collapse: collapse; font-family: 'Cormorant Garamond', serif; }
+    table.wed-pricing thead th { text-align: left; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--hairline-strong); vertical-align: bottom; }
+    table.wed-pricing thead th small { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 12px; letter-spacing: 0.02em; text-transform: none; color: var(--ivory-soft); margin-top: 2px; }
+    table.wed-pricing tbody th { text-align: left; padding: 16px; font-weight: 400; color: var(--ivory); border-bottom: 1px solid var(--hairline); vertical-align: top; }
+    table.wed-pricing tbody th strong { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; font-weight: 400; color: #fff; margin-bottom: 4px; }
+    table.wed-pricing tbody th span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--ivory-soft); }
+    table.wed-pricing tbody td { padding: 16px; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); border-bottom: 1px solid var(--hairline); text-align: right; white-space: nowrap; }
+    table.wed-pricing tbody tr:last-child th, table.wed-pricing tbody tr:last-child td { border-bottom: 0; }
+    table.wed-pricing tbody tr:hover td { color: #fff; background: rgba(168, 85, 247, 0.04); }
+    @media (max-width: 600px) {
+      table.wed-pricing tbody td { font-size: 17px; padding: 12px 10px; }
+      table.wed-pricing thead th { padding: 12px 10px; font-size: 10px; }
+      table.wed-pricing tbody th { padding: 12px 10px; }
+    }
+  </style>
+
   <h2 class="editorial">By region</h2>
   <div class="region-links">
     <a href="/wedding-violinist-nyc/">NYC</a>
