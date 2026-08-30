@@ -4539,19 +4539,21 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 @media (max-width: 900px) { .vertical-chooser-inner { grid-template-columns: 1fr; gap: 14px; } .vertical-chooser { padding: 50px 20px 20px; } }
 .vchoose {
   display: flex; flex-direction: column; gap: 12px;
-  padding: 30px 26px;
-  background: linear-gradient(160deg, rgba(30, 18, 55, 0.5) 0%, rgba(15, 10, 26, 0.6) 100%);
-  border: 1px solid rgba(244, 239, 230, 0.14);
-  border-left: 3px solid rgba(168, 85, 247, 0.5);
-  border-radius: 4px;
+  padding: 32px 28px;
+  background: linear-gradient(160deg, rgba(58, 34, 102, 0.55) 0%, rgba(22, 14, 42, 0.85) 100%);
+  border: 1px solid rgba(244, 239, 230, 0.28);
+  border-left: 3px solid rgba(168, 85, 247, 0.9);
+  border-radius: 6px;
   text-decoration: none;
   color: var(--ivory);
-  transition: border-color 0.25s, transform 0.25s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .vchoose:hover {
-  border-color: rgba(212, 184, 114, 0.55);
-  border-left-color: rgba(212, 184, 114, 0.85);
+  border-color: rgba(212, 184, 114, 0.7);
+  border-left-color: rgba(212, 184, 114, 1);
   transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(123, 44, 191, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .vchoose__kicker {
   font-family: 'Inter', sans-serif;
