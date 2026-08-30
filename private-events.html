@@ -45,6 +45,22 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Private Event Violinist, Pianist, Singer AND DJ in One · Julie Schatz",
+  "description": "Julie Schatz — private event violinist, pianist, singer, and DJ in one. Milestone birthdays, mitzvahs, anniversaries, and celebrations across NYC, New Jersey, Connecticut, Long Island, and the Hamptons.",
+  "thumbnailUrl": [
+    "https://i.ytimg.com/vi/S7doFgCwpS8/maxresdefault.jpg",
+    "https://i.ytimg.com/vi/S7doFgCwpS8/hqdefault.jpg"
+  ],
+  "uploadDate": "2026-08-13T00:00:00-04:00",
+  "contentUrl": "https://www.youtube.com/shorts/S7doFgCwpS8",
+  "embedUrl": "https://www.youtube.com/embed/S7doFgCwpS8",
+  "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +94,46 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
 .site-footer { border-top:1px solid var(--hairline); margin-top:60px; padding:40px 20px 20px; text-align:center; font-family:'Inter',sans-serif; font-size:13px; color:var(--ivory-faint); }
 .site-footer a { color:var(--ivory-soft); text-decoration:none; }
 .site-footer a:hover { color:var(--gold); }
+
+/* Video hero — YouTube facade (click-to-play, no autoplay, no third-party JS on load) */
+:root { --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1); }
+.video-hero { max-width: 380px; margin: 30px auto 48px; }
+.video-facade {
+  position: relative; display: block; width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px; overflow: hidden;
+  background: #0a0616;
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02);
+  cursor: pointer; padding: 0;
+  transition: transform 240ms var(--ease-out-strong), box-shadow 320ms var(--ease-out-strong), border-color 240ms var(--ease-out-strong);
+}
+.video-facade:hover { transform: translateY(-3px); border-color: rgba(212, 184, 114, 0.4); box-shadow: 0 32px 70px rgba(0,0,0,0.6), 0 0 40px rgba(212, 184, 114, 0.12); }
+.video-facade:active { transform: scale(0.99); transition-duration: 120ms; }
+.video-facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 480ms var(--ease-out-strong), filter 320ms; }
+.video-facade:hover img { transform: scale(1.03); filter: brightness(1.05); }
+.video-facade::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,10,26,0) 40%, rgba(15,10,26,0.55) 100%); z-index: 1; pointer-events: none; }
+.video-play {
+  position: absolute; top: 50%; left: 50%; z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(15, 10, 26, 0.78);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 184, 114, 0.5);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 24px rgba(212, 184, 114, 0.2);
+  transition: transform 320ms var(--ease-out-strong), background 220ms var(--ease-out-strong), border-color 220ms;
+}
+.video-facade:hover .video-play { background: rgba(212, 184, 114, 0.92); border-color: rgba(212, 184, 114, 0.9); transform: translate(-50%, -50%) scale(1.06); }
+.video-facade:hover .video-play svg { fill: #0a0616; }
+.video-play svg { width: 24px; height: 24px; fill: var(--gold); margin-left: 3px; transition: fill 220ms; }
+.video-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-caption { margin-top: 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ivory-soft); line-height: 1.5; }
+.video-caption .video-caption-label { display: inline-block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-right: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .video-facade, .video-facade img, .video-play { transition-duration: 120ms !important; }
+  .video-facade:hover img { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -98,6 +154,19 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
   <!-- Section 15: Private events opener -->
   <h1>The part of the night people talk about on the way home.</h1>
   <p class="lede">Milestone birthdays, bar and bat mitzvahs, sweet sixteens, anniversaries and engagement parties, at home, at the club or on the water. Solo violin for arrivals and dinner, or the full DJ and live violin set for when the room is ready to move.</p>
+
+  <!-- Private events reel — YouTube facade, click-to-play, no autoplay, no third-party JS on load -->
+  <section class="video-hero" aria-label="Julie Schatz private event performance reel">
+    <button type="button" class="video-facade" data-yt="S7doFgCwpS8" aria-label="Play video · Private Event Violinist, Pianist, Singer AND DJ in One">
+      <img src="https://i.ytimg.com/vi/S7doFgCwpS8/maxresdefault.jpg" alt="Julie Schatz performing at a private event — violinist, pianist, singer, and DJ" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/S7doFgCwpS8/hqdefault.jpg';">
+      <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+    <p class="video-caption"><span class="video-caption-label">Private Event</span>Violinist, pianist, singer — and DJ. All in one.</p>
+    <!--
+      JULIE / ROBERT: caption placeholder. Per site-updates.md Phase 2, replace with
+      real "Venue, City. Event type, guest count." once confirmed. Do not invent.
+    -->
+  </section>
 
   <h2 class="section-h">Occasions</h2>
   <ul class="formats-list">
@@ -125,5 +194,26 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
   <p><a href="/">Home</a> · <a href="/corporate-events/">Corporate</a> · <a href="/weddings/">Weddings</a> · <a href="/blog/">Blog</a> · <a href="/privacy/">Privacy</a></p>
 </footer>
 
+<script>
+// YouTube facade: only loads iframe on user click (no autoplay with sound, no third-party JS on page load)
+(function () {
+  document.querySelectorAll('.video-facade[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-yt');
+      if (!id) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1';
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('title', btn.getAttribute('aria-label') || 'Video');
+      iframe.setAttribute('loading', 'eager');
+      btn.innerHTML = '';
+      btn.appendChild(iframe);
+      btn.style.cursor = 'default';
+      if (typeof gtag === 'function') gtag('event', 'video_play', { video_id: id, page: 'private-events' });
+    }, { once: true });
+  });
+})();
+</script>
 </body>
 </html>
