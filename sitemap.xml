@@ -121,6 +121,30 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://julieschatzmusic.com/moma-nyc/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://julieschatzmusic.com/webster-hall-nyc/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://julieschatzmusic.com/sony-hall-nyc/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://julieschatzmusic.com/moxy-hotel-nyc/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://julieschatzmusic.com/private-events/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
