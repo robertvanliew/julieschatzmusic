@@ -128,6 +128,22 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
 .video-facade:hover .video-play svg { fill: #0a0616; }
 .video-play svg { width: 24px; height: 24px; fill: var(--gold); margin-left: 3px; transition: fill 220ms; }
 .video-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-toggle {
+  position: absolute; top: 12px; right: 12px; z-index: 3;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(15, 10, 26, 0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 184, 114, 0.55);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0;
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity 200ms var(--ease-out-strong), transform 200ms var(--ease-out-strong), background 180ms, border-color 180ms;
+}
+.video-toggle svg { width: 16px; height: 16px; fill: var(--gold); }
+.video-toggle:hover { background: rgba(212, 184, 114, 0.92); border-color: rgba(212, 184, 114, 0.9); }
+.video-toggle:hover svg { fill: #0a0616; }
+.video-facade.is-playing .video-toggle { opacity: 1; transform: translateY(0); }
+.video-facade.is-playing:hover .video-toggle,
+.video-facade.is-playing:focus-within .video-toggle { opacity: 1; }
 .video-caption { margin-top: 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ivory-soft); line-height: 1.5; }
 .video-caption .video-caption-label { display: inline-block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-right: 6px; }
 @media (prefers-reduced-motion: reduce) {
@@ -266,23 +282,60 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
 </footer>
 
 <script>
-// YouTube facade: only loads iframe on user click (no autoplay with sound, no third-party JS on page load)
+// YouTube facade: loads iframe on first click, then a corner pause/play toggle
+// controls the player via postMessage (enablejsapi=1) — no full YT API library needed.
 (function () {
+  var PLAY_ICON  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var PAUSE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+
   document.querySelectorAll('.video-facade[data-yt]').forEach(function (btn) {
+    var id = btn.getAttribute('data-yt');
+    if (!id) return;
+    var iframe = null;
+    var toggle = null;
+    var playing = false;
+
+    function post(func) {
+      if (!iframe || !iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+    }
+
     btn.addEventListener('click', function () {
-      var id = btn.getAttribute('data-yt');
-      if (!id) return;
-      var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1&iv_load_policy=3';
+      if (iframe) return;
+      iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1';
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       iframe.setAttribute('title', btn.getAttribute('aria-label') || 'Video');
       iframe.setAttribute('loading', 'eager');
       btn.innerHTML = '';
       btn.appendChild(iframe);
+
+      toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'video-toggle';
+      toggle.setAttribute('aria-label', 'Pause video');
+      toggle.innerHTML = PAUSE_ICON;
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (playing) {
+          post('pauseVideo');
+          playing = false;
+          toggle.innerHTML = PLAY_ICON;
+          toggle.setAttribute('aria-label', 'Play video');
+        } else {
+          post('playVideo');
+          playing = true;
+          toggle.innerHTML = PAUSE_ICON;
+          toggle.setAttribute('aria-label', 'Pause video');
+        }
+      });
+      btn.appendChild(toggle);
+      btn.classList.add('is-playing');
+      playing = true;
       btn.style.cursor = 'default';
       if (typeof gtag === 'function') gtag('event', 'video_play', { video_id: id, page: 'private-events' });
-    }, { once: true });
+    });
   });
 })();
 </script>
