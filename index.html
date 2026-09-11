@@ -4534,31 +4534,22 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 .vertical-chooser-inner {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 18px;
+  gap: 44px;
 }
-@media (max-width: 900px) { .vertical-chooser-inner { grid-template-columns: 1fr; gap: 14px; } .vertical-chooser { padding: 50px 20px 20px; } }
+@media (max-width: 900px) { .vertical-chooser-inner { grid-template-columns: 1fr; gap: 38px; } .vertical-chooser { padding: 50px 20px 20px; } }
+/* Flat text treatment — deliberately NO panel, border, radius, shadow or
+   lift. The hero's purple glow sits behind this section, so any box or
+   shadow here paints visible rectangles against it. Keep this rule free of
+   background / border / box-shadow / transform. */
 .vchoose {
   display: flex; flex-direction: column; gap: 12px;
-  padding: 32px 28px;
-  /* Opaque, not translucent: the hero's purple glow sits behind this section
-     and a see-through card reads differently in every column. Solid = the
-     three cards look identical wherever they land. */
-  background: #1A1030;
-  border: 1px solid rgba(244, 239, 230, 0.22);
-  border-left: 3px solid rgba(168, 85, 247, 0.9);
-  border-radius: 6px;
+  padding: 0 24px 0 0;
+  background: none;
+  border: 0;
   text-decoration: none;
   color: var(--ivory);
-  /* No drop shadow — a dark shadow over the hero glow paints visible
-     rectangular halos around each card. Border does the separation. */
-  transition: border-color 0.25s cubic-bezier(0.23, 1, 0.32, 1), background 0.25s cubic-bezier(0.23, 1, 0.32, 1), transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.vchoose:hover {
-  background: #221540;
-  border-color: rgba(212, 184, 114, 0.55);
-  border-left-color: rgba(212, 184, 114, 0.95);
-  transform: translateY(-2px);
-}
+@media (max-width: 900px) { .vchoose { padding: 0; } }
 .vchoose__kicker {
   font-family: 'Inter', sans-serif;
   font-size: 10px; font-weight: 600;
