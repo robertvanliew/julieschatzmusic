@@ -4527,6 +4527,13 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   line-height: 1.45;
 }
 .vertical-chooser {
+  /* Required: #shader-bg is a position:fixed WebGL canvas at z-index:0
+     covering the viewport. A static, unpositioned section paints BELOW it
+     (positioned z-index:0 elements paint above non-positioned content), so
+     without this the canvas washes this section out. Every other top-level
+     section on this page carries the same relative/z-index:10 pair. */
+  position: relative;
+  z-index: 10;
   padding: 80px 32px 40px;
   max-width: 1200px;
   margin: 0 auto;
@@ -5516,6 +5523,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 </section>
 <style>
 .corporate-callout-section {
+  /* Same as .vertical-chooser — must sit above the fixed #shader-bg canvas
+     (z-index:0) or the canvas paints over this section. */
+  position: relative;
+  z-index: 10;
   padding: 80px 32px 40px;
   max-width: 1100px;
   margin: 0 auto;
