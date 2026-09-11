@@ -4540,20 +4540,24 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 .vchoose {
   display: flex; flex-direction: column; gap: 12px;
   padding: 32px 28px;
-  background: linear-gradient(160deg, rgba(58, 34, 102, 0.55) 0%, rgba(22, 14, 42, 0.85) 100%);
-  border: 1px solid rgba(244, 239, 230, 0.28);
+  /* Opaque, not translucent: the hero's purple glow sits behind this section
+     and a see-through card reads differently in every column. Solid = the
+     three cards look identical wherever they land. */
+  background: #1A1030;
+  border: 1px solid rgba(244, 239, 230, 0.22);
   border-left: 3px solid rgba(168, 85, 247, 0.9);
   border-radius: 6px;
   text-decoration: none;
   color: var(--ivory);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  /* No drop shadow — a dark shadow over the hero glow paints visible
+     rectangular halos around each card. Border does the separation. */
+  transition: border-color 0.25s cubic-bezier(0.23, 1, 0.32, 1), background 0.25s cubic-bezier(0.23, 1, 0.32, 1), transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .vchoose:hover {
-  border-color: rgba(212, 184, 114, 0.7);
-  border-left-color: rgba(212, 184, 114, 1);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(123, 44, 191, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: #221540;
+  border-color: rgba(212, 184, 114, 0.55);
+  border-left-color: rgba(212, 184, 114, 0.95);
+  transform: translateY(-2px);
 }
 .vchoose__kicker {
   font-family: 'Inter', sans-serif;
