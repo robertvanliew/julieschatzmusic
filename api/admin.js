@@ -28,6 +28,7 @@
 
 const crypto = require('crypto');
 const build = require('../lib/admin-build.js');
+const indexnow = require('../lib/indexnow.js');
 
 const REPO = process.env.GITHUB_REPO || 'robertvanliew/julieschatzmusic';
 const BRANCH = process.env.GITHUB_BRANCH || 'main';
@@ -122,6 +123,15 @@ async function commit(message, changes) {
 
 // ───────────────────────── actions ─────────────────────────
 
+// Tell Bing and friends a page changed. Awaited (a serverless function is
+// frozen once it responds, so nothing can run "later"). IndexNow queues the
+// crawl, so the minute the deploy takes is not a problem in practice.
+// Failures are logged and never surface to the admin.
+async function ping(paths) {
+  const r = await indexnow.submit(paths);
+  if (!r.ok) console.error('[admin] IndexNow ' + r.status, r.error || '');
+}
+
 function todayNY() {
   // YYYY-MM-DD in New York, so an event stays listed through its own day.
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
@@ -140,6 +150,7 @@ async function saveEvents(body) {
   changes['index.html'] = build.applyEvents(index, events, todayNY());
   changes[EVENTS_PATH] = JSON.stringify(events, null, 2) + '\n';
   await commit('admin: update event dates (' + events.length + ' on file)', changes);
+  await ping(['/']);
   return { events };
 }
 
@@ -168,6 +179,7 @@ async function savePost(body) {
   Object.assign(changes, build.applyPosts(await postFiles(), next));
   changes[POSTS_PATH] = JSON.stringify(next, null, 2) + '\n';
   await commit('admin: ' + (post.status === 'published' ? 'publish' : 'save draft') + ' "' + post.title + '"', changes);
+  await ping(['/blog/'].concat(post.status === 'published' ? ['/blog/' + post.slug + '/'] : []).concat(before && before.status === 'published' ? ['/blog/' + before.slug + '/'] : []));
   return { posts: next, post };
 }
 
@@ -182,6 +194,7 @@ async function deletePost(body) {
   Object.assign(changes, build.applyPosts(await postFiles(), next));
   changes[POSTS_PATH] = JSON.stringify(next, null, 2) + '\n';
   await commit('admin: delete "' + target.title + '"', changes);
+  await ping(['/blog/'].concat(target.status === 'published' ? ['/blog/' + slug + '/'] : []));
   return { posts: next };
 }
 
