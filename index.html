@@ -1241,10 +1241,10 @@ nav {
   position: static;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 36px 56px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 36px 32px;
   width: 100%;
-  max-width: 920px;
+  max-width: 1080px;
   text-align: center;
   justify-items: center;
 }
@@ -4516,7 +4516,25 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     </a>
   </div>
 </section>
+<section class="seasonal-card" data-brief-seasonal aria-label="Holiday bookings">
+  <span class="seasonal-card__kicker">Booking December 2026</span>
+  <p class="seasonal-card__title">Holiday parties and New Year's Eve</p>
+  <p class="seasonal-card__links">
+    <a href="/corporate-events/holiday-parties/">Corporate holiday parties</a>
+    <a href="/private-events/holiday-parties/">Christmas and holiday parties</a>
+    <a href="/new-years-eve-violinist-nyc/">New Year's Eve</a>
+  </p>
+</section>
 <style>
+/* Same stacking rule as .vertical-chooser: must sit above the fixed #shader-bg canvas. */
+.seasonal-card { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 8px 32px 40px; }
+.seasonal-card__kicker { display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: #d4b872; margin-bottom: 8px; }
+.seasonal-card__title { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 2vw, 26px); line-height: 1.2; color: #fff; margin: 0 0 12px; }
+.seasonal-card__links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; }
+.seasonal-card__links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #a855f7; text-decoration: none; }
+.seasonal-card__links a::after { content: ' \2192'; }
+.seasonal-card__links a:hover { color: #d4b872; }
+@media (max-width: 900px) { .seasonal-card { padding: 8px 20px 30px; } }
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -5187,6 +5205,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <span class="editorial-kicker">Listen</span>
       <h2 class="editorial-h2">Latest Tracks</h2>
     </div>
+    <p data-brief-link style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.6;color:rgba(244,239,230,0.85);max-width:66ch;margin:0 auto 26px;text-align:center;">Want this live at your event? See <a href="/jazz-violinist-nyc-long-island/" style="color:#fff;text-decoration:underline;text-decoration-color:rgba(212,184,114,0.5);text-underline-offset:3px;">jazz violinist for hire in NYC and Long Island</a>.</p>
     <div class="music-player">
       <ol class="track-list" id="trackList">
 
@@ -5776,6 +5795,14 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
           <li><a href="/wedding-ceremony-songs/">Repertoire</a></li>
           <li><a href="/first-dance-song-finder/">First Dance Song Finder</a></li>
           <li><a href="#highlights">Performance Highlights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" data-footer-holiday>
+        <h3>Holiday</h3>
+        <ul>
+          <li><a href="/corporate-events/holiday-parties/">Corporate Holiday Parties</a></li>
+          <li><a href="/private-events/holiday-parties/">Christmas &amp; Holiday Parties</a></li>
+          <li><a href="/new-years-eve-violinist-nyc/">New Year's Eve</a></li>
         </ul>
       </div>
       <div class="footer-col">
