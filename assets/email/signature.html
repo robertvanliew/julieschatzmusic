@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Email signature</title>
+<style>
+  body { margin: 0; padding: 40px 20px; background: #f3eff8; font-family: Arial, Helvetica, sans-serif; color: #333; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .how { background: #fff; border: 1px solid #ddd6e8; border-radius: 8px; padding: 22px 24px; margin-bottom: 28px; font-size: 15px; line-height: 1.6; }
+  .how h1 { font-size: 18px; margin: 0 0 10px; }
+  .how ol { margin: 0; padding-left: 20px; }
+  .how code { background: #f3eff8; padding: 1px 5px; border-radius: 3px; }
+  .card { background: #fff; border: 1px solid #ddd6e8; border-radius: 8px; padding: 26px; }
+  .label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #8d86a0; margin: 0 0 14px; }
+  button { margin-top: 18px; padding: 12px 20px; border: 0; border-radius: 6px; background: #7B2CBF; color: #fff; font: bold 14px Arial, sans-serif; cursor: pointer; }
+  .ok { color: #2e7d4f; font-size: 14px; margin-left: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="how">
+    <h1>Julie's email signature</h1>
+    <ol>
+      <li>Click <strong>Copy signature</strong> below (or select everything inside the box and copy it).</li>
+      <li><strong>Gmail:</strong> Settings (gear) → See all settings → General → Signature → Create new → paste → scroll down and Save changes.</li>
+      <li><strong>Apple Mail:</strong> Mail → Settings → Signatures → + → paste. Untick "Always match my default message font".</li>
+      <li><strong>Outlook:</strong> Settings → Mail → Compose and reply → Email signature → paste → Save.</li>
+    </ol>
+    <p style="margin:12px 0 0;">The logo loads from julieschatzmusic.com, so it shows in every email without attaching a file.</p>
+  </div>
+
+  <div class="card">
+    <p class="label">Preview</p>
+
+    <!-- ===== signature starts ===== -->
+    <div id="signature">
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#1a1428;">
+  <tr>
+    <td valign="middle" style="padding:0 22px 0 0;border-right:2px solid #d4b872;">
+      <a href="https://julieschatzmusic.com/" style="text-decoration:none;"><img src="https://julieschatzmusic.com/assets/email/logo-dark.png" width="120" height="60" alt="Julie Schatz Music" style="display:block;width:120px;height:auto;border:0;"></a>
+    </td>
+    <td valign="middle" style="padding:0 0 0 22px;">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:19px;color:#1a1428;line-height:1.2;">Julie Schatz</div>
+      <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#7B2CBF;padding:5px 0 8px;">Violinist &middot; Pianist &middot; Vocalist &middot; Producer</div>
+      <div style="font-size:13px;line-height:1.7;color:#4a4458;">
+        <a href="https://julieschatzmusic.com/" style="color:#1a1428;text-decoration:none;">julieschatzmusic.com</a><br>
+        <a href="tel:+16313659554" style="color:#1a1428;text-decoration:none;">631-365-9554</a>
+        &nbsp;&middot;&nbsp;
+        <a href="mailto:bookings@julieschatzmusic.com" style="color:#1a1428;text-decoration:none;">bookings@julieschatzmusic.com</a><br>
+        <span style="color:#8d86a0;">Weddings, corporate and private events &middot; NYC, Long Island, NJ and CT</span>
+      </div>
+    </td>
+  </tr>
+</table>
+    </div>
+    <!-- ===== signature ends ===== -->
+
+    <button type="button" id="copyBtn">Copy signature</button><span class="ok" id="ok" hidden>Copied. Now paste it into your email settings.</span>
+  </div>
+</div>
+<script>
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var sig = document.getElementById('signature');
+    var range = document.createRange(); range.selectNodeContents(sig);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    var done = false;
+    try { done = document.execCommand('copy'); } catch (e) {}
+    if (!done && navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([sig.innerHTML], { type: 'text/html' }), 'text/plain': new Blob([sig.innerText], { type: 'text/plain' }) })]);
+      done = true;
+    }
+    document.getElementById('ok').hidden = !done;
+  });
+</script>
+</body>
+</html>
