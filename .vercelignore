@@ -1,0 +1,3 @@
+# Admin data (events, posts and drafts). Read from the repo by /api/admin,
+# never served as a public file.
+/data/

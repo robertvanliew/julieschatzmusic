@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /assets/uploads/
+Disallow: /admin/
+Disallow: /api/
 Disallow: /*.json$
 
 # AI search bots — explicitly allowed for AI citation eligibility

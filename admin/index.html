@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Admin · Julie Schatz Music</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0F0A1A; --panel: #181029; --panel-2: #20163a; --line: rgba(244, 239, 230, 0.16); --line-strong: rgba(244, 239, 230, 0.3);
+  --ivory: #F4EFE6; --dim: rgba(244, 239, 230, 0.78); --soft: rgba(244, 239, 230, 0.58);
+  --violet: #7B2CBF; --violet-2: #a855f7; --gold: #d4b872; --red: #ff8a80; --green: #8fd6a3;
+}
+html, body { min-height: 100vh; background: var(--bg); color: var(--ivory); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+[hidden] { display: none !important; }
+a { color: var(--gold); }
+button { font: inherit; cursor: pointer; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 120px; }
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.top h1 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 26px; }
+.top small { display: block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.top-actions { display: flex; gap: 10px; align-items: center; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 8px; border: 1px solid var(--line-strong); background: transparent; color: var(--ivory); font-size: 14px; font-weight: 600; text-decoration: none; }
+.btn:hover { border-color: var(--ivory); }
+.btn:disabled { opacity: 0.5; cursor: wait; }
+.btn-primary { background: linear-gradient(90deg, var(--violet), var(--violet-2)); border-color: transparent; color: #fff; }
+.btn-primary:hover { filter: brightness(1.1); border-color: transparent; }
+.btn-quiet { border-color: transparent; color: var(--dim); padding: 0 12px; }
+.btn-danger { color: var(--red); border-color: rgba(255, 138, 128, 0.4); }
+.btn-small { min-height: 38px; padding: 0 14px; font-size: 13px; }
+
+/* tabs */
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+.tab { min-height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--dim); font-size: 14px; font-weight: 600; }
+.tab[aria-selected="true"] { background: var(--gold); border-color: var(--gold); color: #0F0A1A; }
+
+/* panels + forms */
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-bottom: 18px; }
+.panel h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 24px; margin-bottom: 6px; }
+.help { color: var(--dim); font-size: 15px; margin-bottom: 18px; max-width: 70ch; }
+label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+label .opt { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--soft); }
+input[type="text"], input[type="date"], input[type="password"], textarea, select {
+  width: 100%; min-height: 46px; padding: 10px 12px; background: rgba(244, 239, 230, 0.05); border: 1px solid var(--line-strong); border-radius: 8px; color: var(--ivory); font: inherit; font-size: 16px; color-scheme: dark;
+}
+textarea { resize: vertical; line-height: 1.6; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--violet-2); background: rgba(244, 239, 230, 0.08); }
+.field { margin-bottom: 16px; }
+.hint { font-size: 13px; color: var(--soft); margin-top: 6px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .row2 { grid-template-columns: 1fr; } }
+
+/* events */
+.event { display: grid; grid-template-columns: 170px 1fr 1fr auto; gap: 12px; align-items: end; padding: 16px 0; border-top: 1px solid var(--line); }
+.event:first-of-type { border-top: 0; }
+.event .wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.event.is-past { opacity: 0.55; }
+.event .past-note { grid-column: 1 / -1; font-size: 13px; color: var(--gold); }
+@media (max-width: 760px) { .event { grid-template-columns: 1fr; } .event .wide { grid-template-columns: 1fr; } }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 20px; }
+
+/* posts */
+.post-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.post-row:first-of-type { border-top: 0; }
+.post-row strong { display: block; font-weight: 600; }
+.post-row span { font-size: 13px; color: var(--soft); }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 8px; }
+.badge.live { background: rgba(143, 214, 163, 0.16); color: var(--green); }
+.badge.draft { background: rgba(212, 184, 114, 0.16); color: var(--gold); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.cover-preview { margin-top: 10px; max-width: 320px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.cover-preview img { display: block; width: 100%; height: auto; }
+.preview { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-top: 10px; font-family: Georgia, serif; font-size: 18px; line-height: 1.7; color: var(--dim); }
+.preview h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: #fff; font-size: 26px; margin: 22px 0 10px; }
+.preview h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: #fff; font-size: 21px; margin: 18px 0 8px; }
+.preview p { margin-bottom: 14px; }
+.preview ul, .preview ol { margin: 0 0 14px 1.3em; }
+.preview img { max-width: 100%; height: auto; border-radius: 6px; }
+.preview blockquote { border-left: 3px solid var(--violet-2); padding-left: 16px; font-style: italic; margin: 16px 0; }
+.preview a { color: #fff; }
+
+/* status */
+.status { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); max-width: calc(100vw - 32px); padding: 14px 20px; border-radius: 10px; background: #2a1d4a; border: 1px solid var(--line-strong); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); font-size: 15px; z-index: 50; }
+.status.ok { border-color: rgba(143, 214, 163, 0.6); }
+.status.err { border-color: rgba(255, 138, 128, 0.7); color: #ffd6d2; }
+
+/* login */
+.login { max-width: 420px; margin: 12vh auto 0; }
+.login .panel { padding: 30px; }
+.error { color: var(--red); font-size: 14px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ───────────── sign in ───────────── -->
+<div class="wrap login" id="loginView" hidden>
+  <div class="panel">
+    <small style="display:block;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Julie Schatz Music</small>
+    <h2>Site admin</h2>
+    <p class="help">Sign in to add event dates and write blog posts.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="loginBtn" style="width:100%;">Sign in</button>
+      <p class="error" id="loginError" hidden></p>
+    </form>
+  </div>
+</div>
+
+<!-- ───────────── setup needed ───────────── -->
+<div class="wrap login" id="setupView" hidden>
+  <div class="panel">
+    <h2>Almost ready</h2>
+    <p class="help">The admin is built but not switched on yet. Two settings need to be added in Vercel: <strong>ADMIN_PASSWORD</strong> and <strong>GITHUB_TOKEN</strong>. Once they are in and the site has redeployed, reload this page.</p>
+  </div>
+</div>
+
+<!-- ───────────── app ───────────── -->
+<div class="wrap" id="appView" hidden>
+  <header class="top">
+    <h1><small>Julie Schatz Music</small>Site admin</h1>
+    <div class="top-actions">
+      <a class="btn btn-quiet btn-small" href="/" target="_blank" rel="noopener">View site</a>
+      <button class="btn btn-small" id="logoutBtn" type="button">Sign out</button>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabEvents" aria-selected="true" type="button">Event dates</button>
+    <button class="tab" role="tab" id="tabPosts" aria-selected="false" type="button">Blog posts</button>
+  </div>
+
+  <!-- events -->
+  <section id="eventsView">
+    <div class="panel">
+      <h2>Upcoming events</h2>
+      <p class="help">These show in the calendar on the homepage, soonest first. Use a general event type and the town only, never a client's name. Past dates come off the site on their own.</p>
+      <div id="eventList"></div>
+      <div class="bar">
+        <button class="btn" id="addEvent" type="button">+ Add a date</button>
+        <button class="btn btn-quiet" id="clearPast" type="button" hidden>Remove past dates</button>
+        <span style="flex:1"></span>
+        <button class="btn btn-primary" id="saveEvents" type="button">Save dates</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- posts -->
+  <section id="postsView" hidden>
+    <div class="panel" id="postListPanel">
+      <h2>Blog posts</h2>
+      <p class="help">Posts written here appear on the blog page. A draft is saved but not shown to visitors until you publish it.</p>
+      <div id="postList"></div>
+      <div class="bar"><button class="btn btn-primary" id="newPost" type="button">+ New post</button></div>
+    </div>
+
+    <div class="panel" id="postEditor" hidden>
+      <h2 id="editorHeading">New post</h2>
+      <p class="help" id="editorUrl"></p>
+      <div class="field">
+        <label for="pTitle">Title</label>
+        <input type="text" id="pTitle" maxlength="120">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="pDate">Date</label>
+          <input type="date" id="pDate">
+        </div>
+        <div class="field">
+          <label for="pCategory">Category <span class="opt">(optional)</span></label>
+          <input type="text" id="pCategory" maxlength="50" placeholder="Wedding Ceremonies">
+        </div>
+      </div>
+      <div class="field">
+        <label for="pExcerpt">Short summary</label>
+        <textarea id="pExcerpt" rows="3" maxlength="300"></textarea>
+        <p class="hint">One or two sentences. This is what shows in Google and on the blog page. <span id="excerptCount"></span></p>
+      </div>
+      <div class="field">
+        <label>Cover photo <span class="opt">(optional)</span></label>
+        <input type="file" id="pCoverFile" accept="image/jpeg,image/png,image/webp">
+        <div class="cover-preview" id="coverPreview" hidden><img alt=""></div>
+        <input type="text" id="pCoverAlt" maxlength="160" placeholder="Describe the photo in a few words" style="margin-top:10px;">
+      </div>
+      <div class="field">
+        <label for="pBody">Post</label>
+        <div class="toolbar">
+          <button class="btn btn-small" type="button" data-md="h2">Heading</button>
+          <button class="btn btn-small" type="button" data-md="bold">Bold</button>
+          <button class="btn btn-small" type="button" data-md="italic">Italic</button>
+          <button class="btn btn-small" type="button" data-md="link">Link</button>
+          <button class="btn btn-small" type="button" data-md="list">List</button>
+          <button class="btn btn-small" type="button" data-md="quote">Quote</button>
+          <button class="btn btn-small" type="button" id="insertImage">Add photo</button>
+          <input type="file" id="bodyImageFile" accept="image/jpeg,image/png,image/webp" hidden>
+          <button class="btn btn-small btn-quiet" type="button" id="togglePreview">Preview</button>
+        </div>
+        <textarea id="pBody" rows="18" placeholder="Write the post here. Leave a blank line between paragraphs."></textarea>
+        <div class="preview" id="preview" hidden></div>
+      </div>
+      <div class="field">
+        <label for="pTags">Tags <span class="opt">(optional, separate with commas)</span></label>
+        <input type="text" id="pTags" placeholder="Long Island Wedding, Ceremony Music">
+      </div>
+      <div class="bar">
+        <button class="btn btn-quiet" id="cancelPost" type="button">Back to posts</button>
+        <button class="btn btn-danger" id="deletePost" type="button" hidden>Delete</button>
+        <span style="flex:1"></span>
+        <button class="btn" id="saveDraft" type="button">Save as draft</button>
+        <button class="btn btn-primary" id="publishPost" type="button">Publish</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="status" id="status" hidden role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { events: [], posts: [], today: '', editing: null, localImages: {} };
+
+  // ───────── api ─────────
+  function api(action, data) {
+    return fetch('/api/admin', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'jsm-admin' },
+      body: JSON.stringify(Object.assign({ action: action }, data || {}))
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (json) {
+        if (res.status === 503 && json.setup) { show('setup'); throw new Error(json.error); }
+        if (res.status === 401 && json.signedOut) { show('login'); throw new Error(json.error); }
+        if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.');
+        return json;
+      });
+    });
+  }
+
+  // ───────── ui helpers ─────────
+  var statusTimer = null;
+  function status(msg, kind, sticky) {
+    var el = $('status');
+    el.textContent = msg;
+    el.className = 'status ' + (kind || '');
+    el.hidden = false;
+    clearTimeout(statusTimer);
+    if (!sticky) statusTimer = setTimeout(function () { el.hidden = true; }, kind === 'err' ? 9000 : 6000);
+  }
+  function show(view) {
+    $('loginView').hidden = view !== 'login';
+    $('setupView').hidden = view !== 'setup';
+    $('appView').hidden = view !== 'app';
+    if (view === 'login') setTimeout(function () { $('password').focus(); }, 50);
+  }
+  function busy(btn, on, label) {
+    if (on) { btn.dataset.label = btn.textContent; btn.textContent = label || 'Saving…'; btn.disabled = true; }
+    else { btn.textContent = btn.dataset.label || btn.textContent; btn.disabled = false; }
+  }
+  function el(tag, attrs, children) {
+    var n = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'class') n.className = attrs[k];
+      else n.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { n.appendChild(c); });
+    return n;
+  }
+  var LIVE_NOTE = ' The site updates in about a minute.';
+
+  // ───────── session ─────────
+  function boot() {
+    api('load').then(function (data) {
+      state.events = data.events || [];
+      state.posts = data.posts || [];
+      state.today = data.today;
+      show('app');
+      renderEvents();
+      renderPosts();
+    }).catch(function () { /* show() already handled by api() */ if ($('appView').hidden && $('setupView').hidden) show('login'); });
+  }
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = $('loginBtn');
+    $('loginError').hidden = true;
+    busy(btn, true, 'Signing in…');
+    api('login', { password: $('password').value }).then(function () {
+      $('password').value = '';
+      boot();
+    }).catch(function (err) {
+      $('loginError').textContent = err.message;
+      $('loginError').hidden = false;
+    }).then(function () { busy(btn, false); });
+  });
+  $('logoutBtn').addEventListener('click', function () {
+    api('logout').catch(function () {}).then(function () { show('login'); });
+  });
+
+  // ───────── tabs ─────────
+  function tab(which) {
+    $('tabEvents').setAttribute('aria-selected', which === 'events');
+    $('tabPosts').setAttribute('aria-selected', which === 'posts');
+    $('eventsView').hidden = which !== 'events';
+    $('postsView').hidden = which !== 'posts';
+  }
+  $('tabEvents').addEventListener('click', function () { tab('events'); });
+  $('tabPosts').addEventListener('click', function () { tab('posts'); });
+
+  // ───────── events ─────────
+  function field(labelText, input, optional) {
+    var l = el('label', {});
+    l.appendChild(document.createTextNode(labelText));
+    if (optional) { l.appendChild(document.createTextNode(' ')); l.appendChild(el('span', { class: 'opt', text: '(optional)' })); }
+    return el('div', {}, [l, input]);
+  }
+  function renderEvents() {
+    var list = $('eventList');
+    list.innerHTML = '';
+    if (!state.events.length) list.appendChild(el('p', { class: 'help', text: 'No dates yet. Add the first one below.' }));
+    var anyPast = false;
+    state.events.forEach(function (ev, i) {
+      var past = ev.date && state.today && ev.date < state.today;
+      if (past) anyPast = true;
+      var mk = function (key, type, ph, max) {
+        var inp = el('input', { type: type, value: ev[key] || '', placeholder: ph || '', maxlength: max || 80 });
+        inp.addEventListener('input', function () { ev[key] = inp.value; });
+        return inp;
+      };
+      var remove = el('button', { class: 'btn btn-small btn-danger', type: 'button', text: 'Remove', 'aria-label': 'Remove this date' });
+      remove.addEventListener('click', function () { state.events.splice(i, 1); renderEvents(); });
+      var row = el('div', { class: 'event' + (past ? ' is-past' : '') }, [
+        field('Date', mk('date', 'date')),
+        field('Event type', mk('title', 'text', 'Wedding Ceremony')),
+        field('Town', mk('city', 'text', 'Freehold, NJ')),
+        remove,
+        el('div', { class: 'wide' }, [
+          field('Venue', mk('venue', 'text', 'Oheka Castle'), true),
+          field('Time', mk('time', 'text', '4:00 – 5:00 PM', 40), true),
+          field('What you are playing', mk('format', 'text', 'Solo Violin', 60), true)
+        ])
+      ]);
+      if (past) row.appendChild(el('div', { class: 'past-note', text: 'This date has passed and is no longer shown on the site.' }));
+      list.appendChild(row);
+    });
+    $('clearPast').hidden = !anyPast;
+  }
+  $('addEvent').addEventListener('click', function () {
+    state.events.push({ id: '', date: '', title: '', city: '', venue: '', time: '', format: '' });
+    renderEvents();
+    var rows = $('eventList').querySelectorAll('.event');
+    var last = rows[rows.length - 1];
+    if (last) { last.scrollIntoView({ block: 'center', behavior: 'smooth' }); last.querySelector('input').focus(); }
+  });
+  $('clearPast').addEventListener('click', function () {
+    state.events = state.events.filter(function (e) { return !(e.date && e.date < state.today); });
+    renderEvents();
+    status('Past dates removed. Press "Save dates" to keep the change.');
+  });
+  $('saveEvents').addEventListener('click', function () {
+    var btn = $('saveEvents');
+    busy(btn, true);
+    api('saveEvents', { events: state.events }).then(function (data) {
+      state.events = data.events;
+      renderEvents();
+      status('Dates saved.' + LIVE_NOTE, 'ok');
+    }).catch(function (err) { status(err.message, 'err'); }).then(function () { busy(btn, false); });
+  });
+
+  // ───────── posts: list ─────────
+  function prettyDate(ymd) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd || '');
+    if (!m) return '';
+    return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  function renderPosts() {
+    var list = $('postList');
+    list.innerHTML = '';
+    var posts = state.posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    if (!posts.length) list.appendChild(el('p', { class: 'help', text: 'Nothing written here yet. The two posts already on the blog were built by hand and stay as they are.' }));
+    posts.forEach(function (p) {
+      var edit = el('button', { class: 'btn btn-small', type: 'button', text: 'Edit' });
+      edit.addEventListener('click', function () { openEditor(p); });
+      var info = el('div', {}, [
+        el('strong', { text: p.title }),
+        el('span', {}, [
+          el('span', { class: 'badge ' + (p.status === 'published' ? 'live' : 'draft'), text: p.status === 'published' ? 'Published' : 'Draft' }),
+          document.createTextNode(prettyDate(p.date))
+        ])
+      ]);
+      list.appendChild(el('div', { class: 'post-row' }, [info, edit]));
+    });
+  }
+
+  // ───────── posts: editor ─────────
+  function slugify(s) {
+    return String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+  }
+  function openEditor(post) {
+    var isNew = !post;
+    state.editing = isNew ? { slug: '', cover: '', isNew: true } : { slug: post.slug, cover: post.cover || '', isNew: false, wasPublished: post.status === 'published' };
+    post = post || { title: '', date: state.today, category: '', excerpt: '', body: '', tags: [], coverAlt: '' };
+    $('editorHeading').textContent = isNew ? 'New post' : 'Edit post';
+    $('pTitle').value = post.title || '';
+    $('pDate').value = post.date || state.today;
+    $('pCategory').value = post.category === 'Notes' ? '' : (post.category || '');
+    $('pExcerpt').value = post.excerpt || '';
+    $('pBody').value = post.body || '';
+    $('pTags').value = (post.tags || []).join(', ');
+    $('pCoverAlt').value = post.coverAlt || '';
+    $('pCoverFile').value = '';
+    showCover(state.editing.cover);
+    $('deletePost').hidden = isNew;
+    $('publishPost').textContent = state.editing.wasPublished ? 'Save changes' : 'Publish';
+    $('saveDraft').textContent = state.editing.wasPublished ? 'Unpublish (back to draft)' : 'Save as draft';
+    $('preview').hidden = true; $('pBody').hidden = false; $('togglePreview').textContent = 'Preview';
+    updateUrl(); updateCount();
+    $('postListPanel').hidden = true;
+    $('postEditor').hidden = false;
+    window.scrollTo(0, 0);
+  }
+  function closeEditor() { $('postEditor').hidden = true; $('postListPanel').hidden = false; state.editing = null; renderPosts(); }
+  function updateUrl() {
+    var slug = state.editing && !state.editing.isNew ? state.editing.slug : slugify($('pTitle').value);
+    $('editorUrl').textContent = slug ? 'Web address: julieschatzmusic.com/blog/' + slug + '/' : 'The web address is made from the title.';
+  }
+  function updateCount() { $('excerptCount').textContent = $('pExcerpt').value.length + ' of 300 characters.'; }
+  $('pTitle').addEventListener('input', updateUrl);
+  $('pExcerpt').addEventListener('input', updateCount);
+  $('newPost').addEventListener('click', function () { openEditor(null); });
+  $('cancelPost').addEventListener('click', closeEditor);
+
+  function showCover(url) {
+    var box = $('coverPreview');
+    if (!url) { box.hidden = true; return; }
+    box.querySelector('img').src = state.localImages[url] || url;
+    box.hidden = false;
+  }
+
+  // Resize in the browser so uploads stay small, then send as base64.
+  function prepareImage(file) {
+    return new Promise(function (resolve, reject) {
+      if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return reject(new Error('Choose a JPG, PNG or WebP photo.'));
+      var img = new Image();
+      var objectUrl = URL.createObjectURL(file);
+      img.onload = function () {
+        var max = 1600, scale = Math.min(1, max / Math.max(img.width, img.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        var dataUrl = c.toDataURL('image/jpeg', 0.85);
+        resolve({ filename: file.name.replace(/\.[^.]+$/, '') + '.jpg', data: dataUrl.split(',')[1], local: dataUrl });
+        URL.revokeObjectURL(objectUrl);
+      };
+      img.onerror = function () { URL.revokeObjectURL(objectUrl); reject(new Error('That photo could not be read. Try a different one.')); };
+      img.src = objectUrl;
+    });
+  }
+  function upload(file) {
+    status('Uploading photo…', '', true);
+    return prepareImage(file).then(function (prep) {
+      return api('uploadImage', { filename: prep.filename, data: prep.data }).then(function (res) {
+        state.localImages[res.url] = prep.local; // shown from memory until the site redeploys
+        status('Photo uploaded.', 'ok');
+        return res.url;
+      });
+    });
+  }
+  $('pCoverFile').addEventListener('change', function () {
+    var file = this.files[0];
+    if (!file) return;
+    upload(file).then(function (url) { state.editing.cover = url; showCover(url); })
+      .catch(function (err) { status(err.message, 'err'); });
+  });
+  $('insertImage').addEventListener('click', function () { $('bodyImageFile').click(); });
+  $('bodyImageFile').addEventListener('change', function () {
+    var file = this.files[0], input = this;
+    if (!file) return;
+    upload(file).then(function (url) { insert('\n\n![Describe the photo](' + url + ')\n\n', ''); })
+      .catch(function (err) { status(err.message, 'err'); })
+      .then(function () { input.value = ''; });
+  });
+
+  // formatting buttons
+  function insert(before, after, placeholder) {
+    var ta = $('pBody');
+    var s = ta.selectionStart, e = ta.selectionEnd;
+    var sel = ta.value.slice(s, e) || placeholder || '';
+    ta.value = ta.value.slice(0, s) + before + sel + after + ta.value.slice(e);
+    ta.focus();
+    ta.selectionStart = s + before.length; ta.selectionEnd = s + before.length + sel.length;
+  }
+  document.querySelectorAll('[data-md]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-md');
+      if (k === 'h2') insert('\n\n## ', '\n\n', 'Heading');
+      if (k === 'bold') insert('**', '**', 'bold text');
+      if (k === 'italic') insert('*', '*', 'italic text');
+      if (k === 'list') insert('\n\n- ', '\n- \n\n', 'First item');
+      if (k === 'quote') insert('\n\n> ', '\n\n', 'Quote');
+      if (k === 'link') {
+        var url = window.prompt('Paste the link (starting with https://):', 'https://');
+        if (url && /^(https?:\/\/|\/)/.test(url)) insert('[', '](' + url + ')', 'link text');
+      }
+    });
+  });
+
+  // preview (same rules as the site's renderer; HTML is always escaped)
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function inline(t) {
+    t = esc(t);
+    t = t.replace(/!\[([^\]]*)\]\((\/assets\/[A-Za-z0-9/_.-]+)\)/g, function (m, alt, src) { return '<img src="' + (state.localImages[src] || src) + '" alt="' + alt + '">'; });
+    t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)"<>]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/(^|[^*])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
+    return t;
+  }
+  function renderMarkdown(md) {
+    return String(md || '').split(/\n{2,}/).map(function (b) { return b.replace(/^\n+|\n+$/g, ''); }).filter(Boolean).map(function (b) {
+      var lines = b.split('\n');
+      if (/^###\s+/.test(b) && lines.length === 1) return '<h3>' + inline(b.replace(/^###\s+/, '')) + '</h3>';
+      if (/^##\s+/.test(b) && lines.length === 1) return '<h2>' + inline(b.replace(/^##\s+/, '')) + '</h2>';
+      if (lines.every(function (l) { return /^\s*[-*]\s+/.test(l); })) return '<ul>' + lines.map(function (l) { return '<li>' + inline(l.replace(/^\s*[-*]\s+/, '')) + '</li>'; }).join('') + '</ul>';
+      if (lines.every(function (l) { return /^\s*\d+[.)]\s+/.test(l); })) return '<ol>' + lines.map(function (l) { return '<li>' + inline(l.replace(/^\s*\d+[.)]\s+/, '')) + '</li>'; }).join('') + '</ol>';
+      if (lines.every(function (l) { return /^>\s?/.test(l); })) return '<blockquote><p>' + lines.map(function (l) { return inline(l.replace(/^>\s?/, '')); }).join('<br>') + '</p></blockquote>';
+      return '<p>' + lines.map(inline).join('<br>') + '</p>';
+    }).join('');
+  }
+  $('togglePreview').addEventListener('click', function () {
+    var showing = !$('preview').hidden;
+    if (showing) { $('preview').hidden = true; $('pBody').hidden = false; this.textContent = 'Preview'; }
+    else { $('preview').innerHTML = renderMarkdown($('pBody').value) || '<p>Nothing to preview yet.</p>'; $('preview').hidden = false; $('pBody').hidden = true; this.textContent = 'Back to writing'; }
+  });
+
+  // save / publish / delete
+  function collect(statusValue) {
+    return {
+      slug: state.editing.isNew ? slugify($('pTitle').value) : state.editing.slug,
+      title: $('pTitle').value, date: $('pDate').value, category: $('pCategory').value,
+      excerpt: $('pExcerpt').value, body: $('pBody').value, tags: $('pTags').value,
+      cover: state.editing.cover, coverAlt: $('pCoverAlt').value, status: statusValue
+    };
+  }
+  function savePost(statusValue, btn) {
+    busy(btn, true);
+    api('savePost', { post: collect(statusValue), previousSlug: state.editing.isNew ? '' : state.editing.slug }).then(function (data) {
+      state.posts = data.posts;
+      var msg = statusValue === 'published'
+        ? 'Published.' + LIVE_NOTE
+        : (state.editing.wasPublished ? 'Moved back to draft. It comes off the blog in about a minute.' : 'Draft saved. Visitors cannot see it yet.');
+      closeEditor();
+      status(msg, 'ok');
+    }).catch(function (err) { status(err.message, 'err'); }).then(function () { busy(btn, false); });
+  }
+  $('saveDraft').addEventListener('click', function () { savePost('draft', this); });
+  $('publishPost').addEventListener('click', function () { savePost('published', this); });
+  $('deletePost').addEventListener('click', function () {
+    if (!window.confirm('Delete this post for good? This cannot be undone from here.')) return;
+    var btn = this;
+    busy(btn, true, 'Deleting…');
+    api('deletePost', { slug: state.editing.slug }).then(function (data) {
+      state.posts = data.posts;
+      closeEditor();
+      status('Post deleted.' + LIVE_NOTE, 'ok');
+    }).catch(function (err) { status(err.message, 'err'); }).then(function () { busy(btn, false); });
+  });
+
+  boot();
+})();
+</script>
+</body>
+</html>
