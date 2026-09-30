@@ -51,6 +51,7 @@
   "telephone": "+1-631-365-9554",
   "areaServed": ["New York", "Brooklyn", "Manhattan", "Queens", "The Bronx", "Staten Island", "Long Island", "Westchester County", "Hudson Valley", "Hoboken", "Jersey City", "Bergen County", "Montclair", "Greenwich", "Stamford", "Fairfield County"],
   "sameAs": [
+    "https://www.google.com/search?kgmid=/g/11nj3k4cm5",
     "https://www.facebook.com/julieschatzmusic",
     "https://open.spotify.com/artist/5mCOW7fUfkmr8KoxRxI90O",
     "https://music.apple.com/us/artist/julie-schatz/1541144774",
@@ -141,6 +142,7 @@
   ],
   "knowsAbout": ["Wedding Music", "Jazz Piano", "Solo Violin", "Ceremony Music", "Cocktail Hour Music", "Live DJ", "Beat Production", "Music Licensing"],
   "sameAs": [
+    "https://www.google.com/search?kgmid=/g/11nj3k4cm5",
     "https://www.facebook.com/julieschatzmusic",
     "https://open.spotify.com/artist/5mCOW7fUfkmr8KoxRxI90O",
     "https://music.apple.com/us/artist/julie-schatz/1541144774",
@@ -227,6 +229,7 @@
     }
   ],
   "sameAs": [
+    "https://www.google.com/search?kgmid=/g/11nj3k4cm5",
     "https://www.google.com/search?kgmid=/g/11vrvn_mhf",
     "https://isni.org/isni/0000000523977604",
     "https://www.facebook.com/julieschatzmusic",
@@ -2109,10 +2112,10 @@ nav {
     width: 100%;
     justify-content: center;
     padding: 17px 24px !important;
-    font-size: 10.5px !important;
-    letter-spacing: 0.28em !important;
-    background: linear-gradient(135deg, rgba(88,12,180,0.35) 0%, rgba(168,85,247,0.25) 100%) !important;
-    border-color: rgba(168,85,247,0.5) !important;
+    font-size: 12px !important;
+    letter-spacing: 0.22em !important;
+    background: linear-gradient(90deg, #7B2CBF, #a855f7) !important;
+    border-color: transparent !important;
     box-shadow: 0 0 0 1px rgba(168,85,247,0.08), 0 8px 32px -8px rgba(88,12,180,0.4) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -2176,6 +2179,29 @@ nav {
   transform: translateY(-1px);
 }
 .cta-btn:hover::after { transform: translateX(6px); }
+
+/* Primary hero CTA: filled, and stacked under the name on desktop.
+   (data-s9-hero) The marquee and wordmark are trimmed slightly so the
+   tagline, subtitle and button all clear the fold at 1366x768 and up. */
+.cta-btn {
+  background: linear-gradient(90deg, #7B2CBF, #a855f7);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 30px -8px rgba(123, 44, 191, 0.6);
+}
+.cta-btn:hover {
+  background: linear-gradient(90deg, #8a35d1, #b56cf9);
+  border-color: transparent;
+  box-shadow: 0 14px 38px -8px rgba(168, 85, 247, 0.65);
+}
+@media (min-width: 901px) {
+  .marquee-section { height: 42vh; }
+  .name { font-size: clamp(72px, 9.2vw, 160px); }
+  .name-block { flex-direction: column; justify-content: flex-start; gap: 18px; }
+  .name-right { align-items: flex-start; padding-bottom: 0; }
+  .name-left p.hero-sub { max-width: none; }
+}
 
 .studio-link {
   font-family: 'Cormorant Garamond', serif;
@@ -2999,6 +3025,7 @@ nav {
   text-align: center;
   color: var(--ivory-faint);
 }
+.event-card[hidden] { display: none; }
 .event-card.is-next {
   background: linear-gradient(to right, rgba(168, 85, 247, 0.05), transparent 70%);
   padding-left: 20px;
@@ -3452,6 +3479,18 @@ nav {
   letter-spacing: -0.005em;
 }
 .testimonials-mobile-nav { display: none; }
+.google-reviews-link { text-align: center; margin: 28px 0 0; }
+.google-reviews-link a { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #d4b872; text-decoration: none; border-bottom: 1px solid rgba(212, 184, 114, 0.5); padding-bottom: 4px; }
+.google-reviews-link a:hover { color: #fff; border-color: #fff; }
+/* Three reviews at a time on desktop. The JS pages through groups of three. */
+@media (min-width: 1025px) {
+  .testimonials-slider { max-width: 1240px; }
+  .testimonials-track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; min-height: 0 !important; align-items: start; }
+  .testimonial-card { position: static; display: none; opacity: 1; gap: 20px; padding: 0; }
+  .testimonial-card.is-active { display: flex; }
+  .testimonial-card::before { font-size: 64px; }
+  .testimonial-quote { font-size: 19px !important; line-height: 1.5 !important; }
+}
 @media (max-width: 900px) {
   .testimonials-section { padding: 80px 24px 100px; }
   .testimonials-container { padding: 0; }
@@ -4486,30 +4525,55 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         <p class="hero-sub">Violinist, pianist, vocalist, producer and composer. Corporate events, private celebrations and weddings across New York.</p>
       </div>
       <div class="name-right">
-        <button class="cta-btn" id="lowerInquiryBtn">Check your date</button>
+        <button class="cta-btn" id="lowerInquiryBtn" data-s9-hero>Check your date</button>
       </div>
     </div>
   </div>
 
 </div>
 
+<!-- Holiday banner: hidden by default, shown by the script below from Nov 1 through Dec 31. -->
+<aside class="holiday-banner" id="holidayBanner" hidden aria-label="Holiday bookings">
+  <span class="holiday-banner__text">Holiday parties and New Year's Eve: December dates are booking now.</span>
+  <a href="/corporate-events/holiday-parties/">Corporate parties</a>
+  <a href="/private-events/holiday-parties/">Home and family parties</a>
+  <a href="/new-years-eve-violinist-nyc/">New Year's Eve</a>
+</aside>
+<script>
+(function () {
+  var m = new Date().getMonth(); // 10 = November, 11 = December
+  var b = document.getElementById('holidayBanner');
+  if (b && (m === 10 || m === 11)) b.hidden = false;
+})();
+</script>
+<style>
+.holiday-banner { position: relative; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 26px; padding: 16px 24px; background: linear-gradient(90deg, rgba(123, 44, 191, 0.55), rgba(168, 85, 247, 0.4)); border-top: 1px solid rgba(212, 184, 114, 0.35); border-bottom: 1px solid rgba(212, 184, 114, 0.35); }
+.holiday-banner[hidden] { display: none; }
+.holiday-banner__text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: #fff; }
+.holiday-banner a { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #d4b872; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.holiday-banner a:hover { color: #fff; }
+</style>
+
 <!-- Three-vertical chooser (primary conversion fork per Julie's site-update-spec) -->
 <section id="chooser" class="vertical-chooser" aria-label="Choose your event type">
   <div class="vertical-chooser-inner">
-    <a href="/corporate-events/" class="vchoose">
+    <a href="/corporate-events/" class="vchoose" data-s9-home>
+      <span class="vchoose__photo"><picture><source type="image/webp" srcset="/assets/photos/julie-schatz-blacksteinway-nyc.webp"><img src="/assets/photos/julie-schatz-blacksteinway-nyc.png" alt="Julie Schatz at a Steinway with the Manhattan skyline behind her" loading="lazy" decoding="async" style="object-position:center 30%;"></picture></span>
       <span class="vchoose__kicker">Corporate Events</span>
       <span class="vchoose__title">Live music built around your brand moment.</span>
       <span class="vchoose__body">Original music scored to your brand moment, performed live. Product launches, galas, holiday parties and conferences.</span>
       <span class="vchoose__arrow">See corporate →</span>
     </a>
     <a href="/private-events/" class="vchoose">
-      <span class="vchoose__kicker">Private Events</span>
+      <span class="vchoose__photo"><picture><source type="image/webp" srcset="/assets/photos/julie-schatz-bday-party-event.webp"><img src="/assets/photos/julie-schatz-bday-party-event.png" alt="Julie Schatz playing violin at a birthday party" loading="lazy" decoding="async" style="object-position:center 20%;"></picture></span>
+      <span class="vchoose__kicker">Private Events <span class="vchoose__price">From $725</span></span>
       <span class="vchoose__title">The part of the night people talk about on the way home.</span>
       <span class="vchoose__body">Milestone birthdays, mitzvahs, anniversaries and celebrations at home, at the club, or on the water.</span>
       <span class="vchoose__arrow">See private →</span>
     </a>
     <a href="/weddings/" class="vchoose">
-      <span class="vchoose__kicker">Weddings</span>
+      <span class="vchoose__photo"><picture><source type="image/webp" srcset="/assets/photos/julie-schatz-wedding-cocktail-hour-event.webp"><img src="/assets/photos/julie-schatz-wedding-cocktail-hour-event.png" alt="Julie Schatz playing violin at an outdoor wedding cocktail hour" loading="lazy" decoding="async" style="object-position:center 20%;"></picture></span>
+      <span class="vchoose__kicker">Weddings <span class="vchoose__price">From $725</span></span>
       <span class="vchoose__title">Ceremony, cocktail hour, reception.</span>
       <span class="vchoose__body">From classical to the song you actually want. 255-song repertoire. Mile-band pricing from Brooklyn.</span>
       <span class="vchoose__arrow">See weddings →</span>
@@ -4543,6 +4607,28 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   margin-top: 12px;
   max-width: 52ch;
   line-height: 1.45;
+}
+/* Section 9 mobile pass: readable label sizes, lighter greys, 44px tap targets,
+   and the photo carousel arrows moved to the top corners, clear of faces and of the menu button. */
+@media (max-width: 900px) {
+  /* below the hamburger, at the photo edges */
+  .marquee-arrow { top: 72px; transform: none; }
+  .marquee-arrow:hover, .marquee-arrow:active { transform: scale(1.07); }
+  .editorial-kicker, .vchoose__kicker, .seasonal-card__kicker { font-size: 12px; }
+  .vchoose__arrow, .seasonal-card__links a { font-size: 13px; display: inline-flex; align-items: center; min-height: 44px; }
+  .event-meta { font-size: 14px; color: rgba(244, 239, 230, 0.8); }
+  .testimonial-event { font-size: 12px; color: rgba(244, 239, 230, 0.75); }
+  .track-meta { font-size: 13px; color: rgba(244, 239, 230, 0.75); }
+  .events-cta-btn, .highlights-cta-btn { font-size: 13px; min-height: 48px; }
+  .footer-sitemap .footer-col h3 { font-size: 12px; }
+  .footer-sitemap .footer-col a { display: inline-flex; align-items: center; min-height: 44px; color: rgba(244, 239, 230, 0.8); }
+  .footer-sitemap .footer-col ul { gap: 0; }
+  .footer-contact-strip { font-size: 13px; }
+  .footer-contact-strip a { display: inline-flex; align-items: center; min-height: 44px; }
+  .footer-copy, .footer-credit { font-size: 12px; color: rgba(244, 239, 230, 0.65); }
+  .testimonials-dots button { position: relative; }
+  .testimonials-dots button::after { content: ''; position: absolute; inset: -16px -8px; }
+  .google-reviews-link a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
 }
 .vertical-chooser {
   /* Required: #shader-bg is a position:fixed WebGL canvas at z-index:0
@@ -4603,6 +4689,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   color: #a855f7;
 }
 .vchoose:hover .vchoose__arrow { color: #d4b872; }
+/* A photograph, not a panel: no border, background or shadow (see note on .vchoose). */
+.vchoose__photo { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 4px; margin-bottom: 6px; }
+.vchoose__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vchoose__price { color: #fff; letter-spacing: 0.12em; margin-left: 10px; padding-left: 10px; border-left: 1px solid rgba(212, 184, 114, 0.5); }
 </style>
 
 <!-- Mobile drawer — sits OUTSIDE .page so .page > * { position:relative } can't
@@ -4630,6 +4720,160 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 </div>
 
 <!-- BIO SECTION -->
+<section id="testimonials" class="testimonials-section">
+  <div class="testimonials-container">
+    <div class="testimonials-heading">
+      <div class="testimonials-heading-text">
+        <span class="editorial-kicker">Reviews</span>
+        <h2 class="editorial-h2">In Their Words</h2>
+      </div>
+    </div>
+    <div class="testimonials-slider">
+      <button class="carousel-arrow carousel-arrow-desktop" id="testimonialsPrev" aria-label="Previous">&#8249;</button>
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Julie was great! She was very professional and was able to do the playlist that we requested. She's great!"</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Gina Milagros A.</span>
+            <span class="testimonial-event">Engagement Party · Nov 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Julie was extraordinary! Professional, courteous. She plays that violin with love and we were so honored to be her audience! Thank you Julie."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Benjamin L.</span>
+            <span class="testimonial-event">Live Event · Nov 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Julie is very talented, extremely professional and very accommodating. She plays a wide variety of music and was able to play the song selections we wanted. Definitely would recommend and use Julie again."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Jamal H.</span>
+            <span class="testimonial-event">Wedding Ceremony · Jun 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Julie it's a true professional she played wonderfully. Everybody was amazed on her talent. The event went perfect, which was largely due to her music."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Guy A.</span>
+            <span class="testimonial-event">Celebration · Jun 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Julie was absolutely incredible, from the very first note she filled the party with warmth and elegance, setting the perfect tone for our celebration. Her performance captivated every guest and couldn't have been more memorable!"</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Eric M.</span>
+            <span class="testimonial-event">Birthday Party · May 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"First time hiring a violinist, beautiful performance, and a beautiful experience. I will definitely hire Julie again. Friends and family were super happy and amazed with the music she played and also sang. Beautiful experience. Thanks Julie."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Jaime L.</span>
+            <span class="testimonial-event">Christening · May 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Highly recommend! Very talented and an absolute professional, made our evening event incredibly special."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Kale P.</span>
+            <span class="testimonial-event">Evening Event · Nov 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Classy, Professional &amp; Fun! Julie crushed my Indian American wedding in central New Jersey. We shared a playlist of our favorite songs and Julie was able to perform and create an awesome experience for our guests. Family and friends old and young had a great time and we got many compliments. Would highly recommend Julie."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Rahul G.</span>
+            <span class="testimonial-event">Wedding · Oct 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">"Beautiful performance. Julie was wonderful to work with, incredibly talented, patient and understanding throughout the entire process. Wasn't easy putting together my wedding playlist; Julie guided me and helped me find my vision. Would absolutely recommend her!"</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Georgette Y.</span>
+            <span class="testimonial-event">Wedding · Oct 2025</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="testimonial-quote">"65th Birthday Celebration, Julie was on time, professional, and very entertaining."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Donna G.</span>
+            <span class="testimonial-event">Birthday Celebration · Aug 2024</span>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-arrow carousel-arrow-desktop" id="testimonialsNext" aria-label="Next">&#8250;</button>
+      <div class="testimonials-mobile-nav">
+        <button class="carousel-arrow" id="testimonialsPrevMobile" aria-label="Previous">&#8249;</button>
+        <button class="carousel-arrow" id="testimonialsNextMobile" aria-label="Next">&#8250;</button>
+      </div>
+    </div>
+    <div class="testimonials-dots" id="testimonialsDots" aria-label="Testimonial pagination"></div>
+    <p class="google-reviews-link" data-gbp-reviews><a href="https://share.google/QP7MCs0gz0dt6rgeh" target="_blank" rel="noopener">Read our Google reviews</a></p>
+    <div class="bash-credential">
+      <img src="/assets/badges/best-of-2025.svg" alt="The Bash, Best Of 2025" width="120" height="120" loading="lazy" decoding="async">
+      <div class="bash-credential-text">
+        <span class="bash-credential-label">Certified by The Bash</span>
+        <span class="bash-credential-name">Best of 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="venues" class="venues-section" aria-label="Featured venues and service regions">
+  <div class="venues-container">
+    <div class="venues-heading">
+      <span class="editorial-kicker">Where Julie Plays</span>
+      <h2 class="editorial-h2">Featured Venues &amp; Regions</h2>
+      <p>A selection of venues Julie has performed at across the New York tri-state. See the <a href="/venues/" style="color:#fff;text-decoration:underline;text-decoration-color:rgba(244,239,230,0.45);text-underline-offset:3px;">full list of 46 venues</a> or browse by region below.</p>
+    </div>
+    <div class="venues-layout">
+      <div class="venues-col">
+        <h3>Featured Venues</h3>
+        <ul class="venues-list">
+          <li><a href="/wedding-violinist-oheka-castle/">Oheka Castle<span class="venues-list__city">Huntington, NY</span></a></li>
+          <li><a href="/wedding-violinist-tappan-hill-mansion/">Tappan Hill Mansion<span class="venues-list__city">Tarrytown, NY</span></a></li>
+          <li><a href="/wedding-violinist-pendry-natirar/">Pendry Natirar<span class="venues-list__city">Peapack, NJ</span></a></li>
+          <li><a href="/wedding-violinist-blue-hill-at-stone-barns/">Blue Hill at Stone Barns<span class="venues-list__city">Pocantico Hills, NY</span></a></li>
+          <li><a href="/wedding-violinist-gotham-hall/">Gotham Hall<span class="venues-list__city">New York, NY</span></a></li>
+          <li><a href="/wedding-violinist-the-wythe-hotel/">The Wythe Hotel<span class="venues-list__city">Brooklyn, NY</span></a></li>
+          <li><a href="/wedding-violinist-park-chateau-estate/">Park Chateau Estate &amp; Garden<span class="venues-list__city">East Brunswick, NJ</span></a></li>
+          <li><a href="/wedding-violinist-capitale/">Capitale<span class="venues-list__city">New York, NY</span></a></li>
+          <li><a href="/wedding-violinist-the-garden-city-hotel/">The Garden City Hotel<span class="venues-list__city">Garden City, NY</span></a></li>
+          <li><a href="/wedding-violinist-falkirk-estate/">Falkirk Estate<span class="venues-list__city">Central Valley, NY</span></a></li>
+        </ul>
+      </div>
+      <div class="venues-col">
+        <h3>By Region</h3>
+        <div class="regions-grid">
+          <a href="/wedding-violinist-nyc/">NYC</a>
+          <a href="/wedding-violinist-long-island/">Long Island</a>
+          <a href="/wedding-violinist-westchester/">Westchester</a>
+          <a href="/wedding-violinist-hudson-valley/">Hudson Valley</a>
+          <a href="/wedding-violinist-northern-nj/">Northern NJ</a>
+          <a href="/wedding-violinist-central-nj-shore/">Central NJ &amp; Shore</a>
+          <a href="/wedding-violinist-connecticut/">Fairfield County, CT</a>
+          <a href="/venues/">All Venues</a>
+        </div>
+      </div>
+    </div>
+    <div class="venues-cta">
+      <a href="/venues/">Browse the Full Venue List</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
 <section id="about" class="bio-section">
   <div class="bio-container">
     <div class="bio-heading">
@@ -4811,22 +5055,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     </div>
     <div class="events-grid">
       <div class="event-card is-next">
-        <div class="event-date"><span class="event-next-tag">Next up</span>September 6, 2026</div>
-        <div class="event-title">Wedding Reception</div>
-        <div class="event-meta">Sun <span class="event-meta-sep">·</span> The Crescent Beach Club <span class="event-meta-sep">·</span> Bayville, NY</div>
-      </div>
-      <div class="event-card">
-        <div class="event-date">September 12, 2026</div>
-        <div class="event-title">Baby Shower</div>
-        <div class="event-meta">Sat <span class="event-meta-sep">·</span> The Lannin <span class="event-meta-sep">·</span> East Meadow, NY</div>
-      </div>
-      <div class="event-card">
-        <div class="event-date">September 19, 2026</div>
-        <div class="event-title">Wedding Cocktail &amp; Reception</div>
-        <div class="event-meta">Sat <span class="event-meta-sep">·</span> 6:00 &ndash; 11:00 PM <span class="event-meta-sep">·</span> Il Villaggio, Carlstadt, NJ</div>
-      </div>
-      <div class="event-card">
-        <div class="event-date">October 10, 2026</div>
+        <div class="event-date"><span class="event-next-tag">Next up</span>October 10, 2026</div>
         <div class="event-title">Wedding Ceremony</div>
         <div class="event-meta">Sat <span class="event-meta-sep">·</span> 618 Restaurant <span class="event-meta-sep">·</span> Freehold, NJ</div>
       </div>
@@ -4861,6 +5090,37 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+<script data-events-autoprune>
+// Hide events whose date has passed and keep "Next up" on the first one left.
+(function () {
+  var grid = document.querySelector('.events-grid');
+  if (!grid) return;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var next = null;
+  grid.querySelectorAll('.event-card').forEach(function (card) {
+    var el = card.querySelector('.event-date');
+    if (!el) return;
+    var tag = el.querySelector('.event-next-tag');
+    if (tag) tag.remove();
+    card.classList.remove('is-next');
+    var d = new Date(el.textContent.trim());
+    if (isNaN(d.getTime())) return;
+    if (d < today) { card.hidden = true; return; }
+    if (!next) next = { card: card, el: el };
+  });
+  if (next) {
+    next.card.classList.add('is-next');
+    var t = document.createElement('span');
+    t.className = 'event-next-tag';
+    t.textContent = 'Next up';
+    next.el.insertBefore(t, next.el.firstChild);
+  } else {
+    var section = document.getElementById('events');
+    var heading = section && section.querySelector('.editorial-h2');
+    if (heading) heading.textContent = 'Now Booking';
+  }
+})();
+</script>
 
 <!-- Event schema for the 14 upcoming confirmed bookings.
      Each entry uses generic public-facing names ("Wedding Ceremony" etc.)
@@ -4872,78 +5132,36 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Wedding Reception · Solo Violin",
-    "startDate": "2026-09-06",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "The Crescent Beach Club", "address": { "@type": "PostalAddress", "streetAddress": "333 Bayville Ave", "addressLocality": "Bayville", "addressRegion": "NY", "postalCode": "11709", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing solo violin at a wedding reception at The Crescent Beach Club, Bayville NY.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Baby Shower · Solo Violin",
-    "startDate": "2026-09-12",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "The Lannin", "address": { "@type": "PostalAddress", "streetAddress": "1899 Hempstead Tpke", "addressLocality": "East Meadow", "addressRegion": "NY", "postalCode": "11554", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing solo violin at a private baby shower at The Lannin, East Meadow NY.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Wedding Cocktail and Reception Performance",
-    "startDate": "2026-09-19T18:00:00-04:00",
-    "endDate": "2026-09-19T23:00:00-04:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "Il Villaggio", "address": { "@type": "PostalAddress", "addressLocality": "Carlstadt", "addressRegion": "NJ", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing live at Il Villaggio, Carlstadt NJ.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
     "name": "Wedding Ceremony · Solo Violin",
     "startDate": "2026-10-10",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "618 Restaurant", "address": { "@type": "PostalAddress", "addressLocality": "Freehold", "addressRegion": "NJ", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "location": {
+      "@type": "Place",
+      "name": "618 Restaurant",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Freehold",
+        "addressRegion": "NJ",
+        "addressCountry": "US"
+      }
+    },
+    "performer": {
+      "@id": "https://julieschatzmusic.com/#julie"
+    },
+    "organizer": {
+      "@id": "https://julieschatzmusic.com/#business"
+    },
     "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
     "description": "Julie Schatz performing solo violin at a wedding ceremony at 618 Restaurant, Freehold NJ.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Wedding Ceremony Performance",
-    "startDate": "2026-10-11T16:00:00-04:00",
-    "endDate": "2026-10-11T16:45:00-04:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "Stamford, CT", "address": { "@type": "PostalAddress", "addressLocality": "Stamford", "addressRegion": "CT", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing live at a wedding ceremony in Stamford, CT.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://julieschatzmusic.com/#inquire",
+      "availability": "https://schema.org/SoldOut",
+      "price": "0",
+      "priceCurrency": "USD",
+      "validFrom": "2026-01-01"
+    },
     "isAccessibleForFree": false
   },
   {
@@ -4953,44 +5171,32 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     "startDate": "2026-10-24",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "Mandarin Oriental, New York", "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "location": {
+      "@type": "Place",
+      "name": "Mandarin Oriental, New York",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "addressCountry": "US"
+      }
+    },
+    "performer": {
+      "@id": "https://julieschatzmusic.com/#julie"
+    },
+    "organizer": {
+      "@id": "https://julieschatzmusic.com/#business"
+    },
     "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
     "description": "Julie Schatz performing solo violin at a wedding reception at the Mandarin Oriental, New York.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Wedding Ceremony Performance",
-    "startDate": "2026-11-15T15:00:00-05:00",
-    "endDate": "2026-11-15T16:00:00-05:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "East Setauket, NY", "address": { "@type": "PostalAddress", "addressLocality": "East Setauket", "addressRegion": "NY", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing live at a wedding ceremony in East Setauket, NY.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
-    "isAccessibleForFree": false
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Wedding Performance",
-    "startDate": "2026-11-15T16:00:00-05:00",
-    "endDate": "2026-11-15T17:00:00-05:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "East Setauket, NY", "address": { "@type": "PostalAddress", "addressLocality": "East Setauket", "addressRegion": "NY", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
-    "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
-    "description": "Julie Schatz performing live at a wedding in East Setauket, NY.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://julieschatzmusic.com/#inquire",
+      "availability": "https://schema.org/SoldOut",
+      "price": "0",
+      "priceCurrency": "USD",
+      "validFrom": "2026-01-01"
+    },
     "isAccessibleForFree": false
   },
   {
@@ -5000,171 +5206,38 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     "startDate": "2026-12-10",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": { "@type": "Place", "name": "The Palace at Somerset", "address": { "@type": "PostalAddress", "addressLocality": "Somerset", "addressRegion": "NJ", "addressCountry": "US" } },
-    "performer": { "@id": "https://julieschatzmusic.com/#julie" },
-    "organizer": { "@id": "https://julieschatzmusic.com/#business" },
+    "location": {
+      "@type": "Place",
+      "name": "The Palace at Somerset",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Somerset",
+        "addressRegion": "NJ",
+        "addressCountry": "US"
+      }
+    },
+    "performer": {
+      "@id": "https://julieschatzmusic.com/#julie"
+    },
+    "organizer": {
+      "@id": "https://julieschatzmusic.com/#business"
+    },
     "image": "https://julieschatzmusic.com/assets/photos/julie-schatz-blacksteinway-nyc.png",
     "description": "Julie Schatz performing solo violin at a corporate holiday party at The Palace at Somerset, NJ.",
-    "offers": { "@type": "Offer", "url": "https://julieschatzmusic.com/#inquire", "availability": "https://schema.org/SoldOut", "price": "0", "priceCurrency": "USD", "validFrom": "2026-01-01" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://julieschatzmusic.com/#inquire",
+      "availability": "https://schema.org/SoldOut",
+      "price": "0",
+      "priceCurrency": "USD",
+      "validFrom": "2026-01-01"
+    },
     "isAccessibleForFree": false
   }
 ]
 </script>
 
 <!-- FEATURED VENUES & REGIONS -->
-<section id="venues" class="venues-section" aria-label="Featured venues and service regions">
-  <div class="venues-container">
-    <div class="venues-heading">
-      <span class="editorial-kicker">Where Julie Plays</span>
-      <h2 class="editorial-h2">Featured Venues &amp; Regions</h2>
-      <p>A selection of venues Julie has performed at across the New York tri-state. See the <a href="/venues/" style="color:#fff;text-decoration:underline;text-decoration-color:rgba(244,239,230,0.45);text-underline-offset:3px;">full list of 46 venues</a> or browse by region below.</p>
-    </div>
-    <div class="venues-layout">
-      <div class="venues-col">
-        <h3>Featured Venues</h3>
-        <ul class="venues-list">
-          <li><a href="/wedding-violinist-oheka-castle/">Oheka Castle<span class="venues-list__city">Huntington, NY</span></a></li>
-          <li><a href="/wedding-violinist-tappan-hill-mansion/">Tappan Hill Mansion<span class="venues-list__city">Tarrytown, NY</span></a></li>
-          <li><a href="/wedding-violinist-pendry-natirar/">Pendry Natirar<span class="venues-list__city">Peapack, NJ</span></a></li>
-          <li><a href="/wedding-violinist-blue-hill-at-stone-barns/">Blue Hill at Stone Barns<span class="venues-list__city">Pocantico Hills, NY</span></a></li>
-          <li><a href="/wedding-violinist-gotham-hall/">Gotham Hall<span class="venues-list__city">New York, NY</span></a></li>
-          <li><a href="/wedding-violinist-the-wythe-hotel/">The Wythe Hotel<span class="venues-list__city">Brooklyn, NY</span></a></li>
-          <li><a href="/wedding-violinist-park-chateau-estate/">Park Chateau Estate &amp; Garden<span class="venues-list__city">East Brunswick, NJ</span></a></li>
-          <li><a href="/wedding-violinist-capitale/">Capitale<span class="venues-list__city">New York, NY</span></a></li>
-          <li><a href="/wedding-violinist-the-garden-city-hotel/">The Garden City Hotel<span class="venues-list__city">Garden City, NY</span></a></li>
-          <li><a href="/wedding-violinist-falkirk-estate/">Falkirk Estate<span class="venues-list__city">Central Valley, NY</span></a></li>
-        </ul>
-      </div>
-      <div class="venues-col">
-        <h3>By Region</h3>
-        <div class="regions-grid">
-          <a href="/wedding-violinist-nyc/">NYC</a>
-          <a href="/wedding-violinist-long-island/">Long Island</a>
-          <a href="/wedding-violinist-westchester/">Westchester</a>
-          <a href="/wedding-violinist-hudson-valley/">Hudson Valley</a>
-          <a href="/wedding-violinist-northern-nj/">Northern NJ</a>
-          <a href="/wedding-violinist-central-nj-shore/">Central NJ &amp; Shore</a>
-          <a href="/wedding-violinist-connecticut/">Fairfield County, CT</a>
-          <a href="/venues/">All Venues</a>
-        </div>
-      </div>
-    </div>
-    <div class="venues-cta">
-      <a href="/venues/">Browse the Full Venue List</a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="testimonials-section">
-  <div class="testimonials-container">
-    <div class="testimonials-heading">
-      <div class="testimonials-heading-text">
-        <span class="editorial-kicker">Reviews</span>
-        <h2 class="editorial-h2">In Their Words</h2>
-      </div>
-    </div>
-    <div class="testimonials-slider">
-      <button class="carousel-arrow carousel-arrow-desktop" id="testimonialsPrev" aria-label="Previous">&#8249;</button>
-      <div class="testimonials-track" id="testimonialsTrack">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie was great! She was very professional and was able to do the playlist that we requested. She's great!"</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Gina Milagros A.</span>
-            <span class="testimonial-event">Engagement Party · Nov 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie was extraordinary! Professional, courteous. She plays that violin with love and we were so honored to be her audience! Thank you Julie."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Benjamin L.</span>
-            <span class="testimonial-event">Live Event · Nov 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie is very talented, extremely professional and very accommodating. She plays a wide variety of music and was able to play the song selections we wanted. Definitely would recommend and use Julie again."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Jamal H.</span>
-            <span class="testimonial-event">Wedding Ceremony · Jun 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie it's a true professional she played wonderfully. Everybody was amazed on her talent. The event went perfect, which was largely due to her music."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Guy A.</span>
-            <span class="testimonial-event">Celebration · Jun 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Julie was absolutely incredible, from the very first note she filled the party with warmth and elegance, setting the perfect tone for our celebration. Her performance captivated every guest and couldn't have been more memorable!"</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Eric M.</span>
-            <span class="testimonial-event">Birthday Party · May 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"First time hiring a violinist, beautiful performance, and a beautiful experience. I will definitely hire Julie again. Friends and family were super happy and amazed with the music she played and also sang. Beautiful experience. Thanks Julie."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Jaime L.</span>
-            <span class="testimonial-event">Christening · May 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Highly recommend! Very talented and an absolute professional, made our evening event incredibly special."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Kale P.</span>
-            <span class="testimonial-event">Evening Event · Nov 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Classy, Professional &amp; Fun! Julie crushed my Indian American wedding in central New Jersey. We shared a playlist of our favorite songs and Julie was able to perform and create an awesome experience for our guests. Family and friends old and young had a great time and we got many compliments. Would highly recommend Julie."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Rahul G.</span>
-            <span class="testimonial-event">Wedding · Oct 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Beautiful performance. Julie was wonderful to work with, incredibly talented, patient and understanding throughout the entire process. Wasn't easy putting together my wedding playlist; Julie guided me and helped me find my vision. Would absolutely recommend her!"</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Georgette Y.</span>
-            <span class="testimonial-event">Wedding · Oct 2025</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-          <p class="testimonial-quote">"65th Birthday Celebration, Julie was on time, professional, and very entertaining."</p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Donna G.</span>
-            <span class="testimonial-event">Birthday Celebration · Aug 2024</span>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-arrow carousel-arrow-desktop" id="testimonialsNext" aria-label="Next">&#8250;</button>
-      <div class="testimonials-mobile-nav">
-        <button class="carousel-arrow" id="testimonialsPrevMobile" aria-label="Previous">&#8249;</button>
-        <button class="carousel-arrow" id="testimonialsNextMobile" aria-label="Next">&#8250;</button>
-      </div>
-    </div>
-    <div class="testimonials-dots" id="testimonialsDots" aria-label="Testimonial pagination"></div>
-    <div class="bash-credential">
-      <img src="/assets/badges/best-of-2025.svg" alt="The Bash, Best Of 2025" width="120" height="120" loading="lazy" decoding="async">
-      <div class="bash-credential-text">
-        <span class="bash-credential-label">Certified by The Bash</span>
-        <span class="bash-credential-name">Best of 2025</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BRANDS — Featured & Endorsed -->
 <section id="brands" class="brands-section">
   <div class="brands-container">
@@ -6251,14 +6324,15 @@ const testimonialsTrack = document.getElementById('testimonialsTrack');
 const testimonialsDots = document.getElementById('testimonialsDots');
 if (testimonialsTrack) {
   const cards = Array.from(testimonialsTrack.querySelectorAll('.testimonial-card'));
-  const total = cards.length;
+  const perView = () => (window.matchMedia && window.matchMedia('(min-width: 1025px)').matches) ? 3 : 1;
+  let total = Math.ceil(cards.length / perView());
   let active = 0;
   let autoTimer = null;
   const AUTO_MS = 8000;
 
   // Build dot indicators
   if (testimonialsDots) {
-    cards.forEach((_, i) => {
+    Array.from({ length: total }).forEach((_, i) => {
       const dot = document.createElement('button');
       dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
       if (i === 0) dot.classList.add('is-active');
@@ -6281,11 +6355,15 @@ if (testimonialsTrack) {
       card.style.opacity = prevOpacity;
       card.style.position = prevPos;
     });
+    if (perView() > 1) { testimonialsTrack.style.minHeight = ''; return; }
     if (maxH) testimonialsTrack.style.minHeight = maxH + 'px';
   };
 
   const apply = () => {
-    cards.forEach((c, i) => c.classList.toggle('is-active', i === active));
+    const n = perView();
+    // last group is filled from the end so it never shows a lone card
+    const start = Math.max(0, Math.min(active * n, cards.length - n));
+    cards.forEach((c, i) => c.classList.toggle('is-active', i >= start && i < start + n));
     dots.forEach((d, i) => d.classList.toggle('is-active', i === active));
   };
   apply();
