@@ -234,7 +234,7 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--v
 
   // ───────── api ─────────
   function api(action, data) {
-    return fetch('/api/admin', {
+    return fetch('/api/admin/', { // trailing slash: the site redirects the bare path
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'jsm-admin' },
