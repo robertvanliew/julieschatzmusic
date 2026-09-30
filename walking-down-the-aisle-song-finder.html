@@ -244,6 +244,7 @@ a { color: var(--violet-2); }
 </div>
 
 <script src="/assets/js/music-plan.js" defer></script>
+<script src="/assets/js/picks-capture.js" defer></script>
 <script>
 (function () {
   'use strict';
@@ -432,6 +433,14 @@ a { color: var(--violet-2); }
   function finish() {
     state.finished = true;
     var picks = computePicks();
+    state.lastPicks = picks;
+    if (window.jsmPicksCapture) {
+      window.jsmPicksCapture({
+        mount: document.querySelector('#results .next-prompt'),
+        source: 'walking-down-the-aisle-song-finder',
+        getPicks: function () { return (state.lastPicks || []).map(function (s) { return { title: s.title, artist: s.artist }; }); }
+      });
+    }
     var html = '';
     picks.forEach(function (song, i) {
       var searchUrl = 'https://open.spotify.com/search/' + encodeURIComponent(song.title + ' ' + song.artist);

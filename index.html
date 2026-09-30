@@ -3048,6 +3048,26 @@ nav {
   display: flex;
   justify-content: center;
 }
+/* "Is my date open?" (assets/js/date-check.js) */
+.date-check { max-width: 560px; margin: 8px auto 34px; padding: 30px 28px; background: linear-gradient(160deg, rgba(212, 184, 114, 0.07) 0%, rgba(15, 10, 26, 0.5) 100%); border: 1px solid rgba(212, 184, 114, 0.3); border-radius: 8px; text-align: center; }
+.date-check h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(24px, 2.6vw, 30px); color: #fff; margin: 0 0 6px; }
+.dc-lead { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--ivory-dim); margin: 0 0 16px; }
+.dc-form { display: grid; gap: 10px; }
+.dc-form input[type="date"], .dc-form input[type="text"] { width: 100%; min-height: 50px; padding: 10px 14px; background: rgba(244, 239, 230, 0.05); border: 1px solid rgba(244, 239, 230, 0.3); border-radius: 6px; color: var(--ivory); font: 16px 'Inter', system-ui, sans-serif; color-scheme: dark; }
+.dc-form input:focus { outline: none; border-color: #a855f7; }
+.dc-result { margin: 0; padding: 12px 14px; border-radius: 6px; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.45; text-align: left; }
+.dc-result[data-status="open"] { background: rgba(143, 214, 163, 0.1); color: #b9ecc7; }
+.dc-result[data-status="booked"] { background: rgba(212, 184, 114, 0.12); color: #e8d3a0; }
+.dc-result[data-status="past"] { background: rgba(255, 138, 128, 0.1); color: #ffb8b2; }
+.dc-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.dc-row button { min-height: 50px; padding: 0 20px; border: 0; border-radius: 6px; background: linear-gradient(90deg, #7B2CBF, #a855f7); color: #fff; font: 600 12px 'Inter', system-ui, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
+.dc-row button:disabled { opacity: 0.6; cursor: wait; }
+.dc-honey { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+.dc-error { color: #ff9994; font: 13px 'Inter', system-ui, sans-serif; margin: 0; }
+.dc-done { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #b9ecc7; margin: 0; }
+.dc-alt { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--ivory-soft); margin: 16px 0 0; }
+.dc-alt a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212, 184, 114, 0.5); }
+@media (max-width: 560px) { .dc-row { grid-template-columns: 1fr; } .date-check { padding: 24px 18px; } }
 .events-cta-btn {
   display: inline-flex;
   align-items: center;
@@ -5089,11 +5109,65 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       </div>
 <!-- ADMIN:EVENTS:END -->
     </div>
+    <div class="date-check" id="dateCheck">
+      <h3>Is my date open?</h3>
+      <p class="dc-lead">Pick a date and get an answer from Julie's calendar right away.</p>
+      <form class="dc-form" id="dcForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="dc-honey">
+        <input type="hidden" name="_subject" value="Date check · homepage">
+        <input type="hidden" name="form_source" value="date-check-home">
+        <input type="hidden" name="date_check" id="dcStatusField" value="">
+        <input type="date" name="event_date" id="dcDate" required aria-label="Your event date">
+        <p class="dc-result" id="dcResult" hidden></p>
+        <div class="dc-row" id="dcRow" hidden>
+          <input type="text" name="contact" id="dcContact" placeholder="Email or phone" autocomplete="email" required minlength="6" aria-label="Email or phone">
+          <button type="submit" id="dcSubmit">Ask Julie about this date</button>
+        </div>
+        <p class="dc-error" id="dcError" hidden></p>
+      </form>
+      <p class="dc-alt">Prefer to talk? <a href="sms:+16313659554">Text Julie</a> or <a href="/corporate-events/#request-call">book a 15-minute call</a>.</p>
+    </div>
     <div class="events-cta">
       <button class="events-cta-btn" id="eventsInquiryBtn">Request A Booking</button>
     </div>
   </div>
 </section>
+<script src="/assets/js/date-check.js" defer></script>
+<script>
+// "Is my date open?" + availability note inside the inquiry drawer's date field.
+window.addEventListener('load', function () {
+  if (!window.jsmDateCheck) return;
+  var dcDate = document.getElementById('dcDate'), dcResult = document.getElementById('dcResult'), dcRow = document.getElementById('dcRow');
+  if (dcDate) {
+    window.jsmDateCheck.attach(dcDate, dcResult);
+    dcDate.addEventListener('change', function () {
+      setTimeout(function () {
+        var st = dcResult.getAttribute('data-status');
+        dcRow.hidden = !(st === 'open' || st === 'booked');
+        document.getElementById('dcStatusField').value = st + ' · ' + dcResult.textContent;
+      }, 350);
+    });
+    var form = document.getElementById('dcForm'), btn = document.getElementById('dcSubmit'), err = document.getElementById('dcError');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); err.hidden = true;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error('x'); form.innerHTML = '<p class="dc-done">Sent. Julie confirms your date within 24 hours.</p>';
+          if (typeof gtag === 'function') gtag('event', 'date_check_submit', { status: document.getElementById('dcStatusField').value.split(' ')[0] });
+          if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Date check · homepage' }); })
+        .catch(function () { err.textContent = 'That did not go through. Please try again, or text Julie.'; err.hidden = false; btn.disabled = false; btn.textContent = 'Ask Julie about this date'; });
+    });
+  }
+  // inquiry drawer: same instant answer under its date field
+  var inqDate = document.getElementById('eventDateInput');
+  if (inqDate && !document.getElementById('inqDateNote')) {
+    var note = document.createElement('p'); note.id = 'inqDateNote'; note.className = 'dc-result'; note.hidden = true; note.style.marginTop = '8px';
+    inqDate.insertAdjacentElement('afterend', note);
+    window.jsmDateCheck.attach(inqDate, note);
+  }
+});
+</script>
 <script data-events-autoprune>
 // Hide events whose date has passed and keep "Next up" on the first one left.
 (function () {

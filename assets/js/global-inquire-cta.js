@@ -4,6 +4,8 @@
  * (NJ landing modal, corporate call/inquiry modals) to avoid double-CTA collision.
  * Adds a small "Inquire" pill that appears after the user scrolls past the fold
  * and links to /#inquire (or a page-defined override via [data-inquire-href]).
+ * Next to it: a "Text" pill (sms: link) on phones, where texting beats a form,
+ * and a "15-min call" link that opens the call booker.
  */
 (function () {
   'use strict';
@@ -36,17 +38,41 @@
     '.jsm-global-cta:hover{filter:brightness(1.12);}',
     '.jsm-global-cta:active{transform:translateY(0) scale(0.97);transition-duration:100ms;}',
     '.jsm-global-cta:focus-visible{outline:none;box-shadow:0 12px 32px rgba(123,44,191,0.45),0 0 0 3px rgba(212,184,114,0.5);}',
-    '@media(max-width:480px){.jsm-global-cta{right:12px;bottom:12px;padding:11px 18px;font-size:11px;}}',
-    '@media print{.jsm-global-cta{display:none!important;}}'
+    '.jsm-global-cta.jsm-global-cta--text{right:auto;left:auto;background:#0F0A1A;color:#d4b872;border:1px solid rgba(212,184,114,0.6);box-shadow:0 12px 32px rgba(0,0,0,0.45);display:none;}',
+    '.jsm-global-cta.jsm-global-cta--call{right:auto;left:auto;background:#0F0A1A;color:#F4EFE6;border:1px solid rgba(244,239,230,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.45);}',
+    '.jsm-global-cta-wrap{position:fixed;right:24px;bottom:24px;z-index:900;display:flex;gap:10px;align-items:center;}',
+    '.jsm-global-cta-wrap .jsm-global-cta{position:static;}',
+    '@media(hover:none) and (pointer:coarse){.jsm-global-cta.jsm-global-cta--text{display:inline-block;}.jsm-global-cta.jsm-global-cta--call{display:none;}}',
+    '@media(max-width:480px){.jsm-global-cta-wrap{right:12px;bottom:12px;gap:8px;}.jsm-global-cta{padding:11px 16px;font-size:11px;}}',
+    '@media print{.jsm-global-cta,.jsm-global-cta-wrap{display:none!important;}}'
   ].join('');
   document.head.appendChild(style);
+
+  var wrap = document.createElement('div');
+  wrap.className = 'jsm-global-cta-wrap';
+
+  // Phones: tap-to-text. Desktop: the 15-minute call booker instead.
+  var text = document.createElement('a');
+  text.className = 'jsm-global-cta jsm-global-cta--text';
+  text.href = 'sms:+16313659554?&body=' + encodeURIComponent('Hi Julie, I found you on julieschatzmusic.com. ');
+  text.textContent = 'Text Julie';
+  text.addEventListener('click', function () { if (typeof gtag === 'function') gtag('event', 'text_julie_click', { page: location.pathname }); });
+  wrap.appendChild(text);
+
+  var call = document.createElement('a');
+  call.className = 'jsm-global-cta jsm-global-cta--call';
+  call.href = '/corporate-events/#request-call';
+  call.textContent = '15-min call';
+  call.addEventListener('click', function () { if (typeof gtag === 'function') gtag('event', 'call_booker_click', { page: location.pathname }); });
+  wrap.appendChild(call);
 
   var el = document.createElement('a');
   el.className = 'jsm-global-cta';
   el.href = href;
   el.textContent = label;
   el.setAttribute('data-jsm-global-cta', '');
-  document.body.appendChild(el);
+  wrap.appendChild(el);
+  document.body.appendChild(wrap);
 
   // Show after user scrolls past 60% of first viewport (past the fold).
   var threshold = Math.max(300, window.innerHeight * 0.6);
@@ -57,6 +83,8 @@
     if (visible !== shown) {
       shown = visible;
       el.classList.toggle('is-visible', shown);
+      text.classList.toggle('is-visible', shown);
+      call.classList.toggle('is-visible', shown);
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });

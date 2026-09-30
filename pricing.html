@@ -829,6 +829,39 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+
+/* ── Quote tool ── */
+.quote-tool .qt-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 860px) { .quote-tool .qt-grid { grid-template-columns: 1fr; } }
+.qt-controls { display: grid; gap: 16px; }
+.qt-field label { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.qt-field select { width: 100%; min-height: 48px; padding: 10px 14px; background: rgba(244, 239, 230, 0.05); border: 1px solid var(--hairline-strong); border-radius: 6px; color: var(--ivory); font: 16px 'Inter', system-ui, sans-serif; color-scheme: dark; }
+.qt-field select:focus, .qt-form input:focus { outline: none; border-color: #a855f7; }
+.qt-check { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px solid var(--hairline); border-radius: 6px; cursor: pointer; }
+.qt-check input { width: 18px; height: 18px; margin-top: 3px; accent-color: #a855f7; flex: none; }
+.qt-check strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #fff; font-weight: 500; }
+.qt-check em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--ivory-soft); }
+.qt-result { position: sticky; top: 24px; padding: 28px 26px; background: linear-gradient(160deg, rgba(212, 184, 114, 0.07) 0%, rgba(15, 10, 26, 0.55) 100%); border: 1px solid rgba(212, 184, 114, 0.3); border-radius: 6px; }
+.qt-result__label { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); }
+.qt-result__price { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(40px, 4.4vw, 56px); line-height: 1.05; color: #fff; margin: 6px 0 14px; }
+.qt-lines { list-style: none; margin: 0 0 12px; padding: 0; }
+.qt-lines li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--hairline); font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--ivory-dim); }
+.qt-lines li span:last-child { color: #fff; white-space: nowrap; }
+.qt-fine { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; line-height: 1.5; color: var(--ivory-soft); margin: 0 0 18px; }
+.qt-form { display: grid; gap: 10px; padding-top: 18px; border-top: 1px solid var(--hairline-strong); }
+.qt-form__lead { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #fff; margin: 0 0 4px; }
+.qt-form input[type="text"], .qt-form input[type="date"] { width: 100%; min-height: 48px; padding: 10px 14px; background: rgba(244, 239, 230, 0.05); border: 1px solid var(--hairline-strong); border-radius: 6px; color: var(--ivory); font: 16px 'Inter', system-ui, sans-serif; color-scheme: dark; }
+.qt-form button { min-height: 52px; border: 0; border-radius: 6px; background: linear-gradient(90deg, var(--violet, #7B2CBF), #a855f7); color: #fff; font: 600 13px 'Inter', system-ui, sans-serif; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; box-shadow: 0 10px 26px rgba(123, 44, 191, 0.35); }
+.qt-form button:disabled { opacity: 0.6; cursor: wait; }
+.qt-form__note { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--ivory-soft); margin: 0; }
+.qt-form__error { color: #ff9994; font-family: 'Inter', sans-serif; font-size: 13px; margin: 0; }
+.qt-honey { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+.qt-availability { margin: 0; padding: 10px 12px; border-radius: 6px; font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.45; }
+.qt-availability[data-status="open"] { background: rgba(143, 214, 163, 0.1); color: #b9ecc7; }
+.qt-availability[data-status="booked"] { background: rgba(212, 184, 114, 0.1); color: #e8d3a0; }
+.qt-availability[data-status="past"] { background: rgba(255, 138, 128, 0.1); color: #ffb8b2; }
+.qt-success { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #b9ecc7; margin: 0; }
+
 </style>
 <script defer data-domain="julieschatzmusic.com" src="https://plausible.io/js/script.outbound-links.js"></script>
 <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
@@ -921,6 +954,87 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         </ul>
       </aside>
     </header>
+
+
+    <!-- ───────── Instant estimate (quote tool) ───────── -->
+    <section class="rate-section quote-tool" id="quote-tool" aria-labelledby="quoteHeading">
+      <div class="rate-section-head">
+        <span class="rate-section-kicker">Instant estimate</span>
+        <h2 class="rate-section-title" id="quoteHeading">See your starting price</h2>
+        <p class="rate-section-note">Same numbers as the tables below. Pick what you need and the starting price updates. Add your date and Julie checks it against her calendar right away.</p>
+      </div>
+
+      <div class="qt-grid">
+        <div class="qt-controls">
+          <div class="qt-field">
+            <label for="qtEvent">Event</label>
+            <select id="qtEvent">
+              <option value="wedding">Wedding</option>
+              <option value="private">Private event (birthday, mitzvah, dinner, holiday party)</option>
+              <option value="corporate">Corporate event</option>
+            </select>
+          </div>
+          <div class="qt-field">
+            <label for="qtMusic">Music</label>
+            <select id="qtMusic">
+              <option value="violin">Solo violin</option>
+              <option value="piano">Solo piano</option>
+              <option value="both">Violin and piano, Julie on both</option>
+              <option value="duo">Soul Shades duo (two musicians)</option>
+            </select>
+          </div>
+          <div class="qt-field">
+            <label for="qtCoverage">How much of the day</label>
+            <select id="qtCoverage"></select>
+          </div>
+          <div class="qt-field">
+            <label for="qtZone">Where is the venue</label>
+            <select id="qtZone">
+              <option value="1">Zone 1: NYC, Hoboken, Jersey City (under 20 miles from Brooklyn)</option>
+              <option value="2">Zone 2: most of Long Island, Westchester, Northern NJ, Greenwich (20 to 40 miles)</option>
+              <option value="3">Zone 3: Fairfield County CT, Central NJ, deeper Suffolk (40 to 60 miles)</option>
+              <option value="4">Zone 4: Hamptons, deep Hudson Valley, inland CT (60+ miles)</option>
+            </select>
+          </div>
+          <div class="qt-field">
+            <label for="qtExtra">Extra hours</label>
+            <select id="qtExtra">
+              <option value="0">None</option>
+              <option value="1">1 extra hour</option>
+              <option value="2">2 extra hours</option>
+              <option value="3">3 extra hours</option>
+            </select>
+          </div>
+          <label class="qt-check" id="qtDjWrap">
+            <input type="checkbox" id="qtDj">
+            <span><strong>Add DJ and live violin for the reception</strong><em>Four hours, sound and lighting included</em></span>
+          </label>
+        </div>
+
+        <div class="qt-result">
+          <span class="qt-result__label">Starting at</span>
+          <span class="qt-result__price" id="qtPrice">$725</span>
+          <ul class="qt-lines" id="qtLines"></ul>
+          <p class="qt-fine" id="qtFine">Includes the sound system, prelude music and up to three song requests from the repertoire. Your final quote depends on your date, venue and hours.</p>
+
+          <form class="qt-form" id="qtForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="qt-honey">
+            <input type="hidden" name="_subject" value="Quote request · pricing page">
+            <input type="hidden" name="form_source" value="pricing-quote-tool">
+            <input type="hidden" name="estimate" id="qtEstimateField" value="">
+            <input type="hidden" name="date_check" id="qtDateCheckField" value="">
+            <p class="qt-form__lead">Get this as a firm quote with your date checked:</p>
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required minlength="2" aria-label="Your name">
+            <input type="text" name="contact" placeholder="Email or phone" autocomplete="email" required minlength="6" aria-label="Email or phone">
+            <input type="date" name="event_date" id="qtDate" required aria-label="Event date">
+            <p class="qt-availability" id="qtAvailability" hidden></p>
+            <button type="submit" id="qtSubmit">Send me this quote</button>
+            <p class="qt-form__note">Starting prices. Julie replies within 24 hours with a firm number. No list, no newsletter.</p>
+            <p class="qt-form__error" id="qtError" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <!-- ───────── Weddings ───────── -->
     <section class="rate-section" aria-labelledby="weddingHeading">
@@ -1352,6 +1466,115 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   });
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900 && !drawer.hidden) setOpen(false);
+  });
+})();
+</script>
+
+<script src="/assets/js/date-check.js" defer></script>
+<script>
+// Quote tool. Every figure mirrors the rate tables on this page; anything
+// without a published rate is marked "quoted" rather than estimated.
+(function () {
+  var Z = { 1: 0, 2: 1, 3: 2 };
+  var RATES = {
+    wedding: {
+      violin: { one: [725, 825, 925],  both: [1250, 1350, 1450] },
+      piano:  { one: [875, 975, 1075], both: [1450, 1550, 1650] },
+      both:   { both: [1550, 1650, 1750] },
+      duo:    { one: [2875, 2975, null], both: [3825, 3925, null] }
+    },
+    private: {
+      violin: { one: [725, 825, 925],  two: [1025, 1125, 1225] },
+      piano:  { one: [875, 975, 1075], two: [1175, 1275, 1375] }
+    }
+  };
+  var DJ_ADD = [3800, 4000, 4200], DJ_ALONE = [4500, 4700, 4900];
+  var COVERAGE = {
+    wedding: { violin: [['one', 'Ceremony or cocktail hour (up to 1 hour)'], ['both', 'Ceremony and cocktail hour']],
+               piano:  [['one', 'Ceremony or cocktail hour (up to 1 hour)'], ['both', 'Ceremony and cocktail hour']],
+               both:   [['both', 'Ceremony and cocktail hour (violin, then piano)']],
+               duo:    [['one', 'Ceremony'], ['both', 'Ceremony and cocktail hour']] },
+    private: { violin: [['one', 'Up to 1 hour'], ['two', '2 hours']], piano: [['one', 'Up to 1 hour'], ['two', '2 hours']],
+               both: [['q', 'Quoted for your event']], duo: [['q', 'Quoted for your event']] },
+    corporate: { violin: [['q', 'Quoted for your event']], piano: [['q', 'Quoted for your event']], both: [['q', 'Quoted for your event']], duo: [['q', 'Quoted for your event']] }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var ev = $('qtEvent'), music = $('qtMusic'), cov = $('qtCoverage'), zone = $('qtZone'), extra = $('qtExtra'), dj = $('qtDj');
+  var money = function (n) { return '$' + n.toLocaleString('en-US'); };
+
+  function fillCoverage() {
+    var opts = COVERAGE[ev.value][music.value];
+    var keep = cov.value;
+    cov.innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('');
+    if (opts.some(function (o) { return o[0] === keep; })) cov.value = keep;
+    cov.disabled = opts.length === 1 && opts[0][0] === 'q';
+    $('qtDjWrap').style.display = ev.value === 'corporate' ? 'none' : '';
+    extra.disabled = ev.value === 'corporate' || music.value === 'duo';
+  }
+
+  function compute() {
+    var lines = [], total = 0, quoted = false, z = Z[zone.value];
+    var labelMusic = music.options[music.selectedIndex].text, labelCov = cov.options[cov.selectedIndex] ? cov.options[cov.selectedIndex].text : '';
+    if (ev.value === 'corporate') {
+      lines.push(['Corporate engagements begin at $3,000 and are quoted individually', '']);
+      return { price: 'from $3,000', lines: lines, quoted: true, summary: 'Corporate · ' + labelMusic + ' · Zone ' + zone.value + ' · from $3,000, quoted' };
+    }
+    if (zone.value === '4') { quoted = true; lines.push(['Zone 4 is quoted individually and may include overnight', 'quoted']); }
+    var table = RATES[ev.value][music.value];
+    var base = table && table[cov.value] ? table[cov.value][z] : null;
+    if (cov.value === 'q' || (table && !table[cov.value])) { quoted = true; lines.push([labelMusic + ': ' + labelCov, 'quoted']); }
+    else if (zone.value !== '4') {
+      if (base == null) { quoted = true; lines.push([labelMusic + ', ' + labelCov + ' in Zone ' + zone.value, 'quoted']); }
+      else { total += base; lines.push([labelMusic + ': ' + labelCov, money(base)]); }
+    }
+    var xh = +extra.value;
+    if (xh && !extra.disabled) {
+      if (music.value === 'duo') { quoted = true; lines.push([xh + ' extra hour' + (xh > 1 ? 's' : '') + ' (duo)', 'quoted']); }
+      else { total += 300 * xh; lines.push([xh + ' extra hour' + (xh > 1 ? 's' : '') + ' at $300', money(300 * xh)]); }
+    }
+    if (dj.checked && ev.value !== 'corporate') {
+      if (zone.value === '4') lines.push(['DJ and live violin, 4 hours', 'quoted']);
+      else { var add = total > 0 ? DJ_ADD[z] : DJ_ALONE[z]; total += add; lines.push(['DJ and live violin, 4 hours' + (total - add > 0 ? ' (added to booking)' : ' (standalone)'), money(add)]); }
+    }
+    var price = total > 0 ? money(total) + (quoted ? '+' : '') : 'Quoted';
+    var summary = (ev.value === 'wedding' ? 'Wedding' : 'Private event') + ' · ' + labelMusic + ' · ' + labelCov + ' · Zone ' + zone.value + (xh ? ' · +' + xh + ' hr' : '') + (dj.checked ? ' · DJ + live violin' : '') + ' · starting ' + price;
+    return { price: price, lines: lines, quoted: quoted, summary: summary };
+  }
+
+  function render() {
+    fillCoverage();
+    var r = compute();
+    $('qtPrice').textContent = r.price;
+    $('qtLines').innerHTML = r.lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
+    $('qtFine').textContent = ev.value === 'corporate'
+      ? 'Corporate is priced by the shape of the event: format, hours, guest count and production. Send the details and Julie replies with a real number within 24 hours.'
+      : 'Includes the sound system, prelude music and up to three song requests from the repertoire. Your final quote depends on your date, venue and hours.';
+    $('qtEstimateField').value = r.summary;
+  }
+  [ev, music, cov, zone, extra, dj].forEach(function (el) { el.addEventListener('change', render); });
+  render();
+
+  // date check
+  var dateInput = $('qtDate'), avail = $('qtAvailability');
+  function attach() { if (window.jsmDateCheck) { window.jsmDateCheck.attach(dateInput, avail); return true; } return false; }
+  if (!attach()) window.addEventListener('load', attach);
+  dateInput.addEventListener('change', function () { setTimeout(function () { $('qtDateCheckField').value = (avail.getAttribute('data-status') || '') + ' · ' + avail.textContent; }, 400); });
+
+  // send
+  var form = $('qtForm'), btn = $('qtSubmit'), err = $('qtError');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('x');
+        form.innerHTML = '<p class="qt-success">Sent. Julie checks your date and replies within 24 hours with a firm quote.</p>';
+        if (typeof gtag === 'function') gtag('event', 'quote_tool_submit', { estimate: $('qtEstimateField').value });
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Pricing quote tool' });
+      })
+      .catch(function () { err.textContent = 'That did not go through. Please try again, or email bookings@julieschatzmusic.com.'; err.hidden = false; btn.disabled = false; btn.textContent = 'Send me this quote'; });
   });
 })();
 </script>

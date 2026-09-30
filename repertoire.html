@@ -831,6 +831,14 @@ footer.repertoire-footer a:hover { color: #fff; }
   cursor: not-allowed;
 }
 .summary-cta:disabled:hover { gap: 12px; }
+.summary-email { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 12px; }
+.summary-email input { min-height: 44px; padding: 8px 12px; background: rgba(244, 239, 230, 0.05); border: 1px solid rgba(244, 239, 230, 0.25); border-radius: 6px; color: #F4EFE6; font: 15px 'Inter', system-ui, sans-serif; min-width: 0; }
+.summary-email input:focus { outline: none; border-color: #a855f7; }
+.summary-email button { min-height: 44px; padding: 0 16px; border: 1px solid rgba(212, 184, 114, 0.6); border-radius: 6px; background: transparent; color: #d4b872; font: 600 12px 'Inter', system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+.summary-email button:disabled { opacity: 0.45; cursor: default; }
+.summary-email-note { grid-column: 1 / -1; margin: 0; font: 12px 'Inter', system-ui, sans-serif; color: rgba(244, 239, 230, 0.55); }
+.summary-email-note.is-ok { color: #8fd6a3; }
+.summary-email-note.is-err { color: #ff9994; }
 
 /* Mobile sticky summary */
 @media (max-width: 1023px) {
@@ -1461,6 +1469,11 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <button type="button" class="summary-cta" id="summaryCta" disabled>
         Send selections to Julie →
       </button>
+      <form class="summary-email" id="summaryEmailForm" novalidate>
+        <input type="email" id="summaryEmail" placeholder="Email me my picks" aria-label="Your email" autocomplete="email">
+        <button type="submit" id="summaryEmailBtn" disabled>Send</button>
+        <p class="summary-email-note" id="summaryEmailNote">Your picks in your inbox, and Julie gets a copy.</p>
+      </form>
     </aside>
   </div>
 
@@ -1601,6 +1614,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
           <textarea id="inq-notes" name="message" placeholder="Venue atmosphere, musical vibe, cocktail-hour or reception music, special requests, anything you want Julie to know…" rows="4" required minlength="30"></textarea>
           <span class="field-hint" id="ceremonyMsgCounter">0 / 30 minimum</span>
         </div>
+        <label class="consent-row">
+          <input type="checkbox" id="inq-email-copy" checked>
+          <span>Email me a copy of my song picks.</span>
+        </label>
         <label class="consent-row">
           <input type="checkbox" name="consent" required>
           <span>I agree to be contacted about this inquiry. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</span>
@@ -2296,11 +2313,13 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       summaryHeadCount.textContent = 'No selections yet';
       summaryBody.innerHTML = '<p class="summary-empty">Pick a song for any moment to start building your ' + (HOLIDAY_MODE ? 'holiday set' : 'ceremony') + '. Your selections save automatically.</p>';
       summaryCta.disabled = true;
+      if (summaryEmailBtn) summaryEmailBtn.disabled = true;
       summaryToggleLabel.textContent = 'Your Selections (0)';
       return;
     }
 
     summaryHeadCount.textContent = total + ' Song' + (total === 1 ? '' : 's') + ' Selected';
+    if (summaryEmailBtn) summaryEmailBtn.disabled = false;
     summaryToggleLabel.textContent = 'Your Selections (' + total + ') · ' + (s.totalFees ? '+$' + s.totalFees : 'Included');
     summaryCta.disabled = false;
 
@@ -2518,6 +2537,8 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       headers: { 'Accept': 'application/json' }
     }).then(function (res) {
       if (res.ok) {
+        var copyBox = document.getElementById('inq-email-copy');
+        if (copyBox && copyBox.checked) emailPicksCopy(formData.get('email'), formData.get('event_date'), formData.get('name'));
         inquiryForm.style.display = 'none';
         thankYou.classList.add('is-visible');
         clearState();
@@ -2615,6 +2636,41 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       if (src) src.value = 'repertoire-builder-holiday';
     }
   })();
+
+  // ── "Email me my picks" (api/picks.js) ──
+  function picksForEmail() {
+    const out = [];
+    MOMENTS.forEach(function (m) {
+      const sel = state.selections[m.id]; const song = sel && SONG_BY_ID[sel.songId];
+      if (song) out.push({ moment: m.name, title: song.title, artist: song.artist });
+    });
+    state.customSongs.forEach(function (cs) { if (cs.title && cs.title.trim()) out.push({ moment: 'Custom song', title: cs.title.trim(), artist: (cs.artist || '').trim() }); });
+    return out;
+  }
+  function emailPicksCopy(email, date, name) {
+    return fetch('/api/picks/', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: HOLIDAY_MODE ? 'repertoire-builder-holiday' : 'repertoire-builder', email: email, date: date || '', name: name || '', picks: picksForEmail() })
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || 'Please try again.'); return j; }); });
+  }
+  const summaryEmailForm = document.getElementById('summaryEmailForm');
+  const summaryEmailBtn = document.getElementById('summaryEmailBtn');
+  const summaryEmailNote = document.getElementById('summaryEmailNote');
+  if (summaryEmailForm) {
+    summaryEmailForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('summaryEmail').value.trim();
+      summaryEmailNote.className = 'summary-email-note';
+      if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(email)) { summaryEmailNote.textContent = 'Please enter a valid email address.'; summaryEmailNote.className += ' is-err'; return; }
+      if (!picksForEmail().length) { summaryEmailNote.textContent = 'Pick at least one song first.'; summaryEmailNote.className += ' is-err'; return; }
+      summaryEmailBtn.disabled = true;
+      emailPicksCopy(email).then(function (j) {
+        summaryEmailNote.textContent = j.emailed ? 'Sent. Check your inbox.' : 'Sent to Julie with your picks. She replies within 24 hours.';
+        summaryEmailNote.className += ' is-ok';
+        if (typeof gtag === 'function') gtag('event', 'picks_email', { source: 'repertoire-builder', emailed: !!j.emailed });
+      }).catch(function (err) { summaryEmailNote.textContent = err.message; summaryEmailNote.className += ' is-err'; summaryEmailBtn.disabled = false; });
+    });
+  }
 
   loadState();
   renderMoments();

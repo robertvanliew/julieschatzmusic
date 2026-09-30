@@ -149,6 +149,7 @@ async function saveEvents(body) {
   const changes = {};
   changes['index.html'] = build.applyEvents(index, events, todayNY());
   changes[EVENTS_PATH] = JSON.stringify(events, null, 2) + '\n';
+  changes['assets/data/booked-dates.json'] = build.bookedDatesJson(events, todayNY());
   await commit('admin: update event dates (' + events.length + ' on file)', changes);
   await ping(['/']);
   return { events };

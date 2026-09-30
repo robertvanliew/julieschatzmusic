@@ -216,6 +216,7 @@ a { color: var(--violet-2); }
 </div>
 
 <script src="/assets/js/music-plan.js" defer></script>
+<script src="/assets/js/picks-capture.js" defer></script>
 <script>
 (function () {
   'use strict';
@@ -430,6 +431,14 @@ a { color: var(--violet-2); }
   function finish() {
     state.finished = true;
     var picks = computePicks();
+    state.lastPicks = picks;
+    if (window.jsmPicksCapture) {
+      window.jsmPicksCapture({
+        mount: document.querySelector('#results .next-prompt'),
+        source: 'parent-dance-song-finder',
+        getPicks: function () { return (state.lastPicks || []).map(function (s) { return { title: s.title, artist: s.artist }; }); }
+      });
+    }
     var tribute = isTributeBranch();
     tributeNoteEl.innerHTML = tribute
       ? '<div class="tribute-note"><strong>A note on the tribute branch.</strong> These picks lean toward gentler, less lyrically-specific pieces. If a song meant something specifically to your parent — their favorite, a piece from their wedding, or something they used to sing to you — that will almost always be the better choice than anything a quiz can surface. Julie can learn any tribute song outside the standard repertoire; mention it in the booking inquiry.</div>'

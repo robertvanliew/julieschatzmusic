@@ -713,6 +713,9 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
   document.querySelectorAll('[data-open-call-modal]').forEach(function (el) {
     el.addEventListener('click', function (e) { e.preventDefault(); openModal('closing-cta'); });
   });
+  // /corporate-events/#request-call opens the booker directly (used by the
+  // sitewide "15-min call" button and the homepage date check).
+  if (window.location.hash === '#request-call') { openModal('hash'); history.replaceState(null, '', window.location.pathname); }
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) {

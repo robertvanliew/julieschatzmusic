@@ -1884,6 +1884,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 <script src="/assets/js/meta-conversions.js" defer></script>
 <link rel="stylesheet" href="/assets/css/music-plan.css">
 <script src="/assets/js/music-plan.js" defer></script>
+<script src="/assets/js/picks-capture.js" defer></script>
 </head>
 <body>
 
@@ -2698,6 +2699,16 @@ function renderResults() {
 
   const list = document.getElementById('song-list');
   list.innerHTML = '';
+
+  // "Email me my picks" card (assets/js/picks-capture.js), inserted above the PDF card.
+  if (window.jsmPicksCapture) {
+    window.jsmPicksCapture({
+      mount: document.querySelector('#results .capture'),
+      source: 'first-dance-song-finder',
+      getPicks: function () { return (state.picks || []).map(function (p) { return { title: p.title, artist: p.artist }; }); },
+      getShareUrl: buildShareUrl
+    });
+  }
 
   state.picks.forEach((song, idx) => {
     const card = document.createElement('article');
