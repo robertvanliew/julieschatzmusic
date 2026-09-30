@@ -1583,6 +1583,27 @@ if (fy) fy.textContent = new Date().getFullYear();
   });
 })();
 </script>
+<script>
+// Preselect a package from the URL, e.g. /bookings/?package=corporate or
+// /bookings/?package=private-1hr&note=Holiday%20party. Used by the holiday,
+// jazz and pianist pages so the form opens on the right event type.
+(function () {
+  var params;
+  try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+  var pkg = params.get('package');
+  var select = document.getElementById('bk-package');
+  if (!pkg || !select) return;
+  var match = Array.prototype.some.call(select.options, function (o) { return o.value === pkg; });
+  if (!match) return;
+  select.value = pkg;
+  select.dispatchEvent(new Event('change', { bubbles: true }));
+  var note = params.get('note');
+  var msg = document.getElementById('bk-message');
+  if (note && msg && !msg.value) msg.value = note.slice(0, 120) + ': ';
+  var form = document.getElementById('bookingsInquiryForm');
+  if (form && form.scrollIntoView) form.scrollIntoView({ block: 'start' });
+})();
+</script>
 <script src="/assets/js/global-inquire-cta.js" defer></script>
 </body>
 </html>

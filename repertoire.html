@@ -1282,6 +1282,10 @@ body.nav-drawer-open { overflow: hidden; }
   nav .nav-links, nav.site-nav .nav-links { display: none !important; }
   .nav-hamburger { display: flex; }
 }
+.builder-tabs { display: flex; gap: 8px; margin: 0 0 22px; }
+.builder-tabs a { padding: 9px 18px; border: 1px solid rgba(244, 239, 230, 0.22); border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244, 239, 230, 0.7); text-decoration: none; }
+.builder-tabs a:hover { color: #fff; border-color: rgba(244, 239, 230, 0.5); }
+.builder-tabs a[aria-current="page"] { color: #0F0A1A; background: #d4b872; border-color: #d4b872; }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -1617,7 +1621,36 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   'use strict';
 
   // ─── Constants ──────────────────────────────────────────────────────
-  const STORAGE_KEY = 'julieschatz.ceremony.v1';
+  // ─── Holiday mode ───────────────────────────────────────────────────
+  // /wedding-ceremony-songs/?mode=holiday turns the builder into a holiday
+  // song picker. It stays OFF until Julie approves the list: while
+  // HOLIDAY_APPROVED is false the tab is not rendered, ?mode=holiday falls
+  // back to the ceremony builder, and none of these titles appear anywhere.
+  //
+  // [HOLIDAY SONGS: Julie to confirm] Suggested titles only. Delete any she
+  // does not play, add any she does, then set HOLIDAY_APPROVED = true.
+  const HOLIDAY_APPROVED = false;
+  const HOLIDAY_SONGS = [
+    { id: 'hol-carol-bells',      title: 'Carol of the Bells',                     artist: 'Traditional',            section: 'holiday' },
+    { id: 'hol-merry-little',     title: 'Have Yourself a Merry Little Christmas', artist: 'Standard',               section: 'holiday' },
+    { id: 'hol-christmas-song',   title: 'The Christmas Song',                     artist: 'Nat King Cole',          section: 'holiday' },
+    { id: 'hol-white-christmas',  title: 'White Christmas',                        artist: 'Irving Berlin',          section: 'holiday' },
+    { id: 'hol-let-it-snow',      title: 'Let It Snow',                            artist: 'Standard',               section: 'holiday' },
+    { id: 'hol-winter-wonder',    title: 'Winter Wonderland',                      artist: 'Standard',               section: 'holiday' },
+    { id: 'hol-silent-night',     title: 'Silent Night',                           artist: 'Traditional',            section: 'holiday' },
+    { id: 'hol-o-holy-night',     title: 'O Holy Night',                           artist: 'Traditional',            section: 'holiday' },
+    { id: 'hol-christmas-time',   title: 'Christmas Time Is Here',                 artist: 'Vince Guaraldi',         section: 'holiday' },
+    { id: 'hol-all-i-want',       title: 'All I Want for Christmas Is You',        artist: 'Mariah Carey',           section: 'holiday' },
+    { id: 'hol-maoz-tzur',        title: "Ma'oz Tzur (Rock of Ages)",              artist: 'Traditional · Hanukkah', section: 'holiday' },
+    { id: 'hol-oh-hanukkah',      title: 'Hanukkah, Oh Hanukkah',                  artist: 'Traditional · Hanukkah', section: 'holiday' },
+    { id: 'hol-sevivon',          title: 'Sevivon, Sov, Sov, Sov',                 artist: 'Traditional · Hanukkah', section: 'holiday' },
+    { id: 'hol-nye-what-doing',   title: "What Are You Doing New Year's Eve?",     artist: 'Frank Loesser',          section: 'holiday' },
+    { id: 'hol-auld-lang-syne',   title: 'Auld Lang Syne',                         artist: 'Traditional',            section: 'holiday' }
+  ];
+  const HOLIDAY_MODE = HOLIDAY_APPROVED && HOLIDAY_SONGS.length > 0 &&
+    /(?:^|[?&])mode=holiday(?:&|$)/.test(window.location.search);
+
+  const STORAGE_KEY = HOLIDAY_MODE ? 'julieschatz.holiday.v1' : 'julieschatz.ceremony.v1';
   const FEES = {
     INSTRUMENTAL: 125,
     CUSTOM: 200,
@@ -1625,7 +1658,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   };
   const INCLUDED_REPERTOIRE_LIMIT = 3;
 
-  const MOMENTS = [
+  const CEREMONY_MOMENTS = [
     { id: 'prelude',         label: 'i',    name: 'Prelude',           hint: 'guests being seated',   defaultSection: 'prelude',       optional: false },
     { id: 'processional',    label: 'ii',   name: 'Processional',      hint: 'wedding party walks',   defaultSection: 'processional',  optional: false },
     { id: 'bride-entrance',  label: 'iii',  name: 'Entrance',          hint: 'walking down the aisle', defaultSection: 'bride',         optional: false },
@@ -1635,6 +1668,14 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     { id: 'first-dance',     label: 'vii',  name: 'First Dance',       hint: 'reception opener',      defaultSection: 'first-dance',   optional: true  },
     { id: 'parent-dance',    label: 'viii', name: 'Parent Dances',     hint: 'father/mother dance',   defaultSection: 'parent-dance',  optional: true  }
   ];
+  const HOLIDAY_MOMENTS = [
+    { id: 'hol-arrivals', label: 'i',   name: 'Arrivals',           hint: 'as guests come in',          defaultSection: 'holiday', optional: false },
+    { id: 'hol-dinner',   label: 'ii',  name: 'Dinner',             hint: 'background set',             defaultSection: 'holiday', optional: true  },
+    { id: 'hol-feature',  label: 'iii', name: 'Feature Song',       hint: 'the one everyone knows',     defaultSection: 'holiday', optional: true  },
+    { id: 'hol-toast',    label: 'iv',  name: 'Toast or Countdown', hint: 'toast, candles or midnight', defaultSection: 'holiday', optional: true  },
+    { id: 'hol-close',    label: 'v',   name: 'Last Song',          hint: 'to end the night',           defaultSection: 'holiday', optional: true  }
+  ];
+  const MOMENTS = HOLIDAY_MODE ? HOLIDAY_MOMENTS : CEREMONY_MOMENTS;
 
   const SECTION_LABELS = {
     'prelude': 'Prelude',
@@ -1644,9 +1685,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     'recessional': 'Recessional',
     'cocktail': 'Cocktail Hour',
     'first-dance': 'First Dance',
-    'parent-dance': 'Parent Dances'
+    'parent-dance': 'Parent Dances',
+    'holiday': 'Holiday'
   };
-  const SECTION_ORDER = ['prelude', 'processional', 'bride', 'unity', 'recessional', 'cocktail', 'first-dance', 'parent-dance'];
+  const SECTION_ORDER = ['holiday', 'prelude', 'processional', 'bride', 'unity', 'recessional', 'cocktail', 'first-dance', 'parent-dance'];
 
   // ─── Repertoire (255 songs · 13 styles) ─────────────────────────────
   const REPERTOIRE = [
@@ -1932,6 +1974,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     { id: 'dilemma-nelly',       title: 'Dilemma',                           artist: 'Nelly',                        section: 'cocktail' }
   ];
 
+  if (HOLIDAY_MODE) HOLIDAY_SONGS.forEach(function (s) { REPERTOIRE.push(s); });
   const SONG_BY_ID = REPERTOIRE.reduce(function (acc, s) { acc[s.id] = s; return acc; }, {});
 
   // ─── State ──────────────────────────────────────────────────────────
@@ -2251,7 +2294,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
     if (total === 0) {
       summaryHeadCount.textContent = 'No selections yet';
-      summaryBody.innerHTML = '<p class="summary-empty">Pick a song for any moment to start building your ceremony. Your selections save automatically.</p>';
+      summaryBody.innerHTML = '<p class="summary-empty">Pick a song for any moment to start building your ' + (HOLIDAY_MODE ? 'holiday set' : 'ceremony') + '. Your selections save automatically.</p>';
       summaryCta.disabled = true;
       summaryToggleLabel.textContent = 'Your Selections (0)';
       return;
@@ -2319,7 +2362,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
   function buildSelectionsText() {
     const lines = [];
-    lines.push('· CEREMONY SELECTIONS ·');
+    lines.push(HOLIDAY_MODE ? '· HOLIDAY PARTY SELECTIONS ·' : '· CEREMONY SELECTIONS ·');
     MOMENTS.forEach(function (m) {
       const sel = state.selections[m.id];
       if (!sel) return;
@@ -2548,6 +2591,31 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   }
 
   // ─── Init ───────────────────────────────────────────────────────────
+  // Holiday tab: only exists once the list is approved.
+  (function () {
+    if (!HOLIDAY_APPROVED || !HOLIDAY_SONGS.length) return;
+    var builder = document.querySelector('section.builder');
+    if (!builder) return;
+    var tabs = document.createElement('nav');
+    tabs.className = 'builder-tabs';
+    tabs.setAttribute('aria-label', 'Song picker type');
+    tabs.innerHTML =
+      '<a href="/wedding-ceremony-songs/"' + (HOLIDAY_MODE ? '' : ' aria-current="page"') + '>Wedding ceremony</a>' +
+      '<a href="/wedding-ceremony-songs/?mode=holiday"' + (HOLIDAY_MODE ? ' aria-current="page"' : '') + '>Holiday party</a>';
+    builder.insertBefore(tabs, builder.firstChild);
+    if (HOLIDAY_MODE) {
+      var h2 = builder.querySelector('.section-head h2');
+      var tag = builder.querySelector('.section-head .section-tag');
+      if (h2) h2.textContent = 'Your Holiday Set';
+      if (tag) tag.textContent = HOLIDAY_MOMENTS.length + ' Moments';
+      builder.setAttribute('aria-label', 'Holiday song picker');
+      var subj = document.querySelector('#inquiryForm input[name="_subject"]');
+      var src = document.querySelector('#inquiryForm input[name="form_source"]');
+      if (subj) subj.value = 'Holiday Song Picker Inquiry · julieschatzmusic.com';
+      if (src) src.value = 'repertoire-builder-holiday';
+    }
+  })();
+
   loadState();
   renderMoments();
   renderCustomList();

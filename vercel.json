@@ -44,6 +44,10 @@
     { "source": "/corporate-events/brand-activations/", "destination": "/corporate-events/brand-activations.html" },
     { "source": "/corporate-events/client-dinners/", "destination": "/corporate-events/client-dinners.html" },
     { "source": "/corporate-events/award-shows/", "destination": "/corporate-events/award-shows.html" },
+    { "source": "/jazz-violinist-nyc-long-island/", "destination": "/jazz-violinist-nyc-long-island.html" },
+    { "source": "/wedding-pianist-nj-nyc/", "destination": "/wedding-pianist-nj-nyc.html" },
+    { "source": "/private-events/holiday-parties/", "destination": "/private-events/holiday-parties.html" },
+    { "source": "/new-years-eve-violinist-nyc/", "destination": "/new-years-eve-violinist-nyc.html" },
     { "source": "/wedding-violinist-long-island/", "destination": "/wedding-violinist-long-island.html" },
     { "source": "/wedding-violinist-westchester/", "destination": "/wedding-violinist-westchester.html" },
     { "source": "/wedding-violinist-hudson-valley/", "destination": "/wedding-violinist-hudson-valley.html" },
@@ -227,6 +231,10 @@
     { "source": "/beats/neyOH.html", "destination": "/sample-pack/live-violin-layered-strings/", "permanent": true },
     { "source": "/beats/xlnQR.html", "destination": "/sample-pack/live-violin-piano-samples/", "permanent": true },
     { "source": "/beats/Cy82d.html", "destination": "/sample-pack/free-sampler/", "permanent": true },
-    { "source": "/beats/PK6Cm.html", "destination": "/sample-pack/all-9-packs-bundle/", "permanent": true }
+    { "source": "/beats/PK6Cm.html", "destination": "/sample-pack/all-9-packs-bundle/", "permanent": true },
+    { "source": "/jazz-violinist-nyc-long-island.html", "destination": "/jazz-violinist-nyc-long-island/", "permanent": true },
+    { "source": "/wedding-pianist-nj-nyc.html", "destination": "/wedding-pianist-nj-nyc/", "permanent": true },
+    { "source": "/private-events/holiday-parties.html", "destination": "/private-events/holiday-parties/", "permanent": true },
+    { "source": "/new-years-eve-violinist-nyc.html", "destination": "/new-years-eve-violinist-nyc/", "permanent": true }
   ]
 }
