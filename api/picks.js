@@ -18,6 +18,8 @@
 //   { source, email, name?, date?, picks: [{ title, artist, moment? }], shareUrl?, note? }
 // Response: { ok, emailed }
 
+const { buildPicksEmail } = require('../lib/picks-email.js');
+
 const FORMSPREE = process.env.FORMSPREE_ENDPOINT || 'https://formspree.io/f/xjgjdeya';
 const SOURCES = {
   'first-dance-song-finder': 'First Dance Song Finder',
@@ -28,7 +30,6 @@ const SOURCES = {
 };
 
 const clean = (s, n) => String(s == null ? '' : s).replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, n);
-const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 function validate(body) {
   const source = clean(body.source, 40);
@@ -65,22 +66,11 @@ async function forwardToJulie(d) {
 
 async function emailVisitor(d) {
   if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM) return false;
-  const lines = d.picks.map((p, i) => '<li>' + (p.moment ? '<strong>' + esc(p.moment) + ':</strong> ' : '') + esc(p.title) + (p.artist ? ' <span style="color:#666">· ' + esc(p.artist) + '</span>' : '') + '</li>').join('');
-  const html = '<div style="font-family:Georgia,serif;font-size:17px;line-height:1.6;color:#222;max-width:560px">' +
-    '<p>Hi' + (d.name ? ' ' + esc(d.name) : '') + ',</p>' +
-    '<p>Here are the picks you saved from the ' + esc(d.label) + ':</p>' +
-    '<ol style="padding-left:22px">' + lines + '</ol>' +
-    (d.shareUrl ? '<p><a href="' + esc(d.shareUrl) + '">Open your picks again</a></p>' : '') +
-    (d.date ? '<p>You mentioned <strong>' + esc(d.date) + '</strong>. I will check that date and get back to you within 24 hours.</p>' : '<p>If you have a date in mind, reply to this email and I will check it.</p>') +
-    '<p>Julie Schatz<br>Violin, piano and vocals for weddings and events<br><a href="https://julieschatzmusic.com/">julieschatzmusic.com</a> · 631-365-9554</p></div>';
+  const mail = buildPicksEmail(d);
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Authorization': 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM, to: [d.email], reply_to: 'bookings@julieschatzmusic.com',
-      subject: 'Your song picks from Julie Schatz Music', html,
-      text: 'Your picks from the ' + d.label + ':\n\n' + picksText(d) + (d.shareUrl ? '\n\nOpen them again: ' + d.shareUrl : '') + '\n\nJulie Schatz · julieschatzmusic.com · 631-365-9554',
-    }),
+    body: JSON.stringify({ from: process.env.RESEND_FROM, to: [d.email], reply_to: 'bookings@julieschatzmusic.com', subject: mail.subject, html: mail.html, text: mail.text }),
   });
   if (!res.ok) { console.error('[picks] Resend ' + res.status); return false; }
   return true;
