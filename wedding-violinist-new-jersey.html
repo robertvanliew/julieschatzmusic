@@ -406,6 +406,10 @@ body.nav-drawer-open { overflow: hidden; }
 .tldr .tldr__list li strong { color: var(--ivory); font-weight: 500; }
 @media (max-width: 640px) { .tldr { padding: 22px 22px 24px; } .tldr .tldr__list li { font-size: 15px; } }
 
+
+/* Windows draws the <select> popup light even with color-scheme:dark; make options explicit so they never vanish. */
+select option { background: #0F0A1A; color: #F4EFE6; }
+select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
 </style>
 <!-- Plausible Analytics — privacy-friendly, no cookie banner required.
      To activate: sign up at https://plausible.io/, add julieschatzmusic.com as a site,
@@ -432,6 +436,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 <style>
 /* Paid landing: two-column video hero + sticky CTA (NJ page only) */
 .nj-hero {
@@ -1104,6 +1109,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
               '<h3>Thank you.</h3>' +
               '<p>Julie will reply within 24 hours. Check your inbox — and the spam folder just in case.</p>' +
             '</div>';
+          if (window.jsmLead) window.jsmLead(form);
           if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'NJ landing inquiry submitted' });
           if (typeof gtag === 'function') gtag('event', 'nj_lead_submit', { landing: 'wedding-violinist-new-jersey' });
         })

@@ -862,6 +862,10 @@ body.nav-drawer-open { overflow: hidden; }
 .qt-availability[data-status="past"] { background: rgba(255, 138, 128, 0.1); color: #ffb8b2; }
 .qt-success { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #b9ecc7; margin: 0; }
 
+
+/* Windows draws the <select> popup light even with color-scheme:dark; make options explicit so they never vanish. */
+select option { background: #0F0A1A; color: #F4EFE6; }
+select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
 </style>
 <script defer data-domain="julieschatzmusic.com" src="https://plausible.io/js/script.outbound-links.js"></script>
 <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
@@ -883,6 +887,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -1544,7 +1549,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   var dateInput = $('qtDate'), avail = $('qtAvailability');
   function attach() { if (window.jsmDateCheck) { window.jsmDateCheck.attach(dateInput, avail); return true; } return false; }
   if (!attach()) window.addEventListener('load', attach);
-  dateInput.addEventListener('change', function () { setTimeout(function () { $('qtDateCheckField').value = (avail.getAttribute('data-status') || '') + ' · ' + avail.textContent; }, 400); });
+  dateInput.addEventListener('change', function () { setTimeout(function () { var f = $('qtDateCheckField'); if (f) f.value = (avail.getAttribute('data-status') || '') + ' · ' + avail.textContent; }, 400); });
 
   // send
   var form = $('qtForm'), btn = $('qtSubmit'), err = $('qtError');
@@ -1556,8 +1561,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('x');
+        var estimate = $('qtEstimateField').value, parts = estimate.split(' · ');
         form.innerHTML = '<p class="qt-success">Sent. Julie checks your date and replies within 24 hours with a firm quote.</p>';
-        if (typeof gtag === 'function') gtag('event', 'quote_tool_submit', { estimate: $('qtEstimateField').value });
+        if (typeof gtag === 'function') gtag('event', 'quote_tool_submit', { estimate: estimate });
+        if (window.jsmLead) window.jsmLead('pricing-quote-tool', { event_type: parts.slice(0, 2).join(' · ') });
         if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Pricing quote tool' });
       })
       .catch(function () { err.textContent = 'That did not go through. Please try again, or email bookings@julieschatzmusic.com.'; err.hidden = false; btn.disabled = false; btn.textContent = 'Send me this quote'; });

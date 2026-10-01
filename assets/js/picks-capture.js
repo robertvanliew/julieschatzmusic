@@ -72,6 +72,7 @@
           if (form.date.value) msg += ' She replies about ' + form.date.value + ' within 24 hours.';
           form.innerHTML = '<p class="jsm-done">' + msg + '</p>';
           if (typeof gtag === 'function') gtag('event', 'picks_email', { source: opts.source, emailed: !!j.emailed });
+          if (window.jsmLead) window.jsmLead(opts.source + '-picks');
           if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Song picks email · ' + opts.source });
         })
         .catch(function (e2) { err.textContent = e2.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Email me my picks'; });

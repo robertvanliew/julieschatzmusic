@@ -1851,6 +1851,10 @@ body.inquiry-modal-open { overflow: hidden; }
     color: #111;
   }
 }
+
+/* Windows draws the <select> popup light even with color-scheme:dark; make options explicit so they never vanish. */
+select option { background: #0F0A1A; color: #F4EFE6; }
+select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
 </style>
 
 <script>
@@ -1882,6 +1886,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 <link rel="stylesheet" href="/assets/css/music-plan.css">
 <script src="/assets/js/music-plan.js" defer></script>
 <script src="/assets/js/picks-capture.js" defer></script>

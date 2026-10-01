@@ -1313,6 +1313,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -2537,6 +2538,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       headers: { 'Accept': 'application/json' }
     }).then(function (res) {
       if (res.ok) {
+        if (window.jsmLead) window.jsmLead(inquiryForm);
         var copyBox = document.getElementById('inq-email-copy');
         if (copyBox && copyBox.checked) emailPicksCopy(formData.get('email'), formData.get('event_date'), formData.get('name'));
         inquiryForm.style.display = 'none';
@@ -2668,6 +2670,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         summaryEmailNote.textContent = j.emailed ? 'Sent. Check your inbox.' : 'Sent to Julie with your picks. She replies within 24 hours.';
         summaryEmailNote.className += ' is-ok';
         if (typeof gtag === 'function') gtag('event', 'picks_email', { source: 'repertoire-builder', emailed: !!j.emailed });
+        if (window.jsmLead) window.jsmLead('repertoire-builder-picks');
       }).catch(function (err) { summaryEmailNote.textContent = err.message; summaryEmailNote.className += ' is-err'; summaryEmailBtn.disabled = false; });
     });
   }

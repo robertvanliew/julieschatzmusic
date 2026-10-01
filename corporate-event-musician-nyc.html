@@ -528,6 +528,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -909,6 +910,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
               '<h3>Thank you.</h3>' +
               '<p>Julie will reply within 24 hours. For anything urgent, direct phone is <a href="tel:+16313659554" style="color:#d4b872;">631·365·9554</a>.</p>' +
             '</div>';
+          if (window.jsmLead) window.jsmLead(form);
           if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Corporate fast-lane submitted' });
           if (typeof gtag === 'function') gtag('event', 'corp_lead_submit');
         })

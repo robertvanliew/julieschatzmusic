@@ -1350,6 +1350,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -1810,6 +1811,7 @@ if (fy) fy.textContent = new Date().getFullYear();
     else { if (btn.dataset.originalLabel) btn.textContent = btn.dataset.originalLabel; btn.disabled = false; btn.style.opacity=''; btn.style.cursor=''; }
   }
   function showSuccess(form) {
+    if (window.jsmLead) window.jsmLead(form);
     const existingSuccess = form.parentElement && form.parentElement.querySelector('.form-success');
     if (existingSuccess) { form.style.display = 'none'; existingSuccess.classList.add('is-active'); return; }
     const wrap = document.createElement('div');

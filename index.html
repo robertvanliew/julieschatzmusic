@@ -4292,6 +4292,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <script src="/assets/js/meta-conversions.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -5153,8 +5154,11 @@ window.addEventListener('load', function () {
       if (!form.checkValidity()) { form.reportValidity(); return; }
       btn.disabled = true; btn.textContent = 'Sending…';
       fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-        .then(function (r) { if (!r.ok) throw new Error('x'); form.innerHTML = '<p class="dc-done">Sent. Julie confirms your date within 24 hours.</p>';
-          if (typeof gtag === 'function') gtag('event', 'date_check_submit', { status: document.getElementById('dcStatusField').value.split(' ')[0] });
+        .then(function (r) { if (!r.ok) throw new Error('x');
+          var status = document.getElementById('dcStatusField').value.split(' ')[0];
+          form.innerHTML = '<p class="dc-done">Sent. Julie confirms your date within 24 hours.</p>';
+          if (typeof gtag === 'function') gtag('event', 'date_check_submit', { status: status });
+          if (window.jsmLead) window.jsmLead('date-check-home', { event_type: status });
           if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Date check · homepage' }); })
         .catch(function () { err.textContent = 'That did not go through. Please try again, or text Julie.'; err.hidden = false; btn.disabled = false; btn.textContent = 'Ask Julie about this date'; });
     });
@@ -6808,6 +6812,7 @@ if (testimonialsTrack) {
   }
 
   function showSuccess(form) {
+    if (window.jsmLead) window.jsmLead(form);
     // If the form has a sibling success element (like solo/duo do), show it.
     // Otherwise replace the form with an inline success message.
     const existingSuccess = form.parentElement && form.parentElement.querySelector('.form-success');

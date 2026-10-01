@@ -97,6 +97,10 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--v
 .login { max-width: 420px; margin: 12vh auto 0; }
 .login .panel { padding: 30px; }
 .error { color: var(--red); font-size: 14px; margin-top: 10px; }
+
+/* Windows draws the <select> popup light even with color-scheme:dark; make options explicit so they never vanish. */
+select option { background: #0F0A1A; color: #F4EFE6; }
+select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
 </style>
 </head>
 <body>
