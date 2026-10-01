@@ -27,6 +27,15 @@
     "format": "Violin and DJ (Soul Shade duo)"
   },
   {
+    "id": "2026-10-21-corporate-event-9",
+    "date": "2026-10-21",
+    "title": "Corporate Event",
+    "city": "Huntington, NY",
+    "time": "",
+    "venue": "Oheka Castle",
+    "format": "Solo Violin"
+  },
+  {
     "id": "2026-10-24-wedding-reception-2",
     "date": "2026-10-24",
     "title": "Wedding Reception",
@@ -61,6 +70,15 @@
     "time": "",
     "venue": "Hutong New York",
     "format": "Violin and DJ (Soul Shade duo)"
+  },
+  {
+    "id": "2026-11-22-wedding-ceremony-and-cocktail-hour-8",
+    "date": "2026-11-22",
+    "title": "Wedding Ceremony and Cocktail Hour",
+    "city": "Hillburn, NY",
+    "time": "",
+    "venue": "The Views at Mt. Fuji",
+    "format": "Solo Violin"
   },
   {
     "id": "2026-12-10-corporate-holiday-party-5",
