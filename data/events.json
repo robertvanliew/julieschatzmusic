@@ -72,7 +72,7 @@
     "format": "Violin and DJ (Soul Shade duo)"
   },
   {
-    "id": "2026-11-22-wedding-ceremony-and-cocktail-hour-8",
+    "id": "2026-11-22-wedding-ceremony-and-cocktail",
     "date": "2026-11-22",
     "title": "Wedding Ceremony and Cocktail Hour",
     "city": "Hillburn, NY",
@@ -87,6 +87,15 @@
     "city": "Somerset, NJ",
     "time": "",
     "venue": "The Palace at Somerset",
+    "format": "Solo Violin"
+  },
+  {
+    "id": "2026-12-13-wedding-ceremony-10",
+    "date": "2026-12-13",
+    "title": "Wedding Ceremony",
+    "city": "Paramus, NJ",
+    "time": "",
+    "venue": "St. Mark's Syriac Orthodox Cathedral",
     "format": "Solo Violin"
   }
 ]
