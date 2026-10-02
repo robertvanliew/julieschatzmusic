@@ -182,6 +182,7 @@ a { color: var(--violet-2); }
 .site-footer a:hover { color: var(--gold); }
 .site-footer .footer-credit { font-size: 11px; margin-top: 8px; color: rgba(244,239,230,0.28); }
 </style>
+<link rel="stylesheet" href="/assets/css/nav-dropdown.css">
 </head>
 <body>
 <div class="page">
@@ -191,7 +192,16 @@ a { color: var(--violet-2); }
       <li><a href="/corporate-events/">Corporate</a></li>
       <li><a href="/private-events/">Private</a></li>
       <li><a href="/weddings/">Weddings</a></li>
-      <li><a href="/wedding-song-finder/">Song Finders</a></li>
+      <li class="nav-item-has-dropdown"><a href="/wedding-song-finder/">Song Finders</a>
+        <ul class="nav-dropdown">
+          <li><a href="/wedding-song-finder/">All Song Finders</a></li>
+          <li><a href="/walking-down-the-aisle-song-finder/">Walking Down the Aisle</a></li>
+          <li><a href="/recessional-song-finder/">Recessional</a></li>
+          <li><a href="/first-dance-song-finder/">First Dance</a></li>
+          <li><a href="/parent-dance-song-finder/">Parent Dances</a></li>
+          <li><a href="/wedding-ceremony-songs/">Ceremony Song Picker</a></li>
+        </ul>
+      </li>
       <li><a href="/wedding-ceremony-songs/">Repertoire</a></li>
       <li><a href="/wedding-violinist-pricing/">Pricing</a></li>
       <li><a href="/blog/">Blog</a></li>
@@ -322,5 +332,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script src="/assets/js/global-inquire-cta.js" defer></script>
+<script src="/assets/js/nav-dropdown.js" defer></script>
 </body>
 </html>
