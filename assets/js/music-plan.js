@@ -10,6 +10,7 @@
 
   var MOMENTS = [
     { slug: 'walking-down-the-aisle', label: 'Walking Down the Aisle', url: '/walking-down-the-aisle-song-finder/' },
+    { slug: 'recessional',            label: 'Recessional',            url: '/recessional-song-finder/' },
     { slug: 'first-dance',            label: 'First Dance',            url: '/first-dance-song-finder/' },
     { slug: 'parent-dance',           label: 'Parent Dance',           url: '/parent-dance-song-finder/' },
     { slug: 'wedding-party-entrance', label: 'Wedding Party Entrance', url: '/wedding-party-entrance-song-finder/', unbuilt: true },

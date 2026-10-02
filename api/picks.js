@@ -25,6 +25,7 @@ const SOURCES = {
   'first-dance-song-finder': 'First Dance Song Finder',
   'walking-down-the-aisle-song-finder': 'Walking Down the Aisle Song Finder',
   'parent-dance-song-finder': 'Parent Dance Song Finder',
+  'recessional-song-finder': 'Recessional Song Finder',
   'repertoire-builder': 'Ceremony Song Picker',
   'repertoire-builder-holiday': 'Holiday Song Picker',
 };
