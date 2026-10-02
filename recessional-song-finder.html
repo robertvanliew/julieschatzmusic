@@ -156,7 +156,11 @@ a { color: var(--violet-2); }
 .next-prompt h3 { font-family: var(--serif-display); font-size: 22px; margin-bottom: 8px; }
 .next-prompt p { font-family: var(--serif-body); font-size: 17px; color: var(--ivory-dim); margin-bottom: 14px; }
 .next-prompt a { display: inline-block; padding: 12px 20px; background: linear-gradient(90deg, var(--violet), var(--violet-2)); color: var(--ivory); text-decoration: none; border-radius: 8px; font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; }
-.retake { text-align: center; margin: 20px 0; }
+.retake { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0; }
+.retake button#morePicks { border-color: rgba(168,85,247,0.55); color: var(--ivory); }
+.more-note { text-align: center; font-family: var(--serif-body); font-style: italic; font-size: 16px; color: var(--ivory-soft); margin: -6px 0 18px; }
+.not-seeing { text-align: center; font-family: var(--serif-body); font-size: 16px; line-height: 1.55; color: var(--ivory-soft); margin: 0 auto 26px; max-width: 560px; }
+.not-seeing a { color: var(--violet-2, #c084fc); }
 .retake button { background: transparent; border: 1px solid var(--hairline); color: var(--ivory-soft); padding: 10px 18px; border-radius: 6px; font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
 .retake button:hover { border-color: rgba(168,85,247,0.6); color: var(--ivory); }
 
@@ -217,13 +221,19 @@ a { color: var(--violet-2); }
     <h2>Your three recessional songs.</h2>
     <p class="sub">Ranked by how well they match your answers.</p>
     <div id="picks"></div>
+    <div class="retake">
+      <button type="button" id="morePicks">Show me 3 different songs</button>
+      <button type="button" id="editAnswers">Change an answer</button>
+      <button type="button" id="retake">Start over</button>
+    </div>
+    <p class="more-note" id="moreNote" hidden></p>
+    <p class="not-seeing">Not seeing your song? Julie plays 255 songs live. <a href="/wedding-ceremony-songs/">Browse the full repertoire</a>, or name any song when you <a href="/#inquire">send your date</a>. With at least six weeks' notice she can learn one that isn't on the list.</p>
     <p class="result-note">Most couples need 60 to 90 seconds of music for the walk back up the aisle. Julie can start a song at its strongest moment instead of the intro, and play until the last of the wedding party has passed the back row.</p>
     <div class="next-prompt">
       <h3>Next up: your first dance.</h3>
       <p>Same five-question format. Three picks.</p>
       <a href="/first-dance-song-finder/">Continue to First Dance →</a>
     </div>
-    <div class="retake"><button type="button" id="retake">Retake quiz</button></div>
   </section>
 
   <article class="guide">
@@ -417,10 +427,21 @@ a { color: var(--violet-2); }
       var score = 0;
       wanted.forEach(function (t) { if (song.tags.indexOf(t) !== -1) score++; });
       var alreadyPicked = alreadyChosenTitles.indexOf(song.title) !== -1;
-      return { song: song, score: score, dedup: alreadyPicked };
+      return { song: song, score: score, dedup: alreadyPicked, seen: (state.seen || []).indexOf(song.title) !== -1 };
     });
 
+    // "Show me 3 different songs": once fewer than three unseen good matches remain, start the cycle again.
+    var best = Math.max.apply(null, scored.map(function (r) { return r.score; }));
+    var fresh = scored.filter(function (r) { return !r.seen && r.score >= best - 1; });
+    state.wrapped = false;
+    if ((state.seen || []).length && fresh.length < 3) {
+      state.seen = [];
+      state.wrapped = true;
+      scored.forEach(function (r) { r.seen = false; });
+    }
+
     scored.sort(function (a, b) {
+      if (a.seen !== b.seen) return a.seen ? 1 : -1;
       if (a.dedup !== b.dedup) return a.dedup ? 1 : -1;
       if (b.score !== a.score) return b.score - a.score;
       if (a.song.inRepertoire !== b.song.inRepertoire) return a.song.inRepertoire ? -1 : 1;
@@ -440,6 +461,12 @@ a { color: var(--violet-2); }
     state.finished = true;
     var picks = computePicks();
     state.lastPicks = picks;
+    state.seen = (state.seen || []).concat(picks.map(function (s) { return s.title; }));
+    var moreNote = document.getElementById('moreNote');
+    moreNote.hidden = !state.wrapped;
+    moreNote.textContent = state.wrapped ? "That's every strong match for these answers, so these start again from the top. Change an answer to head in a new direction." : '';
+    var sentCard = document.getElementById('jsmPicks');
+    if (sentCard && sentCard.querySelector('.jsm-done')) sentCard.parentNode.removeChild(sentCard);
     if (window.jsmPicksCapture) {
       window.jsmPicksCapture({
         mount: document.querySelector('#results .next-prompt'),
@@ -499,6 +526,19 @@ a { color: var(--violet-2); }
   }
 
   document.getElementById('retake').addEventListener('click', reset);
+  document.getElementById('morePicks').addEventListener('click', function () {
+    finish();
+    if (typeof gtag === 'function') gtag('event', 'quiz_more_picks', { finder: MOMENT_SLUG });
+  });
+  document.getElementById('editAnswers').addEventListener('click', function () {
+    state.seen = [];
+    state.current = 0;
+    resultsEl.classList.remove('show');
+    quizEl.style.display = '';
+    renderQuestion();
+    if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (typeof gtag === 'function') gtag('event', 'quiz_edit_answers', { finder: MOMENT_SLUG });
+  });
 
   function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');

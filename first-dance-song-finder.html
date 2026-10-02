@@ -1169,6 +1169,12 @@ h1 {
 .share-url-row button:hover { border-color: var(--violet); }
 
 /* ═══════════════ FOOTER ACTIONS ═══════════════ */
+.pick-controls { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 26px 0 10px; }
+.pick-controls #more-picks-btn { border-color: rgba(168, 85, 247, 0.6); }
+.more-note { text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: rgba(244, 239, 230, 0.75); margin: 6px auto 0; max-width: 560px; }
+.not-seeing { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.55; color: rgba(244, 239, 230, 0.75); margin: 14px auto 34px; max-width: 580px; }
+.not-seeing a { color: #c084fc; }
+@media print { .pick-controls, .more-note, .not-seeing { display: none !important; } }
 .footer-actions {
   display: flex;
   gap: 16px;
@@ -2162,6 +2168,13 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <!-- Songs injected by JS -->
     </div>
 
+    <div class="pick-controls">
+      <button class="btn-secondary" id="more-picks-btn" type="button">Show me 3 different songs</button>
+      <button class="btn-secondary" id="edit-answers-btn" type="button">Change an answer</button>
+    </div>
+    <p class="more-note" id="more-note" hidden></p>
+    <p class="not-seeing">Not seeing your song? Julie plays 255 songs live. <a href="/wedding-ceremony-songs/">Browse the full repertoire</a>, or name any song when you <a href="/#inquire">send your date</a>. With at least six weeks' notice she can learn one that isn't on the list.</p>
+
     <!-- Reception playlist: visible on screen + in the printed PDF.
          Carries long-tail SEO weight (cocktail hour songs, wedding dinner
          music, wedding reception playlist) plus genuine couple value. -->
@@ -2283,7 +2296,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
     <!-- Footer actions -->
     <div class="footer-actions">
-      <button class="btn-secondary" id="restart-btn">Retake the quiz</button>
+      <button class="btn-secondary" id="restart-btn">Start over</button>
     </div>
 
   </section>
@@ -2585,8 +2598,16 @@ function scoreSongs(answers) {
 }
 
 function pickTopThree(scoredSongs) {
+  // "Show me 3 different songs": songs already shown drop out until the
+  // strong matches run out, then the cycle starts again.
+  const seen = state.seen || [];
+  const best = Math.max(...scoredSongs.map(s => s.score));
+  const strongUnseen = scoredSongs.filter(s => seen.indexOf(s.title) === -1 && s.score >= best - 2);
+  state.wrapped = false;
+  if (seen.length && strongUnseen.length < 3) { state.seen = []; state.wrapped = true; }
+  const unseen = scoredSongs.filter(s => (state.seen || []).indexOf(s.title) === -1);
   // Sort by score descending
-  const sorted = [...scoredSongs].sort((a, b) => b.score - a.score);
+  const sorted = [...unseen].sort((a, b) => b.score - a.score);
   // Get all songs tied with the top scores (up to a window of 8 candidates)
   const pool = sorted.slice(0, Math.min(8, sorted.length));
   // Shuffle within the top pool for variety between visits with same answers
@@ -2709,6 +2730,13 @@ function showToast(msg) {
 function renderResults() {
   const scored = scoreSongs(state.answers);
   state.picks = pickTopThree(scored);
+  state.seen = (state.seen || []).concat(state.picks.map(p => p.title));
+  const moreNote = document.getElementById('more-note');
+  moreNote.hidden = !state.wrapped;
+  moreNote.textContent = state.wrapped ? "That's every strong match for these answers, so these start again from the top. Change an answer to head in a new direction." : '';
+  // If the email box was already used, offer it again for the new picks.
+  const sentCard = document.getElementById('jsmPicks');
+  if (sentCard && sentCard.querySelector('.jsm-done')) sentCard.parentNode.removeChild(sentCard);
 
   const list = document.getElementById('song-list');
   list.innerHTML = '';
@@ -2820,6 +2848,7 @@ function goBack() {
 function restart() {
   state.answers = {};
   state.picks = [];
+  state.seen = [];
   document.querySelectorAll('.option').forEach(o => {
     o.style.borderColor = '';
     o.style.background = '';
@@ -2942,6 +2971,18 @@ function maybeLoadSharedResults() {
 document.getElementById('start-btn').addEventListener('click', startQuiz);
 document.getElementById('back-btn').addEventListener('click', goBack);
 document.getElementById('restart-btn').addEventListener('click', restart);
+document.getElementById('more-picks-btn').addEventListener('click', () => {
+  renderResults();
+  document.getElementById('song-list').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (typeof gtag === 'function') gtag('event', 'quiz_more_picks', { finder: 'first-dance' });
+});
+document.getElementById('edit-answers-btn').addEventListener('click', () => {
+  // Keep the answers (their buttons stay highlighted) and step back through the questions.
+  state.seen = [];
+  showSection('quiz');
+  showQuestion(0);
+  if (typeof gtag === 'function') gtag('event', 'quiz_edit_answers', { finder: 'first-dance' });
+});
 
 // Share: Copy link button (the pill at the end of the row)
 document.getElementById('share-copy').addEventListener('click', copyShareUrl);
