@@ -484,7 +484,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   <header>
     <span class="kicker">Privacy Policy</span>
     <h1>How your information is handled.</h1>
-    <p class="updated">Last updated: May 1, 2026</p>
+    <p class="updated">Last updated: October 23, 2026</p>
   </header>
 
   <p>This privacy policy explains what information is collected when you visit <a href="https://julieschatzmusic.com">julieschatzmusic.com</a> or submit an inquiry through one of the booking forms, why it is collected, how long it is kept, and how to request deletion.</p>
@@ -505,16 +505,18 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   </ul>
 
   <h3>2 · Technical information collected automatically</h3>
-  <p>When you submit a form, the following technical metadata is captured by our form processor (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>) for security and fraud-prevention purposes:</p>
+  <p>When you submit a form, the site's own form handler receives it and the following technical metadata is captured for security and fraud-prevention purposes:</p>
   <ul>
     <li>Your IP address</li>
     <li>Your browser type and version (user agent)</li>
     <li>The page you submitted from and timestamp of submission</li>
+    <li>The first page you visited on the site and the website that sent you there (for example a search engine or an AI assistant such as ChatGPT), so Julie knows how you found her</li>
   </ul>
   <p>This information is used solely to detect and block spam, abuse, and fraudulent inquiries. It is not used for advertising, marketing, or third-party data sharing.</p>
 
-  <h2>What is not collected</h2>
-  <p>This site does not run Google Analytics, Meta Pixel, or any third-party advertising or behavioral-tracking scripts. There are no cookies set for marketing or analytics. Embedded players from Spotify, Apple Music, SoundCloud, and Vimeo may set their own cookies when you interact with them; please refer to those services' privacy policies for details.</p>
+  <h3>3 · Analytics and advertising measurement</h3>
+  <p>This site uses Google Analytics to count visits and see which pages and tools lead to inquiries, and the Meta Pixel to measure the results of Julie's advertising on Facebook and Instagram. Both may set cookies and receive information about your visit, such as pages viewed and whether a form was submitted. When you submit a form, Meta may also receive a scrambled (hashed) version of your email address or phone number so the inquiry can be matched to an ad; it is not readable as your actual email or number. These services are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a> and <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta's privacy policy</a>. You can opt out of Google Analytics with Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">browser add-on</a> and manage Meta ad preferences in your Facebook or Instagram settings.</p>
+  <p>Embedded players from Spotify, Apple Music, SoundCloud, YouTube, and Vimeo may set their own cookies when you interact with them; please refer to those services' privacy policies for details.</p>
 
   <h2>How information is used</h2>
   <ul>
@@ -524,10 +526,10 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
   </ul>
 
   <h2>How long it is kept</h2>
-  <p>Inquiry submissions are retained in Formspree's archive for the duration of Julie's account with them, and in Julie's email inbox indefinitely as part of her business records. You can request deletion at any time (see below).</p>
+  <p>Inquiry submissions are kept in Julie's email inbox as part of her business records, and in the logs of the email delivery service for a limited time. You can request deletion at any time (see below).</p>
 
   <h2>Who has access</h2>
-  <p>Inquiry data is accessible to Julie Schatz directly and to <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> as the form-processing service. Formspree's data handling is governed by their <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">privacy policy</a>. Your information is not sold, traded, or shared with any other party.</p>
+  <p>Inquiry data is accessible to Julie Schatz directly and to the service providers that run the site: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel</a> (hosting), <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">Resend</a> (delivers the inquiry email to Julie and your confirmation email), and <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Formspree</a> (backup form processing, used only if email delivery fails). Your information is not sold, traded, or shared with any other party.</p>
 
   <h2>Your rights</h2>
   <p>You can request the following at any time by emailing <a href="mailto:bookings@julieschatzmusic.com">bookings@julieschatzmusic.com</a>:</p>
@@ -626,5 +628,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 <script src="/assets/js/global-inquire-cta.js" defer></script>
+<script src="/assets/js/lead-tracking.js" defer></script>
 </body>
 </html>

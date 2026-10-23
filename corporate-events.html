@@ -414,7 +414,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
   <section class="corp-form-wrap" id="corp-inquire">
     <h2 class="corp-form-h">Corporate inquiry</h2>
     <p class="corp-form-note">Every event is quoted individually. The more you can tell me, the faster I can come back with something real. I reply within 24 hours.</p>
-    <form class="corp-form" id="corpInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+    <form class="corp-form" id="corpInquiryForm" action="/api/inquiry/" method="POST" novalidate>
       <input type="text" name="_gotcha" class="corp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Corporate Inquiry · /corporate-events/">
       <input type="hidden" name="form_source" value="corporate-events-full-form">
@@ -546,7 +546,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
       <span class="call-modal-kicker" style="--i:0;">15-Minute Call</span>
       <h2 class="call-modal-title" id="callModalTitle" style="--i:1;">Pick three times that work.</h2>
       <p class="call-modal-sub" style="--i:2;">Send Julie three windows and she'll confirm one within 24 hours — or reply with an alternative if none of them fit her calendar.</p>
-      <form id="callRequestForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate style="--i:3;">
+      <form id="callRequestForm" action="/api/inquiry/" method="POST" novalidate style="--i:3;">
         <input type="text" name="_gotcha" class="call-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="15-Min Call Request · Corporate Events">
         <input type="hidden" name="form_source" value="corporate-15min-call-request">
@@ -754,7 +754,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending…</span>';
       var data = new FormData(form);
-      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      fetch(form.action, { method: 'POST', body: new URLSearchParams(data), headers: { 'Accept': 'application/json' } })
         .then(function (res) {
           if (!res.ok) throw new Error('Formspree ' + res.status);
           if (modalBody) modalBody.innerHTML =
@@ -802,7 +802,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
     if (!form.checkValidity()) { form.reportValidity(); return; }
     submit.disabled = true; submit.textContent = 'Sending…';
     var data = new FormData(form);
-    fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    fetch(form.action, { method: 'POST', body: new URLSearchParams(data), headers: { 'Accept': 'application/json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('Formspree ' + res.status);
         var wrap = form.parentElement;

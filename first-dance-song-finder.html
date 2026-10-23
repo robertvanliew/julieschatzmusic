@@ -3173,7 +3173,7 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: new URLSearchParams(new FormData(form)),
         headers: { 'Accept': 'application/json' }
       });
       if (response.ok) {
@@ -3308,7 +3308,7 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
       <p>Tell Julie a little about your event. Typical response within 24 hours.</p>
     </header>
 
-    <form class="inquiry-modal__form" id="inquiryModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+    <form class="inquiry-modal__form" id="inquiryModalForm" action="/api/inquiry/" method="POST" novalidate>
       <!-- Honeypot: invisible to humans + screen readers; bots fill, we drop silently -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
       <input type="hidden" name="_subject" value="New Booking Inquiry · First Dance Song Finder">

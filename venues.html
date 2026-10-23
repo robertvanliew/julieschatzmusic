@@ -461,7 +461,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         <p>Share your venue, date, and a few details. Julie reviews every inquiry personally and responds within 24 hours with availability and a tailored quote.</p>
       </div>
 
-      <form class="inquiry-form hardened-form" id="venuesInquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
+      <form class="inquiry-form hardened-form" id="venuesInquiryForm" action="/api/inquiry/" method="POST" data-loaded-at="" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
         <input type="hidden" name="_subject" value="New Booking Inquiry · venues page">
         <input type="hidden" name="_loaded_at" value="">
@@ -785,7 +785,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       e.preventDefault();
       setSubmitting(form, true);
       try {
-        const resp = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        const resp = await fetch(form.action, { method: 'POST', body: new URLSearchParams(formData), headers: { 'Accept': 'application/json' } });
         if (resp.ok) { setSubmitting(form, false); showSuccess(form); }
         else {
           let detail = '';

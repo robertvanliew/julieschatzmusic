@@ -41,10 +41,63 @@
     }
     if (extra) Object.keys(extra).forEach(function (k) { if (extra[k] != null && extra[k] !== '') params[k] = String(extra[k]).slice(0, 100); });
     params.page_path = window.location.pathname;
+    try { var at = JSON.parse(sessionStorage.getItem('jsm_attribution') || 'null'); if (at && at.ai) params.ai_referral = at.ai; } catch (e) {}
     if (!params.referral) delete params.referral;
     if (!params.event_type) delete params.event_type;
     if (typeof gtag === 'function') gtag('event', 'generate_lead', params);
   };
+
+  // ── Attribution: where this visitor came from ──────────────────────────
+  // Remembered for the browser session on the first page they land on, then
+  // attached to any form they submit (hidden fields ai_referral, landing_page,
+  // first_referrer, page_url) so Julie's inquiry email says "Found you
+  // through ChatGPT". ChatGPT also tags its links with utm_source=chatgpt.com.
+  var AI_SOURCES = [
+    [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|^chatgpt\.com$/, 'ChatGPT'],
+    [/(^|\.)perplexity\.ai$/, 'Perplexity'],
+    [/(^|\.)claude\.ai$/, 'Claude'],
+    [/^gemini\.google\.com$|^bard\.google\.com$/, 'Gemini'],
+    [/(^|\.)copilot\.microsoft\.com$|^copilot\.cloud\.microsoft$/, 'Copilot'],
+    [/(^|\.)meta\.ai$/, 'Meta AI'],
+    [/(^|\.)grok\.com$/, 'Grok'],
+    [/(^|\.)deepseek\.com$/, 'DeepSeek']
+  ];
+  function aiFrom(host) {
+    for (var i = 0; i < AI_SOURCES.length; i++) if (AI_SOURCES[i][0].test(host)) return AI_SOURCES[i][1];
+    return '';
+  }
+  var ATTR_KEY = 'jsm_attribution';
+  function readAttr() { try { return JSON.parse(sessionStorage.getItem(ATTR_KEY) || 'null'); } catch (e) { return null; } }
+  (function captureAttr() {
+    if (readAttr()) return;
+    var ref = '', refHost = '';
+    try { if (document.referrer) { var u = new URL(document.referrer); refHost = u.hostname; ref = /(^|\.)julieschatzmusic\.com$/.test(refHost) ? '' : u.origin + u.pathname; } } catch (e) {}
+    var utm = '';
+    try { utm = (new URLSearchParams(location.search).get('utm_source') || '').toLowerCase(); } catch (e) {}
+    var ai = aiFrom(refHost) || aiFrom(utm.replace(/^https?:\/\//, '').split('/')[0]);
+    var attr = { ai: ai, landing: location.pathname, referrer: ref };
+    try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch (e) {}
+  })();
+  // Public so the JSON-posting widgets (song finder picks) can send it too.
+  window.jsmAttribution = function () {
+    var a = readAttr() || {};
+    var out = { page_url: location.origin + location.pathname };
+    if (a.ai) out.ai_referral = a.ai;
+    if (a.landing) out.landing_page = a.landing;
+    if (a.referrer) out.first_referrer = a.referrer;
+    return out;
+  };
+  // Capture phase: runs before each form's own submit handler builds its FormData.
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.action || !/\/api\/inquiry\/?$/.test(form.getAttribute('action') || '')) return;
+    var attr = window.jsmAttribution();
+    Object.keys(attr).forEach(function (k) {
+      var el = form.querySelector('input[type="hidden"][name="' + k + '"]');
+      if (!el) { el = document.createElement('input'); el.type = 'hidden'; el.name = k; form.appendChild(el); }
+      el.value = attr[k];
+    });
+  }, true);
 
   // Pages that report leads to Meta through fbTrack('Lead', ...) get the GA4
   // event automatically, with content_name as the source.

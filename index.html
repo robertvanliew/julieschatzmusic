@@ -4351,7 +4351,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="inquiry-rule"></div>
-    <form class="inquiry-form hardened-form" id="inquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" data-loaded-at="" novalidate>
+    <form class="inquiry-form hardened-form" id="inquiryForm" action="/api/inquiry/" method="POST" data-loaded-at="" novalidate>
       <!-- Honeypot: invisible to humans + screen readers; bots fill it and we silently drop -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none;">
       <input type="hidden" name="_subject" value="New Booking Inquiry · julieschatzmusic.com">
@@ -5149,7 +5149,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <div class="date-check" id="dateCheck">
       <h3>Is my date open?</h3>
       <p class="dc-lead">Pick a date and get an answer from Julie's calendar right away.</p>
-      <form class="dc-form" id="dcForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+      <form class="dc-form" id="dcForm" action="/api/inquiry/" method="POST" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="dc-honey">
         <input type="hidden" name="_subject" value="Date check · homepage">
         <input type="hidden" name="form_source" value="date-check-home">
@@ -5189,7 +5189,7 @@ window.addEventListener('load', function () {
       e.preventDefault(); err.hidden = true;
       if (!form.checkValidity()) { form.reportValidity(); return; }
       btn.disabled = true; btn.textContent = 'Sending…';
-      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+      fetch(form.action, { method: 'POST', body: new URLSearchParams(new FormData(form)), headers: { 'Accept': 'application/json' } })
         .then(function (r) { if (!r.ok) throw new Error('x');
           var status = document.getElementById('dcStatusField').value.split(' ')[0];
           form.innerHTML = '<p class="dc-done">Sent. Julie confirms your date within 24 hours.</p>';
@@ -7187,7 +7187,7 @@ if (testimonialsTrack) {
       try {
         const resp = await fetch(form.action, {
           method: 'POST',
-          body: formData,
+          body: new URLSearchParams(formData),
           headers: { 'Accept': 'application/json' }
         });
         if (resp.ok) {

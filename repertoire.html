@@ -1518,7 +1518,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         <span class="modal-title" id="inquiryTitle">Send Selections to Julie</span>
         <button class="modal-close" id="inquiryClose" aria-label="Close">×</button>
       </div>
-      <form class="inquiry-form" id="inquiryForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+      <form class="inquiry-form" id="inquiryForm" action="/api/inquiry/" method="POST" novalidate>
         <!-- Honeypot: silently rejected if filled by a bot -->
         <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Ceremony Builder Inquiry · julieschatzmusic.com">
@@ -2545,13 +2545,13 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 
     fetch(inquiryForm.action, {
       method: 'POST',
-      body: formData,
+      body: new URLSearchParams(formData),
       headers: { 'Accept': 'application/json' }
     }).then(function (res) {
       if (res.ok) {
         if (window.jsmLead) window.jsmLead(inquiryForm);
         var copyBox = document.getElementById('inq-email-copy');
-        if (copyBox && copyBox.checked) emailPicksCopy(formData.get('email'), formData.get('event_date'), formData.get('name'));
+        if (copyBox && copyBox.checked && picksForEmail().length) emailPicksCopy(formData.get('email'), formData.get('event_date'), formData.get('name'), true).catch(function () {});
         inquiryForm.style.display = 'none';
         thankYou.classList.add('is-visible');
         clearState();
@@ -2660,10 +2660,11 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     state.customSongs.forEach(function (cs) { if (cs.title && cs.title.trim()) out.push({ moment: 'Custom song', title: cs.title.trim(), artist: (cs.artist || '').trim() }); });
     return out;
   }
-  function emailPicksCopy(email, date, name) {
+  // copyOnly: the couple's copy after a full inquiry; Julie already has their details.
+  function emailPicksCopy(email, date, name, copyOnly) {
     return fetch('/api/picks/', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source: HOLIDAY_MODE ? 'repertoire-builder-holiday' : 'repertoire-builder', email: email, date: date || '', name: name || '', picks: picksForEmail() })
+      body: JSON.stringify({ source: HOLIDAY_MODE ? 'repertoire-builder-holiday' : 'repertoire-builder', email: email, date: date || '', name: name || '', picks: picksForEmail(), copyOnly: !!copyOnly })
     }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || 'Please try again.'); return j; }); });
   }
   const summaryEmailForm = document.getElementById('summaryEmailForm');
@@ -2674,7 +2675,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       e.preventDefault();
       const email = document.getElementById('summaryEmail').value.trim();
       summaryEmailNote.className = 'summary-email-note';
-      if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(email)) { summaryEmailNote.textContent = 'Please enter a valid email address.'; summaryEmailNote.className += ' is-err'; return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { summaryEmailNote.textContent = 'Please enter a valid email address.'; summaryEmailNote.className += ' is-err'; return; }
       if (!picksForEmail().length) { summaryEmailNote.textContent = 'Pick at least one song first.'; summaryEmailNote.className += ' is-err'; return; }
       summaryEmailBtn.disabled = true;
       emailPicksCopy(email).then(function (j) {

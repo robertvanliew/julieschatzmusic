@@ -840,7 +840,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       <span class="corp-modal-kicker">Corporate Inquiry · Fast Lane</span>
       <h2 class="corp-modal-title" id="corpModalTitle">Three fields. 24-hour reply.</h2>
       <p class="corp-modal-sub">For urgent bookings under 14 days, call direct: <a href="tel:+16313659554" style="color:#d4b872;text-decoration:none;">631&nbsp;·&nbsp;365&nbsp;·&nbsp;9554</a>.</p>
-      <form class="corp-modal-form" id="corpModalForm" action="https://formspree.io/f/xjgjdeya" method="POST" novalidate>
+      <form class="corp-modal-form" id="corpModalForm" action="/api/inquiry/" method="POST" novalidate>
         <input type="text" name="_gotcha" class="corp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Corporate Inquiry · Fast Lane">
         <input type="hidden" name="form_source" value="corporate-fastlane">
@@ -913,7 +913,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
       var data = new FormData(form);
-      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      fetch(form.action, { method: 'POST', body: new URLSearchParams(data), headers: { 'Accept': 'application/json' } })
         .then(function (res) {
           if (!res.ok) throw new Error('Formspree returned ' + res.status);
           if (modalBody) modalBody.innerHTML =

@@ -65,7 +65,7 @@
       btn.disabled = true; btn.textContent = 'Sending…';
       fetch('/api/picks/', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ source: opts.source, email: email, date: form.date.value, picks: picks, shareUrl: opts.getShareUrl ? opts.getShareUrl() : '', _gotcha: form._gotcha.value, note: form.tell.checked ? '' : 'Visitor asked for their picks only.' })
+        body: JSON.stringify(Object.assign({}, window.jsmAttribution ? window.jsmAttribution() : {}, { source: opts.source, email: email, date: form.date.value, picks: picks, shareUrl: opts.getShareUrl ? opts.getShareUrl() : '', _gotcha: form._gotcha.value, note: form.tell.checked ? '' : 'Visitor asked for their picks only.' }))
       }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || 'Please try again.'); return j; }); })
         .then(function (j) {
           var msg = j.emailed ? 'Sent. Check your inbox for your picks.' : 'Sent to Julie with your picks.';
