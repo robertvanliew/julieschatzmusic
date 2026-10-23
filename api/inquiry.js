@@ -107,7 +107,7 @@ module.exports = async (req, res) => {
       fields, source: clean(fields.form_source, 60) || 'website',
       page: sitePage(fields.page_url || fields._landing_url || req.headers.referer || ''), ai,
     });
-    return reply(200, { ok: true, via: r.via, confirmed: r.confirmed });
+    return reply(200, { ok: true, via: r.via, confirmed: r.confirmed, reason: r.reason || undefined });
   } catch (e) {
     console.error('[inquiry]', e.message);
     return reply(502, { errors: [{ message: 'That did not go through. Please try again, or email bookings@julieschatzmusic.com.' }] });
