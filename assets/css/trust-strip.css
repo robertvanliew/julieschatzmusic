@@ -1,0 +1,53 @@
+/* "Trusted by" credits band: homepage (under the hero) and /corporate-events/
+   (under the intro). Text, not logos: no permission needed and it reads as
+   editorial rather than ad-like. position/z-index keep it above the homepage's
+   fixed #shader-bg canvas (see the note on .vertical-chooser in index.html). */
+.trust-strip {
+  position: relative;
+  z-index: 10;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 34px 24px 30px;
+  text-align: center;
+  border-top: 1px solid rgba(244, 239, 230, 0.12);
+  border-bottom: 1px solid rgba(244, 239, 230, 0.12);
+}
+.trust-strip__kicker {
+  display: block;
+  margin: 0 0 18px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #d4b872;
+}
+.trust-strip__row { margin: 0 0 12px; }
+.trust-strip__row:last-child { margin-bottom: 0; }
+.trust-strip__label {
+  display: block;
+  margin: 0 0 4px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.45);
+}
+.trust-strip__names {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 21px;
+  line-height: 1.5;
+  color: rgba(244, 239, 230, 0.92);
+}
+.trust-strip__names .sep { margin: 0 8px; color: rgba(212, 184, 114, 0.6); }
+.trust-strip__names em { font-style: italic; color: rgba(244, 239, 230, 0.6); font-size: 0.85em; }
+@media (max-width: 720px) {
+  .trust-strip { padding: 26px 16px 22px; }
+  .trust-strip__names { font-size: 18px; }
+  .trust-strip__names .sep { margin: 0 3px; }
+}
+/* Corporate page sits inside a narrower column. */
+main .trust-strip { margin: 8px 0 34px; padding-left: 0; padding-right: 0; }
+/* Break lines between names, never inside one. */
+.trust-strip__names .n { white-space: nowrap; }
