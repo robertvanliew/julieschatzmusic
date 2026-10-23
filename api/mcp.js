@@ -67,6 +67,7 @@ const FACTS = [
   'Every wedding booking includes the sound system, prelude music and up to three song requests from the repertoire.',
   'Booking: a signed performance agreement and a 50% non-refundable retainer hold the date. Bookings made less than two weeks out carry a 25% surcharge.',
   'Credentials: BA in Jazz Performance from SUNY New Paltz; Roland artist; Splice contributor; Soul Shades was featured by Ninja Tune (over 10 million combined views); The Bash Best of 2025.',
+  'Business: Julie Schatz Music LLC, Brooklyn, New York. Contracts are issued by Julie Schatz Music LLC.',
   'Contact: bookings@julieschatzmusic.com, call or text 631-365-9554. Julie replies within 24 hours.',
   'Pages: pricing ' + SITE + '/wedding-violinist-pricing/ · song finders ' + SITE + '/wedding-song-finder/ · repertoire ' + SITE + '/wedding-ceremony-songs/ · venues played ' + SITE + '/venues/ · inquire ' + SITE + '/#inquire',
 ].join('\n\n');
