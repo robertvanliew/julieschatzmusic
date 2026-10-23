@@ -321,6 +321,9 @@ h1 { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; f
 /* Windows draws the <select> popup light even with color-scheme:dark; make options explicit so they never vanish. */
 select option { background: #0F0A1A; color: #F4EFE6; }
 select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
+.formats-list a { color: inherit; text-decoration: none; }
+.formats-list a:hover { color: #fff; }
+.formats-list li:has(a):hover { border-color: rgba(212,184,114,0.5); }
 </style>
 <script src="/assets/js/lead-tracking.js" defer></script>
 <link rel="stylesheet" href="/assets/css/nav-dropdown.css">
@@ -387,6 +390,16 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
     <li>DJ + live violin · after-dinner</li>
     <li>Walk-on themes for honorees</li>
     <li>Client dinner · conversation-level</li>
+  </ul>
+
+  <h2 class="section-h" id="by-event-type">By event type</h2>
+  <ul class="formats-list">
+    <li><a href="/corporate-events/holiday-parties/">Holiday parties</a></li>
+    <li><a href="/corporate-events/galas/">Galas and benefits</a></li>
+    <li><a href="/corporate-events/product-launches/">Product launches</a></li>
+    <li><a href="/corporate-events/brand-activations/">Brand activations</a></li>
+    <li><a href="/corporate-events/client-dinners/">Client dinners</a></li>
+    <li><a href="/corporate-events/award-shows/">Award shows</a></li>
   </ul>
 
   <h2 class="section-h">Selected venues</h2>
