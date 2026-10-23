@@ -84,7 +84,7 @@ const TOOLS = [
   {
     name: 'get_price_estimate',
     title: 'Price estimate from the published rate sheet',
-    description: 'Starting price from Julie\'s published rate sheet. Zones by distance from Brooklyn: 1 = NYC, Hoboken, Jersey City; 2 = most of Long Island, Westchester, Northern NJ, Greenwich; 3 = Fairfield County CT, Central NJ, deeper Suffolk; 4 = Hamptons, deep Hudson Valley, inland CT (quoted individually). Corporate events are quoted individually from $3,000.',
+    description: 'Starting price from Julie\'s published rate sheet. Zones by distance from Brooklyn: 1 = NYC, Hoboken, Jersey City; 2 = most of Long Island, Westchester, Northern NJ, Greenwich; 3 = Fairfield County CT, Central NJ, deeper Suffolk; 4 = Hamptons, deep Hudson Valley, inland CT (quoted individually). Corporate events start at $1,200 for solo violin; other corporate formats are quoted individually. DJ + live violin starts at $3,500.',
     inputSchema: {
       type: 'object',
       properties: {

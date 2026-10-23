@@ -16,6 +16,6 @@ const page = { RATES: grab('RATES', '{', '}'), DJ_ADD: grab('DJ_ADD', '[', ']'),
 const problems = [];
 for (const k of ['RATES', 'DJ_ADD', 'DJ_ALONE']) if (JSON.stringify(page[k]) !== JSON.stringify(lib[k])) problems.push(k);
 if (!/total \+= 300 \* xh/.test(h)) problems.push('EXTRA_HOUR (pricing.html no longer adds 300 per extra hour)');
-if (!h.includes('begin at $3,000')) problems.push('CORPORATE_FROM (pricing.html no longer says from $3,000)');
+if (!h.includes('begin at $' + lib.CORPORATE_FROM.toLocaleString('en-US') + ' for solo violin')) problems.push('CORPORATE_FROM (pricing.html no longer says corporate begins at $' + lib.CORPORATE_FROM.toLocaleString('en-US') + ' for solo violin)');
 if (problems.length) { console.error('Pricing mismatch between pricing.html and lib/pricing.js: ' + problems.join(', ')); process.exit(1); }
 console.log('lib/pricing.js matches the pricing page quote tool.');
