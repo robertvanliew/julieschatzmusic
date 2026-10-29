@@ -1021,6 +1021,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <input type="date" id="njDate" name="event_date" required>
           </div>
         </div>
+        <div class="nj-modal-row">
+          <div class="nj-field">
+            <label for="nj-start_time">Start Time (optional)</label>
+            <input type="time" id="nj-start_time" name="start_time" step="900">
+          </div>
+          <div class="nj-field">
+            <label for="nj-end_time">End Time (optional)</label>
+            <input type="time" id="nj-end_time" name="end_time" step="900">
+          </div>
+        </div>
         <div class="nj-field">
           <label for="njVenue">Venue Name + City (NJ)</label>
           <input type="text" id="njVenue" name="venue" placeholder="e.g. Pendry Natirar, Peapack, NJ" required minlength="5">
@@ -1030,6 +1040,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
           <select id="njEventType" name="event_type" required>
             <option value="" disabled selected>Choose…</option>
             <option value="wedding-ceremony">Wedding Ceremony</option>
+            <option value="wedding-cocktail">Cocktail Hour Only</option>
             <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
             <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
             <option value="duo-ceremony-cocktail">Soul Shades Duo (Violin + Piano)</option>

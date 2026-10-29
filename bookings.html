@@ -1253,6 +1253,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <input id="bk-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
           </div>
         </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="bk-start_time">Start Time (optional)</label>
+            <input id="bk-start_time" type="time" name="start_time" step="900">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="bk-end_time">End Time (optional)</label>
+            <input id="bk-end_time" type="time" name="end_time" step="900">
+          </div>
+        </div>
 
         <div class="field-group">
           <label class="field-label" for="bk-venue">Venue Name + City</label>
@@ -1298,11 +1308,13 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <option value="" disabled selected>Choose a package…</option>
             <optgroup label="Solo Wedding · NYC (Travel Included)">
               <option value="solo-ceremony-nyc">Wedding Ceremony · $725</option>
+              <option value="solo-cocktail-nyc">Cocktail Hour Only · $725</option>
               <option value="solo-ceremony-cocktail-nyc">Ceremony &amp; Cocktail · $1,250</option>
               <option value="solo-full-day-nyc">Full Day Soloist · $2,150</option>
             </optgroup>
             <optgroup label="Solo Wedding · Zone 2 · 20–40 miles">
               <option value="solo-ceremony-zone">Wedding Ceremony · $825</option>
+              <option value="solo-cocktail-zone">Cocktail Hour Only · $825</option>
               <option value="solo-ceremony-cocktail-zone">Ceremony &amp; Cocktail · $1,350</option>
               <option value="solo-full-day-zone">Full Day Soloist · $2,250</option>
             </optgroup>

@@ -1542,6 +1542,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <input id="solo-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
           </div>
         </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="solo-start_time">Start Time (optional)</label>
+            <input id="solo-start_time" type="time" name="start_time" step="900">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="solo-end_time">End Time (optional)</label>
+            <input id="solo-end_time" type="time" name="end_time" step="900">
+          </div>
+        </div>
 
         <div class="field-group">
           <label class="field-label" for="solo-venue">Venue Name + City</label>
@@ -1587,16 +1597,19 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <option value="" disabled selected>Choose a package…</option>
             <optgroup label="NYC · Travel Included">
               <option value="ceremony-nyc">Wedding Ceremony · $725</option>
+              <option value="cocktail-nyc">Cocktail Hour Only · $725</option>
               <option value="ceremony-cocktail-nyc">Ceremony &amp; Cocktail · $1,250</option>
               <option value="full-day-nyc">Full Day Soloist · $2,150</option>
             </optgroup>
             <optgroup label="Zone 2 (20–40 mi from Brooklyn)">
               <option value="ceremony-zone">Wedding Ceremony · $825</option>
+              <option value="cocktail-zone">Cocktail Hour Only · $825</option>
               <option value="ceremony-cocktail-zone">Ceremony &amp; Cocktail · $1,350</option>
               <option value="full-day-zone">Full Day Soloist · $2,250</option>
             </optgroup>
             <optgroup label="Zone 3 &amp; 4 (40+ mi)">
               <option value="ceremony-custom">Wedding Ceremony · Custom Quote</option>
+              <option value="cocktail-custom">Cocktail Hour Only · Custom Quote</option>
               <option value="ceremony-cocktail-custom">Ceremony &amp; Cocktail · Custom Quote</option>
               <option value="full-day-custom">Full Day Soloist · Custom Quote</option>
             </optgroup>

@@ -4384,6 +4384,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
       </div>
       <div class="field-row">
         <div class="field-group">
+          <span class="field-label">Start Time (optional)</span>
+          <input type="time" name="start_time" step="900">
+        </div>
+        <div class="field-group">
+          <span class="field-label">End Time (optional)</span>
+          <input type="time" name="end_time" step="900">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
           <span class="field-label">Venue Name + City</span>
           <input type="text" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
         </div>
@@ -4436,6 +4446,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
           <option value="" disabled selected>Select…</option>
           <optgroup label="Wedding · Solo Violin / Piano">
             <option value="wedding-ceremony">Wedding Ceremony</option>
+            <option value="wedding-cocktail">Cocktail Hour Only</option>
             <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
             <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
           </optgroup>

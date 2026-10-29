@@ -1550,6 +1550,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
         </div>
         <div class="field-group is-row">
           <div class="field-group">
+            <label class="field-label" for="inq-start_time">Start Time (optional)</label>
+            <input type="time" id="inq-start_time" name="start_time" step="900">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="inq-end_time">End Time (optional)</label>
+            <input type="time" id="inq-end_time" name="end_time" step="900">
+          </div>
+        </div>
+        <div class="field-group is-row">
+          <div class="field-group">
             <label class="field-label" for="inq-venue">Venue Name + City</label>
             <input type="text" id="inq-venue" name="venue" placeholder="e.g. The Plaza, New York, NY" required minlength="5">
           </div>
@@ -1602,6 +1612,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <option value="" disabled selected>Select…</option>
             <optgroup label="Wedding · Solo Violin / Piano">
               <option value="wedding-ceremony">Wedding Ceremony</option>
+              <option value="wedding-cocktail">Cocktail Hour Only</option>
               <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
               <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
             </optgroup>

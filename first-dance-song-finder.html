@@ -3337,6 +3337,16 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
           <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,25}" maxlength="25" placeholder="+1 555 123 4567" required>
         </label>
       </div>
+      <div class="inquiry-modal__row">
+        <label class="inquiry-modal__field">
+          <span>Start time (optional)</span>
+          <input type="time" name="start_time" step="900">
+        </label>
+        <label class="inquiry-modal__field">
+          <span>End time (optional)</span>
+          <input type="time" name="end_time" step="900">
+        </label>
+      </div>
 
       <div class="inquiry-modal__row">
         <label class="inquiry-modal__field">

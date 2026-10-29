@@ -507,6 +507,16 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <input id="vn-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[+]?[0-9\s\-().]{10,}" placeholder="+1 555 123 4567" required>
           </div>
         </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label" for="vn-start_time">Start Time (optional)</label>
+            <input id="vn-start_time" type="time" name="start_time" step="900">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="vn-end_time">End Time (optional)</label>
+            <input id="vn-end_time" type="time" name="end_time" step="900">
+          </div>
+        </div>
 
         <div class="field-group">
           <label class="field-label" for="vn-venue">Venue Name + City</label>
@@ -552,6 +562,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
             <option value="" disabled selected>Select…</option>
             <optgroup label="Wedding · Solo Violin / Piano">
               <option value="wedding-ceremony">Wedding Ceremony</option>
+              <option value="wedding-cocktail">Cocktail Hour Only</option>
               <option value="wedding-ceremony-cocktail">Ceremony + Cocktail Hour</option>
               <option value="wedding-full-day">Full Day Soloist (Ceremony + Cocktail + Dinner)</option>
             </optgroup>
