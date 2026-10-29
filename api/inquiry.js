@@ -12,6 +12,7 @@
 'use strict';
 
 const { deliverLead } = require('../lib/lead-delivery.js');
+const { spamScore } = require('../lib/spam-check.js');
 
 const MAX_FIELDS = 40;
 const MAX_LEN = { message: 4000, context: 2000, ceremony_selections: 4000, quiz_picks: 2000, picks: 2000 };
@@ -98,6 +99,13 @@ module.exports = async (req, res) => {
   const phoneDigits = String(fields.phone || (!/@/.test(fields.contact || '') ? fields.contact || '' : '')).replace(/\D/g, '');
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return reply(400, { errors: [{ message: 'Please enter a valid email address.' }] });
   if (!email && phoneDigits.length < 10) return reply(400, { errors: [{ message: 'Please include an email address or phone number so Julie can reply.' }] });
+
+  // Spam that skips the browser (links in the name, 1980 dates, bot timing): pretend success, never deliver.
+  const spam = spamScore(fields);
+  if (spam.spam) {
+    console.warn('[inquiry] spam blocked', spam.score, spam.reasons.join('; '), clean(fields.form_source, 60));
+    return reply(200, { ok: true });
+  }
 
   const aiRaw = clean(fields.ai_referral, 40);
   const ai = AI_NAMES.find(n => n.toLowerCase() === aiRaw.toLowerCase()) || '';

@@ -22,6 +22,7 @@
 
 const { buildPicksEmail } = require('../lib/picks-email.js');
 const { deliverLead } = require('../lib/lead-delivery.js');
+const { spamScore } = require('../lib/spam-check.js');
 const SOURCES = {
   'first-dance-song-finder': 'First Dance Song Finder',
   'walking-down-the-aisle-song-finder': 'Walking Down the Aisle Song Finder',
@@ -88,6 +89,9 @@ module.exports = async (req, res) => {
 
   let d;
   try { d = validate(body); } catch (e) { return res.status(400).json({ error: e.message }); }
+  const spam = spamScore({ name: d.name, email: d.email, event_date: d.date, message: d.note });
+  if (spam.spam) { console.warn('[picks] spam blocked', spam.score, spam.reasons.join('; ')); return res.status(200).json({ ok: true, emailed: false }); }
+
   // copyOnly: the couple already sent a full inquiry (ceremony picker), so Julie has it.
   if (!body.copyOnly) try { await forwardToJulie(d); }
   catch (e) { console.error('[picks]', e.message); return res.status(502).json({ error: 'That did not go through. Please try again in a moment.' }); }
