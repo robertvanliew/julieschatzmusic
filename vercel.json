@@ -3,6 +3,7 @@
   "trailingSlash": true,
   "rewrites": [
     { "source": "/bookings/", "destination": "/bookings.html" },
+    { "source": "/text/", "destination": "/text.html" },
     { "source": "/solo-violin-piano/", "destination": "/bookings/solo.html" },
     { "source": "/dj-violin-duo-nyc/", "destination": "/bookings/duo.html" },
     { "source": "/wedding-violinist-pricing/", "destination": "/pricing.html" },

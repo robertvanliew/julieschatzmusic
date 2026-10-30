@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Text a lead · Julie Schatz Music</title>
+<style>
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:#0d0a14; color:#F4EFE6; font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; text-align:center; padding:24px; box-sizing:border-box; }
+  .num { font-size:22px; letter-spacing:.5px; margin:0 0 22px; }
+  a.btn { display:inline-block; background:#7B2CBF; color:#fff; text-decoration:none; font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:14px; padding:16px 30px; border-radius:6px; }
+  p.note { color:#8d86a0; font-size:13px; margin-top:20px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="num" id="num"></p>
+  <a class="btn" id="go" href="#">Open Messages</a>
+  <p class="note">Email apps block text-message links, so this page opens Messages for you.</p>
+</main>
+<script>
+  // Lead emails link here as /text/#+18645551234 (the number stays in the fragment, never sent to the server).
+  (function () {
+    var raw = decodeURIComponent(location.hash.slice(1)).replace(/[^\d+]/g, '');
+    if (!raw) { document.getElementById('num').textContent = 'No number found.'; document.getElementById('go').style.display = 'none'; return; }
+    var href = 'sms:' + raw;
+    var d = raw.replace(/^\+1/, '');
+    document.getElementById('num').textContent = d.length === 10 ? '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6) : raw;
+    document.getElementById('go').href = href;
+    location.href = href;
+  })();
+</script>
+</body>
+</html>
