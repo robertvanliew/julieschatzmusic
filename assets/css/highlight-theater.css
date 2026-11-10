@@ -194,3 +194,143 @@ html.ht-lock, html.ht-lock body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .ht-frame, .ht.is-swapping .ht-frame { transform: none; }
 }
+
+/* Julie's player shell, laid over each clip hosted on this site: her mark in
+   the corner, her controls along the bottom. */
+.ht-shell { position: absolute; inset: 0; z-index: 2; }
+.ht-tap { position: absolute; inset: 0; cursor: pointer; transition: background-color 220ms ease; }
+.ht-shell.is-paused .ht-tap { background: rgba(6, 3, 12, 0.38); }
+.ht-shell::before, .ht-shell::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 96px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.ht-shell::before { top: 0; background: linear-gradient(180deg, rgba(6, 3, 12, 0.6), rgba(6, 3, 12, 0)); opacity: 1; }
+.ht-shell::after { bottom: 0; height: 120px; background: linear-gradient(0deg, rgba(6, 3, 12, 0.72), rgba(6, 3, 12, 0)); }
+.ht-shell.show-ui::after { opacity: 1; }
+
+.ht-brand {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  pointer-events: none;
+}
+.ht-brand img { height: 22px; width: auto; display: block; }
+.ht-brand span {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.88);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.ht-big {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 184, 114, 0.6);
+  background: rgba(15, 10, 26, 0.66);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--ht-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms var(--ht-ease), background-color 180ms ease, color 180ms ease;
+}
+.ht-big svg { width: 26px; height: 26px; fill: currentColor; margin-left: 3px; }
+.ht-shell.is-paused .ht-big { opacity: 1; transform: none; pointer-events: auto; }
+.ht-big:active { transform: scale(0.95); }
+/* Buffering: a gold ring where the play button sits. */
+.ht-shell.is-waiting:not(.is-paused) .ht-big { opacity: 1; transform: none; border-color: rgba(212, 184, 114, 0.2); border-top-color: var(--ht-gold); background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; animation: ht-spin 0.7s linear infinite; }
+.ht-shell.is-waiting:not(.is-paused) .ht-big svg { display: none; }
+@keyframes ht-spin { to { transform: rotate(360deg); } }
+
+.ht-bar {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 48px;
+  padding: 0 4px;
+  border-radius: 14px;
+  background: rgba(15, 10, 26, 0.58);
+  border: 1px solid rgba(244, 239, 230, 0.12);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms var(--ht-ease);
+}
+.ht-shell.show-ui .ht-bar { opacity: 1; transform: none; pointer-events: auto; transition-duration: 220ms; }
+.ht-ctl {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ht-ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 140ms var(--ht-ease), background-color 160ms ease, color 160ms ease;
+}
+.ht-ctl svg { width: 19px; height: 19px; fill: currentColor; }
+.ht-ctl:active { transform: scale(0.92); }
+.ht-ctl[hidden] { display: none; }
+.ht-ctl:focus-visible, .ht-big:focus-visible, .ht-track:focus-visible { outline: 2px solid var(--ht-gold); outline-offset: 2px; }
+.ht-track { position: relative; flex: 1 1 auto; height: 44px; margin: 0 6px; cursor: pointer; touch-action: none; }
+.ht-track::before, .ht-fill { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 3px; }
+.ht-track::before { background: rgba(244, 239, 230, 0.24); }
+.ht-fill { background: linear-gradient(90deg, #a855f7, var(--ht-gold)); transform: scaleX(0); transform-origin: 0 50%; transition: transform 260ms linear; }
+.ht-track.is-dragging .ht-fill { transition: none; }
+.ht-time {
+  flex: 0 0 auto;
+  margin: 0 4px 0 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 239, 230, 0.8);
+  white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ht-ctl:hover { background: rgba(244, 239, 230, 0.1); color: var(--ht-gold); }
+  .ht-big:hover { background: rgba(212, 184, 114, 0.94); color: #0a0616; }
+}
+/* True full screen keeps the shell: the frame fills the screen's height. */
+.ht:fullscreen { --ht-top: 0px; --ht-bottom: 0px; }
+.ht:fullscreen .ht-top, .ht:fullscreen .ht-bottom, .ht:fullscreen .ht-stage .ht-nav { display: none; }
+.ht:fullscreen .ht-stage { padding: 0; }
+.ht:fullscreen .ht-frame { border-radius: 0; box-shadow: none; height: min(100%, calc(100vw * 16 / 9)); }
+@media (max-width: 420px) { .ht-brand span { letter-spacing: 0.2em; } }

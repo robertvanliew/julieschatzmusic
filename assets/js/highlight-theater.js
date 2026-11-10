@@ -69,6 +69,112 @@
 
   var index = 0, open = false, opener = null, pushed = false, swapTimer = 0;
 
+  // Julie's own player shell for the clips hosted on this site: her mark in the
+  // corner and her controls, instead of the browser's default video bar.
+  var SHELL_ICON = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+    sound: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>',
+    muted: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm18.3-.9-1.4-1.4L17 9.6l-2.9-2.9-1.4 1.4 2.9 2.9-2.9 2.9 1.4 1.4 2.9-2.9 2.9 2.9 1.4-1.4-2.9-2.9z"/></svg>',
+    full: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h5v2H7v3H5V5zm9 0h5v5h-2V7h-3V5zM5 14h2v3h3v2H5v-5zm12 0h2v5h-5v-2h3v-3z"/></svg>'
+  };
+  function clock(s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+
+  function shell(video) {
+    var wrap = el('div', 'ht-shell show-ui');
+    var brand = el('div', 'ht-brand', '<img src="/assets/email/logo-ivory.png" alt=""><span>Julie Schatz Music</span>');
+    var tap = el('div', 'ht-tap');
+    var big = el('button', 'ht-big', SHELL_ICON.play);
+    var bar = el('div', 'ht-bar');
+    var toggle = el('button', 'ht-ctl', SHELL_ICON.pause);
+    var track = el('div', 'ht-track', '<span class="ht-fill"></span>');
+    var fill = track.firstChild;
+    var time = el('span', 'ht-time', '0:00');
+    var mute = el('button', 'ht-ctl', SHELL_ICON.sound);
+    var full = el('button', 'ht-ctl', SHELL_ICON.full);
+    big.type = toggle.type = mute.type = full.type = 'button';
+    big.setAttribute('aria-label', 'Play');
+    mute.setAttribute('aria-label', 'Mute');
+    full.setAttribute('aria-label', 'Full screen');
+    track.setAttribute('role', 'slider');
+    track.setAttribute('tabindex', '0');
+    track.setAttribute('aria-label', 'Seek');
+    track.setAttribute('aria-valuemin', '0');
+    track.setAttribute('aria-valuemax', '100');
+    brand.setAttribute('aria-hidden', 'true');
+    if (!(root.requestFullscreen || root.webkitRequestFullscreen || video.webkitEnterFullscreen)) full.hidden = true;
+    bar.appendChild(toggle); bar.appendChild(track); bar.appendChild(time); bar.appendChild(mute); bar.appendChild(full);
+    wrap.appendChild(tap); wrap.appendChild(brand); wrap.appendChild(big); wrap.appendChild(bar);
+    frame.appendChild(wrap);
+
+    var hideTimer = 0, dragging = false;
+    function showUi() {
+      wrap.classList.add('show-ui');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function () { if (!video.paused && !dragging && !bar.contains(document.activeElement)) wrap.classList.remove('show-ui'); }, 2600);
+    }
+    function paint() {
+      var playing = !video.paused && !video.ended;
+      wrap.classList.toggle('is-paused', !playing);
+      toggle.innerHTML = playing ? SHELL_ICON.pause : SHELL_ICON.play;
+      toggle.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+      mute.innerHTML = video.muted ? SHELL_ICON.muted : SHELL_ICON.sound;
+      mute.setAttribute('aria-label', video.muted ? 'Unmute' : 'Mute');
+      if (!playing) wrap.classList.add('show-ui');
+    }
+    function paintTime() {
+      var d = video.duration || 0, f = d ? Math.min(1, video.currentTime / d) : 0;
+      fill.style.transform = 'scaleX(' + f + ')';
+      time.textContent = clock(video.currentTime) + ' / ' + clock(d);
+      track.setAttribute('aria-valuenow', String(Math.round(f * 100)));
+    }
+    function togglePlay() { if (video.paused || video.ended) { var p = video.play(); if (p && p.catch) p.catch(function () {}); } else video.pause(); }
+
+    ['play', 'playing', 'pause', 'ended', 'volumechange'].forEach(function (ev) { video.addEventListener(ev, paint); });
+    video.addEventListener('playing', function () { wrap.classList.remove('is-waiting'); showUi(); });
+    video.addEventListener('waiting', function () { wrap.classList.add('is-waiting'); });
+    video.addEventListener('timeupdate', function () { if (!dragging) paintTime(); });
+    video.addEventListener('loadedmetadata', paintTime);
+
+    tap.addEventListener('click', function (e) {
+      // On touch, the first tap on a playing clip only brings the controls back.
+      var touch = e.pointerType ? e.pointerType !== 'mouse' : false;
+      if (touch && !video.paused && !wrap.classList.contains('show-ui')) { showUi(); return; }
+      togglePlay(); showUi();
+    });
+    wrap.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') showUi(); });
+    bar.addEventListener('focusin', showUi);
+    big.addEventListener('click', togglePlay);
+    toggle.addEventListener('click', function () { togglePlay(); showUi(); });
+    mute.addEventListener('click', function () { video.muted = !video.muted; showUi(); });
+    full.addEventListener('click', function () {
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else if (root.requestFullscreen || root.webkitRequestFullscreen) (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+      else video.webkitEnterFullscreen(); // iPhone: its own full-screen player
+      showUi();
+    });
+
+    function seek(clientX) {
+      var r = track.getBoundingClientRect(), d = video.duration || 0;
+      if (!d) return;
+      video.currentTime = Math.min(1, Math.max(0, (clientX - r.left) / r.width)) * d;
+      paintTime();
+    }
+    track.addEventListener('pointerdown', function (e) { dragging = true; track.classList.add('is-dragging'); track.setPointerCapture(e.pointerId); seek(e.clientX); });
+    track.addEventListener('pointermove', function (e) { if (dragging) seek(e.clientX); });
+    function endDrag() { dragging = false; track.classList.remove('is-dragging'); showUi(); }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault(); e.stopPropagation();
+      video.currentTime = Math.min(video.duration || 0, Math.max(0, video.currentTime + (e.key === 'ArrowRight' ? 5 : -5)));
+    });
+    paint();
+    showUi();
+  }
+
   function mount(i) {
     var c = clips[i], media;
     frame.innerHTML = '';
@@ -76,7 +182,7 @@
       media = document.createElement('video');
       media.src = c.mp4;
       if (c.poster) media.poster = c.poster;
-      media.controls = true;
+      media.controls = false; // Julie's own player shell below replaces the browser's controls
       media.autoplay = true;
       media.playsInline = true;
       media.setAttribute('playsinline', '');
@@ -93,7 +199,7 @@
       media.title = c.label || 'Performance highlight';
     }
     frame.appendChild(media);
-    if (c.mp4) { var p = media.play(); if (p && p.catch) p.catch(function () {}); }
+    if (c.mp4) { shell(media); var p = media.play(); if (p && p.catch) p.catch(function () {}); }
 
     glow.src = c.poster;
     count.innerHTML = pad(i + 1) + '<small>/ ' + pad(clips.length) + '</small>';
