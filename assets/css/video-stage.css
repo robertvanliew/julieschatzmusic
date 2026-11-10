@@ -1,0 +1,282 @@
+/* Video stage: the framed YouTube player on the weddings, corporate, private and
+   jazz pages. Built by assets/js/video-stage.js from a .video-facade button.
+   The player is rendered larger than it looks and scaled down, so YouTube starts
+   in HD instead of 360p; our own controls replace YouTube's (which would shrink). */
+
+.vs {
+  --vs-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --vs-gold: #d4b872;
+  --vs-ink: #0a0616;
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+}
+
+/* Soft glow behind the frame, taken from the poster. */
+.vs-ambient {
+  position: absolute;
+  inset: -7% -12%;
+  z-index: -1;
+  width: 124%;
+  height: 114%;
+  object-fit: cover;
+  filter: blur(46px) saturate(1.5);
+  opacity: 0.32;
+  transform: translateZ(0);
+  transition: opacity 600ms ease;
+  pointer-events: none;
+}
+.vs.is-started .vs-ambient { opacity: 0.55; }
+
+.vs-stage { position: relative; width: 100%; }
+.vs-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--vs-ink);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.35);
+  transition: transform 260ms var(--vs-ease-out), box-shadow 320ms var(--vs-ease-out);
+}
+.video-hero.is-landscape .vs-screen { aspect-ratio: 16 / 9; }
+/* Hairline frame: gold at the top fading to violet, drawn above the video. */
+.vs-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(212, 184, 114, 0.7), rgba(168, 85, 247, 0.35) 45%, rgba(244, 239, 230, 0.08));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.vs-player { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+.vs-player iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+.vs-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 420ms ease, filter 420ms ease, transform 600ms var(--vs-ease-out);
+  pointer-events: none;
+}
+.vs.is-started .vs-poster { opacity: 0; filter: blur(6px); }
+
+/* Click layer: one tap plays or pauses. Dims and softens the frame while paused. */
+.vs-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(10, 6, 22, 0) 45%, rgba(10, 6, 22, 0.5) 100%);
+  transition: background-color 240ms ease, -webkit-backdrop-filter 240ms ease, backdrop-filter 240ms ease;
+}
+.vs.is-started .vs-shield { background: transparent; }
+.vs.is-started.is-paused .vs-shield {
+  background: rgba(10, 6, 22, 0.42);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+/* Autoplay was blocked (some phones): let the tap reach YouTube's own player. */
+.vs.needs-tap .vs-shield { pointer-events: none; background: transparent; }
+
+.vs-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 184, 114, 0.55);
+  background: rgba(15, 10, 26, 0.7);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 26px rgba(212, 184, 114, 0.18);
+  color: var(--vs-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 180ms var(--vs-ease-out), opacity 180ms ease, background-color 200ms ease, color 200ms ease;
+}
+.vs-play svg { width: 26px; height: 26px; fill: currentColor; margin-left: 3px; }
+.vs-play:active { transform: scale(0.95); }
+.vs-play:focus-visible, .vs-btn:focus-visible, .vs-track:focus-visible { outline: 2px solid var(--vs-gold); outline-offset: 3px; }
+/* Hidden while the video plays; back when paused or finished. */
+.vs.is-playing .vs-play, .vs.needs-tap .vs-play { opacity: 0; transform: scale(0.94); pointer-events: none; }
+.vs.is-ended .vs-play svg { margin-left: 0; }
+
+/* Loading: the play icon gives way to a ring. */
+.vs-play::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--vs-gold);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.vs.is-loading .vs-play { opacity: 1; transform: none; pointer-events: none; }
+.vs.is-loading .vs-play svg { opacity: 0.35; }
+.vs.is-loading .vs-play::after { opacity: 1; animation: vs-spin 0.7s linear infinite; }
+@keyframes vs-spin { to { transform: rotate(360deg); } }
+
+.vs-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(15, 10, 26, 0.78);
+  border: 1px solid rgba(212, 184, 114, 0.45);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f4efe6;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.vs.needs-tap .vs-hint { opacity: 1; }
+
+/* Control bar */
+.vs-bar {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 46px;
+  padding: 0 6px;
+  border-radius: 14px;
+  background: rgba(15, 10, 26, 0.62);
+  border: 1px solid rgba(244, 239, 230, 0.12);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms var(--vs-ease-out);
+}
+.vs.is-started.show-ui .vs-bar, .vs.is-started.is-paused .vs-bar {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition-duration: 220ms;
+}
+.vs.needs-tap .vs-bar { opacity: 0; pointer-events: none; }
+
+.vs-btn {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #f4efe6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 140ms var(--vs-ease-out), background-color 160ms ease, color 160ms ease;
+}
+.vs-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.vs-btn:active { transform: scale(0.92); }
+.vs-btn[hidden] { display: none; }
+
+.vs-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 36px;
+  margin: 0 6px;
+  cursor: pointer;
+  touch-action: none;
+}
+.vs-track::before, .vs-fill {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 3px;
+}
+.vs-track::before { background: rgba(244, 239, 230, 0.22); }
+.vs-fill {
+  background: linear-gradient(90deg, #a855f7, var(--vs-gold));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 260ms linear;
+}
+.vs-track.is-dragging .vs-fill { transition: none; }
+
+.vs-time {
+  flex: 0 0 auto;
+  min-width: 34px;
+  margin-right: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: rgba(244, 239, 230, 0.78);
+  text-align: right;
+}
+.vs-hd {
+  flex: 0 0 auto;
+  margin: 0 4px 0 6px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 184, 114, 0.55);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--vs-gold);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.vs.is-hd .vs-hd { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .vs.is-idle .vs-screen:hover { transform: translateY(-3px); box-shadow: 0 38px 80px rgba(0, 0, 0, 0.6), 0 0 44px rgba(212, 184, 114, 0.12); }
+  .vs.is-idle .vs-screen:hover .vs-poster { transform: scale(1.03); }
+  .vs.is-idle .vs-screen:hover .vs-play, .vs-play:hover { background: rgba(212, 184, 114, 0.94); color: var(--vs-ink); }
+  .vs-btn:hover { background: rgba(244, 239, 230, 0.1); color: var(--vs-gold); }
+}
+
+/* Fullscreen: black stage, the frame fits the screen height. */
+.vs-stage:fullscreen { display: flex; align-items: center; justify-content: center; background: #000; }
+.vs-stage:fullscreen .vs-screen { width: auto; height: 100%; max-width: 100%; border-radius: 0; box-shadow: none; }
+.vs-stage:fullscreen .vs-screen::after { display: none; }
+.vs-stage:-webkit-full-screen { display: flex; align-items: center; justify-content: center; background: #000; }
+.vs-stage:-webkit-full-screen .vs-screen { width: auto; height: 100%; max-width: 100%; border-radius: 0; box-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-screen, .vs-poster, .vs-play, .vs-bar, .vs-btn { transition-property: opacity, background-color, color; }
+  .vs.is-idle .vs-screen:hover, .vs.is-idle .vs-screen:hover .vs-poster { transform: none; }
+  .vs.is-started .vs-poster { filter: none; }
+}

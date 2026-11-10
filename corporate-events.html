@@ -328,6 +328,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
 <script src="/assets/js/lead-tracking.js" defer></script>
 <link rel="stylesheet" href="/assets/css/nav-dropdown.css">
 <link rel="stylesheet" href="/assets/css/trust-strip.css">
+<link rel="stylesheet" href="/assets/css/video-stage.css">
 </head>
 <body data-no-inquire-cta="true">
 
@@ -636,59 +637,7 @@ select option:checked, select option:hover { background: #7B2CBF; color: #fff; }
   </div>
 </div>
 
-<script>
-// YouTube facade: loads iframe on first click, then a corner pause/play toggle
-(function () {
-  var PLAY_ICON  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-  var PAUSE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-
-  document.querySelectorAll('.video-facade[data-yt]').forEach(function (btn) {
-    var id = btn.getAttribute('data-yt');
-    if (!id) return;
-    var iframe = null;
-    var toggle = null;
-    var playing = false;
-
-    function post(func) {
-      if (!iframe || !iframe.contentWindow) return;
-      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
-    }
-
-    btn.addEventListener('click', function () {
-      if (iframe) return;
-      iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1';
-      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-      iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute('title', btn.getAttribute('aria-label') || 'Video');
-      iframe.setAttribute('loading', 'eager');
-      btn.innerHTML = '';
-      btn.appendChild(iframe);
-
-      toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'video-toggle';
-      toggle.setAttribute('aria-label', 'Pause video');
-      toggle.innerHTML = PAUSE_ICON;
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (playing) {
-          post('pauseVideo'); playing = false;
-          toggle.innerHTML = PLAY_ICON; toggle.setAttribute('aria-label', 'Play video');
-        } else {
-          post('playVideo'); playing = true;
-          toggle.innerHTML = PAUSE_ICON; toggle.setAttribute('aria-label', 'Pause video');
-        }
-      });
-      btn.appendChild(toggle);
-      btn.classList.add('is-playing');
-      playing = true;
-      btn.style.cursor = 'default';
-      if (typeof gtag === 'function') gtag('event', 'video_play', { video_id: id, page: 'corporate-events' });
-    });
-  });
-})();
-</script>
+<script src="/assets/js/video-stage.js" defer></script>
 
 <script>
 // 15-minute call request modal wiring (preserved from prior build)

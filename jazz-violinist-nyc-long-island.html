@@ -200,6 +200,7 @@ table.rate tbody tr:last-child th, table.rate tbody tr:last-child td { border-bo
 .site-footer a:hover { color:var(--gold); }
 </style>
 <link rel="stylesheet" href="/assets/css/nav-dropdown.css">
+<link rel="stylesheet" href="/assets/css/video-stage.css">
 </head>
 <body data-inquire-href="/bookings/?package=private-1hr&amp;note=Jazz%20violin">
 
@@ -330,37 +331,7 @@ table.rate tbody tr:last-child th, table.rate tbody tr:last-child td { border-bo
   <p class="footer-legal">&copy; Julie Schatz Music LLC · All rights reserved</p>
 </footer>
 
-<script>
-// YouTube facade: loads the iframe on first click, then a corner pause/play toggle
-(function () {
-  var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-  var PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-  document.querySelectorAll('.video-facade[data-yt]').forEach(function (btn) {
-    var id = btn.getAttribute('data-yt'), iframe = null, toggle = null, playing = false;
-    function post(fn) { if (iframe && iframe.contentWindow) iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: fn, args: [] }), '*'); }
-    btn.addEventListener('click', function () {
-      if (iframe) return;
-      iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1';
-      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-      iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute('title', btn.getAttribute('aria-label') || 'Video');
-      btn.innerHTML = '';
-      btn.appendChild(iframe);
-      toggle = document.createElement('button');
-      toggle.type = 'button'; toggle.className = 'video-toggle'; toggle.setAttribute('aria-label', 'Pause video'); toggle.innerHTML = PAUSE;
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (playing) { post('pauseVideo'); playing = false; toggle.innerHTML = PLAY; toggle.setAttribute('aria-label', 'Play video'); }
-        else { post('playVideo'); playing = true; toggle.innerHTML = PAUSE; toggle.setAttribute('aria-label', 'Pause video'); }
-      });
-      btn.appendChild(toggle);
-      playing = true; btn.style.cursor = 'default';
-      if (typeof gtag === 'function') gtag('event', 'video_play', { video_id: id, page: "/jazz-violinist-nyc-long-island/" });
-    });
-  });
-})();
-</script>
+<script src="/assets/js/video-stage.js" defer></script>
 <script src="/assets/js/global-inquire-cta.js" defer></script>
 <script src="/assets/js/nav-dropdown.js" defer></script>
 <script src="/assets/js/lead-tracking.js" defer></script>
