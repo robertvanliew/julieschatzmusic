@@ -2751,7 +2751,7 @@ nav {
 .video-card {
   flex: 0 0 280px;
   width: 280px;
-  height: calc(280px * 16 / 9 - 56px);
+  height: 442px; /* 280 * 16/9 - 56, as a whole pixel */
   overflow: hidden;
   position: relative;
   background: #0F0A1A;
@@ -2764,6 +2764,21 @@ nav {
 }
 .video-card:hover {
   transform: translateY(-4px);
+}
+/* A playing card stays put: moving a decoding video by a fraction of a pixel
+   makes the browser draw a strip of noise along its bottom edge. */
+.video-card.is-playing, .video-card.is-playing:hover { transform: none; transition: none; }
+/* Pinned to the card and 1px taller at each end, so a ragged edge row from the
+   video decoder is always clipped by the card. */
+.video-card video {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 100%;
+  height: calc(100% + 2px);
+  object-fit: cover;
+  display: block;
+  background: #000;
 }
 .video-card > img {
   position: absolute;
@@ -2926,6 +2941,7 @@ nav {
        mobile bottom control bar (taller than desktop because
        of touch-target sizing) gets cropped by overflow:hidden. */
     height: calc((100vw - 48px) * 16 / 9 - 80px);
+    height: round(down, calc((100vw - 48px) * 16 / 9 - 80px), 1px);
     aspect-ratio: auto;
     overflow: hidden;
   }
@@ -6780,9 +6796,6 @@ window.addEventListener('hashchange', openInquiryFromHash);
         el.setAttribute('disablepictureinpicture', '');
         el.oncontextmenu = function () { return false; };
         el.preload = 'auto';
-        el.style.width = '100%';
-        el.style.height = '100%';
-        el.style.objectFit = 'cover';
       } else if (card.dataset.vimeo) {
         const id = card.dataset.vimeo;
         el = document.createElement('iframe');
