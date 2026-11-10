@@ -49,6 +49,8 @@
     };
     writePlan(plan);
     render();
+    // Counted so "most picked" can later come from what couples really chose.
+    if (typeof gtag === 'function') gtag('event', 'song_saved', { song_title: pick.title, moment: momentSlug });
     return plan;
   }
 
