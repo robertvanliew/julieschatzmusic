@@ -2710,7 +2710,7 @@ nav {
    ═══════════════════════════════════ */
 .highlights-section {
   width: 100vw;
-  padding: 160px 48px 160px;
+  padding: 88px 48px 96px;
   position: relative;
   z-index: 10;
   background: transparent;
@@ -2721,7 +2721,7 @@ nav {
 }
 .highlights-heading {
   text-align: center;
-  margin-bottom: 72px;
+  margin-bottom: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2781,6 +2781,22 @@ nav {
   height: calc(100% + 56px);
   border: 0;
   background: transparent;
+}
+.video-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 44px 14px 14px;
+  background: linear-gradient(to top, rgba(15, 10, 26, 0.88), rgba(15, 10, 26, 0));
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f4efe6;
+  text-align: left;
+  pointer-events: none;
 }
 .video-play {
   position: absolute;
@@ -2890,7 +2906,7 @@ nav {
   .carousel-viewport { width: calc(280px * 2 + 24px); }
 }
 @media (max-width: 768px) {
-  .highlights-section { padding: 80px 24px 100px; }
+  .highlights-section { padding: 56px 24px 64px; }
   .highlights-heading { padding: 0; }
   .carousel-arrow-desktop { display: none; }
   .carousel-wrap {
@@ -4618,6 +4634,245 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     <p class="trust-strip__names"><span class="n">Featured by Ninja Tune</span> <span class="sep" aria-hidden="true">·</span> <span class="n">Roland Artist</span> <span class="sep" aria-hidden="true">·</span> <span class="n">Splice contributor</span> <span class="sep" aria-hidden="true">·</span> <span class="n">The Bash Best of 2025</span></p>
   </div>
 </section>
+<!-- PERFORMANCE HIGHLIGHTS -->
+<section id="highlights" class="highlights-section">
+  <div class="highlights-container">
+    <div class="highlights-heading">
+      <span class="editorial-kicker">Live &amp; In Studio</span>
+      <h2 class="editorial-h2">Performance Highlights</h2>
+    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow carousel-arrow-desktop" id="carouselPrev" aria-label="Previous">&#8249;</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/the-grand-1.mp4" data-poster="/assets/highlights/clips/the-grand-1-poster.jpg" aria-label="Play video · The Grand">
+            <img src="/assets/highlights/clips/the-grand-1-poster.jpg" alt="Julie Schatz playing electric violin in a red dress before a wedding ceremony at The Grand" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">The Grand</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/sag-harbor-yacht-club-1.mp4" data-poster="/assets/highlights/clips/sag-harbor-yacht-club-1-poster.jpg" aria-label="Play video · Sag Harbor Yacht Club">
+            <img src="/assets/highlights/clips/sag-harbor-yacht-club-1-poster.jpg" alt="Julie Schatz playing electric violin on a yacht deck at sunset at Sag Harbor Yacht Club" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">Sag Harbor Yacht Club</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/the-glasshouse.mp4" data-poster="/assets/highlights/clips/the-glasshouse-poster.jpg" aria-label="Play video · The Glasshouse">
+            <img src="/assets/highlights/clips/the-glasshouse-poster.jpg" alt="Julie Schatz playing violin at a corporate event at The Glasshouse in New York City" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">The Glasshouse</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/il-villaggio.mp4" data-poster="/assets/highlights/clips/il-villaggio-poster.jpg" aria-label="Play video · Il Villaggio">
+            <img src="/assets/highlights/clips/il-villaggio-poster.jpg" alt="Julie Schatz playing live violin beside a full dance floor at Il Villaggio in Carlstadt, New Jersey" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">Il Villaggio</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/the-grand-2.mp4" data-poster="/assets/highlights/clips/the-grand-2-poster.jpg" aria-label="Play video · The Grand">
+            <img src="/assets/highlights/clips/the-grand-2-poster.jpg" alt="Wedding ceremony at The Grand with Julie Schatz playing violin as the wedding party stands at the altar" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">The Grand</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/highlights/clips/sag-harbor-yacht-club-2.mp4" data-poster="/assets/highlights/clips/sag-harbor-yacht-club-2-poster.jpg" aria-label="Play video · Sag Harbor Yacht Club">
+            <img src="/assets/highlights/clips/sag-harbor-yacht-club-2-poster.jpg" alt="Julie Schatz playing violin for guests on a yacht at night at Sag Harbor Yacht Club" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">Sag Harbor Yacht Club</span>
+          </button>
+          <button type="button" class="video-card" data-mp4="/assets/blog/candlewood-inn/clip-4542.mp4" data-poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg" aria-label="Play video · Wedding ceremony at Candlewood Inn, Brookfield CT · July 2026">
+            <img src="/assets/blog/candlewood-inn/clip-4542-poster.jpg" alt="Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn, Brookfield Connecticut, July 2026" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="video-caption">Candlewood Inn</span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1075415415" aria-label="Play video">
+            <img src="/assets/highlights/1075415415.jpg" alt="Julie Schatz performing live violin at a wedding event" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057963862" aria-label="Play video">
+            <img src="/assets/highlights/1057963862.jpg" alt="Julie Schatz solo violin performance highlight" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057967144" aria-label="Play video">
+            <img src="/assets/highlights/1057967144.jpg" alt="Julie Schatz performing violin and piano at a private event" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057964770" aria-label="Play video">
+            <img src="/assets/highlights/1057964770.jpg" alt="Julie Schatz live performance at a wedding ceremony" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+          <button type="button" class="video-card" data-vimeo="1057966752" aria-label="Play video">
+            <img src="/assets/highlights/1057966752.jpg" alt="Julie Schatz DJ DX hybrid set with live violin layered over the tracks" loading="lazy" decoding="async">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+      </div>
+      <button class="carousel-arrow carousel-arrow-desktop" id="carouselNext" aria-label="Next">&#8250;</button>
+      <div class="carousel-mobile-nav">
+        <button class="carousel-arrow" id="carouselPrevMobile" aria-label="Previous">&#8249;</button>
+        <button class="carousel-arrow" id="carouselNextMobile" aria-label="Next">&#8250;</button>
+      </div>
+    </div>
+    <div class="highlights-cta">
+      <button class="highlights-cta-btn" id="highlightsInquiryBtn">Request A Quote</button>
+    </div>
+  </div>
+</section>
+
+<!-- VideoObject schema for the Performance Highlights, enables video
+     thumbnails in Google search results and inclusion in Bing Video Search.
+     Each entry uses the existing /assets/highlights/<id>.jpg as thumbnailUrl
+     and the Vimeo embed URL as embedUrl. publisher links back to the business. -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Wedding Ceremony Violin at The Grand",
+    "description": "Julie Schatz playing electric violin for a wedding ceremony at The Grand, November 2026.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-grand-1-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-grand-1.mp4",
+    "duration": "PT35S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Electric Violin at Sunset, Sag Harbor Yacht Club",
+    "description": "Julie Schatz playing electric violin on deck at sunset at Sag Harbor Yacht Club in the Hamptons.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/sag-harbor-yacht-club-1-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/sag-harbor-yacht-club-1.mp4",
+    "duration": "PT15S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Corporate Event Violin at The Glasshouse, NYC",
+    "description": "Julie Schatz playing live violin for guests at a corporate event at The Glasshouse in New York City.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-glasshouse-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-glasshouse.mp4",
+    "duration": "PT16S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Live Violin on the Dance Floor at Il Villaggio, Carlstadt NJ",
+    "description": "Julie Schatz playing live violin beside a full dance floor at Il Villaggio in Carlstadt, New Jersey.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/il-villaggio-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/il-villaggio.mp4",
+    "duration": "PT11S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Wedding Processional Violin at The Grand",
+    "description": "Julie Schatz playing violin during a wedding ceremony at The Grand, November 2026.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-grand-2-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/the-grand-2.mp4",
+    "duration": "PT24S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Evening Yacht Party Violin, Sag Harbor Yacht Club",
+    "description": "Julie Schatz playing live violin for guests at an evening yacht party at Sag Harbor Yacht Club.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/clips/sag-harbor-yacht-club-2-poster.jpg",
+    "uploadDate": "2026-11-09T00:00:00-05:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/highlights/clips/sag-harbor-yacht-club-2.mp4",
+    "duration": "PT14S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Wedding Ceremony Violin at Candlewood Inn, Brookfield CT · July 2026",
+    "description": "Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn in Brookfield, Connecticut, July 2026. Fairfield County wedding violinist coverage.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542-poster.jpg",
+    "uploadDate": "2026-07-24T00:00:00-04:00",
+    "contentUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542.mp4",
+    "duration": "PT37S",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Live Performance Highlight (1)",
+    "description": "Julie Schatz performing live violin at a wedding event. Solo violin ceremony repertoire and jazz piano cocktail hours by a NYC-based violinist and jazz pianist.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1075415415.jpg",
+    "uploadDate": "2025-09-01T00:00:00-04:00",
+    "contentUrl": "https://vimeo.com/1075415415",
+    "embedUrl": "https://player.vimeo.com/video/1075415415",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Solo Violin Performance Highlight",
+    "description": "Julie Schatz solo violin performance highlight. NYC wedding violinist for ceremonies, cocktail hours, and private events across NY, NJ, and CT.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057963862.jpg",
+    "uploadDate": "2025-02-01T00:00:00-05:00",
+    "contentUrl": "https://vimeo.com/1057963862",
+    "embedUrl": "https://player.vimeo.com/video/1057963862",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Violin and Piano Private Event Highlight",
+    "description": "Julie Schatz performing violin and piano at a private event. NYC-based violinist and jazz pianist for weddings, private events, and corporate galas.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057967144.jpg",
+    "uploadDate": "2025-02-01T00:00:00-05:00",
+    "contentUrl": "https://vimeo.com/1057967144",
+    "embedUrl": "https://player.vimeo.com/video/1057967144",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Julie Schatz Wedding Ceremony Live Performance",
+    "description": "Julie Schatz performing live at a wedding ceremony. Solo violin ceremony coverage with classical and cinematic-modern repertoire arranged for solo violin.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057964770.jpg",
+    "uploadDate": "2025-02-01T00:00:00-05:00",
+    "contentUrl": "https://vimeo.com/1057964770",
+    "embedUrl": "https://player.vimeo.com/video/1057964770",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "DJ DX with Julie Schatz Live Violin Hybrid Set",
+    "description": "DJ DX × Julie Schatz hybrid performance with live violin layered over DJ tracks. The signature reception format combining DJ energy with live music.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057966752.jpg",
+    "uploadDate": "2025-02-01T00:00:00-05:00",
+    "contentUrl": "https://vimeo.com/1057966752",
+    "embedUrl": "https://player.vimeo.com/video/1057966752",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Soul Shades — I Only Smoke When I Drink × Englishman in New York (Deep House Mashup)",
+    "description": "Soul Shades (Julie Schatz + DJ DX) deep house mashup combining Nimino's 'I Only Smoke When I Drink' with Sting's 'Englishman in New York.' The breakout release was re-posted by British electronic label Ninja Tune, accumulating over 10 million combined views across TikTok and Instagram.",
+    "thumbnailUrl": "https://julieschatzmusic.com/assets/photos/julie-schatz-dj-party-event.webp",
+    "uploadDate": "2024-12-05T00:00:00-05:00",
+    "contentUrl": "https://www.tiktok.com/@soulshadesmusic/video/7449834726979865898",
+    "publisher": { "@id": "https://julieschatzmusic.com/#business" },
+    "creator": { "@id": "https://julieschatzmusic.com/#julie" },
+    "interactionStatistic": [
+      {
+        "@type": "InteractionCounter",
+        "interactionType": { "@type": "WatchAction" },
+        "userInteractionCount": 10100000
+      }
+    ]
+  }
+]
+</script>
+
 <!-- Three-vertical chooser (primary conversion fork per Julie's site-update-spec) -->
 <section id="chooser" class="vertical-chooser" aria-label="Choose your event type">
   <div class="vertical-chooser-inner">
@@ -4967,148 +5222,6 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
-
-<!-- PERFORMANCE HIGHLIGHTS -->
-<section id="highlights" class="highlights-section">
-  <div class="highlights-container">
-    <div class="highlights-heading">
-      <span class="editorial-kicker">Live &amp; In Studio</span>
-      <h2 class="editorial-h2">Performance Highlights</h2>
-    </div>
-    <div class="carousel-wrap">
-      <button class="carousel-arrow carousel-arrow-desktop" id="carouselPrev" aria-label="Previous">&#8249;</button>
-      <div class="carousel-viewport">
-        <div class="carousel-track" id="carouselTrack">
-          <button type="button" class="video-card" data-mp4="/assets/blog/candlewood-inn/clip-4542.mp4" data-poster="/assets/blog/candlewood-inn/clip-4542-poster.jpg" aria-label="Play video · Wedding ceremony at Candlewood Inn, Brookfield CT · July 2026">
-            <img src="/assets/blog/candlewood-inn/clip-4542-poster.jpg" alt="Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn, Brookfield Connecticut, July 2026" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-          <button type="button" class="video-card" data-vimeo="1075415415" aria-label="Play video">
-            <img src="/assets/highlights/1075415415.jpg" alt="Julie Schatz performing live violin at a wedding event" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-          <button type="button" class="video-card" data-vimeo="1057963862" aria-label="Play video">
-            <img src="/assets/highlights/1057963862.jpg" alt="Julie Schatz solo violin performance highlight" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-          <button type="button" class="video-card" data-vimeo="1057967144" aria-label="Play video">
-            <img src="/assets/highlights/1057967144.jpg" alt="Julie Schatz performing violin and piano at a private event" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-          <button type="button" class="video-card" data-vimeo="1057964770" aria-label="Play video">
-            <img src="/assets/highlights/1057964770.jpg" alt="Julie Schatz live performance at a wedding ceremony" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-          <button type="button" class="video-card" data-vimeo="1057966752" aria-label="Play video">
-            <img src="/assets/highlights/1057966752.jpg" alt="Julie Schatz DJ DX hybrid set with live violin layered over the tracks" loading="lazy" decoding="async">
-            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </button>
-        </div>
-      </div>
-      <button class="carousel-arrow carousel-arrow-desktop" id="carouselNext" aria-label="Next">&#8250;</button>
-      <div class="carousel-mobile-nav">
-        <button class="carousel-arrow" id="carouselPrevMobile" aria-label="Previous">&#8249;</button>
-        <button class="carousel-arrow" id="carouselNextMobile" aria-label="Next">&#8250;</button>
-      </div>
-    </div>
-    <div class="highlights-cta">
-      <button class="highlights-cta-btn" id="highlightsInquiryBtn">Request A Quote</button>
-    </div>
-  </div>
-</section>
-
-<!-- VideoObject schema for the 5 Performance Highlights, enables video
-     thumbnails in Google search results and inclusion in Bing Video Search.
-     Each entry uses the existing /assets/highlights/<id>.jpg as thumbnailUrl
-     and the Vimeo embed URL as embedUrl. publisher links back to the business. -->
-<script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Wedding Ceremony Violin at Candlewood Inn, Brookfield CT · July 2026",
-    "description": "Julie Schatz performing solo violin at a wedding ceremony at Candlewood Inn in Brookfield, Connecticut, July 2026. Fairfield County wedding violinist coverage.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542-poster.jpg",
-    "uploadDate": "2026-07-24T00:00:00-04:00",
-    "contentUrl": "https://julieschatzmusic.com/assets/blog/candlewood-inn/clip-4542.mp4",
-    "duration": "PT37S",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Julie Schatz Live Performance Highlight (1)",
-    "description": "Julie Schatz performing live violin at a wedding event. Solo violin ceremony repertoire and jazz piano cocktail hours by a NYC-based violinist and jazz pianist.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1075415415.jpg",
-    "uploadDate": "2025-09-01T00:00:00-04:00",
-    "contentUrl": "https://vimeo.com/1075415415",
-    "embedUrl": "https://player.vimeo.com/video/1075415415",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Julie Schatz Solo Violin Performance Highlight",
-    "description": "Julie Schatz solo violin performance highlight. NYC wedding violinist for ceremonies, cocktail hours, and private events across NY, NJ, and CT.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057963862.jpg",
-    "uploadDate": "2025-02-01T00:00:00-05:00",
-    "contentUrl": "https://vimeo.com/1057963862",
-    "embedUrl": "https://player.vimeo.com/video/1057963862",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Julie Schatz Violin and Piano Private Event Highlight",
-    "description": "Julie Schatz performing violin and piano at a private event. NYC-based violinist and jazz pianist for weddings, private events, and corporate galas.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057967144.jpg",
-    "uploadDate": "2025-02-01T00:00:00-05:00",
-    "contentUrl": "https://vimeo.com/1057967144",
-    "embedUrl": "https://player.vimeo.com/video/1057967144",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Julie Schatz Wedding Ceremony Live Performance",
-    "description": "Julie Schatz performing live at a wedding ceremony. Solo violin ceremony coverage with classical and cinematic-modern repertoire arranged for solo violin.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057964770.jpg",
-    "uploadDate": "2025-02-01T00:00:00-05:00",
-    "contentUrl": "https://vimeo.com/1057964770",
-    "embedUrl": "https://player.vimeo.com/video/1057964770",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "DJ DX with Julie Schatz Live Violin Hybrid Set",
-    "description": "DJ DX × Julie Schatz hybrid performance with live violin layered over DJ tracks. The signature reception format combining DJ energy with live music.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/highlights/1057966752.jpg",
-    "uploadDate": "2025-02-01T00:00:00-05:00",
-    "contentUrl": "https://vimeo.com/1057966752",
-    "embedUrl": "https://player.vimeo.com/video/1057966752",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Soul Shades — I Only Smoke When I Drink × Englishman in New York (Deep House Mashup)",
-    "description": "Soul Shades (Julie Schatz + DJ DX) deep house mashup combining Nimino's 'I Only Smoke When I Drink' with Sting's 'Englishman in New York.' The breakout release was re-posted by British electronic label Ninja Tune, accumulating over 10 million combined views across TikTok and Instagram.",
-    "thumbnailUrl": "https://julieschatzmusic.com/assets/photos/julie-schatz-dj-party-event.webp",
-    "uploadDate": "2024-12-05T00:00:00-05:00",
-    "contentUrl": "https://www.tiktok.com/@soulshadesmusic/video/7449834726979865898",
-    "publisher": { "@id": "https://julieschatzmusic.com/#business" },
-    "creator": { "@id": "https://julieschatzmusic.com/#julie" },
-    "interactionStatistic": [
-      {
-        "@type": "InteractionCounter",
-        "interactionType": { "@type": "WatchAction" },
-        "userInteractionCount": 10100000
-      }
-    ]
-  }
-]
-</script>
 
 <!-- UPCOMING EVENTS -->
 <section id="events" class="events-section">

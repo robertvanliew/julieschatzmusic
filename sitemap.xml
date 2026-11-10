@@ -342,6 +342,11 @@
     <priority>0.85</priority>
   </url>
 <!-- ADMIN:POSTS:START -->
-
+  <url>
+    <loc>https://julieschatzmusic.com/blog/the-grand-wedding-ceremony-cocktail-hour-jazz-violin/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 <!-- ADMIN:POSTS:END -->
 </urlset>

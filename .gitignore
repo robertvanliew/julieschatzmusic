@@ -61,3 +61,7 @@ yarn-error.log*
 
 # raw video source dumps for blog processing (compressed versions live in assets/blog/)
 videos for blog/
+
+# Raw source footage and update notes from Julie (web copies live in assets/highlights/clips/)
+Video clips as of */
+website-updates-as-of-*.md
