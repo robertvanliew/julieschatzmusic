@@ -99,6 +99,17 @@
     });
   }, true);
 
+  // Event dates cannot be in the past: the picker greys them out and the browser
+  // refuses to submit one. (The server checks again, see api/inquiry.js.)
+  function limitDates() {
+    var d = new Date();
+    var today = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    var inputs = document.querySelectorAll('input[type="date"][name="event_date"], input[type="date"][name="date"]');
+    for (var i = 0; i < inputs.length; i++) if (!inputs[i].min) inputs[i].min = today;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', limitDates);
+  else limitDates();
+
   // Pages that report leads to Meta through fbTrack('Lead', ...) get the GA4
   // event automatically, with content_name as the source.
   var tries = 0;

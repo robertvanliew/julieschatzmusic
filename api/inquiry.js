@@ -106,6 +106,11 @@ module.exports = async (req, res) => {
     console.warn('[inquiry] spam blocked', spam.score, spam.reasons.join('; '), clean(fields.form_source, 60));
     return reply(200, { ok: true });
   }
+  // A real visitor who picked a date that just passed (wrong year, usually) gets to fix it.
+  const ed = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fields.event_date || '');
+  if (ed && Date.UTC(+ed[1], +ed[2] - 1, +ed[3]) < Date.now() - 2 * 86400000) {
+    return reply(400, { errors: [{ message: 'That event date has already passed. Please check the date and send again.' }] });
+  }
 
   const aiRaw = clean(fields.ai_referral, 40);
   const ai = AI_NAMES.find(n => n.toLowerCase() === aiRaw.toLowerCase()) || '';
