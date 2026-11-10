@@ -4329,6 +4329,7 @@ src="https://www.facebook.com/tr?id=2030903521125913&ev=PageView&noscript=1"
 <script src="/assets/js/lead-tracking.js" defer></script>
 <link rel="stylesheet" href="/assets/css/nav-dropdown.css">
 <link rel="stylesheet" href="/assets/css/trust-strip.css">
+<link rel="stylesheet" href="/assets/css/highlight-theater.css">
 </head>
 <body>
 <canvas id="shader-bg"></canvas>
@@ -6777,42 +6778,7 @@ function openInquiryFromHash() {
 window.addEventListener('load', openInquiryFromHash);
 window.addEventListener('hashchange', openInquiryFromHash);
 
-// ── Performance Highlights, click poster to load Vimeo iframe or self-hosted MP4 ──
-(() => {
-  const cards = Array.from(document.querySelectorAll('.video-card[data-vimeo], .video-card[data-mp4]'));
-  if (!cards.length) return;
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      let el;
-      if (card.dataset.mp4) {
-        el = document.createElement('video');
-        el.src = card.dataset.mp4;
-        if (card.dataset.poster) el.poster = card.dataset.poster;
-        el.controls = true;
-        el.autoplay = true;
-        el.playsInline = true;
-        el.setAttribute('playsinline', '');
-        el.setAttribute('controlslist', 'nodownload noremoteplayback');
-        el.setAttribute('disablepictureinpicture', '');
-        el.oncontextmenu = function () { return false; };
-        el.preload = 'auto';
-      } else if (card.dataset.vimeo) {
-        const id = card.dataset.vimeo;
-        el = document.createElement('iframe');
-        el.src = `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&autoplay=1`;
-        el.allow = 'autoplay; fullscreen; picture-in-picture';
-        el.allowFullscreen = true;
-        el.setAttribute('frameborder', '0');
-      } else {
-        return;
-      }
-      card.innerHTML = '';
-      card.appendChild(el);
-      card.classList.add('is-playing');
-      card.style.cursor = 'default';
-    }, { once: true });
-  });
-})();
+// Performance Highlights cards open the full-window player: assets/js/highlight-theater.js
 
 // ── Performance Highlights, translateX-based carousel ──
 (() => {
@@ -7608,6 +7574,7 @@ if (testimonialsTrack) {
 })();
 </script>
 <script src="/assets/js/global-inquire-cta.js" defer></script>
+<script src="/assets/js/highlight-theater.js" defer></script>
 </body>
 </html>
 
